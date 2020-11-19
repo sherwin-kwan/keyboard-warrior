@@ -31,7 +31,7 @@ const testSequelize = async() => {
 
 testSequelize();
 
-// DB setup
+// DB setup - Old code without Sequelize
 // const { Pool } = require('pg');
 // const db = new Pool(dbParams);
 // db.connect(err => {
