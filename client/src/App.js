@@ -1,13 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
+
+  const [data, setData] = useState('Data will arrive from API in 3 seconds');
+
+  async function getData() {
+    const theData = await axios.get('/api');
+    console.log('DATA IS: ', theData.data);
+    setData(theData.data.message)
+  };
+  setTimeout(getData, 3000);
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          {data}
         </p>
         <a
           className="App-link"

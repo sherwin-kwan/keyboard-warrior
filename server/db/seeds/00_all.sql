@@ -1,1 +1,1 @@
-\i db/seeds/01_users.sql
+\i db/seeds/01_test.sql
