@@ -8,6 +8,8 @@ function ArenaDoorList(props) {
   const doors = props.arenas.map((arena) => {
     return <ArenaDoor 
       name={arena.name}
+      setGameMode={props.setGameMode}
+      setArena={props.setArena}
     />
   })
 

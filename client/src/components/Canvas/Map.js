@@ -5,7 +5,7 @@ import React from "react";
 import ProgressBar from '../ProgressBar';
 import ArenaDoorList from '../ArenaDoorList';
 
-function Map() {
+function Map(props) {
   // Hardcoded Data
   const arenas = [
     { name: 'Hogwarts' },
@@ -26,6 +26,8 @@ function Map() {
       />
       <ArenaDoorList
         arenas={arenas}
+        setGameMode={props.setGameMode}
+        setArena={props.setArena}
       />
     </>
   );
