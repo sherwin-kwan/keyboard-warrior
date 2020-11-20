@@ -7,7 +7,7 @@ function TextInput() {
   return (
     <>
       <textarea
-        autofocus
+        autoFocus
         cols="100"
         rows="5"
         type="text"

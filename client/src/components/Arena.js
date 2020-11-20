@@ -16,6 +16,9 @@ function Arena(props) {
     { name: 'defend', icon: '' },
     { name: 'heal', icon: '' }
   ];
+  
+  // Helper functions
+  const getRandWord = () => words[Math.floor(Math.random() * words.length)];
 
   return (
     <>
@@ -32,6 +35,10 @@ function Arena(props) {
       <PlayerActionList
         words={words}
         playerActions={playerActions}
+        onNewWord={getRandWord}
+      />
+      <TextInput 
+        value=''
       />
       {/* Challenger */}
       <HealthBar
@@ -47,9 +54,6 @@ function Arena(props) {
           attack: 'attack-function.jpg',
           timeToAttack: 5
         }}
-      />
-      <TextInput 
-        value=''
       />
     </>
   );

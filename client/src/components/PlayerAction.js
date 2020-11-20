@@ -4,7 +4,7 @@ import React from "react";
 function PlayerAction(props) {
   return (
     <>
-      <p>{props.name}: {props.word}</p>
+      <li>{props.name}: {props.word}</li>
     </>
   );
 }
