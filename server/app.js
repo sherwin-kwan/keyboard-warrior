@@ -6,6 +6,7 @@ const path = require('path');
 const logger = require('morgan');
 const fs = require('fs');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 // Create server
 const app = express();
@@ -16,6 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 // Load .env data into process.env
 const ENV = process.env.NODE_ENV || "development";

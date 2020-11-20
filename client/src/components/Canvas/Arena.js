@@ -23,9 +23,10 @@ function Arena(props) {
       axios.get('/api/words'),
       axios.get('/api/playerActions')
     ]).then(data => {
-      console.log('data', data);
+      setWords(data[0].data);
+      setPlayerActions(data[1].data);
     }).catch(err => console.log("Error getting data: ", err));
-  }, [])
+  }, []);
   
   // Helper functions
   const getRandWord = () => words[Math.floor(Math.random() * words.length)];
