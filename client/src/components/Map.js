@@ -6,6 +6,16 @@ import ProgressBar from './ProgressBar';
 import ArenaDoorList from './ArenaDoorList';
 
 function Map() {
+  // Hardcoded Data
+  const arenas = [
+    { name: 'Hogwarts' },
+    { name: 'Indigo Plateau' },
+    { name: 'Minas Tirith' },
+    { name: 'Final Destination' },
+    { name: 'Hotel California' },
+  ]
+
+
   return (
     <>
       <h1>Map</h1>
@@ -15,23 +25,7 @@ function Map() {
         arenasBeaten='3' // ????
       />
       <ArenaDoorList
-        arenas={[
-        {
-          name: 'Hogwarts'
-        }, 
-        {
-          name: 'Indigo Plateau'
-        }, 
-        {
-          name: 'Minas Tirith'
-        },
-        {
-          name: 'Final Destination'
-        },
-        {
-          name: 'Arena 5'
-        }
-      ]}
+        arenas={arenas}
       />
     </>
   );

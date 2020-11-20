@@ -5,16 +5,23 @@ import React from "react";
 import PlayerAction from './PlayerAction';
 
 function PlayerActionList(props) {
-  const playerActionMaker = props.words.map((word) =>
-    <PlayerAction 
-    word = {word}
-    />
-  )
+  const words = props.words;
+  const getRandWord = () => words[Math.floor(Math.random() * words.length)];
+
+  const actions = props.playerActions.map(action => {
+    return (
+      <PlayerAction
+        name={action.name}
+        word={getRandWord()}
+      />
+    )
+  });
+    
   return (
     <>
       <h1>PlayerActionList</h1>
         <ul>
-          {playerActionMaker}
+          {actions}
         </ul>
     </>
   )

@@ -9,6 +9,14 @@ import ChallengerActionList from './ChallengerActionList';
 import TextInput from './TextInput';
 
 function Arena(props) {
+  // Hardcoded data
+  const words = ["army", "dogs", "tree", "girl", "true", "pure", "area", "test", "hand", "door"];
+  const playerActions = [
+    { name: 'attack', icon: '' },
+    { name: 'defend', icon: '' },
+    { name: 'heal', icon: '' }
+  ];
+
   return (
     <>
       <h1>Arena</h1>
@@ -22,12 +30,8 @@ function Arena(props) {
         filename='/images/boss-spirit-fighter.png'
       />
       <PlayerActionList
-        words={["ARMY", "DOGS", "TREE", "GIRL"]}
-        actions={{ 
-          attack: 'attack function',
-          defend: 'defend function',
-          heal: 'heal function'
-        }}
+        words={words}
+        playerActions={playerActions}
       />
       {/* Challenger */}
       <HealthBar
@@ -36,7 +40,7 @@ function Arena(props) {
       <Avatar
         name='Challenger'
         height='250px'
-        filename='/images/boss-dragon-emperor.png'
+        filename='/images/boss-dragon-emporer.png'
       />
       <ChallengerActionList
         actions={{ 
