@@ -1,5 +1,20 @@
 div.health-bar {
   display: flex;
-  justify-content: flex-start;
-  align-items: center
+  justify-content: space-around;
+  align-items: center;
+
+  img {
+    max-width: 20%;
+    max-height: 40px;
+  }
+
+  & > div {
+    width: 70%;
+    height: 100%;
+  }
+
+  .skillbar {
+    margin-bottom: 0px;
+  }
+
 }

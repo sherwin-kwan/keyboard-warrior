@@ -11,6 +11,8 @@ import TextInput from '../TextInput';
 function Arena(props) {
   // States
   const [words, setWords] = useState(["army", "dogs", "tree", "girl", "true", "pure", "area", "test", "hand", "door"]);
+  const [playerHealth, setPlayerHealth] = useState(props.initialPlayerHealth);
+  const [challengerHealth, setChallengerHealth] = useState(props.challengerHealth);
   const [playerActions, setPlayerActions] = useState([
     { name: 'attack', icon: '' },
     { name: 'defend', icon: '' },
@@ -20,13 +22,22 @@ function Arena(props) {
   
   // Helper functions
   const getRandWord = () => words[Math.floor(Math.random() * words.length)];
+  const playerDamaged = (hp) => {
+    console.log("PLAYER DAMAGED!", hp);
+    setPlayerHealth(prev => prev - hp);
+  };
+  const challengerDamaged = (hp) => {
+    console.log("CHALLENGER DAMAGED!", hp);
+    setChallengerHealth(prev => prev - hp);
+  }
 
   return (
     <>
       <h1>Arena</h1>
       {/* Player */}
       <HealthBar
-        initialHealth="80"
+        initialHealth={playerHealth}
+        onClick={() => playerDamaged(10)}
       />
       <Avatar
         name='Your Name'
@@ -44,7 +55,8 @@ function Arena(props) {
       />
       {/* Challenger */}
       <HealthBar
-        initialHealth="100"
+        initialHealth={challengerHealth}
+        onClick={() => challengerDamaged(10)}
       />
       <Avatar
         name='Challenger'

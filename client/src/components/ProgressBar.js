@@ -8,7 +8,7 @@ function ProgressBar(props) {
     <>
       <h1>Progress Bar</h1>
       {/* Just a placeholder for now, the real progress bar will have dots or notches and look more fancy! */}
-      <div class="progress-bar">
+      <div className="progress-bar">
         <Avatar
         height='50px'
         filename={props.playerImg} />

@@ -31,7 +31,10 @@ function Canvas(props) {
           onClick={setMode} />
         }
         {mode === MAP && <Map />}
-        {mode === ARENA && <Arena />}
+        {mode === ARENA && <Arena
+          initialPlayerHealth = {80}
+          challengerHealth = {100}
+        />}
         {mode === OUTCOME && <Outcome />}
       </div>
     </>
