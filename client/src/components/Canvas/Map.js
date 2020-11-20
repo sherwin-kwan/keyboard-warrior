@@ -2,8 +2,8 @@
 import React from "react";
 
 // Components
-import ProgressBar from './ProgressBar';
-import ArenaDoorList from './ArenaDoorList';
+import ProgressBar from '../ProgressBar';
+import ArenaDoorList from '../ArenaDoorList';
 
 function Map() {
   return (

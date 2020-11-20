@@ -2,11 +2,11 @@
 import React from "react";
 
 // Components
-import HealthBar from './HealthBar';
-import Avatar from './Avatar';
-import PlayerActionList from './PlayerActionList';
-import ChallengerActionList from './ChallengerActionList';
-import TextInput from './TextInput';
+import HealthBar from '../HealthBar';
+import Avatar from '../Avatar';
+import PlayerActionList from '../PlayerActionList';
+import ChallengerActionList from '../ChallengerActionList';
+import TextInput from '../TextInput';
 
 function Arena(props) {
   return (
