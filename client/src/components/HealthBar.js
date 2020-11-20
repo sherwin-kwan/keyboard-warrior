@@ -1,13 +1,14 @@
 // Libraries
 import React from "react";
 import SkillBar from 'react-skillbars';
+import './HealthBar.scss';
 
 function HealthBar(props) {
   return (
-    <>
-      <h1>HealthBar</h1>
+    <div class="health-bar">
+      <img src="/images/red-cross.png" alt="Health" />
       <SkillBar animationDelay={0} animationDuration={100} skills={[{level: props.initialHealth}]} />
-    </>
+    </div>
   );
 }
 
