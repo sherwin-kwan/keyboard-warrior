@@ -7,7 +7,7 @@ function StartGame(props) {
     <h1>Start Game</h1>
     <button
       onClick={() => {props.onClick("MAP")}}
-    >To Map</button>
+    >Start Game</button>
     </>
   );
 }
