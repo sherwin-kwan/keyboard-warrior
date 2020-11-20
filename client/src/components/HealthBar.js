@@ -1,10 +1,12 @@
 // Libraries
 import React from "react";
+import Bar from 'react-bars';
 
-function HealthBar() {
+function HealthBar(props) {
   return (
     <>
       <h1>HealthBar</h1>
+      <Bar data={[{label: 'Health', value: props.initialHealth}]} />
     </>
   );
 }

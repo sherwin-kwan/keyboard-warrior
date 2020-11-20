@@ -24,7 +24,14 @@ function Map() {
         }, 
         {
           name: 'Minas Tirith'
-        }]}
+        },
+        {
+          name: 'Final Destination'
+        },
+        {
+          name: 'Arena 5'
+        }
+      ]}
       />
     </>
   );

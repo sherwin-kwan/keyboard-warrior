@@ -1,10 +1,11 @@
 // Libraries
 import React from "react";
 
-function PlayerAction() {
+function PlayerAction(props) {
   return (
     <>
-      <h1>PlayerAction</h1>
+      <h1>Player Action</h1>
+      <p>{props.word}</p>
     </>
   );
 }

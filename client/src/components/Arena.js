@@ -14,15 +14,15 @@ function Arena(props) {
       <h1>Arena</h1>
       {/* Player */}
       <HealthBar
-        maxHealth="100"
-        initialHealth="90"
+        initialHealth="80"
       />
       <Avatar
         name='Your Name'
+        height='250px'
         filename='/images/boss-spirit-fighter.png'
       />
       <PlayerActionList
-        words={[]}
+        words={["ARMY", "DOGS", "TREE", "GIRL"]}
         actions={{ 
           attack: 'attack function',
           defend: 'defend function',
@@ -31,16 +31,16 @@ function Arena(props) {
       />
       {/* Challenger */}
       <HealthBar
-        maxHealth="100"
-        initialHealth="90"
+        initialHealth="100"
       />
       <Avatar
         name='Challenger'
+        height='250px'
         filename='/images/boss-dragon-emperor.png'
       />
       <ChallengerActionList
         actions={{ 
-          attack: 'attack function',
+          attack: 'attack-function.jpg',
           timeToAttack: 5
         }}
       />
