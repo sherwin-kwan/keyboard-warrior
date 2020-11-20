@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
 
 // Components
 import HealthBar from './HealthBar';
@@ -9,13 +9,14 @@ import ChallengerActionList from './ChallengerActionList';
 import TextInput from './TextInput';
 
 function Arena(props) {
-  // Hardcoded data
-  const words = ["army", "dogs", "tree", "girl", "true", "pure", "area", "test", "hand", "door"];
-  const playerActions = [
+  // States
+  const [words, setWords] = useState(["army", "dogs", "tree", "girl", "true", "pure", "area", "test", "hand", "door"]);
+  const [playerActions, setPlayerActions] = useState([
     { name: 'attack', icon: '' },
     { name: 'defend', icon: '' },
     { name: 'heal', icon: '' }
-  ];
+  ]);
+  const [input, setInput] = useState('');
   
   // Helper functions
   const getRandWord = () => words[Math.floor(Math.random() * words.length)];
@@ -38,7 +39,8 @@ function Arena(props) {
         onNewWord={getRandWord}
       />
       <TextInput 
-        value=''
+        value={input}
+        onChange={e => setInput(e.target.value)}
       />
       {/* Challenger */}
       <HealthBar

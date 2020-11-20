@@ -1,8 +1,8 @@
 // TextInput
-import React, { useState } from "react";
+import React from "react";
 
-function TextInput() {
-  const [input, setInput] = useState('');
+function TextInput(props) {
+ 
 
   return (
     <>
@@ -12,8 +12,8 @@ function TextInput() {
         rows="5"
         type="text"
         name="input"
-        value={input} 
-        onChange={e => setInput(e.target.value)}
+        value={props.value} 
+        onChange={props.onChange}
       />
     </>
   );
