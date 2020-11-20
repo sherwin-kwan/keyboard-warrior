@@ -1,6 +1,7 @@
 // Libraries
 import React from "react";
 import useGameMode from "../../hooks/useGameMode";
+import TempNavBar from '../TempNavBar';
 
 
 // Styles
@@ -23,14 +24,17 @@ function Canvas(props) {
   const { mode, setMode } = useGameMode("START")
 
   return (
-    <div className="Canvas">
-      {mode === START && <StartGame
+    <>
+      <TempNavBar onClick={setMode} />
+      <div className="Canvas">
+        {mode === START && <StartGame
           onClick={setMode} />
-      }
-      {mode === MAP && <Map />}
-      {mode === ARENA && <Arena />}
-      {mode === OUTCOME && <Outcome />}
-    </div>
+        }
+        {mode === MAP && <Map />}
+        {mode === ARENA && <Arena />}
+        {mode === OUTCOME && <Outcome />}
+      </div>
+    </>
   );
 }
 
