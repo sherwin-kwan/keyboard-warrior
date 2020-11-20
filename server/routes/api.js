@@ -14,14 +14,14 @@ module.exports = (fs) => {
   router.get('/words', (req, res) => {
     fs.readFile(`${dataPath}/words.json`, 'utf8', (err, data) => {
       if(err) throw err;
-      res.send(JSON.parse(data));
+      res.json(JSON.parse(data));
     });
   });
 
   router.get('/playerActions', (req, res) => {
     fs.readFile(`${dataPath}/playerActions.json`, 'utf8', (err, data) => {
       if(err) throw err;
-      res.send(JSON.parse(data));
+      res.json(JSON.parse(data));
     });
   });
 
