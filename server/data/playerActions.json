@@ -1,0 +1,13 @@
+[
+  { 
+    "name": "attack",
+    "icon": ""
+  },
+  {
+    "name": "defend",
+    "icon": ""
+  },
+  {
+    "name": "heal",
+    "icon": "" }
+]

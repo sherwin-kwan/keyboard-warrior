@@ -21,7 +21,7 @@ function Canvas(props) {
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
 
-  const { mode, setMode } = useGameMode("START")
+  const { mode, setMode } = useGameMode("ARENA")
 
   return (
     <>
