@@ -1,0 +1,1 @@
+// shifts between each of the game modes: start, map, arena and result
