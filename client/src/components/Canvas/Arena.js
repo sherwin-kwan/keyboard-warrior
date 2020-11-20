@@ -13,7 +13,13 @@ function Arena(props) {
   // States
   const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
-  const [input, setInput] = useState('');
+  
+  // Helper functions
+  const getRandWord = () => words[Math.floor(Math.random() * words.length)];
+  const getNewWord = (action) => {
+    // update playerAction state with a new word
+    // clear text input
+  }
   
   // Get word list and action list on load
   useEffect(() => {
@@ -25,11 +31,13 @@ function Arena(props) {
     ]).then(data => {
       setWords(data[0].data);
       setPlayerActions(data[1].data);
+      console.log(data[1].data)
+    }).then(() => {
+      // Add a word to each action
+      playerActions.forEach(action => action.word = getRandWord())
+      console.log('playerActions', playerActions);
     }).catch(err => console.log("Error getting data: ", err));
   }, []);
-  
-  // Helper functions
-  const getRandWord = () => words[Math.floor(Math.random() * words.length)];
 
   return (
     <>
@@ -48,9 +56,8 @@ function Arena(props) {
         playerActions={playerActions}
         onNewWord={getRandWord}
       />
-      <TextInput 
-        value={input}
-        onChange={e => setInput(e.target.value)}
+      <TextInput
+        onMatch={getNewWord}
       />
       {/* Challenger */}
       <HealthBar
