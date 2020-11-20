@@ -22,8 +22,12 @@ function Canvas(props) {
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
 
+<<<<<<< HEAD
   const { mode, setMode } = useGameMode("START")
   const { arena, setArena } = useArena({ name: 'Hogwarts' })
+=======
+  const { mode, setMode } = useGameMode("ARENA")
+>>>>>>> 72a4819bb7e33610016833641e2b6bec0166e425
 
   return (
     <>
