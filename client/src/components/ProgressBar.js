@@ -1,6 +1,6 @@
 // Libraries
 import React from "react";
-import Bar from 'react-bars';
+import SkillBar from 'react-skillbars';
 import Avatar from './Avatar';
 
 function ProgressBar(props) {
@@ -12,8 +12,12 @@ function ProgressBar(props) {
         <Avatar
         height='50px'
         filename={props.playerImg} />
-        <Bar data={[{
-          value: props.arenasBeaten / 5 * 100
+        <SkillBar 
+          animationDelay={0} 
+          animationDuration={100} 
+          skills={[{
+          type: 'Arenas Beaten',
+          level: props.arenasBeaten / 5 * 100
         }]}/>
         <Avatar
         height='50px'
