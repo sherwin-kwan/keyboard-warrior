@@ -1,5 +1,6 @@
 // Libraries
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 // Components
 import HealthBar from '../HealthBar';
@@ -10,13 +11,21 @@ import TextInput from '../TextInput';
 
 function Arena(props) {
   // States
-  const [words, setWords] = useState(["army", "dogs", "tree", "girl", "true", "pure", "area", "test", "hand", "door"]);
-  const [playerActions, setPlayerActions] = useState([
-    { name: 'attack', icon: '' },
-    { name: 'defend', icon: '' },
-    { name: 'heal', icon: '' }
-  ]);
+  const [words, setWords] = useState([]);
+  const [playerActions, setPlayerActions] = useState([]);
   const [input, setInput] = useState('');
+  
+  // Get word list and action list on load
+  useEffect(() => {
+    axios.defaults.baseURL = 'http://localhost:3001';
+
+    Promise.all([
+      axios.get('/api/words'),
+      axios.get('/api/playerActions')
+    ]).then(data => {
+      console.log('data', data);
+    }).catch(err => console.log("Error getting data: ", err));
+  }, [])
   
   // Helper functions
   const getRandWord = () => words[Math.floor(Math.random() * words.length)];
