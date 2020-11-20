@@ -1,9 +1,21 @@
 // TextInput
 import React from "react";
 
-function TextInput() {
+function TextInput(props) {
+ 
+
   return (
-    <h1>TextInput</h1>
+    <>
+      <textarea
+        autoFocus
+        cols="100"
+        rows="5"
+        type="text"
+        name="input"
+        value={props.value} 
+        onChange={props.onChange}
+      />
+    </>
   );
 }
 

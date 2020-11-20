@@ -5,16 +5,22 @@ import React from "react";
 import PlayerAction from './PlayerAction';
 
 function PlayerActionList(props) {
-  const playerActionMaker = props.words.map((word) =>
-    <PlayerAction 
-    word = {word}
-    />
-  )
+
+  const actions = props.playerActions.map(action => {
+    return (
+      <PlayerAction
+        key={action.name}
+        name={action.name}
+        word={props.onNewWord()}
+      />
+    )
+  });
+    
   return (
     <>
       <h1>PlayerActionList</h1>
         <ul>
-          {playerActionMaker}
+          {actions}
         </ul>
     </>
   )

@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useState } from "react";
 
 // Components
 import HealthBar from '../HealthBar';
@@ -9,6 +9,18 @@ import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
 
 function Arena(props) {
+  // States
+  const [words, setWords] = useState(["army", "dogs", "tree", "girl", "true", "pure", "area", "test", "hand", "door"]);
+  const [playerActions, setPlayerActions] = useState([
+    { name: 'attack', icon: '' },
+    { name: 'defend', icon: '' },
+    { name: 'heal', icon: '' }
+  ]);
+  const [input, setInput] = useState('');
+  
+  // Helper functions
+  const getRandWord = () => words[Math.floor(Math.random() * words.length)];
+
   return (
     <>
       <h1>Arena</h1>
@@ -22,12 +34,13 @@ function Arena(props) {
         filename='/images/boss-spirit-fighter.png'
       />
       <PlayerActionList
-        words={["ARMY", "DOGS", "TREE", "GIRL"]}
-        actions={{ 
-          attack: 'attack function',
-          defend: 'defend function',
-          heal: 'heal function'
-        }}
+        words={words}
+        playerActions={playerActions}
+        onNewWord={getRandWord}
+      />
+      <TextInput 
+        value={input}
+        onChange={e => setInput(e.target.value)}
       />
       {/* Challenger */}
       <HealthBar
@@ -36,16 +49,13 @@ function Arena(props) {
       <Avatar
         name='Challenger'
         height='250px'
-        filename='/images/boss-dragon-emperor.png'
+        filename='/images/boss-dragon-emporer.png'
       />
       <ChallengerActionList
         actions={{ 
           attack: 'attack-function.jpg',
           timeToAttack: 5
         }}
-      />
-      <TextInput 
-        value=''
       />
     </>
   );
