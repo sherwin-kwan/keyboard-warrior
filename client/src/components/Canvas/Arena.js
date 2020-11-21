@@ -9,17 +9,47 @@ import PlayerActionList from '../PlayerActionList';
 import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
 
+
 function Arena(props) {
   // States
   const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
+
+  const [playerInput, setPlayerInput] = useState('');
   
   // Helper functions
-  const getRandWord = () => words[Math.floor(Math.random() * words.length)];
+  // Gets a random word from the words list
+  const getRandWord = (words) => words[Math.floor(Math.random() * words.length)];
+  // Gets a new word for given action that the player just executed
   const getNewWord = (action) => {
-    // update playerAction state with a new word
-    // clear text input
-  }
+    setPlayerActions(prev => {
+      console.log('prev', prev)
+      return prev.map(actionPrev => {
+        console.log('actionprev', actionPrev.name, 'action', action.name)
+        if(actionPrev.name === action.name) {
+          console.log('action matched')
+          return {
+            ...actionPrev,
+            word: getRandWord(words)
+          }
+        } else {
+          return actionPrev
+        }
+      });
+    });
+  };
+
+  const isMatch = (input, actions) => actions.find(action => action.word === input);
+
+  if (isMatch(playerInput, playerActions)) {
+    console.log('match found!');
+    const action = playerActions.find(action => action.word === playerInput);
+    // Get a new word for that action
+    console.log('matched action', action)
+    getNewWord(action)
+    // Clear text area
+    setPlayerInput('')
+  } 
   
   // Get word list and action list on load
   useEffect(() => {
@@ -30,12 +60,13 @@ function Arena(props) {
       axios.get('/api/playerActions')
     ]).then(data => {
       setWords(data[0].data);
-      setPlayerActions(data[1].data);
-      console.log(data[1].data)
-    }).then(() => {
-      // Add a word to each action
-      playerActions.forEach(action => action.word = getRandWord())
-      console.log('playerActions', playerActions);
+      // setPlayerActions(data[1].data);
+      setPlayerActions(prev => {
+        // when generating random word check that it doesn't match a word in the actions list
+        return data[1].data.map(action => ({ ...action, word: getRandWord(data[0].data)}))
+      })
+
+      // console.log('data', data[1].data)
     }).catch(err => console.log("Error getting data: ", err));
   }, []);
 
@@ -54,10 +85,12 @@ function Arena(props) {
       <PlayerActionList
         words={words}
         playerActions={playerActions}
-        onNewWord={getRandWord}
       />
       <TextInput
-        onMatch={getNewWord}
+        value={playerInput}
+        onChange={setPlayerInput}
+        // playerActions={playerActions}
+        // onMatch={getNewWord}
       />
       {/* Challenger */}
       <HealthBar
