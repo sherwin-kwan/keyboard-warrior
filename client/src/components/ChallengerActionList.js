@@ -6,6 +6,10 @@ import SkillBar from 'react-skillbars';
 import ChallengerAction from './ChallengerAction';
 
 function ChallengerActionList(props) {
+  // Sets the time until the next challenger attack in tenths of a second
+  // Hard-coded to 2 seconds between attacks right now
+
+
   return (
     <>
       <h1>ChallengerActionList</h1>
@@ -13,8 +17,8 @@ function ChallengerActionList(props) {
       <img src={props.attack} />
       <SkillBar 
           animationDelay={0} 
-          animationDuration={100} 
-          skills={[{type: 'Attack Timer', level: 60}]}/>
+          animationDuration={props.duration} 
+          skills={[{type: 'Attack Timer', level: props.percentage}]}/>
     </>
   );
 }

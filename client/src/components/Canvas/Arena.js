@@ -10,6 +10,9 @@ import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
 
 function Arena(props) {
+
+  console.log('RENDERING');
+
   // States
   const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
@@ -46,11 +49,30 @@ function Arena(props) {
       }, 3000);
     }
   };
-  
+
+  // Timings for the challenger's attacks
+  const milliseconds = 1000;
+  const [challengerTimer, setChallengerTimer] = useState(20);
+
+  // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (challengerTimer == 1) {
+        setChallengerTimer(20);
+        console.log('CHALLENGER LAUNCHED AN ATTACK');
+        // We would eventually put a function for the challenger to attack here
+      } else {
+        setChallengerTimer(prev => prev - 1);
+        console.log(`CHALLENGER TIMER SET TO ${challengerTimer}`)
+      }
+    }, milliseconds);
+    return () => clearInterval(interval);
+  }, [challengerTimer]);
+  console.log('playerActions', playerActions);
+
   // Get word list and action list on load
   useEffect(() => {
     axios.defaults.baseURL = 'http://localhost:3001';
-
     Promise.all([
       axios.get('/api/words'),
       axios.get('/api/playerActions')
@@ -81,7 +103,6 @@ function Arena(props) {
       <PlayerActionList
         words={words}
         playerActions={playerActions}
-        onNewWord={getRandWord}
       />
       <TextInput
         onMatch={getNewWord}
@@ -97,10 +118,12 @@ function Arena(props) {
         filename='/images/boss-dragon-emperor.png'
       />
       <ChallengerActionList
-        actions={{ 
+        actions={{
           attack: 'attack-function.jpg',
           timeToAttack: 5
         }}
+        duration={milliseconds}
+        percentage={challengerTimer / 20 * 100}
       />
     </>
   );

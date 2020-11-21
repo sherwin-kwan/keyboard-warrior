@@ -5,13 +5,14 @@ import React from "react";
 import PlayerAction from './PlayerAction';
 
 function PlayerActionList(props) {
+  // console.log('actions are: ' + props.playerActions[0].inspect);
 
   const actions = props.playerActions.map(action => {
     return (
       <PlayerAction
         key={action.name}
         name={action.name}
-        word={props.onNewWord()}
+        word={action.word}
       />
     )
   });
