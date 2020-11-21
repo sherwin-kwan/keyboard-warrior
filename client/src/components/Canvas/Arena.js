@@ -56,37 +56,33 @@ function Arena(props) {
     }, milliseconds);
     return () => clearInterval(interval);
   }, [challengerTimer]);
-  // console.log('playerActions', playerActions);
 
-  // Gets a random word from the words list
-  const getRandWord = (words) => words[Math.floor(Math.random() * words.length)];
-  // Gets a new word for given action that the player just executed
+  // Gets a random word from a words list
+  const getRandWord = (action, words) => {
+    const wordsForAction = words.filter(word => word.action === action);
+    const randWord = wordsForAction[Math.floor(Math.random() * wordsForAction.length)];
+    return randWord.word;
+  }
+  // Returns true if player input matches an action word
+  const isMatch = (input, actions) => actions.find(action => action.word === input);
+  // Gets and sets a new word for the given action that the player just executed
   const getNewWord = (action) => {
-    // update playerAction state with a new word
-    // clear text input
     setPlayerActions(prev => {
-      console.log('prev', prev)
       return prev.map(actionPrev => {
-        console.log('actionprev', actionPrev.name, 'action', action.name)
         if (actionPrev.name === action.name) {
-          console.log('action matched')
-          return {
-            ...actionPrev,
-            word: getRandWord(words)
-          }
+          return { ...actionPrev, word: getRandWord(action.name, words) };
         } else {
-          return actionPrev
+          return actionPrev;
         }
       });
     });
   };
 
-  const isMatch = (input, actions) => actions.find(action => action.word === input);
-
+  // Check if player input matches an action words
   if (isMatch(playerInput, playerActions)) {
-    console.log('match found!');
     const action = playerActions.find(action => action.word === playerInput);
     // Get a new word for that action
+<<<<<<< HEAD
     console.log('matched action', action)
     getNewWord(action)
     // Execute the attack or heal action
@@ -101,6 +97,12 @@ function Arena(props) {
     setPlayerInput('')
   };
 
+=======
+    getNewWord(action);
+    // Clear text area
+    setPlayerInput('');
+  }
+>>>>>>> 37f2e9995392071556333ae536788f06231d6fef
 
   // Get word list and action list on load
   useEffect(() => {
@@ -110,13 +112,9 @@ function Arena(props) {
       axios.get('/api/playerActions')
     ]).then(data => {
       setWords(data[0].data);
-      // setPlayerActions(data[1].data);
       setPlayerActions(prev => {
-        // when generating random word check that it doesn't match a word in the actions list
-        return data[1].data.map(action => ({ ...action, word: getRandWord(data[0].data) }))
-      })
-
-      // console.log('data', data[1].data)
+        return data[1].data.map(action => ({ ...action, word: getRandWord(action.name, data[0].data) }))
+      });
     }).catch(err => console.log("Error getting data: ", err));
   }, []);
 
@@ -135,14 +133,11 @@ function Arena(props) {
         filename='/images/boss-spirit-fighter.png'
       />
       <PlayerActionList
-        words={words}
         playerActions={playerActions}
       />
       <TextInput
         value={playerInput}
         onChange={setPlayerInput}
-      // playerActions={playerActions}
-      // onMatch={getNewWord}
       />
       {/* Challenger */}
       <HealthBar
