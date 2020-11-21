@@ -31,10 +31,14 @@ function Arena(props) {
     });
     if (health[fighter] === 0) {
       console.log(`${fighter} DEFEATED`);
+      console.log(`${health[fighter]} FIGHTERS HEALTH`);
       setTimeout(() => {
         props.setMode("OUTCOME");
         // In the future, we need to also add a state to "Outcome" that determines whether it's a win or loss
       }, 3000);
+      if (fighter === 'challenger') {
+        props.setArenasBeaten(prev => prev + 1)
+      }
     }
   };
 

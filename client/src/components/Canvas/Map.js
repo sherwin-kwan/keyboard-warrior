@@ -16,7 +16,7 @@ function Map(props) {
     <>
       <h1>Map</h1>
       <StepProgressBar
-        arenasBeaten='3'
+        arenasBeaten={props.arenasBeaten}
       />
       <ArenaDoorList
         arenas={props.arenas}
