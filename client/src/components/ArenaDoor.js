@@ -2,6 +2,7 @@
 import React from "react";
 
 function ArenaDoor(props) {
+  
   return (
     <>
       {/* <audio src={props.background_music} autoplay></audio> */}
@@ -10,7 +11,12 @@ function ArenaDoor(props) {
       <button 
         onClick={() => {
           props.setGameMode("ARENA")
-          // props.setArena()
+          props.setArena({
+            name: props.name,
+            arena_card: props.arena_card,
+            background_image: props.background_image,
+            background_music: props.background_music
+          })
 
         }}>
         Enter Door</button>

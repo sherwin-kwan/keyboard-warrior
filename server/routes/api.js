@@ -25,5 +25,13 @@ module.exports = (fs) => {
     });
   });
 
+  router.get('/arenas', (req, res) => {
+    fs.readFile(`${dataPath}/arenas.json`, 'utf8', (err, data) => {
+      if(err) throw err;
+      res.json(JSON.parse(data));
+    });
+  });
+
+
   return router;
 }

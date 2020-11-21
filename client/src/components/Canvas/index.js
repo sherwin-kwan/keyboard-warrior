@@ -26,7 +26,7 @@ function Canvas(props) {
   
 
   const { mode, setMode } = useGameMode("ARENA")
-  const { arenas, setArenas } = useArena()
+  const { arenas, setArenas, arena, setArena } = useArena()
   
 
   return (
@@ -38,9 +38,11 @@ function Canvas(props) {
         }
         {mode === MAP && <Map
          setGameMode={setMode}
-         arenas={arenas} />
+         arenas={arenas}
+         setArena={setArena} />
          }
-        {mode === ARENA && <Arena />}
+        {mode === ARENA && <Arena
+          arena={arena} />}
         {mode === OUTCOME && <Outcome />}
       </div>
     </>

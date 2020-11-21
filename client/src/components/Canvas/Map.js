@@ -22,6 +22,7 @@ function Map(props) {
         arenas={props.arenas}
         setGameMode={props.setGameMode}
         arenas={props.arenas}
+        setArena={props.setArena}
       />
     </>
   );
