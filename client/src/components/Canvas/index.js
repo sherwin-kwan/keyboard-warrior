@@ -28,11 +28,19 @@ function Canvas(props) {
       <TempNavBar onClick={setMode} />
       <div className="Canvas">
         {mode === START && <StartGame
-          onClick={setMode} />
+          setMode={setMode} />
         }
-        {mode === MAP && <Map />}
-        {mode === ARENA && <Arena />}
-        {mode === OUTCOME && <Outcome />}
+        {mode === MAP && <Map 
+        setMode={setMode}
+        />}
+        {mode === ARENA && <Arena
+          initialPlayerHealth = {80}
+          challengerHealth = {100}
+          setMode={setMode}
+        />}
+        {mode === OUTCOME && <Outcome 
+        setMode={setMode}
+        />}
       </div>
     </>
   );

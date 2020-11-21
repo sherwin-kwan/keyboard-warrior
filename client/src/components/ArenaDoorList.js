@@ -7,6 +7,7 @@ import ArenaDoor from './ArenaDoor';
 function ArenaDoorList(props) {
   const doors = props.arenas.map((arena) => {
     return <ArenaDoor 
+      key={arena.name}
       name={arena.name}
     />
   })

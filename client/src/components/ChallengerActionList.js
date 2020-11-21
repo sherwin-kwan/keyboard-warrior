@@ -1,17 +1,24 @@
 // Libraries
 import React from "react";
-import Bar from 'react-bars';
+import SkillBar from 'react-skillbars';
 
 // Components
 import ChallengerAction from './ChallengerAction';
 
 function ChallengerActionList(props) {
+  // Sets the time until the next challenger attack in tenths of a second
+  // Hard-coded to 2 seconds between attacks right now
+
+
   return (
     <>
       <h1>ChallengerActionList</h1>
       {/* This value would be passed from the state?? Or through a setInterval of some kind to update 50 times a second? */}
       <img src={props.attack} />
-      <Bar data={[{value: 60}]}/>
+      <SkillBar 
+          animationDelay={0} 
+          animationDuration={props.duration} 
+          skills={[{type: 'Attack Timer', level: props.percentage}]}/>
     </>
   );
 }

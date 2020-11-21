@@ -2,8 +2,22 @@
 // const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+// Create server
+const app = express();
+
+// Middleware
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
 
 // Load .env data into process.env
 const ENV = process.env.NODE_ENV || "development";
@@ -39,16 +53,8 @@ testSequelize();
 // });
 
 // Routers
-const apiRouter = require('./routes/api');
+const apiRouter = require('./routes/api')(fs);
 
-// Server setup
-const app = express();
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
 
 // Mount routes
 app.use('/api', apiRouter);
