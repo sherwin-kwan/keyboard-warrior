@@ -8,6 +8,7 @@ import Avatar from '../Avatar';
 import PlayerActionList from '../PlayerActionList';
 import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
+import Dummy from '../Dummy';
 
 
 function Arena(props) {
@@ -17,51 +18,40 @@ function Arena(props) {
   // States
   const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
-  const [playerHealth, setPlayerHealth] = useState(props.initialPlayerHealth);
-  const [challengerHealth, setChallengerHealth] = useState(props.challengerHealth);
+  const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
-
   // Helper functions
-  const playerDamaged = (hp) => {
-    if (playerHealth > hp) {
-      console.log("PLAYER DAMAGED!", hp);
-      setPlayerHealth(prev => prev - hp);
-    } else {
-      setPlayerHealth(0);
-      console.log('PLAYER DEFEATED');
+  const changeHealth = (fighter, hp) => {
+    console.log(`${fighter} DAMAGED! for ${hp} hp`);
+    setHealth(prev => {
+      const newHealth = { ...prev };
+      // Health cannot be deducted past zero or increased past 100
+      newHealth[fighter] = Math.min(Math.max(newHealth[fighter] + hp, 0), 100);
+      return newHealth;
+    });
+    if (health[fighter] === 0) {
+      console.log(`${fighter} DEFEATED`);
       setTimeout(() => {
         props.setMode("OUTCOME");
-      }, 3000);
-    }
-  };
-
-  const challengerDamaged = (hp) => {
-    if (challengerHealth > hp) {
-      console.log("CHALLENGER DAMAGED!", hp);
-      setChallengerHealth(prev => prev - hp);
-    } else {
-      setChallengerHealth(0);
-      console.log('CHALLENGER DEFEATED');
-      setTimeout(() => {
-        props.setMode("OUTCOME");
+        // In the future, we need to also add a state to "Outcome" that determines whether it's a win or loss
       }, 3000);
     }
   };
 
   // Timings for the challenger's attacks
-  const milliseconds = 1000;
+  const milliseconds = 100;
   const [challengerTimer, setChallengerTimer] = useState(20);
 
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
   useEffect(() => {
     const interval = setInterval(() => {
-      if (challengerTimer == 1) {
-        setChallengerTimer(20);
-        // console.log('CHALLENGER LAUNCHED AN ATTACK');
+      if (challengerTimer == 0) {
+        setChallengerTimer(19);
+        console.log('CHALLENGER LAUNCHED AN ATTACK');
+        changeHealth('player', -10);
         // We would eventually put a function for the challenger to attack here
       } else {
         setChallengerTimer(prev => prev - 1);
-        // console.log(`CHALLENGER TIMER SET TO ${challengerTimer}`)
       }
     }, milliseconds);
     return () => clearInterval(interval);
@@ -92,10 +82,27 @@ function Arena(props) {
   if (isMatch(playerInput, playerActions)) {
     const action = playerActions.find(action => action.word === playerInput);
     // Get a new word for that action
+<<<<<<< HEAD
+    console.log('matched action', action)
+    getNewWord(action)
+    // Execute the attack or heal action
+    switch (action.name) {
+      case 'attack':
+        changeHealth('challenger', -10);
+        break;
+      case 'heal':
+        changeHealth('player', 10);
+    };
+    // Clear text area
+    setPlayerInput('')
+  };
+
+=======
     getNewWord(action);
     // Clear text area
     setPlayerInput('');
   }
+>>>>>>> 37f2e9995392071556333ae536788f06231d6fef
 
   // Get word list and action list on load
   useEffect(() => {
@@ -116,9 +123,10 @@ function Arena(props) {
       <h1>Arena</h1>
       {/* Player */}
       <HealthBar
-        initialHealth={playerHealth}
-        onClick={playerDamaged}
+        health={health.player}
+        onClick={() => { changeHealth('player', -10) }}
       />
+      <Dummy />
       <Avatar
         name='Your Name'
         height='250px'
@@ -133,8 +141,8 @@ function Arena(props) {
       />
       {/* Challenger */}
       <HealthBar
-        initialHealth={challengerHealth}
-        onClick={challengerDamaged}
+        health={health.challenger}
+        onClick={() => { changeHealth('challenger', -10) }}
       />
       <Avatar
         name='Challenger'
