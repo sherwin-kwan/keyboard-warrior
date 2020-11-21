@@ -15,7 +15,7 @@ function ArenaDoorList(props) {
 
   return (
     <>
-      <h1>ArenaDoorList</h1>
+      <h1>Choose your arena!</h1>
       {doors}
     </>
   );
