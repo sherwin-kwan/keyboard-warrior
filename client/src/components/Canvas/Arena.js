@@ -48,6 +48,7 @@ function Arena(props) {
       if (challengerTimer == 0) {
         setChallengerTimer(19);
         console.log('CHALLENGER LAUNCHED AN ATTACK');
+        changeHealth('player', -10);
         // We would eventually put a function for the challenger to attack here
       } else {
         setChallengerTimer(prev => prev - 1);
@@ -88,9 +89,18 @@ function Arena(props) {
     // Get a new word for that action
     console.log('matched action', action)
     getNewWord(action)
+    // Execute the attack or heal action
+    switch (action.name) {
+      case 'attack':
+        changeHealth('challenger', -10);
+        break;
+      case 'heal':
+        changeHealth('player', 10);
+    };
     // Clear text area
     setPlayerInput('')
-  }
+  };
+
 
   // Get word list and action list on load
   useEffect(() => {

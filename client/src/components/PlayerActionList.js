@@ -5,7 +5,7 @@ import React from "react";
 import PlayerAction from './PlayerAction';
 
 function PlayerActionList(props) {
-  console.log('playeractions', props.playerActions);
+  // console.log('playeractions', props.playerActions);
 
   const actions = props.playerActions.map(action => {
     return (
