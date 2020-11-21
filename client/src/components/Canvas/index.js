@@ -2,9 +2,8 @@
 import React from "react";
 import useGameMode from "../../hooks/useGameMode";
 import useArena from "../../hooks/useArena";
-import useArenasBeaten from "../../hooks/useArenasBeaten";
 import TempNavBar from '../TempNavBar';
-
+import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
 
 // Styles
 // import 'styles/App.css';
@@ -25,10 +24,11 @@ function Canvas(props) {
   const OUTCOME = "OUTCOME";
 
   
-
+  //hooks
   const { mode, setMode } = useGameMode("START")
   const { arenas, setArenas, arena, setArena } = useArena()
-  const { arenasBeaten, setArenasBeaten} = useArenasBeaten()
+
+  console.log("JILLIAN", lookupArenasBeaten(arenas))
   
   return (
     <>
@@ -41,14 +41,15 @@ function Canvas(props) {
           setGameMode={setMode}
           arenas={arenas}
           setArena={setArena}
-          arenasBeaten={arenasBeaten} />
+          arenasBeaten={lookupArenasBeaten(arenas)} />
       }
         {mode === ARENA && <Arena
           initialPlayerHealth = {80}
           challengerHealth = {100}
           setMode={setMode}
           arena={arena}
-          setArenasBeaten={setArenasBeaten}
+          arenas={arenas}
+          setArenas={setArenas}
         />}
         {mode === OUTCOME && <Outcome 
         setMode={setMode}

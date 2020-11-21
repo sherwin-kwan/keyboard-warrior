@@ -10,6 +10,9 @@ import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
 import Dummy from '../Dummy';
 
+//helpers
+import updateToArenaBeat from "../../helpers/makeNewArenas";
+
 
 function Arena(props) {
 
@@ -21,6 +24,7 @@ function Arena(props) {
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
   // Helper functions
+  
   const changeHealth = (fighter, hp) => {
     console.log(`${fighter} DAMAGED! for ${hp} hp`);
     setHealth(prev => {
@@ -31,16 +35,19 @@ function Arena(props) {
     });
     if (health[fighter] === 0) {
       console.log(`${fighter} DEFEATED`);
-      console.log(`${health[fighter]} FIGHTERS HEALTH`);
-      setTimeout(() => {
-        props.setMode("OUTCOME");
-        // In the future, we need to also add a state to "Outcome" that determines whether it's a win or loss
-      }, 3000);
-      if (fighter === 'challenger') {
-        props.setArenasBeaten(prev => prev + 1)
-      }
     }
   };
+
+  useEffect(() => {
+    if (health.player === 0) {
+      props.setMode("OUTCOME");
+      console.log(`PLAYER DEFEATED`);
+    } else if (health.challenger === 0) {
+      console.log(`CHALLENGER DEFEATED`);
+      props.setMode("OUTCOME");
+      props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
+    }
+  }, [health])
 
   // Timings for the challenger's attacks
   const milliseconds = 100;
