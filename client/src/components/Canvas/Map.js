@@ -16,8 +16,7 @@ function Map(props) {
     <>
       <h1>Map</h1>
       <StepProgressBar
-        completedPercent="80"
-        arenasBeaten='1'
+        arenasBeaten='3'
       />
       <ArenaDoorList
         arenas={props.arenas}

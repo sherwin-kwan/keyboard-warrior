@@ -10,7 +10,7 @@ export class StepProgressBar extends React.Component {
     const playerLevel = parseInt(this.props.arenasBeaten) + 1
     return (
       <ProgressBar
-        percent={this.props.completedPercent}
+        percent={parseInt(this.props.arenasBeaten) * 20}
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
       >
         <Step transition="scale">
