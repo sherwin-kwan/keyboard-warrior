@@ -78,7 +78,7 @@ function Arena(props) {
       <Avatar
         name='Challenger'
         height='250px'
-        filename='/images/boss-dragon-emporer.png'
+        filename='/images/boss-dragon-emperor.png'
       />
       <ChallengerActionList
         actions={{ 
