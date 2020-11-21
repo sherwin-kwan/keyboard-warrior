@@ -1,4 +1,6 @@
 
+// This class doesn't do anything right now. Sherwin used it to test ES6 exports.
+
 class arenaHelpers {
   static playerDamaged (hp)  {
     console.log("PLAYER DAMAGED!", hp);
