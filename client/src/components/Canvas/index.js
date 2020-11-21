@@ -21,21 +21,26 @@ function Canvas(props) {
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
 
-  const { mode, setMode } = useGameMode("ARENA")
+  const { mode, setMode } = useGameMode("START")
 
   return (
     <>
       <TempNavBar onClick={setMode} />
       <div className="Canvas">
         {mode === START && <StartGame
-          onClick={setMode} />
+          setMode={setMode} />
         }
-        {mode === MAP && <Map />}
+        {mode === MAP && <Map 
+        setMode={setMode}
+        />}
         {mode === ARENA && <Arena
           initialPlayerHealth = {80}
           challengerHealth = {100}
+          setMode={setMode}
         />}
-        {mode === OUTCOME && <Outcome />}
+        {mode === OUTCOME && <Outcome 
+        setMode={setMode}
+        />}
       </div>
     </>
   );

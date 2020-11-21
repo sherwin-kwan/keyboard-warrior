@@ -23,8 +23,16 @@ function Arena(props) {
     // clear text input
   };
   const playerDamaged = (hp) => {
-    console.log("PLAYER DAMAGED!", hp);
-    setPlayerHealth(prev => prev - hp);
+    if (playerHealth > hp) {
+      console.log("PLAYER DAMAGED!", hp);
+      setPlayerHealth(prev => prev - hp);
+    } else {
+      setPlayerHealth(0);
+      console.log('Player defeated');
+      setTimeout(() => {
+        props.setMode("OUTCOME");
+      }, 3000);
+    }
   };
   const challengerDamaged = (hp) => {
     console.log("CHALLENGER DAMAGED!", hp);
