@@ -16,6 +16,7 @@ function Map(props) {
     <>
       <h1>Map</h1>
       <StepProgressBar
+        percent="60"
         playerImg='playerImg'
         bossImg='bossImg'
         arenasBeaten='3' // ????
