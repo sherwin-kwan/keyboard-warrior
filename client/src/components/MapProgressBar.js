@@ -2,11 +2,15 @@ import React from "react";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
 
-export class StepProgressBar extends React.Component {
+export class StepProgressBar extends React.Component { 
   render() {
+    const regularNotch = "/images/yellow-dot.png"
+    const playerNotch = "https://vignette.wikia.nocookie.net/pkmnshuffle/images/9/97/Pikachu_%28Smiling%29.png/revision/latest?cb=20170410234508"
+    const bossNotch = "/images/boss.png"
+    const playerLevel = parseInt(this.props.arenasBeaten) + 1
     return (
       <ProgressBar
-        percent={this.props.percent}
+        percent={this.props.completedPercent}
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
       >
         <Step transition="scale">
@@ -14,7 +18,7 @@ export class StepProgressBar extends React.Component {
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="30"
-              src="/images/yellow-dot.png"
+              src={playerLevel === 1 ? playerNotch : regularNotch}
               alt="Level 1"
             />
           )}
@@ -24,7 +28,7 @@ export class StepProgressBar extends React.Component {
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="30"
-              src="https://vignette.wikia.nocookie.net/pkmnshuffle/images/9/97/Pikachu_%28Smiling%29.png/revision/latest?cb=20170410234508"
+              src={playerLevel === 2 ? playerNotch : regularNotch}
               alt="Level 2"
             />
           )}
@@ -34,7 +38,7 @@ export class StepProgressBar extends React.Component {
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="30"
-              src="https://orig00.deviantart.net/493a/f/2017/095/5/4/raichu_icon_by_pokemonshuffle_icons-db4ryym.png"
+              src={playerLevel === 3 ? playerNotch : regularNotch}
               alt="Level 3"
             />
           )}
@@ -44,7 +48,7 @@ export class StepProgressBar extends React.Component {
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="30"
-              src="https://vignette.wikia.nocookie.net/pkmnshuffle/images/9/9d/Pichu.png/revision/latest?cb=20170407222851"
+              src={playerLevel === 4 ? playerNotch : regularNotch}
               alt="Level 4"
             />
           )}
@@ -55,10 +59,9 @@ export class StepProgressBar extends React.Component {
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="30"
-              src="https://vignette.wikia.nocookie.net/pkmnshuffle/images/9/97/Pikachu_%28Smiling%29.png/revision/latest?cb=20170410234508"
+              src={playerLevel === 5 ? playerNotch : regularNotch}
               alt="Level 5"
             />
-            <span>Test</span>
             </>
           )}
         </Step>
@@ -67,7 +70,7 @@ export class StepProgressBar extends React.Component {
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="30"
-              src="/images/yellow-dot.png"
+              src={playerLevel === 6 ? playerNotch : bossNotch}
               alt="Level 6"
             />
           )}
