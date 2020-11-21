@@ -28,15 +28,23 @@ function Arena(props) {
       setPlayerHealth(prev => prev - hp);
     } else {
       setPlayerHealth(0);
-      console.log('Player defeated');
+      console.log('PLAYER DEFEATED');
       setTimeout(() => {
         props.setMode("OUTCOME");
       }, 3000);
     }
   };
   const challengerDamaged = (hp) => {
-    console.log("CHALLENGER DAMAGED!", hp);
-    setChallengerHealth(prev => prev - hp);
+    if (challengerHealth > hp) {
+      console.log("CHALLENGER DAMAGED!", hp);
+      setChallengerHealth(prev => prev - hp);
+    } else {
+      setChallengerHealth(0);
+      console.log('CHALLENGER DEFEATED');
+      setTimeout(() => {
+        props.setMode("OUTCOME");
+      }, 3000);
+    }
   };
   
   // Get word list and action list on load
