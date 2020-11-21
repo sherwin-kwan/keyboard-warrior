@@ -1,6 +1,9 @@
 // Libraries
 import React from "react";
 
+// Style
+import '../styles/PlayerActionList.scss';
+
 // Components
 import PlayerAction from './PlayerAction';
 
@@ -17,12 +20,12 @@ function PlayerActionList(props) {
   });
     
   return (
-    <>
+    <div class="action-list">
       <h1>PlayerActionList</h1>
         <ul>
           {actions}
         </ul>
-    </>
+    </div>
   )
 }
 
