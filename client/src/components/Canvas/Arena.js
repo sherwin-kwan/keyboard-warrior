@@ -10,6 +10,8 @@ import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
 import Dummy from '../Dummy';
 
+// Styles
+import '../../styles/Arena.scss';
 
 function Arena(props) {
 
@@ -39,7 +41,7 @@ function Arena(props) {
   };
 
   // Timings for the challenger's attacks
-  const milliseconds = 100;
+  const milliseconds = 100000;
   const [challengerTimer, setChallengerTimer] = useState(20);
 
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
@@ -82,7 +84,6 @@ function Arena(props) {
   if (isMatch(playerInput, playerActions)) {
     const action = playerActions.find(action => action.word === playerInput);
     // Get a new word for that action
-<<<<<<< HEAD
     console.log('matched action', action)
     getNewWord(action)
     // Execute the attack or heal action
@@ -97,12 +98,6 @@ function Arena(props) {
     setPlayerInput('')
   };
 
-=======
-    getNewWord(action);
-    // Clear text area
-    setPlayerInput('');
-  }
->>>>>>> 37f2e9995392071556333ae536788f06231d6fef
 
   // Get word list and action list on load
   useEffect(() => {
