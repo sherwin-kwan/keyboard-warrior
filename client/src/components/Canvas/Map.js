@@ -5,15 +5,9 @@ import React from "react";
 import ProgressBar from '../ProgressBar';
 import ArenaDoorList from '../ArenaDoorList';
 
-function Map() {
-  // Hardcoded Data
-  const arenas = [
-    { name: 'Hogwarts' },
-    { name: 'Indigo Plateau' },
-    { name: 'Minas Tirith' },
-    { name: 'Final Destination' },
-    { name: 'Hotel California' },
-  ]
+// Hooks
+
+function Map(props) {
 
 
   return (
@@ -25,7 +19,10 @@ function Map() {
         arenasBeaten='3' // ????
       />
       <ArenaDoorList
-        arenas={arenas}
+        arenas={props.arenas}
+        setGameMode={props.setGameMode}
+        arenas={props.arenas}
+        setArena={props.setArena}
       />
     </>
   );

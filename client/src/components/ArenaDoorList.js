@@ -9,12 +9,14 @@ function ArenaDoorList(props) {
     return <ArenaDoor 
       key={arena.name}
       name={arena.name}
+      setGameMode={props.setGameMode}
+      setArena={props.setArena}
     />
   })
 
   return (
     <>
-      <h1>ArenaDoorList</h1>
+      <h1>Choose your arena!</h1>
       {doors}
     </>
   );
