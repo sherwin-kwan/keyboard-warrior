@@ -79,7 +79,6 @@ function Arena(props) {
   }, [health])
 
   // Timings for the challenger's attacks
-  const milliseconds = attackTime / 20;
   const [challengerTimer, setChallengerTimer] = useState(20);
 
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
@@ -93,9 +92,9 @@ function Arena(props) {
       } else {
         setChallengerTimer(prev => prev - 1);
       }
-    }, milliseconds);
+    }, attackTime / 20);
     return () => clearInterval(interval);
-  }, [challengerTimer]);
+  }, [challengerTimer, attackTime]);
 
   // Gets a random word from a words list
   const getRandWord = (action, words) => {
@@ -170,16 +169,16 @@ function Arena(props) {
       </div>
       <div className="challenger-action">
         <div className="buttons">
-          <button onClick={setAttackTime(1000000000)}>Pause</button>
-          <button onClick={setAttackTime(20000)}>Slow</button>
-          <button onClick={setAttackTime(2000)}>Normal</button>
+          <button onClick={() => setAttackTime(1000000000)}>Pause</button>
+          <button onClick={() => setAttackTime(20000)}>Slow</button>
+          <button onClick={() => setAttackTime(2000)}>Normal</button>
         </div>
         <ChallengerActionList
           actions={{
             attack: 'attack-function.jpg',
             timeToAttack: 5
           }}
-          duration={milliseconds}
+          duration={attackTime / 20}
           percentage={challengerTimer / 20 * 100}
         />
       </div>
