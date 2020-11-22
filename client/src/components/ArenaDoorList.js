@@ -9,6 +9,7 @@ function ArenaDoorList(props) {
     return <ArenaDoor 
       key={arena.name}
       name={arena.name}
+      beaten={arena.beaten}
       setGameMode={props.setGameMode}
       setArena={props.setArena}
     />

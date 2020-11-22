@@ -2,8 +2,10 @@
 import React from "react";
 
 // Components
-import ProgressBar from '../ProgressBar';
+// import ProgressBar from '../ProgressBar';
 import ArenaDoorList from '../ArenaDoorList';
+import { StepProgressBar } from "../MapProgressBar";
+
 
 // Hooks
 
@@ -13,10 +15,8 @@ function Map(props) {
   return (
     <>
       <h1>Map</h1>
-      <ProgressBar 
-        playerImg='playerImg'
-        bossImg='bossImg'
-        arenasBeaten='3' // ????
+      <StepProgressBar
+        arenasBeaten={props.arenasBeaten}
       />
       <ArenaDoorList
         arenas={props.arenas}
