@@ -15,7 +15,7 @@ module.exports = {
       [
         {
           "action": "attack",
-          "word": "army"
+          "word": "army",
         },
         {
           "action": "attack",
