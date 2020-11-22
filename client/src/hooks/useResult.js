@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 
-export default useResult = (initial) => {
+const useResult = (initial) => {
 
   const [result, setResult] = useState(initial)
 
   return { result, setResult};
 };
+
+export default useResult;

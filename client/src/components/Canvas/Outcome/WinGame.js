@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Only a template, it is currently not possible to reach this page since boss hasn't been created yet
 const WinGame = (props) => {
   return (
     <>
@@ -9,3 +10,5 @@ const WinGame = (props) => {
     </>
   );
 };
+
+export default WinGame;

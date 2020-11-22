@@ -8,3 +8,4 @@ const LoseGame = (props) => {
     </>
   );
 };
+export default LoseGame;

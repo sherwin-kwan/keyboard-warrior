@@ -8,3 +8,4 @@ const WinBattle = (props) => {
     </>
   );
 };
+export default WinBattle;

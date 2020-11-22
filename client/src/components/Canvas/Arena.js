@@ -62,18 +62,17 @@ function Arena(props) {
       newHealth[fighter] = Math.min(Math.max(newHealth[fighter] + hp, 0), 100);
       return newHealth;
     });
-    if (health[fighter] === 0) {
-      console.log(`${fighter} DEFEATED`);
-    }
   };
 
   useEffect(() => {
     if (health.player === 0) {
+      props.setResult('LOSEGAME');
       props.setMode("OUTCOME");
       console.log(`PLAYER DEFEATED`);
     } else if (health.challenger === 0) {
-      console.log(`CHALLENGER DEFEATED`);
+      props.setResult('WINBATTLE');
       props.setMode("OUTCOME");
+      console.log(`CHALLENGER DEFEATED`);
       props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
     }
   }, [health])
@@ -105,7 +104,7 @@ function Arena(props) {
   }
   // Returns true if player input matches an action word
   // const isMatch = (input, actions) => actions.find(action => action.word === input);
-  
+
   // Gets and sets a new word for the given action that the player just executed
   const getNewWord = (action) => {
     setPlayerActions(prev => {
