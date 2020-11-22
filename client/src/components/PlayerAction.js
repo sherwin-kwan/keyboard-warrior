@@ -1,11 +1,13 @@
 // Libraries
-import React from "react";
+import React from 'react';
+import { Markup } from 'interweave';
 
 function PlayerAction(props) {
   return (
     <li>
-      <div class="action-icon">{props.name}</div>
-      <div class="action-word">{props.word}</div>
+      <div>{props.name}</div>
+      <Markup content={props.word} />
+      {/* <div>{props.word}</div> */}
     </li>
   );
 }

@@ -31,7 +31,7 @@ function Arena(props) {
 
   // const [match, setMatch] = useState('');
   useEffect(() => {
-    console.log('word match?', handleWordMatch(playerInput, playerActions));
+    // console.log('word match?', handleWordMatch(playerInput, playerActions));
 
     const action = handleWordMatch(playerInput, playerActions);
     // console.log('Action is: ', action);
@@ -130,35 +130,6 @@ function Arena(props) {
       });
     }).catch(err => console.log("Error getting data: ", err));
   }, []);
-
-  // Checking text input for matching letters
-  const [match, setMatch] = useState('');
-  useEffect(() =>{
-    const inputLen = playerInput.length;
-    const maxWordLen = (playerActions.length !== 0) ? Math.max(...playerActions.map(action => action.word.length)) : 0;
-    const actionWords = playerActions.map(action => action.word || '')
-    const actionWordSlices = actionWords.map(word => word.slice(0, inputLen));
-    
-    // Check for match if player is shorter or equal to max word length
-    if (inputLen > 0 && inputLen <= maxWordLen) {
-      // If letter match found
-      if (inputLen > 0 && actionWordSlices.includes(playerInput)) {
-        // Pass down matching letters
-        setMatch(playerInput);
-        // If word match found
-        if (actionWords.includes(playerInput)) {
-          const action = playerActions.find(action => action.word === playerInput);
-          // Get a new word for that action
-          getNewWord(action)
-          // Clear text area
-          setPlayerInput('');
-        }
-      } else {
-        setMatch('');
-      }
-    }
-  }, [playerInput, playerActions]);
-
 
   return (
     <main className="arena" >
