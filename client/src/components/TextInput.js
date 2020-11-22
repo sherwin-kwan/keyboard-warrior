@@ -22,7 +22,7 @@ function TextInput(props) {
 
   return (
     <>
-      <textarea
+      <input
         autoFocus
         cols="100"
         rows="5"

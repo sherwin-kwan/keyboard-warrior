@@ -2,11 +2,12 @@
 import React from "react";
 import useGameMode from "../../hooks/useGameMode";
 import useArena from "../../hooks/useArena";
+import useResult from '../../hooks/useResult';
 import TempNavBar from '../TempNavBar';
-
+import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
 
 // Styles
-// import 'styles/App.css';
+import './index.scss';
 
 // Components
 import StartGame from './StartGame';
@@ -24,9 +25,11 @@ function Canvas(props) {
   const OUTCOME = "OUTCOME";
 
   
-
+  //hooks
   const { mode, setMode } = useGameMode("START")
   const { arenas, setArenas, arena, setArena } = useArena()
+  const { result, setResult } = useResult('PENDING');
+  // Possible results are: "WinGame", "WinBattle", "LoseGame", "Pending"
   
   return (
     <>
@@ -38,15 +41,20 @@ function Canvas(props) {
         {mode === MAP && <Map
           setGameMode={setMode}
           arenas={arenas}
-          setArena={setArena} />
+          setArena={setArena}
+          arenasBeaten={lookupArenasBeaten(arenas)} />
       }
         {mode === ARENA && <Arena
+          setResult={setResult}
           initialPlayerHealth = {80}
           challengerHealth = {100}
           setMode={setMode}
           arena={arena}
+          arenas={arenas}
+          setArenas={setArenas}
         />}
         {mode === OUTCOME && <Outcome 
+        result={result}
         setMode={setMode}
         />}
       </div>

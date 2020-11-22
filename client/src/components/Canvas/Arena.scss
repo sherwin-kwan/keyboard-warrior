@@ -1,0 +1,23 @@
+/* Note that this stylesheet is loaded on all screens. Put all style rules into main.map to prevent it from affecting, say, the arena screen */
+
+main.arena {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 3fr 2fr 1fr;
+  justify-items: center;
+  align-items: center;
+
+  .health {
+    width: 90%;
+  }
+
+  .typing {
+    grid-column: span 2;
+  }
+
+  div.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
