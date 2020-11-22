@@ -14,7 +14,7 @@ function Outcome(props) {
   const result = props.result;
 
   return (
-    <main class="outcome">
+    <main className="outcome">
       <h1>Outcome</h1>
       {result === WINGAME && <WinGame setMode={props.setMode}/>}
       {result === LOSEGAME && <LoseGame setMode={props.setMode}/>}

@@ -16,6 +16,7 @@ import './Arena.scss'
 import updateToArenaBeat from "../../helpers/makeNewArenas";
 // Hooks
 import useInputMatcher from '../../hooks/useInputMatcher';
+import useChallengerAction from '../../hooks/useChallengerAction';
 
 function Arena(props) {
 
@@ -26,7 +27,7 @@ function Arena(props) {
   const [playerActions, setPlayerActions] = useState([]);
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
-
+  const { attackTime, setAttackTime } = useChallengerAction({attackTime: 2000});
   const { handleWordMatch } = useInputMatcher();
 
   // const [match, setMatch] = useState('');
@@ -78,7 +79,7 @@ function Arena(props) {
   }, [health])
 
   // Timings for the challenger's attacks
-  const milliseconds = 1000;
+  const milliseconds = attackTime / 20;
   const [challengerTimer, setChallengerTimer] = useState(20);
 
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
@@ -168,6 +169,11 @@ function Arena(props) {
         />
       </div>
       <div className="challenger-action">
+        <div className="buttons">
+          <button onClick={setAttackTime(1000000000)}>Pause</button>
+          <button onClick={setAttackTime(20000)}>Slow</button>
+          <button onClick={setAttackTime(2000)}>Normal</button>
+        </div>
         <ChallengerActionList
           actions={{
             attack: 'attack-function.jpg',

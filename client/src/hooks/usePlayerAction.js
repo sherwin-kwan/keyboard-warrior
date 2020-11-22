@@ -7,7 +7,7 @@
 // apply styles => look into useRef (initialize it in component not another hook or return it in useinputmatch hook, destructure in arena component
   // userRef example
     // const textInputRef = useRef(null)
-    // return <span class="match" ref={textInputRef}></span>
+    // return <span className="match" ref={textInputRef}></span>
 
     // access it by textInputRef.current.style.color = "red"
 

@@ -6,9 +6,9 @@ import './StartGame.scss';
 
 function StartGame(props) {
   return (
-    <main class="start-game">
+    <main className="start-game">
       <h1>Start Game</h1>
-      <div class="menu">
+      <div className="menu">
         <button
           onClick={() => { props.setMode("MAP") }}
         >Start Game
