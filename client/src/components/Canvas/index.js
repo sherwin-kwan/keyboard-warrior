@@ -27,8 +27,6 @@ function Canvas(props) {
   //hooks
   const { mode, setMode } = useGameMode("START")
   const { arenas, setArenas, arena, setArena } = useArena()
-
-  console.log("JILLIAN", lookupArenasBeaten(arenas))
   
   return (
     <>
