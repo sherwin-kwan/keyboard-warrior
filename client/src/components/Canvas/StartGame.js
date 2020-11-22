@@ -13,7 +13,7 @@ function StartGame(props) {
           onClick={() => { props.setMode("MAP") }}
         >Start Game
         </button>
-        These buttons don't do anything yet:
+        (Following buttons don't do anything yet:)
         <button>Credits</button>
         <button>Instructions</button>
         <button>Settings</button>

@@ -104,7 +104,8 @@ function Arena(props) {
     return randWord.word;
   }
   // Returns true if player input matches an action word
-  const isMatch = (input, actions) => actions.find(action => action.word === input);
+  // const isMatch = (input, actions) => actions.find(action => action.word === input);
+  
   // Gets and sets a new word for the given action that the player just executed
   const getNewWord = (action) => {
     setPlayerActions(prev => {

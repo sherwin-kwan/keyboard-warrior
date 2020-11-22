@@ -1,8 +1,10 @@
 import React from "react";
 
-function Outcome() {
+function Outcome(props) {
   return (
-    <h1>Outcome</h1>
+    <main class="outcome">
+      <h1>Outcome</h1>
+    </main>
   );
 }
 
