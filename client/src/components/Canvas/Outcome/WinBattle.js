@@ -5,6 +5,7 @@ const WinBattle = (props) => {
     <>
       <h1>VICTORY</h1>
       <p>Congrats, you won the fight!</p>
+      <button onClick={() => props.setMode('MAP')}>Choose Next Battle</button>
     </>
   );
 };

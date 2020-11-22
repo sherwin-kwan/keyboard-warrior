@@ -16,9 +16,9 @@ function Outcome(props) {
   return (
     <main class="outcome">
       <h1>Outcome</h1>
-      {result === WINGAME && <WinGame/>}
-      {result === LOSEGAME && <LoseGame/>}
-      {result === WINBATTLE && <WinBattle/>}
+      {result === WINGAME && <WinGame setMode={props.setMode}/>}
+      {result === LOSEGAME && <LoseGame setMode={props.setMode}/>}
+      {result === WINBATTLE && <WinBattle setMode={props.setMode}/>}
       {result === PENDING && <p>Oops, looks like an error occurred. The result state cshouldn't be pending!</p>}
     </main>
   );

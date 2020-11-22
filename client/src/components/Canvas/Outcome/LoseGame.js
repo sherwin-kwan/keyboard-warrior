@@ -5,6 +5,7 @@ const LoseGame = (props) => {
     <>
       <h1>DEFEAT</h1>
       <p>Too bad, best of luck next time!</p>
+      <button onClick={() => props.setMode('START')}>Back to Start</button>
     </>
   );
 };
