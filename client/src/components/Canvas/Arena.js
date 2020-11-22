@@ -27,63 +27,30 @@ function Arena(props) {
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
 
-  const { handleWordMatch, handleLetterMatch } = useInputMatcher();
+  const { handleWordMatch } = useInputMatcher();
 
-  const [match, setMatch] = useState('');
+  // const [match, setMatch] = useState('');
   useEffect(() => {
     console.log('word match?', handleWordMatch(playerInput, playerActions));
-    console.log('letter match?', handleLetterMatch(playerInput, playerActions));
 
-    if (handleLetterMatch(playerInput, playerActions)) {
-      const action = handleWordMatch(playerInput, playerActions);
-      console.log('Action is: ', action);
-      // When finished typing a word, action will equal the name of the action it executes
-      if (action) {
-        // Grab a new word
-        getNewWord(action);
-        // Deal damage
-        switch (action.name) {
-          case 'attack':
-            changeHealth('challenger', -10);
-            break;
-          case 'heal':
-            changeHealth('player', 10);
-        };
-        // Blank the text box
-        setPlayerInput('');
+    const action = handleWordMatch(playerInput, playerActions);
+    // console.log('Action is: ', action);
+    // When finished typing a word, action will equal the name of the action it executes
+    if (action) {
+      // Grab a new word
+      getNewWord(action);
+      // Deal damage
+      switch (action.name) {
+        case 'attack':
+          changeHealth('challenger', -10);
+          break;
+        case 'heal':
+          changeHealth('player', 10);
       };
-
+      // Clear the text box
+      setPlayerInput('');
     };
   }, [playerInput]);
-
-  // // Checking text input for matching letters
-  // useEffect(() =>{
-  //   const inputLen = playerInput.length;
-  //   const maxWordLen = (playerActions.length !== 0) ? Math.max(...playerActions.map(action => action.word.length)) : 0;
-  //   const actionWords = playerActions.map(action => action.word || '')
-  //   const actionWordSlices = actionWords.map(word => word.slice(0, inputLen));
-
-  //   // Check for match if player is shorter or equal to max word length
-  //   if (inputLen > 0 && inputLen <= maxWordLen) {
-  //     // If letter match found
-  //     if (inputLen > 0 && actionWordSlices.includes(playerInput)) {
-  //       // Pass down matching letters
-  //       setMatch(playerInput);
-  //       // If word match found
-  //       if (actionWords.includes(playerInput)) {
-  //         const action = playerActions.find(action => action.word === playerInput);
-  //         // Get a new word for that action
-  //         getNewWord(action)
-
-  //         // Clear text area
-  //         setPlayerInput('');
-  //       }
-  //     } else {
-  //       setMatch('');
-  //     }
-  //   }
-  // }, [playerInput, playerActions]);
-
 
   // Helper functions
 
@@ -151,25 +118,6 @@ function Arena(props) {
     });
   };
 
-  // Check if player input matches an action words
-  // if (isMatch(playerInput, playerActions)) {
-  //   const action = playerActions.find(action => action.word === playerInput);
-  //   // Get a new word for that action
-  //   console.log('matched action', action);
-  //   getNewWord(action);
-  //   // Execute the attack or heal action
-  //   switch (action.name) {
-  //     case 'attack':
-  //       changeHealth('challenger', -10);
-  //       break;
-  //     case 'heal':
-  //       changeHealth('player', 10);
-  //   };
-  //   // Clear text area
-  //   setPlayerInput('')
-  // };
-
-
   // Get word list and action list on load
   useEffect(() => {
     axios.defaults.baseURL = 'http://localhost:3001';
@@ -216,6 +164,7 @@ function Arena(props) {
       <div className="player-action">
         <PlayerActionList
           playerActions={playerActions}
+          playerInput={playerInput}
         />
       </div>
       <div className="challenger-action">
