@@ -16,15 +16,12 @@ function PlayerActionList(props) {
   const { playerInput, playerActions } = props;
 
   const match = handleLetterMatch(playerInput, playerActions);
-  const matchedAction = playerActions.find(action => action.word.slice(0, playerInput.length) === playerInput)
-
+  
   // Create a wordDOM with style applied to matched letters
   if (match) {
-    playerActions.forEach(action => {
-      if (action === matchedAction) {
-        action.wordDOM = `<span class="match">${action.word.slice(0, playerInput.length)}</span>${action.word.slice(playerInput.length)}`;
-      }
-    });
+    const matchedActionIndex = playerActions.findIndex(action => action.word.slice(0, playerInput.length) === playerInput);
+    const action = playerActions[matchedActionIndex];
+    action.wordDOM = `<span class="match">${action.word.slice(0, playerInput.length)}</span>${action.word.slice(playerInput.length)}`;
   // Reset style if letters do not match
   } else {
     playerActions.forEach(action => action.wordDOM = action.word);
