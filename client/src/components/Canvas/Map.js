@@ -6,6 +6,8 @@ import React from "react";
 import ArenaDoorList from '../ArenaDoorList';
 import { StepProgressBar } from "../MapProgressBar";
 
+// Styles
+import './Map.scss';
 
 // Hooks
 
@@ -13,8 +15,7 @@ function Map(props) {
 
 
   return (
-    <>
-      <h1>Map</h1>
+    <main className="map">
       <StepProgressBar
         arenasBeaten={props.arenasBeaten}
       />
@@ -24,7 +25,7 @@ function Map(props) {
         arenas={props.arenas}
         setArena={props.setArena}
       />
-    </>
+    </main>
   );
 }
 

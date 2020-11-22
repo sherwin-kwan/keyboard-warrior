@@ -14,7 +14,9 @@ import Dummy from '../Dummy';
 import './Arena.scss'
 //helpers
 import updateToArenaBeat from "../../helpers/makeNewArenas";
-
+// Hooks
+import useInputMatcher from '../../hooks/useInputMatcher';
+import useChallengerAction from '../../hooks/useChallengerAction';
 
 function Arena(props) {
 
@@ -25,8 +27,34 @@ function Arena(props) {
   const [playerActions, setPlayerActions] = useState([]);
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
+  const { attackTime, setAttackTime } = useChallengerAction({attackTime: 2000});
+  const { handleWordMatch } = useInputMatcher();
+
+  // const [match, setMatch] = useState('');
+  useEffect(() => {
+    console.log('word match?', handleWordMatch(playerInput, playerActions));
+
+    const action = handleWordMatch(playerInput, playerActions);
+    // console.log('Action is: ', action);
+    // When finished typing a word, action will equal the name of the action it executes
+    if (action) {
+      // Grab a new word
+      getNewWord(action);
+      // Deal damage
+      switch (action.name) {
+        case 'attack':
+          changeHealth('challenger', -10);
+          break;
+        case 'heal':
+          changeHealth('player', 10);
+      };
+      // Clear the text box
+      setPlayerInput('');
+    };
+  }, [playerInput]);
+
   // Helper functions
-  
+
   const changeHealth = (fighter, hp) => {
     console.log(`${fighter} DAMAGED! for ${hp} hp`);
     setHealth(prev => {
@@ -35,24 +63,22 @@ function Arena(props) {
       newHealth[fighter] = Math.min(Math.max(newHealth[fighter] + hp, 0), 100);
       return newHealth;
     });
-    if (health[fighter] === 0) {
-      console.log(`${fighter} DEFEATED`);
-    }
   };
 
   useEffect(() => {
     if (health.player === 0) {
+      props.setResult('LOSEGAME');
       props.setMode("OUTCOME");
       console.log(`PLAYER DEFEATED`);
     } else if (health.challenger === 0) {
-      console.log(`CHALLENGER DEFEATED`);
+      props.setResult('WINBATTLE');
       props.setMode("OUTCOME");
+      console.log(`CHALLENGER DEFEATED`);
       props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
     }
   }, [health])
 
   // Timings for the challenger's attacks
-  const milliseconds = 100;
   const [challengerTimer, setChallengerTimer] = useState(20);
 
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
@@ -66,9 +92,9 @@ function Arena(props) {
       } else {
         setChallengerTimer(prev => prev - 1);
       }
-    }, milliseconds);
+    }, attackTime / 20);
     return () => clearInterval(interval);
-  }, [challengerTimer]);
+  }, [challengerTimer, attackTime]);
 
   // Gets a random word from a words list
   const getRandWord = (action, words) => {
@@ -77,7 +103,8 @@ function Arena(props) {
     return randWord.word;
   }
   // Returns true if player input matches an action word
-  const isMatch = (input, actions) => actions.find(action => action.word === input);
+  // const isMatch = (input, actions) => actions.find(action => action.word === input);
+
   // Gets and sets a new word for the given action that the player just executed
   const getNewWord = (action) => {
     setPlayerActions(prev => {
@@ -90,25 +117,6 @@ function Arena(props) {
       });
     });
   };
-
-  // Check if player input matches an action words
-  if (isMatch(playerInput, playerActions)) {
-    const action = playerActions.find(action => action.word === playerInput);
-    // Get a new word for that action
-    console.log('matched action', action);
-    getNewWord(action);
-    // Execute the attack or heal action
-    switch (action.name) {
-      case 'attack':
-        changeHealth('challenger', -10);
-        break;
-      case 'heal':
-        changeHealth('player', 10);
-    };
-    // Clear text area
-    setPlayerInput('')
-  };
-
 
   // Get word list and action list on load
   useEffect(() => {
@@ -156,15 +164,21 @@ function Arena(props) {
       <div className="player-action">
         <PlayerActionList
           playerActions={playerActions}
+          playerInput={playerInput}
         />
       </div>
       <div className="challenger-action">
+        <div className="buttons">
+          <button onClick={() => setAttackTime(1000000000)}>Pause</button>
+          <button onClick={() => setAttackTime(20000)}>Slow</button>
+          <button onClick={() => setAttackTime(2000)}>Normal</button>
+        </div>
         <ChallengerActionList
           actions={{
             attack: 'attack-function.jpg',
             timeToAttack: 5
           }}
-          duration={milliseconds}
+          duration={attackTime / 20}
           percentage={challengerTimer / 20 * 100}
         />
       </div>
