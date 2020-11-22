@@ -13,22 +13,24 @@ import './PlayerActionList.scss';
 function PlayerActionList(props) {
 
   const { handleLetterMatch } = useInputMatcher();
+  const { playerInput, playerActions } = props;
 
-  // console.log(props.playerInput, props.playerActions)
-  const match = handleLetterMatch(props.playerInput, props.playerActions); // returns true or false
-  const matchedAction = props.playerActions.find(action => action.word.slice(0, props.playerInput.length) === props.playerInput)
+  const match = handleLetterMatch(playerInput, playerActions);
+  const matchedAction = playerActions.find(action => action.word.slice(0, playerInput.length) === playerInput)
 
+  // Create a wordDOM with style applied to matched letters
   if (match) {
-    console.log('match', matchedAction)
-    props.playerActions.forEach(action => {
-      if (action === matchedAction) action.wordDOM = `<span class="match">${action.word}</span>`;
+    playerActions.forEach(action => {
+      if (action === matchedAction) {
+        action.wordDOM = `<span class="match">${action.word.slice(0, playerInput.length)}</span>${action.word.slice(playerInput.length)}`;
+      }
     });
+  // Reset style if letters do not match
   } else {
-    props.playerActions.forEach(action => action.wordDOM = action.word);
+    playerActions.forEach(action => action.wordDOM = action.word);
   }
 
-  const actions = props.playerActions.map(action => {
-    console.log('wordDOM:', action.wordDOM)
+  const actions = playerActions.map(action => {
     return (
       <PlayerAction
         key={action.name}

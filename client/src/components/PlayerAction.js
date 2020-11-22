@@ -5,9 +5,10 @@ import { Markup } from 'interweave';
 function PlayerAction(props) {
   return (
     <li>
-      <div>{props.name}</div>
-      <Markup content={props.word} />
-      {/* <div>{props.word}</div> */}
+      <div className="action-icon">{props.name}</div>
+      <div className="action-word">
+        <Markup class="action-word" content={props.word} />
+      </div>
     </li>
   );
 }
