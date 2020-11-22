@@ -10,6 +10,8 @@ import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
 import Dummy from '../Dummy';
 
+// Styles
+import './Arena.scss'
 //helpers
 import updateToArenaBeat from "../../helpers/makeNewArenas";
 
@@ -93,8 +95,8 @@ function Arena(props) {
   if (isMatch(playerInput, playerActions)) {
     const action = playerActions.find(action => action.word === playerInput);
     // Get a new word for that action
-    console.log('matched action', action)
-    getNewWord(action)
+    console.log('matched action', action);
+    getNewWord(action);
     // Execute the attack or heal action
     switch (action.name) {
       case 'attack':
@@ -123,45 +125,56 @@ function Arena(props) {
   }, []);
 
   return (
-    <>
-      <h1>Arena</h1>
-      {/* Player */}
-      <HealthBar
-        health={health.player}
-        onClick={() => { changeHealth('player', -10) }}
-      />
-      <Dummy />
-      <Avatar
-        name='Your Name'
-        height='250px'
-        filename='/images/boss-spirit-fighter.png'
-      />
-      <PlayerActionList
-        playerActions={playerActions}
-      />
-      <TextInput
-        value={playerInput}
-        onChange={setPlayerInput}
-      />
-      {/* Challenger */}
-      <HealthBar
-        health={health.challenger}
-        onClick={() => { changeHealth('challenger', -10) }}
-      />
-      <Avatar
-        name='Challenger'
-        height='250px'
-        filename='/images/boss-dragon-emperor.png'
-      />
-      <ChallengerActionList
-        actions={{
-          attack: 'attack-function.jpg',
-          timeToAttack: 5
-        }}
-        duration={milliseconds}
-        percentage={challengerTimer / 20 * 100}
-      />
-    </>
+    <main className="arena" >
+      <div className="health">
+        <HealthBar
+          health={health.player}
+          onClick={() => { changeHealth('player', -10) }}
+        />
+      </div>
+      <div className="health">
+        <HealthBar
+          health={health.challenger}
+          onClick={() => { changeHealth('challenger', -10) }}
+        />
+      </div>
+      <div className="player">
+        <Dummy />
+        <Avatar
+          name='Your Name'
+          height='250px'
+          filename='/images/boss-spirit-fighter.png'
+        />
+      </div>
+      <div className="challenger">
+        <Avatar
+          name='Challenger'
+          height='250px'
+          filename='/images/boss-dragon-emperor.png'
+        />
+      </div>
+      <div className="player-action">
+        <PlayerActionList
+          playerActions={playerActions}
+        />
+      </div>
+      <div className="challenger-action">
+        <ChallengerActionList
+          actions={{
+            attack: 'attack-function.jpg',
+            timeToAttack: 5
+          }}
+          duration={milliseconds}
+          percentage={challengerTimer / 20 * 100}
+        />
+      </div>
+      <div className="typing">
+        <TextInput
+          value={playerInput}
+          onChange={setPlayerInput}
+        />
+      </div>
+    </main >
   );
 }
 
