@@ -20,8 +20,7 @@ import useChallengerAction from '../../hooks/useChallengerAction';
 
 function Arena(props) {
 
-  // console.log('RENDERING');
-
+  
   // States
   const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
@@ -32,7 +31,7 @@ function Arena(props) {
 
   // const [match, setMatch] = useState('');
   useEffect(() => {
-    console.log('word match?', handleWordMatch(playerInput, playerActions));
+    // console.log('word match?', handleWordMatch(playerInput, playerActions));
 
     const action = handleWordMatch(playerInput, playerActions);
     // console.log('Action is: ', action);
