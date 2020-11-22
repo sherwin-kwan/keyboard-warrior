@@ -7,7 +7,7 @@ function PlayerAction(props) {
     <li>
       <div className="action-icon">{props.name}</div>
       <div className="action-word">
-        <Markup class="action-word" content={props.word} />
+        <Markup className="action-word" content={props.word} />
       </div>
     </li>
   );
