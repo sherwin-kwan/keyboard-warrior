@@ -8,6 +8,7 @@ function ArenaDoor(props) {
       {/* <audio src={props.background_music} autoplay></audio> */}
       <h1>{props.name}</h1>
       <img src={props.arena_card} alt="Door"></img>
+      <p>{props.beaten ? "Door is beaten" : "Door is not beaten"}</p>
       <button 
         onClick={() => {
           props.setGameMode("ARENA")

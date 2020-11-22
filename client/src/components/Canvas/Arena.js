@@ -10,6 +10,9 @@ import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
 import Dummy from '../Dummy';
 
+//helpers
+import updateToArenaBeat from "../../helpers/makeNewArenas";
+
 
 function Arena(props) {
 
@@ -21,6 +24,7 @@ function Arena(props) {
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
   // Helper functions
+  
   const changeHealth = (fighter, hp) => {
     console.log(`${fighter} DAMAGED! for ${hp} hp`);
     setHealth(prev => {
@@ -31,12 +35,19 @@ function Arena(props) {
     });
     if (health[fighter] === 0) {
       console.log(`${fighter} DEFEATED`);
-      setTimeout(() => {
-        props.setMode("OUTCOME");
-        // In the future, we need to also add a state to "Outcome" that determines whether it's a win or loss
-      }, 3000);
     }
   };
+
+  useEffect(() => {
+    if (health.player === 0) {
+      props.setMode("OUTCOME");
+      console.log(`PLAYER DEFEATED`);
+    } else if (health.challenger === 0) {
+      console.log(`CHALLENGER DEFEATED`);
+      props.setMode("OUTCOME");
+      props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
+    }
+  }, [health])
 
   // Timings for the challenger's attacks
   const milliseconds = 100;
@@ -82,7 +93,6 @@ function Arena(props) {
   if (isMatch(playerInput, playerActions)) {
     const action = playerActions.find(action => action.word === playerInput);
     // Get a new word for that action
-<<<<<<< HEAD
     console.log('matched action', action)
     getNewWord(action)
     // Execute the attack or heal action
@@ -97,12 +107,6 @@ function Arena(props) {
     setPlayerInput('')
   };
 
-=======
-    getNewWord(action);
-    // Clear text area
-    setPlayerInput('');
-  }
->>>>>>> 37f2e9995392071556333ae536788f06231d6fef
 
   // Get word list and action list on load
   useEffect(() => {
