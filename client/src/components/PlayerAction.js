@@ -5,8 +5,7 @@ function PlayerAction(props) {
   return (
     <li>
       <div class="action-icon">{props.name}</div>
-      {/* <span class="action-word">{props.word}</span> */}
-      <div class="action-word" dangerouslySetInnerHTML={{ __html: props.word }} />
+      <div class="action-word">{props.word}</div>
     </li>
   );
 }
