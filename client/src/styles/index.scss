@@ -8,6 +8,16 @@ body {
   font-family: $primary-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  #root {
+    height: inherit;
+    width: inherit;
+
+    .App {
+      height: inherit;
+      width: inherit;
+    }
+  }
 }
 
 code {

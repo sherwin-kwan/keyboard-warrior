@@ -34,7 +34,7 @@ function Canvas(props) {
   return (
     <>
       <TempNavBar onClick={setMode} />
-      <div className="Canvas">
+      <div className="canvas">
         {mode === START && <StartGame
           setMode={setMode} />
         }
