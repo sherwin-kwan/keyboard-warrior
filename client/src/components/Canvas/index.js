@@ -6,7 +6,7 @@ import TempNavBar from '../TempNavBar';
 import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
 
 // Styles
-// import 'styles/App.css';
+import './index.scss';
 
 // Components
 import StartGame from './StartGame';

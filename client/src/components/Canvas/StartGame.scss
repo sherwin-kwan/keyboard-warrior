@@ -1,0 +1,17 @@
+main.start-game {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      justify-content: space-around;
+      align-items: center;
+      margin: 0.5em;
+    }
+
+  }
+}
