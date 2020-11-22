@@ -15,13 +15,13 @@ import '../../styles/Arena.scss';
 
 function Arena(props) {
 
-  // console.log('RENDERING');
-
+  
   // States
   const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
+  console.log('RENDERING', 'input:', playerInput);
   // Helper functions
   const changeHealth = (fighter, hp) => {
     console.log(`${fighter} DAMAGED! for ${hp} hp`);
@@ -82,22 +82,21 @@ function Arena(props) {
 
   // Check if player input matches an action words
   if (isMatch(playerInput, playerActions)) {
-    const action = playerActions.find(action => action.word === playerInput);
-    // Get a new word for that action
-    console.log('matched action', action)
-    getNewWord(action)
-    // Execute the attack or heal action
-    switch (action.name) {
-      case 'attack':
-        changeHealth('challenger', -10);
-        break;
-      case 'heal':
-        changeHealth('player', 10);
-    };
+    // const action = playerActions.find(action => action.word === playerInput);
+    // // Get a new word for that action
+    // // console.log('matched action', action)
+    // // getNewWord(action)
+    // // Execute the attack or heal action
+    // switch (action.name) {
+    //   case 'attack':
+    //     changeHealth('challenger', -10);
+    //     break;
+    //   case 'heal':
+    //     changeHealth('player', 10);
+    // };
     // Clear text area
-    setPlayerInput('')
+    // setPlayerInput('')
   };
-
 
   // Get word list and action list on load
   useEffect(() => {
@@ -112,6 +111,35 @@ function Arena(props) {
       });
     }).catch(err => console.log("Error getting data: ", err));
   }, []);
+
+  // Checking text input for matching letters
+  const [match, setMatch] = useState('');
+  useEffect(() =>{
+    const inputLen = playerInput.length;
+    const maxWordLen = (playerActions.length !== 0) ? Math.max(...playerActions.map(action => action.word.length)) : 0;
+    const actionWords = playerActions.map(action => action.word || '')
+    const actionWordSlices = actionWords.map(word => word.slice(0, inputLen));
+    
+    // Check for match if player is shorter or equal to max word length
+    if (inputLen > 0 && inputLen <= maxWordLen) {
+      // If letter match found
+      if (inputLen > 0 && actionWordSlices.includes(playerInput)) {
+        // Pass down matching letters
+        setMatch(playerInput);
+        // If word match found
+        if (actionWords.includes(playerInput)) {
+          const action = playerActions.find(action => action.word === playerInput);
+          // Get a new word for that action
+          getNewWord(action)
+          // Clear text area
+          setPlayerInput('');
+        }
+      } else {
+        setMatch('');
+      }
+    }
+  }, [playerInput, playerActions]);
+
 
   return (
     <>
@@ -129,6 +157,7 @@ function Arena(props) {
       />
       <PlayerActionList
         playerActions={playerActions}
+        matchingLetters={match}
       />
       <TextInput
         value={playerInput}
