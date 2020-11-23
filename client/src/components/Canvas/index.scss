@@ -4,12 +4,15 @@
 .canvas {
   width: inherit;
   height: inherit;
+  // Set Game screen to the center of window
   display: flex;
   justify-content: center;
   align-items: center;
+  // Window background image
   background-image: url('../../images/office-background-pixel.png');
   background-size: auto 100%;
 
+  // Styling to main apply to all Game modes
   main {
     width: 75%;
     height: 80%;
