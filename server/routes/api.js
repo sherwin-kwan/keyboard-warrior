@@ -13,7 +13,7 @@ module.exports = (fs) => {
   });
 
   router.get('/words-old', (req, res) => {
-    fs.readFile(`${dataPath}/words.json`, 'utf8', (err, data) => {
+    fs.readFile(`${dataPath}/words.old.json`, 'utf8', (err, data) => {
       if (err) throw err;
       res.json(JSON.parse(data));
     });
