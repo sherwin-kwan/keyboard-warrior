@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
 /* Note that this stylesheet is loaded on all screens. Put all style rules into main.map to prevent it from affecting, say, the arena screen */
+// Styling for everything on Arena screen
 
 main.arena {
   display: grid;
@@ -49,8 +50,9 @@ main.arena {
           height: 2rem;
           width: 2rem;
           padding: 0.1rem;
-          border: 1.5px outset #666;
-          border-radius: 6px;
+          border: 2px outset #999;
+          border-radius: 0.3rem;
+          background: #fff;
         }
         .action-word {
           line-height: 2rem;
@@ -78,6 +80,34 @@ main.arena {
 
   .typing {
     grid-column: span 2;
+
+    input {
+      font-family: $primary-font;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      height: 2rem;
+      width: 25vw;
+      background: rgba(255,255,255,0.8);
+      outline: none;
+      border: 3px outset #999;
+      border-radius: 0.4rem;
+      padding: 0.2rem 1rem;
+      -webkit-transition: 0.5s;
+      transition: width 0.5s ease-in-out;
+    }
+
+    input:focus,
+    input:hover {
+      width: 40vw;
+    }
+    
+    input:focus {
+      background: rgba(255,255,255,1);
+    }
+
+    ::placeholder {
+      color: #555;
+    }
   }
 
   div.buttons {
