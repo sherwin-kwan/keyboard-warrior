@@ -5,7 +5,7 @@ import React from "react";
 import ArenaDoor from './ArenaDoor';
 
 function ArenaDoorList(props) {
-  console.log("JILLIAN", props.arenas)
+
   const doors = props.arenas.map((arena) => {
     return <ArenaDoor 
       name={arena.name}
@@ -24,7 +24,9 @@ function ArenaDoorList(props) {
       className="title">
         <h1>Choose your arena!</h1>
       </div>
-      {doors}
+      <div className="container-of-doors">
+        {doors}
+      </div>
     </>
   );
 }
