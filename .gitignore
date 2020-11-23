@@ -133,3 +133,6 @@ yarn-error.log*
 
 # sequelize
 config-real.json
+
+# music files
+test-music

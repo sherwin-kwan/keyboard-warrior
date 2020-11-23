@@ -42,7 +42,7 @@ function Canvas(props) {
   return (
     <>
       <TempNavBar onClick={setMode} />
-      <audio autoplay ref={soundMedia} src="/sounds/background-music.ogg" >
+      <audio autoplay ref={soundMedia} src={musicFile} >
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
