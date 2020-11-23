@@ -7,9 +7,6 @@ import PlayerAction from './PlayerAction';
 // Hooks
 import useInputMatcher from '../hooks/useInputMatcher';
 
-// Styles
-import './PlayerActionList.scss';
-
 function PlayerActionList(props) {
 
   const { handleLetterMatch } = useInputMatcher();
@@ -32,6 +29,7 @@ function PlayerActionList(props) {
       <PlayerAction
         key={action.name}
         name={action.name}
+        icon={action.icon}
         word={action.wordDOM || action.word}
       />
     )

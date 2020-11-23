@@ -9,9 +9,78 @@ main.arena {
   justify-items: center;
   align-items: center;
   background-color: $arena-background-colour;
+  padding: 1rem;
 
   .health {
     width: 90%;
+    justify-self: center;
+    padding: 0.2rem;
+    background-color: #FFF;
+    border-radius: 1rem;
+    img {
+      height: 2rem;
+    }
+    .skillbar-title {
+      // display: none;
+    }
+    .skillbar-bar {
+      // position: relative;
+      // left: 0;
+    }
+  }
+
+  .avatar {
+    text-align: center;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    img {
+      height: 25vh;
+    }
+  }
+
+  .player-actions {
+    width: 100%;
+    padding-left: 4rem;
+    ul {
+      padding: 0;
+      list-style-type: none;
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        margin: 0.25rem 0;
+        img {
+          height: 2rem;
+          width: 2rem;
+          padding: 0.1rem;
+          border: 1.5px outset #666;
+          border-radius: 6px;
+        }
+        .action-word {
+          line-height: 2rem;
+          margin-left: 0.5rem;
+          text-transform: uppercase;
+          color: #666;
+          text-shadow: 1px 3px 1px #fff;
+
+          div {
+            display: flex;
+            flex-direction: row;
+            span {
+              display: block;
+            }
+            span.match {
+              color: #000;
+              text-shadow: 1px 2px 1px #fff;
+              transform: translateY(1px);
+            }
+          }
+        }
+      }
+    }
   }
 
   .typing {
