@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const WinBattle = (props) => {
+  
+  useEffect(() => {
+    props.soundMedia.current.src = '/sounds/mario-cut.mp3';
+    return (() => {
+      props.soundMedia.current.src = '/sounds/background-music.ogg';
+    });
+  }, []);
+
   return (
     <main className="outcome win-battle">
       <p className="message">

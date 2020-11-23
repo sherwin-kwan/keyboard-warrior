@@ -34,7 +34,7 @@ function Canvas(props) {
   const soundMedia = useRef(null);
 
   useEffect(() => {
-    console.log('PLAYING!!');
+    console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
     soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
   }, [soundMedia, mode]);
@@ -42,7 +42,7 @@ function Canvas(props) {
   return (
     <>
       <TempNavBar onClick={setMode} />
-      <audio autoplay ref={soundMedia} src={musicFile} >
+      <audio autoplay ref={soundMedia} src='/sounds/background-music.ogg' >
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
@@ -66,6 +66,7 @@ function Canvas(props) {
         />}
         {mode === OUTCOME && <Outcome 
         result={result}
+        soundMedia={soundMedia}
         setMode={setMode}
         />}
       </div>
