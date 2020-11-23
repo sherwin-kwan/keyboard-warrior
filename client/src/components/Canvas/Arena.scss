@@ -6,9 +6,25 @@ main.arena {
   grid-template-rows: 1fr 3fr 2fr 1fr;
   justify-items: center;
   align-items: center;
+  padding: 1rem;
+  background-color: lightblue;
 
   .health {
     width: 90%;
+    justify-self: center;
+    padding: 0.2rem;
+    background-color: #FFF;
+    border-radius: 1rem;
+    img {
+      height: 2rem;
+    }
+    .skillbar-title {
+      // display: none;
+    }
+    .skillbar-bar {
+      // position: relative;
+      // left: 0;
+    }
   }
 
   .typing {
