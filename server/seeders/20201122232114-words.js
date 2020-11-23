@@ -55,31 +55,31 @@ module.exports = {
         },
         {
           "action": "heal",
-          "word": "bottle"
+          "word": "billabong"
         },
         {
           "action": "heal",
-          "word": "sound"
+          "word": "koala"
         },
         {
           "action": "heal",
-          "word": "boar"
+          "word": "platypus"
         },
         {
           "action": "heal",
-          "word": "eight"
+          "word": "kangaroo"
         },
         {
           "action": "heal",
-          "word": "kiln"
+          "word": "jackaroo"
         },
         {
           "action": "heal",
-          "word": "rule"
+          "word": "jillaroo"
         },
         {
           "action": "heal",
-          "word": "page"
+          "word": "outback"
         },
         {
           "action": "heal",
@@ -87,11 +87,11 @@ module.exports = {
         },
         {
           "action": "heal",
-          "word": "light"
+          "word": "wallaby"
         },
         {
           "action": "heal",
-          "word": "nose"
+          "word": "ashes"
         }
       ]);
   },

@@ -30,20 +30,20 @@ const PORT = process.env.PORT || 3001;
 
 // DB setup with Sequelize
 
-const dbParams = require('./db/db.js');
-const { Sequelize } = require('sequelize');
-const sequelize = new Sequelize(dbParams.connectionString); 
+// const dbParams = require('./db/db.js');
+// const { Sequelize } = require('sequelize');
+// const Sequelize = new Sequelize(dbParams.connectionString); 
 
-const testSequelize = async() => {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-}
+// const testSequelize = async() => {
+//   try {
+//     await sequelize.authenticate();
+//     console.log('Connection has been established successfully.');
+//   } catch (error) {
+//     console.error('Unable to connect to the database:', error);
+//   }
+// }
 
-testSequelize();
+// testSequelize();
 
 // DB setup - Old code without Sequelize
 // const { Pool } = require('pg');
