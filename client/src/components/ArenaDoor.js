@@ -5,7 +5,6 @@ function ArenaDoor(props) {
 
   return (
     <div className="door">
-      {/* <audio src={props.music} autoplay></audio> */}
       <h3 class="door-title">{props.name}</h3>
       <div>
         <img src={props.imgCard} alt={props.name}></img>
