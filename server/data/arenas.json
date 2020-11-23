@@ -30,6 +30,41 @@
   {
     "name": "Hotel California",
     "arena_card": "/images/door.jpg",
+    "background_image": "/images/boss-spirit-fighter.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false
+  },
+  {
+    "name": "80s Disco",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false
+  },
+  {
+    "name": "Nintendo",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false
+  },
+  {
+    "name": "NFL",
+    "arena_card": "/images/nfl.jpeg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false
+  },
+  {
+    "name": "Pokemon",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false
+  },
+  {
+    "name": "Puppies",
+    "arena_card": "/images/door.jpg",
     "background_image": "/images/door.jpg",
     "background_music": "/sounds/background-music.ogg",
     "beaten": false
