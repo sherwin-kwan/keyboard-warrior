@@ -3,6 +3,8 @@ import React from "react";
 
 // Components
 import ArenaDoor from './ArenaDoor';
+import DoorSlider from "./DoorSlider";
+import doorSlider from './DoorSlider';
 
 function ArenaDoorList(props) {
 
@@ -18,11 +20,18 @@ function ArenaDoorList(props) {
     />
   })
 
+  const sliderDots = props.arenas.map(arena => {
+    return (<DoorSlider
+    name={arena.name.toLowerCase().replace(/\s/g, '-')}
+    />)
+  });
+
   return (
     <>
       <div 
       className="title">
         <h1>Choose your arena!</h1>
+        {sliderDots}
       </div>
       <div className="container-of-doors">
         {doors}
