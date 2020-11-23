@@ -1,4 +1,7 @@
+@import '../../styles/variables.scss';
+
 /* Note that this stylesheet is loaded on all screens. Put all style rules into main.map to prevent it from affecting, say, the arena screen */
+// Styling for everything on Arena screen
 
 main.arena {
   display: grid;
@@ -6,13 +9,105 @@ main.arena {
   grid-template-rows: 1fr 3fr 2fr 1fr;
   justify-items: center;
   align-items: center;
+  background-color: $arena-background-colour;
+  padding: 1rem;
 
   .health {
     width: 90%;
+    justify-self: center;
+    padding: 0.2rem;
+    background-color: #FFF;
+    border-radius: 1rem;
+    img {
+      height: 2rem;
+    }
+  }
+
+  .avatar {
+    text-align: center;
+
+    h2 {
+      font-size: 1rem;
+    }
+
+    img {
+      height: 25vh;
+    }
+  }
+
+  .player-actions {
+    width: 100%;
+    padding-left: 4rem;
+    ul {
+      padding: 0;
+      list-style-type: none;
+      li {
+        display: flex;
+        flex-direction: row;
+        justify-content: start;
+        margin: 0.25rem 0;
+        img {
+          height: 2rem;
+          width: 2rem;
+          padding: 0.1rem;
+          border: 2px outset #999;
+          border-radius: 0.3rem;
+          background: #fff;
+        }
+        .action-word {
+          line-height: 2rem;
+          margin-left: 0.5rem;
+          text-transform: uppercase;
+          color: #666;
+          text-shadow: 1px 3px 1px #fff;
+
+          div {
+            display: flex;
+            flex-direction: row;
+            span {
+              display: block;
+            }
+            span.match {
+              color: #000;
+              text-shadow: 1px 2px 1px #fff;
+              transform: translateY(1px);
+            }
+          }
+        }
+      }
+    }
   }
 
   .typing {
     grid-column: span 2;
+
+    input {
+      font-family: $primary-font;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      height: 2rem;
+      width: 25vw;
+      background: rgba(255,255,255,0.8);
+      outline: none;
+      border: 3px outset #999;
+      border-radius: 0.4rem;
+      padding: 0.2rem 1rem;
+      -webkit-transition: 0.5s;
+      transition: width 0.5s ease-in-out;
+    }
+
+    input:focus,
+    input:hover {
+      width: 40vw;
+    }
+    
+    input:focus {
+      background: rgba(255,255,255,1);
+    }
+
+    ::placeholder {
+      color: #555;
+    }
   }
 
   div.buttons {
@@ -20,4 +115,26 @@ main.arena {
     align-items: center;
     justify-content: space-around;
   }
+
+  /* Challenger actions */
+
+  .challenger-actions {
+    margin: 1rem;
+
+    p {
+      text-align: center;
+    }
+
+    div.bar-container {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      height: 35px;
+      background-color: $bar-background-colour;
+  
+      /* Note: The timer bar is styled inline using React states. Do not put that here! */
+    }
+
+  }
+
 }

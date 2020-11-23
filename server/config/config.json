@@ -1,4 +1,5 @@
 {
+  "_comment": "Do not change anything in this file. Use config-real.json instead since that is gitignored",
   "development": {
     "username": "root",
     "password": null,

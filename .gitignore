@@ -130,3 +130,9 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# sequelize
+config-real.json
+
+# music files
+test-music

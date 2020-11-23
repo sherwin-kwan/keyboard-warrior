@@ -1,0 +1,36 @@
+main.outcome {
+
+  p {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin: 1em;
+    padding: 0.5em;
+
+  }
+
+  button {
+    width: auto;
+    padding: 0.75rem;
+  }
+}
+
+main.win-battle {
+  background: url('../../../images/medal-sunset-pixel.jpg');
+  background-size: cover;
+
+  p {
+    background-color: #dd6;
+  }
+}
+
+main.lose-game {
+  background: url('../../../images/defeat.png');
+  background-size: cover;
+
+  p {
+    background-color: #555;
+    color: white;
+  }
+}

@@ -1,5 +1,5 @@
 // Libraries
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import useGameMode from "../../hooks/useGameMode";
 import useArena from "../../hooks/useArena";
 import useResult from '../../hooks/useResult';
@@ -30,11 +30,22 @@ function Canvas(props) {
   const { arenas, setArenas, arena, setArena } = useArena()
   const { result, setResult } = useResult('PENDING');
   // Possible results are: "WinGame", "WinBattle", "LoseGame", "Pending"
+
+  const soundMedia = useRef(null);
+
+  useEffect(() => {
+    console.log('PLAYING MUSIC!!');
+    soundMedia.current.play();
+    soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
+  }, [soundMedia, mode]);
   
   return (
     <>
       <TempNavBar onClick={setMode} />
-      <div className="Canvas">
+      <audio autoplay ref={soundMedia} src='/sounds/background-music.ogg' >
+        Your browser does not support HTML audio.
+      </audio>
+      <div className="canvas">
         {mode === START && <StartGame
           setMode={setMode} />
         }
@@ -55,6 +66,7 @@ function Canvas(props) {
         />}
         {mode === OUTCOME && <Outcome 
         result={result}
+        soundMedia={soundMedia}
         setMode={setMode}
         />}
       </div>

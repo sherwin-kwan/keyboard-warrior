@@ -4,6 +4,8 @@ import React from "react";
 import WinGame from './WinGame';
 import WinBattle from './WinBattle';
 import LoseGame from './LoseGame';
+// Styles
+import './index.scss';
 
 function Outcome(props) {
 
@@ -14,13 +16,12 @@ function Outcome(props) {
   const result = props.result;
 
   return (
-    <main className="outcome">
-      <h1>Outcome</h1>
+    <>
       {result === WINGAME && <WinGame setMode={props.setMode}/>}
       {result === LOSEGAME && <LoseGame setMode={props.setMode}/>}
-      {result === WINBATTLE && <WinBattle setMode={props.setMode}/>}
-      {result === PENDING && <p>Oops, looks like an error occurred. The result state cshouldn't be pending!</p>}
-    </main>
+      {result === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
+      {result === PENDING && <main>Oops, looks like an error occurred. The result state cshouldn't be pending!</main>}
+    </>
   );
 }
 
