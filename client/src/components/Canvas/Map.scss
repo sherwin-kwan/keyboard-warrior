@@ -34,22 +34,32 @@ main.map {
       display: flex;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      // overflow: hidden;
+      
 
       .door {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
         width: 100%;
         flex-shrink: 0;
         height: 100%;
         scroll-snap-align: start;
-        background-color: green;
-    
         
-    
+        .card {
+          width: 100%;
+          background-color: grey;
+          border-radius: 18px;
+          border: 10px outset #999;
+          text-align: center;
+          box-shadow: 0 4px 4px #999;
+
+          img {
+            justify-self: center;
+            align-self: center;
+          }
+        }
         .door-title {
           // align-self: center;
-        }
-        
-        .enter-button {
-          // margin: 1em;
         }
     
         img {
