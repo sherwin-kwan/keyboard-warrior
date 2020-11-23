@@ -5,7 +5,7 @@ function ArenaDoor(props) {
 
   return (
     <div className="door">
-      <h3 class="door-title">{props.name}</h3>
+      <h3 className="door-title">{props.name}</h3>
       <div>
         <img src={props.imgCard} alt={props.name}></img>
       </div>
