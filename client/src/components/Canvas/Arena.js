@@ -146,9 +146,8 @@ function Arena(props) {
         />
       </div>
       <div className="player">
-        <Dummy />
         <Avatar
-          name='Your Name'
+          name='You'
           height='250px'
           filename='/images/boss-spirit-fighter.png'
         />
