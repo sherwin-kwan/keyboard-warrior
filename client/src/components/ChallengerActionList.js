@@ -9,16 +9,26 @@ function ChallengerActionList(props) {
   // Sets the time until the next challenger attack in tenths of a second
   // Hard-coded to 2 seconds between attacks right now
 
+  const timerBarStyles = {
+    position: 'absolute',
+    height: 'inherit',
+    left: '0px',
+    width: props.percentage + '%', /* CSS transitions will be applied using states to change the width of the bar */
+    'background-color': 'red',
+    'transition-property': 'width',
+    'transition-duration': props.duration + 'ms',
+    'transition-timing-function': 'linear'
+  };
 
   return (
-    <>
+    <div className="challenger-actions">
       {/* This value would be passed from the state?? Or through a setInterval of some kind to update 50 times a second? */}
-      <img src={props.attack} />
-      <SkillBar 
-          animationDelay={0} 
-          animationDuration={props.duration} 
-          skills={[{type: 'Attack Timer', level: props.percentage}]}/>
-    </>
+      <p>NEXT ATTACK</p>
+      <div className="bar-container"> {/* Creates the timer bar */}
+        <div className="timer-bar" style={timerBarStyles}> {/* Creates the animating portion of timer bar, uses CSS transitions */}
+        </div>
+      </div>
+    </div>
   );
 }
 

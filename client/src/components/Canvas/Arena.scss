@@ -7,8 +7,8 @@ main.arena {
   grid-template-rows: 1fr 3fr 2fr 1fr;
   justify-items: center;
   align-items: center;
+  background-color: $arena-background-colour;
   padding: 1rem;
-  background-color: lightblue;
 
   .health {
     width: 90%;
@@ -113,4 +113,26 @@ main.arena {
     align-items: center;
     justify-content: space-around;
   }
+
+  /* Challenger actions */
+
+  .challenger-actions {
+    margin: 1rem;
+
+    p {
+      text-align: center;
+    }
+
+    div.bar-container {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      height: 35px;
+      background-color: $bar-background-colour;
+  
+      /* Note: The timer bar is styled inline using React states. Do not put that here! */
+    }
+
+  }
+
 }
