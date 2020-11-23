@@ -12,7 +12,6 @@ function ChallengerActionList(props) {
 
   return (
     <>
-      <h1>ChallengerActionList</h1>
       {/* This value would be passed from the state?? Or through a setInterval of some kind to update 50 times a second? */}
       <img src={props.attack} />
       <SkillBar 
