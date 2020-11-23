@@ -21,14 +21,14 @@ function ChallengerActionList(props) {
   };
 
   return (
-    <>
+    <div className="challenger-actions">
       {/* This value would be passed from the state?? Or through a setInterval of some kind to update 50 times a second? */}
-      <img src={props.attack} />
+      <p>NEXT ATTACK</p>
       <div className="bar-container"> {/* Creates the timer bar */}
         <div className="timer-bar" style={timerBarStyles}> {/* Creates the animating portion of timer bar, uses CSS transitions */}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

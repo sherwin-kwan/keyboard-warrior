@@ -173,9 +173,9 @@ function Arena(props) {
         </div>
         <ChallengerActionList
           actions={{
-            attack: 'attack-function.jpg',
             timeToAttack: 5
           }}
+          attack='/images/sword.png'
           duration={attackTime / 20}
           percentage={challengerTimer / 20 * 100}
         />

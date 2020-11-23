@@ -20,13 +20,6 @@ main.arena {
     img {
       height: 2rem;
     }
-    .skillbar-title {
-      // display: none;
-    }
-    .skillbar-bar {
-      // position: relative;
-      // left: 0;
-    }
   }
 
   .avatar {
@@ -93,14 +86,25 @@ main.arena {
     justify-content: space-around;
   }
 
-  div.bar-container {
-    position: relative;
-    width: 80%;
-    margin: auto;
-    height: 35px;
-    background-color: $bar-background-colour;
+  /* Challenger actions */
 
-    /* Note: The timer bar is styled inline using React states. Do not put that here! */
+  .challenger-actions {
+    margin: 1rem;
+
+    p {
+      text-align: center;
+    }
+
+    div.bar-container {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      height: 35px;
+      background-color: $bar-background-colour;
+  
+      /* Note: The timer bar is styled inline using React states. Do not put that here! */
+    }
+
   }
 
 }
