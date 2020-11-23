@@ -7,63 +7,56 @@
 
   
 main.map {
-  overflow: auto;
   border: 20px solid #474e5d;
   border-radius: 25px;
   position: absolute;
+  
   //
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 3fr;
   justify-items: center;
   background-image: url('../../images/windows-xp-wallpaper-pixel-art.jpg');
   background-size: cover;
 
-  .container-of-doors {
-    display: flex;
-    justify-content: space-between;
-  }
+    div.RSPBprogressBar {
 
-  div.RSPBprogressBar {
-
-    // grid-column: 2 / span 3;
-    width: 80%;
-    // position: fixed;
-    // padding: 1em;
-    margin: 1em;
-  }
-
-  .title {
-    // grid-column: span 5;
-    justify-self: center;
-
-    // position: fixed;
-  }
-
-  .door {
-    // flex-direction: row;
-    height: 250px;
-    width: 250px;
-    // flex-direction: column;
-    // grid-template-rows: 1fr 1fr 1fr 1fr;
-    // background-color: pink;
-    // border-style: solid;
-    // height: 100%;
-    // width: 100%;
-    
-
-    .door-title {
-      // align-self: center;
-    }
-    
-    .enter-button {
-      // margin: 1em;
+      width: 80%;
+      margin: 1em;
     }
 
-    img {
-      // width: 100%;
-      height: 100px;
-      // object-fit: cover;
+    .title {
+      align-items: center;
+    }
+
+    .container-of-doors {
+      display: flex;
+      width: 80%;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+
+      .door {
+        width: 100%;
+        flex-shrink: 0;
+        height: 100%;
+        scroll-snap-align: start;
+        background-color: green;
+    
+        
+    
+        .door-title {
+          // align-self: center;
+        }
+        
+        .enter-button {
+          // margin: 1em;
+        }
+    
+        img {
+          // width: 100%;
+          height: 100px;
+          // object-fit: cover;
+        }
     }
   }
 }

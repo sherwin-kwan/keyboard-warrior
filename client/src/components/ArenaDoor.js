@@ -4,7 +4,7 @@ import React from "react";
 function ArenaDoor(props) {
 
   return (
-    <div className="door">
+    <div className="door" id={props.name.toLowerCase().replace(/\s/g, '-')}>
       <h3 class="door-title">{props.name}</h3>
       <div>
         <img src={props.imgCard} alt={props.name}></img>
