@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 /* Note that this stylesheet is loaded on all screens. Put all style rules into main.map to prevent it from affecting, say, the arena screen */
 
 main.arena {
@@ -6,6 +8,7 @@ main.arena {
   grid-template-rows: 1fr 3fr 2fr 1fr;
   justify-items: center;
   align-items: center;
+  background-color: $arena-background-colour;
 
   .health {
     width: 90%;
@@ -20,4 +23,15 @@ main.arena {
     align-items: center;
     justify-content: space-around;
   }
+
+  div.bar-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    height: 35px;
+    background-color: $bar-background-colour;
+
+    /* Note: The timer bar is styled inline using React states. Do not put that here! */
+  }
+
 }
