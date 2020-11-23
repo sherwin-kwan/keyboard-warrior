@@ -8,8 +8,12 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// Database
+const { sequelize } = require('./models');
+
 // Create server
 const app = express();
+
 
 // Middleware
 app.use(logger('dev'));
@@ -26,24 +30,17 @@ require("dotenv").config({ path: PATH });
 
 // Constants
 const PORT = process.env.PORT || 3001;
-// const ENV = process.env.ENV || "typing-game";
 
-// DB setup with Sequelize
+const testSequelize = async() => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
 
-// const dbParams = require('./db/db.js');
-// const { Sequelize } = require('sequelize');
-// const Sequelize = new Sequelize(dbParams.connectionString); 
-
-// const testSequelize = async() => {
-//   try {
-//     await sequelize.authenticate();
-//     console.log('Connection has been established successfully.');
-//   } catch (error) {
-//     console.error('Unable to connect to the database:', error);
-//   }
-// }
-
-// testSequelize();
+testSequelize();
 
 // DB setup - Old code without Sequelize
 // const { Pool } = require('pg');
