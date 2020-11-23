@@ -1,3 +1,6 @@
+@import '../../styles/variables.scss';
+
+
 .canvas {
   width: inherit;
   height: inherit;
@@ -41,5 +44,27 @@
     background: #e8ebf0;
   }
 
+  button {
+    width: 12rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 1px outset #999;
+    font-family: $primary-font;
+    background-color: Transparent;
+    outline: none;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+  }
+
+  button:hover {
+    background: #51c971;
+    border-radius: 15px;
+  }
+  
+  button:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(3px);
+  }
 }
 
