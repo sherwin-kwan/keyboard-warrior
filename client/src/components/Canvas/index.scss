@@ -11,22 +11,19 @@
     width: 75%;
     height: 80%;
     background-color: #FFF;
-  }
-
-  .start-game {
     border: 20px solid #474e5d;
     border-radius: 25px;
     position: absolute;
   }
 
-  .start-game:before,
-  .start-game:after {
+  main:before,
+  main:after {
     content: '';
     position: absolute;
     left: 50%;
   }
 
-  .start-game:before {
+  main:before {
     top: -10px;
     margin: -3px 0 0 -3px;
     width: 6px;
@@ -35,7 +32,7 @@
     background: #a5adbd;
   }
 
-  .start-game:after {
+  main:after {
     width: 9px;
     height: 9px;
     border-radius: 9px;
