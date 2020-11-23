@@ -1,6 +1,6 @@
 const path = require('path');
 
 module.exports = {
-  'env': 'test',
+  'env': 'development',
   'config': path.resolve('config', 'config-real.json'),
 };
