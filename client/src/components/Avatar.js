@@ -5,7 +5,7 @@ function Avatar(props) {
   return (
     <>
       <h2>{props.name}</h2>
-      <img src={props.filename} width={props.width} height={props.height} />
+      <img src={props.filename} />
     </>
   );
 }

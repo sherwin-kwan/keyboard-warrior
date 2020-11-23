@@ -1,9 +1,9 @@
 [
   { 
     "name": "attack",
-    "icon": ""
+    "icon": "/images/sword.png"
   },
   {
     "name": "heal",
-    "icon": "" }
+    "icon": "/images/heart.png" }
 ]

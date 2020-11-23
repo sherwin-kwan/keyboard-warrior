@@ -145,27 +145,27 @@ function Arena(props) {
           onClick={() => { changeHealth('challenger', -10) }}
         />
       </div>
-      <div className="player">
+      <div className="avatar player">
         <Avatar
           name='You'
-          height='250px'
+          // height='250px'
           filename='/images/boss-spirit-fighter.png'
         />
       </div>
-      <div className="challenger">
+      <div className="avatar challenger">
         <Avatar
           name='Challenger'
-          height='250px'
+          // height='250px'
           filename='/images/boss-dragon-emperor.png'
         />
       </div>
-      <div className="player-action">
+      <div className="player-actions">
         <PlayerActionList
           playerActions={playerActions}
           playerInput={playerInput}
         />
       </div>
-      <div className="challenger-action">
+      <div className="challenger-actions">
         <div className="buttons">
           <button onClick={() => setAttackTime(1000000000)}>Pause</button>
           <button onClick={() => setAttackTime(20000)}>Slow</button>

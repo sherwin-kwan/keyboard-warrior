@@ -32,6 +32,7 @@ function PlayerActionList(props) {
       <PlayerAction
         key={action.name}
         name={action.name}
+        icon={action.icon}
         word={action.wordDOM || action.word}
       />
     )
