@@ -2,25 +2,27 @@
 import React from "react";
 
 function ArenaDoor(props) {
-  
+
   return (
     <div className="door">
-      {/* <audio src={props.background_music} autoplay></audio> */}
-      <h1>{props.name}</h1>
-      <img src={props.arena_card} alt="Door"></img>
-      <p>{props.beaten ? "Door is beaten" : "Door is not beaten"}</p>
-      <button 
+      {/* <audio src={props.music} autoplay></audio> */}
+      <h3 class="door-title">{props.name}</h3>
+      <div>
+        <img src={props.imgCard} alt={props.name}></img>
+      </div>
+      <button className="enter-button" type="button" disabled={props.beaten}
         onClick={() => {
           props.setGameMode("ARENA")
           props.setArena({
             name: props.name,
-            arena_card: props.arena_card,
-            background_image: props.background_image,
-            background_music: props.background_music
+            arena_card: props.imgCard,
+            background_image: props.imgBack,
+            background_music: props.music
           })
 
         }}>
         Enter Door</button>
+        {props.beaten && <aside>{props.beaten ? "You beat this level already 🥳" : null}</aside>} 
     </div>
   );
 }

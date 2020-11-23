@@ -5,10 +5,13 @@ import React from "react";
 import ArenaDoor from './ArenaDoor';
 
 function ArenaDoorList(props) {
+  console.log("JILLIAN", props.arenas)
   const doors = props.arenas.map((arena) => {
     return <ArenaDoor 
-      key={arena.name}
       name={arena.name}
+      imgCard={arena.arena_card}
+      music={arena.background_music}
+      imgBack={arena.background_image}
       beaten={arena.beaten}
       setGameMode={props.setGameMode}
       setArena={props.setArena}
@@ -17,7 +20,10 @@ function ArenaDoorList(props) {
 
   return (
     <>
-      <div className="title"><h1>Choose your arena!</h1></div>
+      <div 
+      className="title">
+        <h1>Choose your arena!</h1>
+      </div>
       {doors}
     </>
   );

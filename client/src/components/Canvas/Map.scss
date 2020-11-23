@@ -3,17 +3,43 @@
 main.map {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 3fr;
+  grid-template-rows: 1fr 1fr 2fr 2fr;
   justify-items: center;
+  
 
   div.RSPBprogressBar {
-    grid-column: span 4;
-    width: 90%;
-    padding: 1em;
-    margin: 0.5em;
+    grid-column: 2 / span 3;
+    width: 100%;
+    // padding: 1em;
+    margin: 1em;
   }
 
   .title {
     grid-column: span 5;
+  }
+
+  .door {
+    display: flex;
+    flex-direction: column;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    background-color: pink;
+    border-style: solid;
+    height: 100%;
+    width: 100%;
+    
+
+    .door-title {
+      align-self: center;
+    }
+    
+    .enter-button {
+      margin: 1em;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
