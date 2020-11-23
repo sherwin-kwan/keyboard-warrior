@@ -11,7 +11,7 @@ import Canvas from './Canvas';
 
 function Application() {
   return (
-    <div className="App">
+    <div className="app">
       <Canvas />
     </div>
   );
