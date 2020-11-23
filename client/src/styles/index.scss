@@ -3,17 +3,17 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  height: 96vh;
   width: 100vw;
   font-family: $primary-font;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  
   #root {
     height: inherit;
     width: inherit;
-
-    .App {
+    
+    .app {
       height: inherit;
       width: inherit;
     }
