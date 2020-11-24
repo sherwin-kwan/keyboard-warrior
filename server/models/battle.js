@@ -14,6 +14,22 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Battle.init({
+    game_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Game,
+        key: 'id'
+      }
+    },
+    arena_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Arena,
+        key: 'id'
+      }
+    },
     win: DataTypes.BOOLEAN,
     start_time: DataTypes.DATE,
     end_time: DataTypes.DATE

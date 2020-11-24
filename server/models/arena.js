@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     name: { type: DataTypes.STRING, allowNull: false },
     difficulty_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: Difficulty,
         key: 'id'
