@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Word extends Model {
     /**
@@ -14,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Word.init({
-    word: DataTypes.STRING
+    word: DataTypes.STRING,
+    action: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Word',
