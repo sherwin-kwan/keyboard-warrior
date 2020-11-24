@@ -1,5 +1,13 @@
 // Cypress tests
 
+// Stories not yet covered
+
+// Battle No. 5: As a player, I can see how long until the enemy executes its next attack
+// Battle No. 7: As a player, I can see health decrement on my own sprite, so I know the enemy has done damage
+// Battle No. 8: As a game, the boss battle is more difficult than a regular enemy
+// Game No. 1: As a player, I can see what letter in the word I’m typing change colour so I know what I’m choosing and how close I am to finishing the word
+
+
 describe("Navigating the happy path", () => {
   beforeEach(() => {
     cy.visit('/');
@@ -24,7 +32,7 @@ describe("Navigating the happy path", () => {
     cy.get('main').children('div').eq(1).should('have.class', 'health');
 
     // Battle No. 2: As a player, I have the following options for moves: attack (deals damage), defend (blocks the next attack), or heal (restore health)
-    cy.get('.player-actions').find('li').should('have.length.of.at.least', 2);
+    cy.get('.player-actions').find('li').should('have.length.of.at.least', 3);
 
     // Battle No. 3: As a player, the game will generate a series of words that I can type to execute a move
     // This example will type a word to execute an attack
@@ -103,4 +111,16 @@ describe("Navigating the happy path", () => {
         cy.get('.RSPBstep').eq(2).find('img').should('not.have.css', 'filter', 'grayscale(0%)');
       });
   });
+
+  it('should end in defeat if player sits idle for too long', () => {
+    cy.get('div.canvas').find('button').contains("Start").click();
+    cy.get('.door:first').contains("Hogwarts");
+    cy.get('.door:first').find('.door-title').click();
+    cy.wait(25000);
+    // That should be enough time to lose
+    // Game No. 3: As a game, when the player dies, I show them a you died screen and an option to restart
+    cy.get('div.canvas').should('contain', 'DEFEAT');
+    cy.get('div.canvas').find('button').click();
+    cy.get('div.canvas').find('button').contains("Start");
+  })
 });
