@@ -26,6 +26,22 @@ function ArenaDoor(props) {
           alt={props.name}/>
         </div>
         <footer>
+          {!props.beaten &&
+          <div class="points-rating">
+            <div className="difficulty">
+              <img
+                src={props.difficulty_icon} 
+                alt={props.difficulty}/>
+              <div>{props.difficulty}</div>
+            </div>
+            <div className="points">
+              <img
+                src={props.points_icon} 
+                alt={props.points + " POINTS"}/>
+              <div>{props.points + " PTS"}</div>
+            </div>
+          </div>
+          }
           {props.beaten && <aside>{props.beaten ? "You beat this level already 🥳" : null}</aside>} 
         </footer>
       </div> 
