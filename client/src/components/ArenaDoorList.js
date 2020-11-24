@@ -15,6 +15,10 @@ function ArenaDoorList(props) {
       music={arena.background_music}
       imgBack={arena.background_image}
       beaten={arena.beaten}
+      difficulty={arena.difficulty}
+      difficulty_icon={arena.difficulty_icon}
+      points={arena.points}
+      points_icon={arena.points_icon}
       setGameMode={props.setGameMode}
       setArena={props.setArena}
     />
@@ -31,7 +35,9 @@ function ArenaDoorList(props) {
       <div 
       className="title">
         <h1>Choose your arena!</h1>
+        <div className="door-slider-dots">
         {sliderDots}
+        </div>
       </div>
       <div className="container-of-doors">
         {doors}
