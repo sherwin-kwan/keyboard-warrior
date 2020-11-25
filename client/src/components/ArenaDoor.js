@@ -3,6 +3,8 @@ import React from "react";
 
 function ArenaDoor(props) {
   console.log('Props.arena is: ', props.arena);
+  const pointsIcon = '/images/green-diamond.png';
+
   return (
     <div className="door" id={props.arena.name.toLowerCase().replace(/\s/g, '-')}>
       <img className="door-arrow" src="/images/left-arrow.png"/>
@@ -30,7 +32,7 @@ function ArenaDoor(props) {
             </div>
             <div className="points">
               <img
-                src={props.arena.points_icon} 
+                src={pointsIcon} 
                 alt={props.arena.points + " POINTS"}/>
               <div>{props.arena.points + " PTS"}</div>
             </div>
