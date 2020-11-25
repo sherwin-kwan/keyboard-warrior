@@ -45,6 +45,7 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
 
+    // Log migration SQL commands to console
     queryInterface.sequelize.options.logging = console.log;
 
     await queryInterface.dropTable('Battles');

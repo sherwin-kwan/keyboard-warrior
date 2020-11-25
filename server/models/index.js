@@ -8,6 +8,12 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config-real.json')[env];
 const db = {};
 
+// Transactions
+
+// const cls = require('cls-hooked');
+// const namespace = cls.createNamespace('typing-game');
+// Sequelize.useCLS(namespace);
+
 // IDs for actions and difficulties
 const ATTACK = 1;
 const HEAL = 2;

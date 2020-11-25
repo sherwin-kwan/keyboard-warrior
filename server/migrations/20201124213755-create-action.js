@@ -1,7 +1,8 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    
+
+    // Log migration SQL commands to console
     queryInterface.sequelize.options.logging = console.log;
 
     await queryInterface.createTable('Actions', {

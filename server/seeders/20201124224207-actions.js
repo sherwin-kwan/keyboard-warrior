@@ -1,5 +1,7 @@
 'use strict';
 
+const { sequelize } = require("../models");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     /**
@@ -11,7 +13,10 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('Actions', 
+    // Log seeds to console
+   queryInterface.sequelize.options.logging = console.log;
+
+    await queryInterface.bulkInsert('Actions',
       [
         {
           name: "attack",
