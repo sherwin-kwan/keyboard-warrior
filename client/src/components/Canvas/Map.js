@@ -13,7 +13,6 @@ import './Map.scss';
 
 function Map(props) {
 
-
   return (
     <main className="map">
       <StepProgressBar

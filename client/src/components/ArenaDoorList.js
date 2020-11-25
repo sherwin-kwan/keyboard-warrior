@@ -4,25 +4,20 @@ import React from "react";
 // Components
 import ArenaDoor from './ArenaDoor';
 import DoorSlider from "./DoorSlider";
-import doorSlider from './DoorSlider';
 
 function ArenaDoorList(props) {
 
-  const doors = props.arenas.map((arena) => {
-    return <ArenaDoor 
-      name={arena.name}
-      key={arena.name}
-      imgCard={arena.arena_card}
-      music={arena.background_music}
-      imgBack={arena.background_image}
-      beaten={arena.beaten}
-      difficulty={arena.difficulty}
-      difficulty_icon={arena.difficulty_icon}
-      points={arena.points}
-      points_icon={arena.points_icon}
-      setGameMode={props.setGameMode}
-      setArena={props.setArena}
-    />
+  const doors = props.arenas.map(arena => {
+    return (
+      <ArenaDoor 
+        key={arena.name}
+        name={arena.name}
+        imgCard={arena.arena_card}
+        difficulty={arena.Difficulty}
+        points={arena.points}
+        setGameMode={props.setGameMode}
+        setArena={props.setArena}
+      />)
   })
 
   const sliderDots = props.arenas.map(arena => {

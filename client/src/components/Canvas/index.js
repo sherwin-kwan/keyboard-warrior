@@ -58,7 +58,7 @@ function Canvas(props) {
           arenas={arenas}
           setArena={setArena}
           arenasBeaten={lookupArenasBeaten(arenas)} />
-      }
+        }
         {mode === ARENA && <Arena
           setOutcome={setOutcome}
           initialPlayerHealth = {80}
