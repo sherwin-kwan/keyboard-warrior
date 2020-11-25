@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   Difficulty.init({
     name: { type: DataTypes.STRING, allowNull: false },
     attack_time_ms: { type: DataTypes.INTEGER, allowNull: false },
-    damage_per_hit: { type: DataTypes.INTEGER, allowNull: false }
+    damage_per_hit: { type: DataTypes.INTEGER, allowNull: false },
+    icon: { type: DataTypes.STRING }
   }, {
     sequelize,
     modelName: 'Difficulty',
