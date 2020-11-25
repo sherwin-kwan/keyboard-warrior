@@ -14,7 +14,7 @@ const WinBattle = (props) => {
       <p className="message">
         <h1>VICTORY</h1>
         <p>Congrats, you have triumphed over &lt;Sorry the props didn't give me a name&gt;!</p>
-        <button onClick={() => props.setMode('MAP')}>Choose Next Battle</button>
+        <button className="primary" onClick={() => props.setMode('MAP')}>Choose Next Battle</button>
       </p>
     </main>
   );

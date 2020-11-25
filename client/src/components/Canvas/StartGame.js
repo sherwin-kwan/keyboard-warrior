@@ -8,16 +8,15 @@ function StartGame(props) {
   return (
     <main className="start-game">
       <h1>A Typing Game</h1>
-      <div className="menu">
-        <button
-          onClick={() => { props.setMode("MAP") }}
-        >Start Game
+      <menu>
+        <button className="primary" onClick={() => props.setMode("MAP")}>
+          Start Game
         </button>
         (Following buttons don't do anything yet:)
-        <button>Credits</button>
-        <button>Instructions</button>
-        <button>Settings</button>
-      </div>
+        <button className="primary">Credits</button>
+        <button className="primary">Instructions</button>
+        <button className="primary">Settings</button>
+      </menu>
     </main>
   );
 }
