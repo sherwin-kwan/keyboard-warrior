@@ -36,10 +36,15 @@ module.exports = (fs) => {
   });
 
   router.get('/arenas', (req, res) => {
-    fs.readFile(`${dataPath}/arenas.json`, 'utf8', (err, data) => {
-      if (err) throw err;
-      res.json(JSON.parse(data));
-    });
+    const getAllArenas = async (req, res) => {
+   
+     const arenas = await Arena.findAll();
+     console.log("JILLIAN", arenas)
+
+     response.json(arenas);
+
+    }
+
   });
 
 
