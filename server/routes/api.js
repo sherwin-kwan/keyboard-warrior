@@ -45,11 +45,17 @@ module.exports = (fs) => {
     res.json(data);
   });
 
-  router.get('/playerActions', (req, res) => {
-    fs.readFile(`${dataPath}/playerActions.json`, 'utf8', (err, data) => {
-      if (err) throw err;
-      res.json(JSON.parse(data));
+  // Returns the action names and icons, and the words associated with them - so everything needed to render the words part of the arena
+  // The id in params is the arena ID
+  router.get('/action-words/:id', async (req, res) => {
+    const data = await Action.findAll({
+      include: Word,
+      attributes: ['name', 'icon', 'sound'],
+      where: {
+        '$words.arena_id$': req.params.id
+      }
     });
+    res.json(data);
   });
 
   router.get('/arenas', async (req, res) => {

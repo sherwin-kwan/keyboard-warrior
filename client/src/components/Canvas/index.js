@@ -1,10 +1,16 @@
 // Libraries
 import React, { useEffect, useRef } from "react";
+import TempNavBar from '../TempNavBar';
+import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
+
+
+
+//Hooks
+import useBattles from '../../hooks/useBattles';
 import useGameMode from "../../hooks/useGameMode";
 import useArena from "../../hooks/useArena";
 import useResult from '../../hooks/useResult';
-import TempNavBar from '../TempNavBar';
-import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
+import useGame from '../../hooks/useGame';
 
 // Styles
 import './index.scss';
@@ -29,6 +35,8 @@ function Canvas(props) {
   const { mode, setMode } = useGameMode("START")
   const { arenas, setArenas, arena, setArena } = useArena()
   const { result, setResult } = useResult('PENDING');
+  const { battles, setBattles } = useBattles();
+  const { game, setGame } = useGame();
   // Possible results are: "WinGame", "WinBattle", "LoseGame", "Pending"
 
   const soundMedia = useRef(null);
@@ -47,10 +55,12 @@ function Canvas(props) {
       </audio>
       <div className="canvas">
         {mode === START && <StartGame
-          setMode={setMode} />
+          setMode={setMode}
+          setGame={setGame} />
         }
         {mode === MAP && <Map
           setGameMode={setMode}
+          arena={arena}
           arenas={arenas}
           setArena={setArena}
           arenasBeaten={lookupArenasBeaten(arenas)} />
@@ -63,6 +73,7 @@ function Canvas(props) {
           arena={arena}
           arenas={arenas}
           setArenas={setArenas}
+          setBattles={setBattles}
         />}
         {mode === OUTCOME && <Outcome 
         result={result}

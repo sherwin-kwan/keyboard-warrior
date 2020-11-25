@@ -28,6 +28,7 @@ function Arena(props) {
   const [playerInput, setPlayerInput] = useState('');
   const { attackTime, setAttackTime } = useChallengerAction({attackTime: 2000});
   const { handleWordMatch } = useInputMatcher();
+  
 
   // const [match, setMatch] = useState('');
   useEffect(() => {
@@ -119,8 +120,10 @@ function Arena(props) {
   };
 
   // Get word list and action list on load
-  useEffect(() => {
+  useEffect(async () => {
     axios.defaults.baseURL = 'http://localhost:3001';
+    console.log('Arena is: ', props.arena);
+    const actionWords = await axios.get(`/api/action-words/${props.arena.id}`)
     Promise.all([
       axios.get('/api/words'),
       axios.get('/api/playerActions')
