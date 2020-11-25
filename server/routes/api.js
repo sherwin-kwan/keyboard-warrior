@@ -1,7 +1,7 @@
 const express = require('express');
 const { sequelize } = require('../models');
 const db = require('../models');
-const { Word, Action, Difficulty, Arena } = db;
+const { Word, Action, Difficulty, Arena, Game } = db;
 const router = express.Router();
 
 module.exports = (fs) => {
@@ -48,12 +48,20 @@ module.exports = (fs) => {
   // Returns the action names and icons, and the words associated with them - so everything needed to render the words part of the arena
   // The id in params is the arena ID
   router.get('/action-words/:id', async (req, res) => {
-    const data = await Action.findAll({
+    const rawData = await Action.findAll({
       include: Word,
       attributes: ['name', 'icon', 'sound'],
       where: {
         '$words.arena_id$': req.params.id
       }
+    });
+    const data = rawData.map(action => {
+      return {
+        name: action.name,
+        icon: action.icon,
+        sound: action.sound,
+        words: action.Words.map(w => w.word)
+      };
     });
     res.json(data);
   });
@@ -64,6 +72,30 @@ module.exports = (fs) => {
       attributes: ['id', 'name', ['arena_image', 'arena_card'], 'challenger_name', 'challenger_sprite', 'points']
     });
     res.json(data);
+  });
+
+  router.get('/games', function (req, res, next) {
+    res.json({
+      "message": "Hello, this is the games API endpoint"
+    });
+  });
+
+  router.put('/games', async (req, res) => {
+
+    //get the name input
+    const game = request.body;
+    console.log("the game object", game)
+
+    //do a DB insert
+    const newGame = await Game.create({
+      player_name: game
+    }, { returning: true })
+
+    // const data = await Arena.findAll({
+    //   include: Difficulty,
+    //   attributes: ['id', 'name', ['arena_image', 'arena_card'], 'challenger_name', 'challenger_sprite', 'points']
+    // });
+    res.send("SENTERINO");
   });
 
 

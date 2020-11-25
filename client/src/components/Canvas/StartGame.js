@@ -9,28 +9,23 @@ function StartGame(props) {
     <main className="start-game">
       <h1>A Typing Game</h1>
       <div className="menu">
-        <form onSubmit={event => event.preventDefault()}>
+        <form onSubmit={(event) => {
+          event.preventDefault()
+          props.onSubmit(props.game.player_name)
+          props.setMode("MAP")
+          }
+          }>
           <label for="name">Player Name:</label><br/>
           <input 
+            onChange={(event) => props.setGame({player_name: event.target.value})}
+            value={props.game.player_name}
             type="text" 
             id="name" 
             placeholder="Enter player name" 
             name="name"
-            onChange={(event) => {
-              props.setGame(
-                {
-                  player_name: event.target.value
-                }
-              )
-            }}
             /><br/>
+          <input type="submit" value="Start Game"/>
         </form>
-        <button
-          onClick={() => { 
-            props.setMode("MAP") 
-          }}
-        >Start Game
-        </button>
         (Following buttons don't do anything yet:)
         <button>Credits</button>
         <button>Instructions</button>

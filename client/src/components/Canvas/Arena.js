@@ -20,15 +20,15 @@ import useChallengerAction from '../../hooks/useChallengerAction';
 
 function Arena(props) {
 
-  
+
   // States
-  const [words, setWords] = useState([]);
+  // const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
-  const { attackTime, setAttackTime } = useChallengerAction({attackTime: 2000});
+  const { attackTime, setAttackTime } = useChallengerAction({ attackTime: 2000 });
   const { handleWordMatch } = useInputMatcher();
-  
+
 
   // const [match, setMatch] = useState('');
   useEffect(() => {
@@ -96,12 +96,10 @@ function Arena(props) {
     return () => clearInterval(interval);
   }, [challengerTimer, attackTime]);
 
-  // Gets a random word from a words list
-  const getRandWord = (action, words) => {
-    console.log('Words is: ', words);
-    const wordsForAction = words.filter(word => word.action === action);
-    const randWord = wordsForAction[Math.floor(Math.random() * wordsForAction.length)];
-    return randWord.word;
+  // Gets a random word from a words list (the words list should be an array of strings, and already limited to words for a particular action)
+  const getRandWord = (words) => {
+    const randWord = words[Math.floor(Math.random() * words.length)];
+    return randWord;
   }
   // Returns true if player input matches an action word
   // const isMatch = (input, actions) => actions.find(action => action.word === input);
@@ -111,7 +109,7 @@ function Arena(props) {
     setPlayerActions(prev => {
       return prev.map(actionPrev => {
         if (actionPrev.name === action.name) {
-          return { ...actionPrev, word: getRandWord(action.name, words) };
+          return { ...actionPrev, word: getRandWord(action.Words) };
         } else {
           return actionPrev;
         }
@@ -121,18 +119,27 @@ function Arena(props) {
 
   // Get word list and action list on load
   useEffect(async () => {
-    axios.defaults.baseURL = 'http://localhost:3001';
-    console.log('Arena is: ', props.arena);
-    const actionWords = await axios.get(`/api/action-words/${props.arena.id}`)
-    Promise.all([
-      axios.get('/api/words'),
-      axios.get('/api/playerActions')
-    ]).then(data => {
-      setWords(data[0].data);
-      setPlayerActions(prev => {
-        return data[1].data.map(action => ({ ...action, word: getRandWord(action.name, data[0].data) }))
+    try {
+      axios.defaults.baseURL = 'http://localhost:3001';
+      const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
+      const actionWords = rawWords.data.map(action => {
+        return {...action,
+          Words: action.Words.map(word => word.word)
+
+        }
+      })
+      const initialWords = actionWords.data.map(action => {
+        return {...action, Words: action.Words.map(), word: getRandWord(action.Words)};
       });
-    }).catch(err => console.log("Error getting data: ", err));
+      console.log(initialWords);
+      setPlayerActions(initialWords);
+      // setWords(data[0].data);
+      // setPlayerActions(prev => {
+      //   return data[1].data.map(action => ({ ...action, word: getRandWord(action.name, data[0].data) }))
+      // });
+    } catch (err) {
+      console.log("Error getting data: ", err);
+    }
   }, []);
 
   return (

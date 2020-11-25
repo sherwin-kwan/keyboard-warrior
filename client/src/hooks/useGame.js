@@ -10,6 +10,7 @@ export default function useGame() {
 
     axios.put('/api/games')
       .then(data => {
+        console.log("RESPONSE DATA: ", data.data)
         setGame(
           {
             player_name: name
@@ -19,5 +20,5 @@ export default function useGame() {
       .catch(err => console.log("Error putsing Game data: ", err));
   }
 
-  return { game, setGame };
+  return { game, setGame, startGame };
 }
