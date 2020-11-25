@@ -26,12 +26,9 @@ function ArenaDoorList(props) {
 
   return (
     <>
-      <div 
-      className="title">
-        <h1>Choose your arena!</h1>
-        <div className="door-slider-dots">
+      <h2>Choose your arena!</h2>
+      <div className="door-slider-dots">
         {sliderDots}
-        </div>
       </div>
       <div className="doors-container">
         {doors}
