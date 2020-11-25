@@ -16,7 +16,7 @@ function PlayerActionList(props) {
   
   // Create a wordDOM with style applied to matched letters
   if (match) {
-    const matchedActionIndex = playerActions.findIndex(action => action.word.slice(0, playerInput.length) === playerInput);
+    const matchedActionIndex = playerActions.findIndex(action => action.word.slice(0, playerInput.length) === playerInput.toLowerCase());
     const action = playerActions[matchedActionIndex];
     action.wordDOM = `<span className="match">${action.word.slice(0, playerInput.length)}</span>${action.word.slice(playerInput.length)}`;
   // Reset style if letters do not match
