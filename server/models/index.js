@@ -44,6 +44,4 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 Object.assign(db, {ATTACK, HEAL, NORMAL, HARD, BOSS});
 
-
-
 module.exports = db;
