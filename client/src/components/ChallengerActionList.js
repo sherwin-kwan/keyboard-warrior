@@ -1,9 +1,6 @@
 // Libraries
 import React from "react";
-import SkillBar from 'react-skillbars';
 
-// Components
-import ChallengerAction from './ChallengerAction';
 
 function ChallengerActionList(props) {
   // Sets the time until the next challenger attack in tenths of a second
@@ -14,10 +11,10 @@ function ChallengerActionList(props) {
     height: 'inherit',
     left: '0px',
     width: props.percentage + '%', /* CSS transitions will be applied using states to change the width of the bar */
-    'background-color': 'red',
-    'transition-property': 'width',
-    'transition-duration': props.duration + 'ms',
-    'transition-timing-function': 'linear'
+    backgroundColor: 'red',
+    transitionProperty: 'width',
+    transitionDuration: props.duration + 'ms',
+    transitionTimingFunction: 'linear'
   };
 
   return (

@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Battle.init({
-    game_id: {
+    gameId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    arena_id: {
+    arenaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Battle',
+    underscored: true
   });
   return Battle;
 };

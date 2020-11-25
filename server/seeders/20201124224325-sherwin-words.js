@@ -2,12 +2,14 @@
 const models = require('../models');
 const { HARD, NORMAL, ATTACK, HEAL, Arena } = models;
 const { Op } = require('sequelize');
+const inspect = require("util").inspect;
 
 module.exports = {
   up: async (queryInterface) => {
+
     const diagon = await Arena.create({
       name: 'Diagon Alley',
-      "difficulty_id": HARD,
+      difficultyId: HARD,
       "challenger_name": 'Draco Malfoy',
       "challenger_sprite": 'malfoy.jpg',
       points: 30
@@ -58,7 +60,7 @@ module.exports = {
     ]);
 
     const indigo = await Arena.create({
-      name: 'Indigo Plateau', "difficulty_id": NORMAL, "challenger_name": 'Giovanni', points: 20, "challenger_sprite": 'Giovanni.jpg'
+      name: 'Indigo Plateau', difficultyId: NORMAL, "challenger_name": 'Giovanni', points: 20, "challenger_sprite": 'Giovanni.jpg'
     })
     const indigoId = indigo.dataValues.id;
 

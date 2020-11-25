@@ -5,6 +5,7 @@ const { Op } = require('sequelize');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+
     /**
      * Add seed commands here.
      *

@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   Word.init({
     word: { type: DataTypes.STRING, allowNull: false },
-    arena_id: {
+    arenaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    action_id: {
+    actionId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Word',
+    underscored: true
   });
   return Word;
 };

@@ -97,6 +97,7 @@ function Arena(props) {
 
   // Gets a random word from a words list
   const getRandWord = (action, words) => {
+    console.log('Words is: ', words);
     const wordsForAction = words.filter(word => word.action === action);
     const randWord = wordsForAction[Math.floor(Math.random() * wordsForAction.length)];
     return randWord.word;
