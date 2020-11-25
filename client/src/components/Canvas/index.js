@@ -1,42 +1,46 @@
 // Libraries
 import React, { useEffect, useRef } from "react";
+
+// Hooks
 import useGameMode from "../../hooks/useGameMode";
 import useArena from "../../hooks/useArena";
-import useResult from '../../hooks/useResult';
-import TempNavBar from '../TempNavBar';
+import useOutcome from '../../hooks/useOutcome';
+
+// Helpers
 import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
 
 // Styles
 import './index.scss';
 
 // Components
+import TempNavBar from '../TempNavBar';
 import StartGame from './StartGame';
 import Map from './Map';
 import Arena from './Arena';
 import Outcome from './Outcome'
 
-
 function Canvas(props) {
 
-  //MODES
+  // Modes
   const START = "START";
   const MAP = "MAP";
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
 
   
-  //hooks
-  const { mode, setMode } = useGameMode("START")
-  const { arenas, setArenas, arena, setArena } = useArena()
-  const { result, setResult } = useResult('PENDING');
-  // Possible results are: "WinGame", "WinBattle", "LoseGame", "Pending"
+  // Use hooks
+  const { mode, setMode } = useGameMode("START");
+  const { arenas, setArenas, arena, setArena } = useArena();
+  const { outcome, setOutcome } = useOutcome('PENDING');
+  // Possible outcomes are: "WinGame", "WinBattle", "LoseGame", "Pending"
 
+  // Load background music
   const soundMedia = useRef(null);
 
   useEffect(() => {
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
-    soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
+    soundMedia.current.volume = 0; // Make sure you leave the volume setting here - otherwise it's too loud!!
   }, [soundMedia, mode]);
   
   return (
@@ -56,7 +60,7 @@ function Canvas(props) {
           arenasBeaten={lookupArenasBeaten(arenas)} />
       }
         {mode === ARENA && <Arena
-          setResult={setResult}
+          setOutcome={setOutcome}
           initialPlayerHealth = {80}
           challengerHealth = {100}
           setMode={setMode}
@@ -65,7 +69,7 @@ function Canvas(props) {
           setArenas={setArenas}
         />}
         {mode === OUTCOME && <Outcome 
-        result={result}
+        outcome={outcome}
         soundMedia={soundMedia}
         setMode={setMode}
         />}

@@ -13,14 +13,14 @@ function Outcome(props) {
   const LOSEGAME = 'LOSEGAME';
   const WINBATTLE = 'WINBATTLE';
   const PENDING = 'PENDING';
-  const result = props.result;
+  const outcome = props.outcome;
 
   return (
     <>
-      {result === WINGAME && <WinGame setMode={props.setMode}/>}
-      {result === LOSEGAME && <LoseGame setMode={props.setMode} soundMedia={props.soundMedia} />}
-      {result === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
-      {result === PENDING && <main>Oops, looks like an error occurred. The result state cshouldn't be pending!</main>}
+      {outcome === WINGAME && <WinGame setMode={props.setMode}/>}
+      {outcome === LOSEGAME && <LoseGame setMode={props.setMode} soundMedia={props.soundMedia} />}
+      {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
+      {outcome === PENDING && <main>Oops, looks like an error occurred. The result state cshouldn't be pending!</main>}
     </>
   );
 }
