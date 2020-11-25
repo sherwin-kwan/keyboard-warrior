@@ -32,8 +32,8 @@ module.exports = (fs) => {
 
   router.get('/words', async (req, res) => {
     const data = await Word.findAll({
-      // include: Action,
-      // attributes: ['action.name', 'word'],
+      include: Action,
+      attributes: ['Action.name', 'word'],
       raw: true
     });
     res.json(data);
