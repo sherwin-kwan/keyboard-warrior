@@ -11,6 +11,24 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    await queryInterface.bulkInsert('Difficulties', 
+      [
+        {
+          name: "Normal",
+          attack_time_ms: 4000,
+          damage_per_hit: 10
+        },
+        {
+          name: "Hard",
+          attack_time_ms: 4000,
+          damage_per_hit: 15
+        },
+        {
+          name: "Boss",
+          attack_time_ms: 6000,
+          damage_per_hit: 30
+        }
+      ]);
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -20,5 +38,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    return queryInterface.bulkDelete('Difficulties', null, {});
   }
 };

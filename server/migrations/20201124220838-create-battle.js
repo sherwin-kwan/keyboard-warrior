@@ -11,12 +11,16 @@ module.exports = {
       game_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Games', key: 'id' }
+        references: { model: 'Games', key: 'id' },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       arena_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Arenas', key: 'id' }
+        references: { model: 'Arenas', key: 'id' },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       win: {
         type: Sequelize.BOOLEAN

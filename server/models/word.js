@@ -1,7 +1,8 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
+const Action = require('./action');
+const Arena = require('./arena');
+
 module.exports = (sequelize, DataTypes) => {
   class Word extends Model {
     /**

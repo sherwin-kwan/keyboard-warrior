@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const Difficulty = require('./difficulty');
+
 module.exports = (sequelize, DataTypes) => {
   class Arena extends Model {
     /**

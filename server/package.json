@@ -9,7 +9,13 @@
     "db:migrate": "npx sequelize-cli db:migrate",
     "db:migrate-undo": "npx sequelize-cli db:migrate:undo:all",
     "db:seed": "npx sequelize-cli db:seed:all",
-    "db:seed-undo": "npx sequelize-cli db:seed:undo:all"
+    "db:seed-undo": "npx sequelize-cli db:seed:undo:all",
+    "h-seed": "npx sequelize-cli db:seed --seed 20201124224316-helen-words.js",
+    "h-undo": "npx sequelize-cli db:seed:undo --seed 20201124224316-helen-words.js",
+    "j-seed": "npx sequelize-cli db:seed --seed 20201124224403-jillian-words.js",
+    "j-undo": "npx sequelize-cli db:seed:undo --seed 20201124224403-jillian-words.js",
+    "s-seed": "npx sequelize-cli db:seed --seed 20201124224325-sherwin-words.js",
+    "s-undo": "npx sequelize-cli db:seed:undo --seed 20201124224325-sherwin-words.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

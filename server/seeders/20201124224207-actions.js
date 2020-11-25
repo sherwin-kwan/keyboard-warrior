@@ -11,6 +11,21 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+    await queryInterface.bulkInsert('Actions', 
+      [
+        {
+          name: "attack",
+          icon: "/images/sword.png",
+          sound: "attack sound",
+          animation: "attack animation"
+        },
+        {
+          name: "heal",
+          icon: "/images/heart.png",
+          sound: "heal sound",
+          animation: "heal animation"
+        }
+      ]);
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -20,5 +35,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    return queryInterface.bulkDelete('Actions', null, {});
   }
 };

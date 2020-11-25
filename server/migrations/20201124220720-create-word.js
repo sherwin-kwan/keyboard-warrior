@@ -15,12 +15,16 @@ module.exports = {
       arena_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Arenas', key: 'id' }
+        references: { model: 'Arenas', key: 'id' },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       action_id: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: { model: 'Actions', key: 'id' }
+        references: { model: 'Actions', key: 'id' },
+        onDelete: 'cascade',
+        onUpdate: 'cascade'
       },
       createdAt: {
         allowNull: false,
