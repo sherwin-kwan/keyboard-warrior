@@ -14,10 +14,10 @@ function ChallengerActionList(props) {
     height: 'inherit',
     left: '0px',
     width: props.percentage + '%', /* CSS transitions will be applied using states to change the width of the bar */
-    'background-color': 'red',
-    'transition-property': 'width',
-    'transition-duration': props.duration + 'ms',
-    'transition-timing-function': 'linear'
+    backgroundColor: 'red',
+    transitionProperty: 'width',
+    transitionDuration: props.duration + 'ms',
+    transitionTimingFunction: 'linear'
   };
 
   return (

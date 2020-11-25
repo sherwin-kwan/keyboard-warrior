@@ -11,6 +11,7 @@ function ArenaDoorList(props) {
   const doors = props.arenas.map((arena) => {
     return <ArenaDoor 
       name={arena.name}
+      key={arena.name}
       imgCard={arena.arena_card}
       music={arena.background_music}
       imgBack={arena.background_image}
@@ -26,6 +27,7 @@ function ArenaDoorList(props) {
 
   const sliderDots = props.arenas.map(arena => {
     return (<DoorSlider
+    key={arena.name + '-slider'}
     name={arena.name.toLowerCase().replace(/\s/g, '-')}
     />)
   });
