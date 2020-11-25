@@ -21,7 +21,7 @@ function Map(props) {
       <ArenaDoorList
         arenas={props.arenas}
         setGameMode={props.setGameMode}
-        arenas={props.arenas}
+        arena={props.arena}
         setArena={props.setArena}
       />
     </main>

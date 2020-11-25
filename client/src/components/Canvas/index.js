@@ -1,5 +1,6 @@
 // Libraries
 import React, { useEffect, useRef } from "react";
+<<<<<<< HEAD
 
 // Hooks
 import useGameMode from "../../hooks/useGameMode";
@@ -8,6 +9,19 @@ import useOutcome from '../../hooks/useOutcome';
 
 // Helpers
 import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
+=======
+import TempNavBar from '../TempNavBar';
+import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
+
+
+
+//Hooks
+import useBattles from '../../hooks/useBattles';
+import useGameMode from "../../hooks/useGameMode";
+import useArena from "../../hooks/useArena";
+import useResult from '../../hooks/useResult';
+import useGame from '../../hooks/useGame';
+>>>>>>> 19b7181976924916920bc47bc5d4b9b5decca899
 
 // Styles
 import './index.scss';
@@ -28,11 +42,21 @@ function Canvas(props) {
   const OUTCOME = "OUTCOME";
 
   
+<<<<<<< HEAD
   // Use hooks
   const { mode, setMode } = useGameMode("START");
   const { arenas, setArenas, arena, setArena } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
   // Possible outcomes are: "WinGame", "WinBattle", "LoseGame", "Pending"
+=======
+  //hooks
+  const { mode, setMode } = useGameMode("START")
+  const { arenas, setArenas, arena, setArena } = useArena()
+  const { result, setResult } = useResult('PENDING');
+  const { battles, setBattles } = useBattles();
+  const { game, setGame } = useGame();
+  // Possible results are: "WinGame", "WinBattle", "LoseGame", "Pending"
+>>>>>>> 19b7181976924916920bc47bc5d4b9b5decca899
 
   // Load background music
   const soundMedia = useRef(null);
@@ -51,10 +75,12 @@ function Canvas(props) {
       </audio>
       <div className="canvas">
         {mode === START && <StartGame
-          setMode={setMode} />
+          setMode={setMode}
+          setGame={setGame} />
         }
         {mode === MAP && <Map
           setGameMode={setMode}
+          arena={arena}
           arenas={arenas}
           setArena={setArena}
           arenasBeaten={lookupArenasBeaten(arenas)} />
@@ -67,6 +93,7 @@ function Canvas(props) {
           arena={arena}
           arenas={arenas}
           setArenas={setArenas}
+          setBattles={setBattles}
         />}
         {mode === OUTCOME && <Outcome 
         outcome={outcome}
