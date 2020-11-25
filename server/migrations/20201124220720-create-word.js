@@ -26,12 +26,12 @@ module.exports = {
         onDelete: 'cascade',
         onUpdate: 'cascade'
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE

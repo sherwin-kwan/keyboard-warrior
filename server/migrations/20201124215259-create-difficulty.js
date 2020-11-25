@@ -1,6 +1,8 @@
+
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+
     await queryInterface.createTable('Difficulties', {
       id: {
         allowNull: false,
@@ -20,12 +22,12 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE

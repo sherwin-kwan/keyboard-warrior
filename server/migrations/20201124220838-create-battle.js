@@ -31,12 +31,12 @@ module.exports = {
       end_time: {
         type: Sequelize.DATE
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         type: Sequelize.DATE
@@ -44,6 +44,10 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
+
+    // Do not remove the following line. This ensures that the tables will not be removed in case-sensitive form
+    queryInterface.sequelize.options.quoteIdentifiers = false;
+
     await queryInterface.dropTable('Battles');
   }
 };

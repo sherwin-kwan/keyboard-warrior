@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Arena',
+    underscored: true
   });
   return Arena;
 };

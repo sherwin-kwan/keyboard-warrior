@@ -19,7 +19,6 @@ module.exports = (sequelize, DataTypes) => {
     ArenaId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'arena_id',
       references: {
         model: Arena,
         key: 'id'
@@ -36,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Word'
+    modelName: 'Word',
+    underscored: true
   });
   return Word;
 };

@@ -1,4 +1,5 @@
 const express = require('express');
+const { sequelize } = require('../models');
 const db = require('../models');
 const { Word, Action, Difficulty, Arena } = db;
 const router = express.Router();
@@ -31,11 +32,8 @@ module.exports = (fs) => {
   });
 
   router.get('/words', async (req, res) => {
-    const data = await Word.findAll({
-      include: Action,
-      attributes: ['Action.name', 'word'],
-      raw: true
-    });
+    const data = await sequelize.query(`SELECT words.word AS word, actions.name AS action FROM words JOIN actions ON words.action_id = actions.id
+    `)
     res.json(data);
   });
 
