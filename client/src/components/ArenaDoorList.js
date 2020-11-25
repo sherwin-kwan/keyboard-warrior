@@ -33,7 +33,7 @@ function ArenaDoorList(props) {
         {sliderDots}
         </div>
       </div>
-      <div className="container-of-doors">
+      <div className="doors-container">
         {doors}
       </div>
     </>
