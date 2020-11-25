@@ -1,9 +1,6 @@
 // Libraries
 import React from "react";
-import SkillBar from 'react-skillbars';
 
-// Components
-import ChallengerAction from './ChallengerAction';
 
 function ChallengerActionList(props) {
   // Sets the time until the next challenger attack in tenths of a second
