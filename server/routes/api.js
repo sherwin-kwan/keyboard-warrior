@@ -46,15 +46,11 @@ module.exports = (fs) => {
     });
   });
 
-  router.get('/arenas', (req, res) => {
-    const getAllArenas = async (req, res) => {
-   
-     const arenas = await Arena.findAll();
-     console.log("JILLIAN", arenas)
-
-     response.json(arenas);
-
-    }
+  router.get('/arenas', async (req, res) => {
+    const data = await Arena.findAll({
+      raw: true
+    });
+    res.json(data);
 
   });
 
