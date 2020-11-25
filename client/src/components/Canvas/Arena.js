@@ -121,7 +121,7 @@ function Arena(props) {
   useEffect(() => {
     axios.defaults.baseURL = 'http://localhost:3001';
     Promise.all([
-      axios.get('/api/words-old'),
+      axios.get('/api/words'),
       axios.get('/api/playerActions')
     ]).then(data => {
       setWords(data[0].data);
