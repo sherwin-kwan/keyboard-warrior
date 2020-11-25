@@ -1,6 +1,8 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    
+    queryInterface.sequelize.options.logging = console.log;
 
     await queryInterface.createTable('Actions', {
       id: {

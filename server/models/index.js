@@ -15,13 +15,15 @@ const NORMAL = 1;
 const HARD = 2;
 const BOSS = 3;
 
+// Note: This is the ONE instance of Sequelize which is used in this whole app. Any time you need to call sequelize.something, import this!
 let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config, {quoteIdentifiers: false});
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config, {quoteIdentifiers: false});
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+sequelize.options.logging = console.log;
 
 fs
   .readdirSync(__dirname)
@@ -38,7 +40,6 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
-
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

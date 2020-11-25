@@ -2,9 +2,11 @@
 const models = require('../models');
 const { HARD, NORMAL, ATTACK, HEAL, Arena } = models;
 const { Op } = require('sequelize');
+const inspect = require("util").inspect;
 
 module.exports = {
   up: async (queryInterface) => {
+
     const diagon = await Arena.create({
       name: 'Diagon Alley',
       "difficulty_id": HARD,

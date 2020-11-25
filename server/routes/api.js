@@ -32,8 +32,17 @@ module.exports = (fs) => {
   });
 
   router.get('/words', async (req, res) => {
-    const data = await sequelize.query(`SELECT words.word AS word, actions.name AS action FROM words JOIN actions ON words.action_id = actions.id
-    `)
+    const rawData = await Word.findAll({
+      include: Action,
+      attributes: ['word'],
+      raw: true
+    })
+    const data = rawData.map((w) => {
+      return {
+        word: w.word,
+        action: w['Action.name']
+      }
+    });
     res.json(data);
   });
 

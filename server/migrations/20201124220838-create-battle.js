@@ -45,8 +45,7 @@ module.exports = {
   },
   down: async (queryInterface, Sequelize) => {
 
-    // Do not remove the following line. This ensures that the tables will not be removed in case-sensitive form
-    queryInterface.sequelize.options.quoteIdentifiers = false;
+    queryInterface.sequelize.options.logging = console.log;
 
     await queryInterface.dropTable('Battles');
   }
