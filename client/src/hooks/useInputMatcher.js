@@ -6,15 +6,15 @@ export default function useInputMatcher() {
   // Check for letter matches and returns true if a match is found
   const handleLetterMatch = (playerInput, playerActions) => {
     if (playerInput.length > 0 && playerActions.length > 0) {
-      const actionWordSlices = playerActions.map(action => action.word.slice(0, playerInput.length));
-      return (actionWordSlices.includes(playerInput)) ? true : false;
+      const actionWordSlices = playerActions.map(action => action.word.slice(0, playerInput.length).toLowerCase());
+      return (actionWordSlices.includes(playerInput.toLowerCase())) ? true : false;
     }
     return false;
   }
 
   // Check for word matches and returns the action name if a match is found
   const handleWordMatch = (playerInput, playerActions) => {
-    return playerActions.find(action => action.word === playerInput);
+    return playerActions.find(action => action.word.toLowerCase() === playerInput.toLowerCase());
   }
 
   return {
