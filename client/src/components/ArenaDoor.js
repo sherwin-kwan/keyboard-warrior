@@ -16,7 +16,7 @@ function ArenaDoor(props) {
         <h3 className="door-title">{props.arena.name}</h3>
         <div>
           <img className="door-image"
-          src={props.arena.arena_image} 
+          src={props.arena.arena_card} 
           alt={props.arena.name}/>
         </div>
         <footer>
