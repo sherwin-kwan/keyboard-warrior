@@ -15,18 +15,29 @@ module.exports = (sequelize, DataTypes) => {
   };
   Arena.init({
     name: { type: DataTypes.STRING, allowNull: false },
-    difficulty_id: {
+    difficultyId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      field: 'difficulty_id',
       references: {
         model: Difficulty,
         key: 'id'
       }
     },
-    arena_image: DataTypes.STRING,
+    arenaImage: {
+      type: DataTypes.STRING,
+      field: 'arena_image',
+    },
     points: DataTypes.INTEGER,
-    challenger_name: { type: DataTypes.STRING, allowNull: false },
-    challenger_sprite: DataTypes.STRING
+    challengerName: { 
+      type: DataTypes.STRING, 
+      allowNull: false,
+      field: 'challenger_name'
+     },
+    challengerSprite: {
+      type: DataTypes.STRING,
+      field: 'challenger_sprite'
+    }
   }, {
     sequelize,
     modelName: 'Arena',
