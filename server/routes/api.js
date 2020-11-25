@@ -83,7 +83,7 @@ module.exports = (fs) => {
   router.put('/games', async (req, res) => {
 
     //get the name input
-    const game = request.body;
+    const game = req.body;
     console.log("the game object", game)
 
     //do a DB insert

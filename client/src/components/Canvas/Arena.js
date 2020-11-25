@@ -109,7 +109,7 @@ function Arena(props) {
     setPlayerActions(prev => {
       return prev.map(actionPrev => {
         if (actionPrev.name === action.name) {
-          return { ...actionPrev, word: getRandWord(action.Words) };
+          return { ...actionPrev, word: getRandWord(action.words) };
         } else {
           return actionPrev;
         }
@@ -121,15 +121,9 @@ function Arena(props) {
   useEffect(async () => {
     try {
       axios.defaults.baseURL = 'http://localhost:3001';
-      const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
-      const actionWords = rawWords.data.map(action => {
-        return {...action,
-          Words: action.Words.map(word => word.word)
-
-        }
-      })
+      const actionWords = await axios.get(`/api/action-words/${props.arena.id}`);
       const initialWords = actionWords.data.map(action => {
-        return {...action, Words: action.Words.map(), word: getRandWord(action.Words)};
+        return {...action, word: getRandWord(action.words)};
       });
       console.log(initialWords);
       setPlayerActions(initialWords);

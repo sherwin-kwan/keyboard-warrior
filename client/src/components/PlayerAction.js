@@ -8,8 +8,7 @@ function PlayerAction(props) {
       {/* <div className="action-icon">{props.name}</div> */}
       <img src={props.icon} />
       <div className="action-word">
-        {props.word}
-        {/* <Markup className="action-word" content={props.word} /> */}
+        <Markup className="action-word" content={props.word} />
       </div>
     </li>
   );
