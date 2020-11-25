@@ -13,6 +13,7 @@ import TextInput from '../TextInput';
 import './Arena.scss'
 //helpers
 import updateToArenaBeat from "../../helpers/makeNewArenas";
+import shuffle from '../../helpers/shuffle';
 // Hooks
 import useInputMatcher from '../../hooks/useInputMatcher';
 import useChallengerAction from '../../hooks/useChallengerAction';
@@ -101,29 +102,13 @@ function Arena(props) {
     wordIndex[actionIndex]++;
     playerActions[actionIndex].word = playerActions[actionIndex]["words"][wordIndex[actionIndex]];
   }
-  // Returns true if player input matches an action word
-  // const isMatch = (input, actions) => actions.find(action => action.word === input);
-
-  // Gets and sets a new word for the given action that the player just executed
-  // Action is an integer (the index of the action)
-  // const getNewWord = (action) => {
-  //   setPlayerActions(prev => {
-  //     return prev.map(actionPrev => {
-  //       if (actionPrev.name === action.name) {
-  //         return { ...actionPrev, word: getNextWord(action.id) };
-  //       } else {
-  //         return actionPrev;
-  //       }
-  //     });
-  //   });
-  // };
 
   // Get word list and action list on load
   useEffect(async () => {
     try {
       axios.defaults.baseURL = 'http://localhost:3001';
-      const actionWords = await axios.get(`/api/action-words/${props.arena.id}`);
-      const initialWordsState = actionWords.data.map((action, ind) => {
+      const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
+      const initialWordsState = rawWords.data.map((action, ind) => {
         console.log('Attempting to retrieve words for', ind, playerActions);
         return {...action, word: action.words[0]};
       });

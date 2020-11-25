@@ -3,6 +3,7 @@ const { sequelize } = require('../models');
 const db = require('../models');
 const { Word, Action, Difficulty, Arena, Game } = db;
 const router = express.Router();
+const shuffle = require('../helpers/shuffle');
 
 module.exports = (fs) => {
   const dataPath = `${__dirname}/../data`
@@ -60,7 +61,7 @@ module.exports = (fs) => {
         name: action.name,
         icon: action.icon,
         sound: action.sound,
-        words: action.Words.map(w => w.word)
+        words: shuffle(action.Words.map(w => w.word))
       };
     });
     res.json(data);
