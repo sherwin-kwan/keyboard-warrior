@@ -6,30 +6,30 @@ const { Op } = require('sequelize');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const arenas = await queryInterface.bulkInsert('Arenas', [
+    const arenas = await queryInterface.bulkInsert('arenas', [
       {
         name: 'Animals',
         difficulty_id: NORMAL,
         arena_image: "/images/animals.jpg",
         points: 20,
         challenger_name: "Mutant Lion",
-        challenger_sprite: "/images/zodiak-leo-b.png"
+        challenger_sprite: "/images/animals-challenger.png"
       },
       {
         name: 'Palindromes',
         difficulty_id: NORMAL,
-        arena_image: "/images/animals.jpg",
+        arena_image: "/images/palindromes.jpg",
         points: 20,
-        challenger_name: "Grammar Nazi",
-        challenger_sprite: "/images/cave-dweller-worm.png"
+        challenger_name: "The Grammar Police",
+        challenger_sprite: "/images/palindromes-challenger.png"
       },
       {
         name: 'Countries',
         difficulty_id: HARD,
-        arena_image: "/images/animals.jpg",
+        arena_image: "/images/countries.jpg",
         points: 30,
         challenger_name: "Jupiter",
-        challenger_sprite: "/images/boss-god-jupiter.png"
+        challenger_sprite: "/images/countries-challenger.png"
       }
 
     ], { returning: true });
@@ -38,7 +38,7 @@ module.exports = {
     const palindromesId = arenas[1].id
     const countriesId = arenas[2].id
 
-    await queryInterface.bulkInsert('Words', [
+    await queryInterface.bulkInsert('words', [
       { arena_id: animalsId, action_id: ATTACK, word: "panda" },
       { arena_id: animalsId, action_id: ATTACK, word: "monkey" },
       { arena_id: animalsId, action_id: ATTACK, word: "whale" },
