@@ -21,18 +21,18 @@ module.exports = {
         {
           name: "Middle Earth",
           difficulty_id: NORMAL,
-          arena_image: "middle earth arena image",
+          arena_image: "/images/middle-earth.jpg",
           points: 20,
           challenger_name: "The One Ring",
-          challenger_sprite: "middle earth challenger sprite"
+          challenger_sprite: "/images/middle-earth-challenger.jpg"
         },
         {
           name: "Billboard Hot 100",
           difficulty_id: HARD,
-          arena_image: "billboard arena image",
+          arena_image: "/images/billboard.jpg",
           points: 30,
           challenger_name: "Usher",
-          challenger_sprite: "billboard challenger sprite"
+          challenger_sprite: "/images/billboard-challenger.jpg"
         }
       ], { returning: true });
 
