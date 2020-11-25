@@ -19,15 +19,15 @@ function ArenaDoor(props) {
         })
 
       }}>
-        <h3 class="door-title">{props.name}</h3>
+        <h3 className="door-title">{props.name}</h3>
         <div>
-          <img class="door-image"
+          <img className="door-image"
           src={props.imgCard} 
           alt={props.name}/>
         </div>
         <footer>
           {!props.beaten &&
-          <div class="points-rating">
+          <div className="points-rating">
             <div className="difficulty">
               <img
                 src={props.difficulty_icon} 
