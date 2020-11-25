@@ -80,22 +80,13 @@ module.exports = (fs) => {
     });
   });
 
-  router.put('/games', async (req, res) => {
 
-    //get the name input
-    const game = req.body;
-    console.log("the game object", game)
-
-    //do a DB insert
-    const newGame = await Game.create({
-      player_name: game
-    }, { returning: true })
-
-    // const data = await Arena.findAll({
-    //   include: Difficulty,
-    //   attributes: ['id', 'name', ['arena_image', 'arena_card'], 'challenger_name', 'challenger_sprite', 'points']
-    // });
-    res.send("SENTERINO");
+  router.post('/games', (req, res) => {
+    const name = req.body.player_name;
+    Game.create({
+      player_name: name
+    }).then( (result) => res.json(result) )
+      .catch(err => res.json(err));
   });
 
 
