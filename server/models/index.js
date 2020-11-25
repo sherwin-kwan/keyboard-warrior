@@ -8,6 +8,13 @@ const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config-real.json')[env];
 const db = {};
 
+// IDs for actions and difficulties
+const ATTACK = 1;
+const HEAL = 2;
+const NORMAL = 1;
+const HARD = 2;
+const BOSS = 3;
+
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
@@ -33,5 +40,6 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+Object.assign(db, {ATTACK, HEAL, NORMAL, HARD, BOSS});
 
 module.exports = db;

@@ -7,7 +7,7 @@ const WinBattle = (props) => {
     return (() => {
       props.soundMedia.current.src = '/sounds/background-music.ogg';
     });
-  }, []);
+  }, [props.soundMedia]);
 
   return (
     <main className="outcome win-battle">

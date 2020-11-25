@@ -1,10 +1,10 @@
 'use strict';
 const { Model } = require('sequelize');
-const Action = require('./action');
+const Game = require('./game');
 const Arena = require('./arena');
 
 module.exports = (sequelize, DataTypes) => {
-  class Word extends Model {
+  class Battle extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,8 +14,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  Word.init({
-    word: { type: DataTypes.STRING, allowNull: false },
+  Battle.init({
+    game_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: Game,
+        key: 'id'
+      }
+    },
     arena_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -24,17 +31,12 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    action_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: Action,
-        key: 'id'
-      }
-    }
+    win: DataTypes.BOOLEAN,
+    start_time: DataTypes.DATE,
+    end_time: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'Word',
+    modelName: 'Battle',
   });
-  return Word;
+  return Battle;
 };

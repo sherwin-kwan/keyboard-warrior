@@ -1,8 +1,5 @@
 'use strict';
 const { Model } = require('sequelize');
-const Action = require('./action');
-const Arena = require('./arena');
-
 module.exports = (sequelize, DataTypes) => {
   class Word extends Model {
     /**
@@ -15,23 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Word.init({
-    word: { type: DataTypes.STRING, allowNull: false },
-    arena_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: Arena,
-        key: 'id'
-      }
-    },
-    action_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: Action,
-        key: 'id'
-      }
-    }
+    word: DataTypes.STRING,
+    action: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Word',
