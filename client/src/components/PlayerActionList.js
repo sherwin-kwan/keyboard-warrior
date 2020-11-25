@@ -22,7 +22,7 @@ function PlayerActionList(props) {
   if (match >= 0) {
     // const matchedActionIndex = playerActions.findIndex(action => action.word.slice(0, playerInput.length) === playerInput.toLowerCase());
     const action = playerActions[match];
-    action.wordDOM = `<span class="match">${action.word.slice(0, playerInput.length)}</span>${action.word.slice(playerInput.length)}`;
+    action.wordDOM = `<pre class="match">${action.word.slice(0, playerInput.length)}</pre><pre>${action.word.slice(playerInput.length)}</pre>`;
   // Reset style if letters do not match
   } else {
     playerActions.forEach(action => action.wordDOM = action.word);
