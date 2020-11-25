@@ -8,7 +8,6 @@ import Avatar from '../Avatar';
 import PlayerActionList from '../PlayerActionList';
 import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
-import Dummy from '../Dummy';
 
 // Styles
 import './Arena.scss'
@@ -24,13 +23,12 @@ function Arena(props) {
   // States
   // const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
+  const [wordIndex, setWordIndex] = useState([0, 0]); // [Current attack word index, Current heal word index]
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
   const { attackTime, setAttackTime } = useChallengerAction({ attackTime: 2000 });
   const { handleWordMatch } = useInputMatcher();
 
-
-  // const [match, setMatch] = useState('');
   useEffect(() => {
     // console.log('word match?', handleWordMatch(playerInput, playerActions));
 
@@ -39,7 +37,8 @@ function Arena(props) {
     // When finished typing a word, action will equal the name of the action it executes
     if (action) {
       // Grab a new word
-      getNewWord(action);
+      console.log('ACTION IS: ', action);
+      getNextWord(action);
       // Deal damage
       switch (action.name) {
         case 'attack':
@@ -96,41 +95,39 @@ function Arena(props) {
     return () => clearInterval(interval);
   }, [challengerTimer, attackTime]);
 
-  // Gets a random word from a words list (the words list should be an array of strings, and already limited to words for a particular action)
-  const getRandWord = (words) => {
-    const randWord = words[Math.floor(Math.random() * words.length)];
-    return randWord;
+  // Gets the next word from the randomized list of words
+  const getNextWord = (action) => {
+    const actionIndex = playerActions.indexOf(action);
+    wordIndex[actionIndex]++;
+    playerActions[actionIndex].word = playerActions[actionIndex]["words"][wordIndex[actionIndex]];
   }
   // Returns true if player input matches an action word
   // const isMatch = (input, actions) => actions.find(action => action.word === input);
 
   // Gets and sets a new word for the given action that the player just executed
-  const getNewWord = (action) => {
-    setPlayerActions(prev => {
-      return prev.map(actionPrev => {
-        if (actionPrev.name === action.name) {
-          return { ...actionPrev, word: getRandWord(action.words) };
-        } else {
-          return actionPrev;
-        }
-      });
-    });
-  };
+  // Action is an integer (the index of the action)
+  // const getNewWord = (action) => {
+  //   setPlayerActions(prev => {
+  //     return prev.map(actionPrev => {
+  //       if (actionPrev.name === action.name) {
+  //         return { ...actionPrev, word: getNextWord(action.id) };
+  //       } else {
+  //         return actionPrev;
+  //       }
+  //     });
+  //   });
+  // };
 
   // Get word list and action list on load
   useEffect(async () => {
     try {
       axios.defaults.baseURL = 'http://localhost:3001';
       const actionWords = await axios.get(`/api/action-words/${props.arena.id}`);
-      const initialWords = actionWords.data.map(action => {
-        return {...action, word: getRandWord(action.words)};
+      const initialWordsState = actionWords.data.map((action, ind) => {
+        console.log('Attempting to retrieve words for', ind, playerActions);
+        return {...action, word: action.words[0]};
       });
-      console.log(initialWords);
-      setPlayerActions(initialWords);
-      // setWords(data[0].data);
-      // setPlayerActions(prev => {
-      //   return data[1].data.map(action => ({ ...action, word: getRandWord(action.name, data[0].data) }))
-      // });
+      setPlayerActions(initialWordsState);
     } catch (err) {
       console.log("Error getting data: ", err);
     }
