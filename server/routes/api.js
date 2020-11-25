@@ -34,13 +34,12 @@ module.exports = (fs) => {
   router.get('/words', async (req, res) => {
     const rawData = await Word.findAll({
       include: Action,
-      attributes: ['word'],
-      raw: true
+      attributes: ['word']
     })
     const data = rawData.map((w) => {
       return {
         word: w.word,
-        action: w['Action.name']
+        action: w.Action.name
       }
     });
     res.json(data);
@@ -55,10 +54,10 @@ module.exports = (fs) => {
 
   router.get('/arenas', async (req, res) => {
     const data = await Arena.findAll({
-      raw: true
+      include: Difficulty,
+      attributes: ['id', 'name', ['arena_image', 'arena_card'], 'challenger_name', 'challenger_sprite', 'points']
     });
     res.json(data);
-
   });
 
 

@@ -18,23 +18,22 @@ module.exports = (sequelize, DataTypes) => {
     difficultyId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'difficulty_id',
       references: {
         model: Difficulty,
         key: 'id'
       }
     },
-    arenaImage: {
+    arena_image: {
       type: DataTypes.STRING,
       field: 'arena_image',
     },
     points: DataTypes.INTEGER,
-    challengerName: { 
+    challenger_name: { 
       type: DataTypes.STRING, 
       allowNull: false,
       field: 'challenger_name'
      },
-    challengerSprite: {
+    challenger_sprite: {
       type: DataTypes.STRING,
       field: 'challenger_sprite'
     }
