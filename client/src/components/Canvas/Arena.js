@@ -13,22 +13,23 @@ import TextInput from '../TextInput';
 import './Arena.scss'
 //helpers
 import updateToArenaBeat from "../../helpers/makeNewArenas";
-import shuffle from '../../helpers/shuffle';
 // Hooks
 import useInputMatcher from '../../hooks/useInputMatcher';
 import useChallengerAction from '../../hooks/useChallengerAction';
 
 function Arena(props) {
 
-
+  console.log(props.arena);
   // States
   // const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
   const [wordIndex, setWordIndex] = useState([0, 0]); // [Current attack word index, Current heal word index]
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
-  const { attackTime, setAttackTime } = useChallengerAction({ attackTime: 2000 });
+  const { attackTime, setAttackTime } = useChallengerAction({ attackTime: props.arena.Difficulty.attack_time_ms });
   const { handleWordMatch } = useInputMatcher();
+  // Timings for the challenger's attacks
+  const [challengerTimer, setChallengerTimer] = useState(20);
 
   useEffect(() => {
     // console.log('word match?', handleWordMatch(playerInput, playerActions));
@@ -78,8 +79,6 @@ function Arena(props) {
     }
   }, [health])
 
-  // Timings for the challenger's attacks
-  const [challengerTimer, setChallengerTimer] = useState(20);
 
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
   useEffect(() => {
@@ -87,7 +86,7 @@ function Arena(props) {
       if (challengerTimer == 0) {
         setChallengerTimer(19);
         console.log('CHALLENGER LAUNCHED AN ATTACK');
-        changeHealth('player', -10);
+        changeHealth('player', -props.arena.Difficulty.damage_per_hit);
         // We would eventually put a function for the challenger to attack here
       } else {
         setChallengerTimer(prev => prev - 1);
@@ -135,15 +134,13 @@ function Arena(props) {
       <div className="avatar player">
         <Avatar
           name='You'
-          // height='250px'
           filename='/images/boss-spirit-fighter.png'
         />
       </div>
       <div className="avatar challenger">
         <Avatar
-          name='Challenger'
-          // height='250px'
-          filename='/images/boss-dragon-emperor.png'
+          name={props.arena.challenger_name}
+          filename={props.arena.challenger_sprite}
         />
       </div>
       <div className="player-actions">
@@ -159,9 +156,9 @@ function Arena(props) {
           <button onClick={() => setAttackTime(2000)}>Normal</button>
         </div>
         <ChallengerActionList
-          actions={{
-            timeToAttack: 5
-          }}
+          // actions={{
+          //   timeToAttack: 5
+          // }}
           attack='/images/sword.png'
           duration={attackTime / 20}
           percentage={challengerTimer / 20 * 100}
