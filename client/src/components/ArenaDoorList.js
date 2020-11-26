@@ -22,11 +22,11 @@ function ArenaDoorList(props) {
   
   const sliderDots = props.arenas.map(arena => {
     const doorTag = arena.name.toLowerCase().replace(/\s/g, '-');
-    const img = (handleCurrentDoor(doorTag)) ? "/images/yellow-dot.png" : "/images/grey-dot.png";
+    // const img = (handleCurrentDoor(doorTag)) ? "/images/yellow-dot.png" : "/images/grey-dot.png";
     return (<DoorSlider
       key={arena.name + '-slider'}
       name={doorTag}
-      img={img}
+      selected={handleCurrentDoor(doorTag)}
       setCurrentDoor={setCurrentDoor}
     />);
   });

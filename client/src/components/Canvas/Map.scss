@@ -24,7 +24,19 @@ main.map {
 
   .door-slider-dots {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    width: 15rem;
+
+    img {
+      height: 1.5rem;
+      transition: all 0.4s;
+    }
+
+    img:hover,
+    img.selected {
+      transform: scale(1.2);
+      transition: all 0.4s;
+    }
   }
 
   .doors-container {
