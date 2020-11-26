@@ -28,11 +28,12 @@ function Canvas(props) {
   const MAP = "MAP";
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
+  const BOSS = "BOSS";
 
   
   //hooks
   const { mode, setMode } = useGameMode("START")
-  const { arenas, setArenas, arena, setArena, cleanArenas } = useArena()
+  const { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles, setCurrentBattle } = useBattles();
   const { game, setGame, startGame } = useGame(); 
@@ -46,7 +47,6 @@ function Canvas(props) {
     soundMedia.current.play();
     soundMedia.current.volume = 0.05; // Make sure you leave the volume setting here - otherwise it's too loud!!
   }, [soundMedia, mode]);
-  
 
   // reset game function
   const resetGameState = function() {
@@ -80,10 +80,21 @@ function Canvas(props) {
         }
         {mode === ARENA && <Arena
           setOutcome={setOutcome}
-          initialPlayerHealth = {80}
+          initialPlayerHealth = {100}
           challengerHealth = {100}
           setMode={setMode}
           arena={arena}
+          arenas={arenas}
+          setArenas={setArenas}
+          setBattles={setBattles}
+          game={game}
+        />}
+        {mode === BOSS && <Arena
+          setOutcome={setOutcome}
+          initialPlayerHealth = {100}
+          challengerHealth = {100}
+          setMode={setMode}
+          arena={handleBossArena()}
           arenas={arenas}
           setArenas={setArenas}
           setBattles={setBattles}
