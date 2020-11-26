@@ -28,6 +28,7 @@ function Canvas(props) {
   const MAP = "MAP";
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
+  const BOSS = "BOSS";
 
   
   //hooks
@@ -80,12 +81,23 @@ function Canvas(props) {
         }
         {mode === ARENA && <Arena
           setOutcome={setOutcome}
-          initialPlayerHealth = {80}
+          initialPlayerHealth = {100}
           challengerHealth = {100}
           setMode={setMode}
           arena={arena}
           arenas={arenas}
           setArenas={setArenas}
+          setBattles={setBattles}
+          game={game}
+        />}
+        {mode === BOSS && <Arena
+          setOutcome={setOutcome}
+          initialPlayerHealth = {100}
+          challengerHealth = {100}
+          setMode={setMode}
+          arena={bossArena}
+          // arenas={arenas}
+          // setArenas={setArenas}
           setBattles={setBattles}
           game={game}
         />}
