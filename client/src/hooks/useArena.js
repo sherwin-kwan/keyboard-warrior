@@ -26,7 +26,7 @@ export default function useArena() {
     return bossArena;
   }
 
-  return { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena }
+  return { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena };
 }
 
 
