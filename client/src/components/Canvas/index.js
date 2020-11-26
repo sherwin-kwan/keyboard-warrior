@@ -105,13 +105,17 @@ function Canvas(props) {
           game={game}
         />}
         {mode === OUTCOME && <Outcome 
-        outcome={outcome}
-        soundMedia={soundMedia}
-        setMode={setMode}
-        resetGame={resetGameState}
+          outcome={outcome}
+          soundMedia={soundMedia}
+          setMode={setMode}
+          resetGame={resetGameState}
         />}
-        {mode === CREDITS && <Credits />}
-        {mode === INSTRUCTIONS && <Instructions />}
+        {mode === CREDITS && <Credits
+          setMode={setMode}
+        />}
+        {mode === INSTRUCTIONS && <Instructions
+          setMode={setMode}
+        />}
       </div>
     </>
   );
