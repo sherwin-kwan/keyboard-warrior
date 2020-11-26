@@ -1,18 +1,19 @@
-@import '../../styles/variables.scss';
+// Styles below affects ALL Game Modes
 
+@import '../../styles/variables.scss';
 
 .canvas {
   width: inherit;
   height: inherit;
-  // Set Game screen to the center of window
+  // Centers Game Canvas in the window
   display: flex;
   justify-content: center;
   align-items: center;
-  // Window background image
+  // Set window background image
   background-image: url('../../images/office-background-pixel.png');
   background-size: auto 100%;
 
-  // Styling to main apply to all Game modes
+  // Style for Game Border
   main {
     width: 75%;
     height: 80%;
@@ -45,6 +46,30 @@
     bottom: -10px;
     margin: 0 0 -4px -4px;
     background: #e8ebf0;
+  }
+
+  // Primary button style
+  button.primary {
+    width: 12rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border: 1px outset #999;
+    font-family: $primary-font;
+    background-color: Transparent;
+    outline: none;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px #999;
+  }
+
+  button.primary:hover {
+    background: #51c971;
+    border-radius: 15px;
+  }
+  
+  button.primary:active {
+    box-shadow: 0 2px #666;
+    transform: translateY(3px);
   }
 }
 

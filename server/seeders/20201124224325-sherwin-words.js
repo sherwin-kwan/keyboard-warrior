@@ -11,7 +11,8 @@ module.exports = {
       name: 'Diagon Alley',
       difficultyId: HARD,
       "challenger_name": 'Draco Malfoy',
-      "challenger_sprite": 'malfoy.jpg',
+      "challenger_sprite": '/images/malfoy.jpg',
+      arena_image: "/images/diagon-alley.jpg",
       points: 30
     })
     const diagonId = diagon.dataValues.id;
@@ -60,7 +61,12 @@ module.exports = {
     ]);
 
     const indigo = await Arena.create({
-      name: 'Indigo Plateau', difficultyId: NORMAL, "challenger_name": 'Giovanni', points: 20, "challenger_sprite": 'Giovanni.jpg'
+      name: 'Indigo Plateau',
+      difficultyId: NORMAL,
+      points: 20,
+      "challenger_name": 'Giovanni',
+      "challenger_sprite": '/images/giovanni.jpg',
+      arena_image: "/images/indigo-plateau.jpg"
     })
     const indigoId = indigo.dataValues.id;
 

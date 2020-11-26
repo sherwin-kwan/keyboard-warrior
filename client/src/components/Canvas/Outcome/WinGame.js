@@ -7,7 +7,7 @@ const WinGame = (props) => {
       <h1>YOU WON!</h1>
       <p>You beat the game! Enter your high score here:</p>
       <p>(Leaderboard goes here)</p>
-      <button onClick={() => props.setMode('START')}>Back to Start</button>
+      <button className="primary" onClick={() => props.setMode('START')}>Back to Start</button>
     </main>
   );
 };

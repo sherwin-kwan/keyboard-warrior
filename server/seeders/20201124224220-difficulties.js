@@ -15,19 +15,19 @@ module.exports = {
       [
         {
           name: "Normal",
-          icon: "/images/green-diamond.png",
+          icon: "/images/normal.png",
           attack_time_ms: 4000,
           damage_per_hit: 10
         },
         {
           name: "Hard",
-          icon: "/images/yellow-diamond.png",
+          icon: "/images/hard.png",
           attack_time_ms: 4000,
           damage_per_hit: 15
         },
         {
           name: "Boss",
-          icon: "/images/red-diamond.png",
+          icon: "/images/boss_icon.png",
           attack_time_ms: 6000,
           damage_per_hit: 30
         }

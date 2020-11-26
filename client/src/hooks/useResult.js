@@ -1,12 +1,8 @@
-// possible results are:
-
 import { useState } from "react";
 
-const useResult = (initial) => {
+export default function useOutcome(initial) {
+  
+  const [result, setResult] = useState(initial);
 
-  const [result, setResult] = useState(initial)
-
-  return { result, setResult};
-};
-
-export default useResult;
+  return { result, setResult }
+}

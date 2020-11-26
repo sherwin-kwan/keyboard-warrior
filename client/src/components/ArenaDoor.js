@@ -2,43 +2,47 @@
 import React from "react";
 
 function ArenaDoor(props) {
+  console.log('Props.arena is: ', props.arena);
+  const pointsIcon = '/images/green-diamond.png';
+
   return (
     <div className="door" id={props.arena.name.toLowerCase().replace(/\s/g, '-')}>
-      <img className="door-arrow" src="/images/left-arrow.png"/>
+      <img className="door-arrow" src="/images/left_arrow_circle.png"/>
       <div 
-      className="card"
-      disabled={props.beaten}
-      onClick={() => {
-        props.setGameMode("ARENA");
-        props.setArena(props.arena);
-      }}>
-        <h3 className="door-title">{props.arena.name}</h3>
-        <div>
-          <img className="door-image"
-          src={props.arena.arena_image} 
-          alt={props.arena.name}/>
-        </div>
+        className="card"
+        disabled={props.beaten} // refactor with battles data from server
+        onClick={() => {
+          props.setGameMode("ARENA");
+          props.setArena(props.arena);
+        }}>
+        <h3>{props.arena.name}</h3>
+        <img 
+          className="door-image"
+          src={props.arena.arena_card} 
+          alt={props.arena.name}
+        />
         <footer>
           {!props.beaten &&
-          <div className="points-rating">
+          <>
             <div className="difficulty">
               <img
                 src={props.arena.Difficulty.icon} 
-                alt={props.arena.Difficulty.name}/>
-              <div>{props.arena.Difficulty.name}</div>
+                alt={props.arena.Difficulty.name}
+              />
+              {props.arena.Difficulty.name}
             </div>
             <div className="points">
               <img
-                src={props.arena.points_icon} 
-                alt={props.arena.points + " POINTS"}/>
-              <div>{props.arena.points + " PTS"}</div>
+                src={pointsIcon} 
+                alt={props.arena.points + " points"}
+              />
+              {props.arena.points + " PTS"}
             </div>
-          </div>
-          }
+          </>}
           {props.arena.beaten && <aside>{props.arena.beaten ? "You beat this level already 🥳" : null}</aside>} 
         </footer>
-      </div> 
-      <img className="door-arrow" src="/images/right-arrow.png"/>
+      </div>
+      <img className="door-arrow" src="/images/right_arrow_circle.png"/>
     </div>
   );
 }
