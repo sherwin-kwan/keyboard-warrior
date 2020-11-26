@@ -43,7 +43,7 @@ function Arena(props) {
     // When finished typing a word, action will equal the name of the action it executes
     if (action) {
       // Grab a new word
-      console.log('ACTION IS: ', action);
+      // console.log('ACTION IS: ', action);
       getNextWord(action);
       // Deal damage
       switch (action.name) {
@@ -61,7 +61,7 @@ function Arena(props) {
   // Helper functions
 
   const changeHealth = (fighter, hp) => {
-    console.log(`${fighter} DAMAGED! for ${hp} hp`);
+    // console.log(`${fighter} DAMAGED! for ${hp} hp`);
     setHealth(prev => {
       const newHealth = { ...prev };
       // Health cannot be deducted past zero or increased past 100
@@ -92,7 +92,7 @@ function Arena(props) {
 
     if (health.player === 0) {
       props.setMode("OUTCOME");
-      endBattle(false);
+      endBattle({win: false});
       if (props.arena.name === "Boss") {
         props.setOutcome('LOSEGAMETOBOSS');
       } else {
@@ -104,12 +104,13 @@ function Arena(props) {
         }
       }
     } else if (health.challenger === 0) {
-      endBattle(true);
+      endBattle({win: true});
       props.setMode("OUTCOME");
       if (props.arena.name === "Boss") {
         props.setOutcome('WINGAME');
       } else {
         if (countArenasBeaten(props.arenas) >= 4 ) {
+          console.log('won more than 4 arenas, go to boss!')
           props.setOutcome('WINALLARENAS');
           props.setMode("BOSS");
         } else {
@@ -126,7 +127,7 @@ function Arena(props) {
     const interval = setInterval(() => {
       if (challengerTimer == 0) {
         setChallengerTimer(19);
-        console.log('CHALLENGER LAUNCHED AN ATTACK');
+        // console.log('CHALLENGER LAUNCHED AN ATTACK');
         changeHealth('player', -props.arena.Difficulty.damage_per_hit);
         // We would eventually put a function for the challenger to attack here
       } else {
