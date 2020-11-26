@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Only a template, it is currently not possible to reach this page since boss hasn't been created yet
 const WinAllArenas = (props) => {
 
-  useEffect(() => {
-    props.soundMedia.current.src = '/sounds/win-battle.mp3';
-    return (() => {
-      props.soundMedia.current.src = '/sounds/background-music.ogg';
-    });
-  }, [props.soundMedia]);
+  // useEffect(() => {
+  //   props.soundMedia.current.src = '/sounds/win-battle.mp3';
+  //   return (() => {
+  //     props.soundMedia.current.src = '/sounds/background-music.ogg';
+  //   });
+  // }, [props.soundMedia]);
 
   return (
     <main className="outcome win-battle">

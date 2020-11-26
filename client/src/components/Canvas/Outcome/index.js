@@ -23,11 +23,11 @@ function Outcome(props) {
 
   return (
     <>
-      {outcome === WINGAME && <WinGame setMode={props.setMode}/>}
+      {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame}/>}
       {outcome === LOSEBATTLE && <LoseBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
       {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
-      {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} />}
-      {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} />}
+      {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} resetGame={props.resetGame}/>}
+      {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} resetGame={props.resetGame}/>}
       {outcome === WINALLARENAS && <WinAllArenas setMode={props.setMode} soundMedia={props.soundMedia} />}
       {outcome === PENDING && <main>Oops, looks like an error occurred. The result state shouldn't be pending!</main>}
     </>
