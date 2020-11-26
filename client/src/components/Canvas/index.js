@@ -74,6 +74,7 @@ function Canvas(props) {
           arenas={arenas}
           setArenas={setArenas}
           setBattles={setBattles}
+          game={game}
         />}
         {mode === OUTCOME && <Outcome 
         outcome={outcome}
