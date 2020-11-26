@@ -13,10 +13,6 @@ function PlayerActionList(props) {
   const { playerInput, playerActions } = props;
 
   const match = handleLetterMatch(playerInput, playerActions);
-
-  useEffect(() => {
-    console.log('Match is: ', match);
-  }, [playerInput]);
   
   // Create a wordDOM with style applied to matched letters
   if (match >= 0) {

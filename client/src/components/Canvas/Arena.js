@@ -19,7 +19,6 @@ import useChallengerAction from '../../hooks/useChallengerAction';
 
 function Arena(props) {
 
-  console.log(props.arena);
   // States
   // const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
