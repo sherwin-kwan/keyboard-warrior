@@ -2,7 +2,7 @@
 import React from "react";
 
 function ArenaDoor(props) {
-  console.log('Props.arena is: ', props.arena);
+  // console.log('Props.arena is: ', props.arena);
   const pointsIcon = '/images/green-diamond.png';
 
   return (

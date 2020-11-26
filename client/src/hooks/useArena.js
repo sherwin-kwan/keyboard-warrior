@@ -19,7 +19,13 @@ export default function useArena() {
       .catch(err => console.log("Error getting Arena data: ", err));
   }, []);
 
-  return { arenas, setArenas, arena, setArena, cleanArenas}
+  function handleBossArena () {
+    const bossArena = arenas.filter(arena => arena.name === 'Boss')[0];
+    console.log('bossArena', bossArena)
+    return bossArena;
+  }
+
+  return { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena }
 }
 
 
