@@ -8,7 +8,6 @@ import Avatar from '../Avatar';
 import PlayerActionList from '../PlayerActionList';
 import ChallengerActionList from '../ChallengerActionList';
 import TextInput from '../TextInput';
-import Dummy from '../Dummy';
 
 // Styles
 import './Arena.scss'
@@ -20,17 +19,18 @@ import useChallengerAction from '../../hooks/useChallengerAction';
 
 function Arena(props) {
 
-  
+  console.log(props.arena);
   // States
-  const [words, setWords] = useState([]);
+  // const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
+  const [wordIndex, setWordIndex] = useState([0, 0]); // [Current attack word index, Current heal word index]
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
-  const { attackTime, setAttackTime } = useChallengerAction({attackTime: 2000});
+  const { attackTime, setAttackTime } = useChallengerAction({ attackTime: props.arena.Difficulty.attack_time_ms });
   const { handleWordMatch } = useInputMatcher();
-  
+  // Timings for the challenger's attacks
+  const [challengerTimer, setChallengerTimer] = useState(20);
 
-  // const [match, setMatch] = useState('');
   useEffect(() => {
     // console.log('word match?', handleWordMatch(playerInput, playerActions));
 
@@ -39,7 +39,8 @@ function Arena(props) {
     // When finished typing a word, action will equal the name of the action it executes
     if (action) {
       // Grab a new word
-      getNewWord(action);
+      console.log('ACTION IS: ', action);
+      getNextWord(action);
       // Deal damage
       switch (action.name) {
         case 'attack':
@@ -78,8 +79,6 @@ function Arena(props) {
     }
   }, [health])
 
-  // Timings for the challenger's attacks
-  const [challengerTimer, setChallengerTimer] = useState(20);
 
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
   useEffect(() => {
@@ -87,7 +86,7 @@ function Arena(props) {
       if (challengerTimer == 0) {
         setChallengerTimer(19);
         console.log('CHALLENGER LAUNCHED AN ATTACK');
-        changeHealth('player', -10);
+        changeHealth('player', -props.arena.Difficulty.damage_per_hit);
         // We would eventually put a function for the challenger to attack here
       } else {
         setChallengerTimer(prev => prev - 1);
@@ -96,43 +95,26 @@ function Arena(props) {
     return () => clearInterval(interval);
   }, [challengerTimer, attackTime]);
 
-  // Gets a random word from a words list
-  const getRandWord = (action, words) => {
-    console.log('Words is: ', words);
-    const wordsForAction = words.filter(word => word.action === action);
-    const randWord = wordsForAction[Math.floor(Math.random() * wordsForAction.length)];
-    return randWord.word;
+  // Gets the next word from the randomized list of words
+  const getNextWord = (action) => {
+    const actionIndex = playerActions.indexOf(action);
+    wordIndex[actionIndex]++;
+    playerActions[actionIndex].word = playerActions[actionIndex]["words"][wordIndex[actionIndex]];
   }
-  // Returns true if player input matches an action word
-  // const isMatch = (input, actions) => actions.find(action => action.word === input);
-
-  // Gets and sets a new word for the given action that the player just executed
-  const getNewWord = (action) => {
-    setPlayerActions(prev => {
-      return prev.map(actionPrev => {
-        if (actionPrev.name === action.name) {
-          return { ...actionPrev, word: getRandWord(action.name, words) };
-        } else {
-          return actionPrev;
-        }
-      });
-    });
-  };
 
   // Get word list and action list on load
   useEffect(async () => {
-    axios.defaults.baseURL = 'http://localhost:3001';
-    console.log('Arena is: ', props.arena);
-    const actionWords = await axios.get(`/api/action-words/${props.arena.id}`)
-    Promise.all([
-      axios.get('/api/words'),
-      axios.get('/api/playerActions')
-    ]).then(data => {
-      setWords(data[0].data);
-      setPlayerActions(prev => {
-        return data[1].data.map(action => ({ ...action, word: getRandWord(action.name, data[0].data) }))
+    try {
+      axios.defaults.baseURL = 'http://localhost:3001';
+      const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
+      const initialWordsState = rawWords.data.map((action, ind) => {
+        console.log('Attempting to retrieve words for', ind, playerActions);
+        return {...action, word: action.words[0]};
       });
-    }).catch(err => console.log("Error getting data: ", err));
+      setPlayerActions(initialWordsState);
+    } catch (err) {
+      console.log("Error getting data: ", err);
+    }
   }, []);
 
   return (
@@ -152,15 +134,13 @@ function Arena(props) {
       <div className="avatar player">
         <Avatar
           name='You'
-          // height='250px'
           filename='/images/boss-spirit-fighter.png'
         />
       </div>
       <div className="avatar challenger">
         <Avatar
-          name='Challenger'
-          // height='250px'
-          filename='/images/boss-dragon-emperor.png'
+          name={props.arena.challenger_name}
+          filename={props.arena.challenger_sprite}
         />
       </div>
       <div className="player-actions">
@@ -176,9 +156,9 @@ function Arena(props) {
           <button onClick={() => setAttackTime(2000)}>Normal</button>
         </div>
         <ChallengerActionList
-          actions={{
-            timeToAttack: 5
-          }}
+          // actions={{
+          //   timeToAttack: 5
+          // }}
           attack='/images/sword.png'
           duration={attackTime / 20}
           percentage={challengerTimer / 20 * 100}

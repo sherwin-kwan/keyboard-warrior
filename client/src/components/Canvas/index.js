@@ -33,7 +33,7 @@ function Canvas(props) {
   const { arenas, setArenas, arena, setArena } = useArena()
   const { result, setResult } = useResult('PENDING');
   const { battles, setBattles } = useBattles();
-  const { game, setGame } = useGame();
+  const { game, setGame, startGame } = useGame();
   // Possible results are: "WinGame", "WinBattle", "LoseGame", "Pending"
 
   // Load background music
@@ -54,7 +54,9 @@ function Canvas(props) {
       <div className="canvas">
         {mode === START && <StartGame
           setMode={setMode}
-          setGame={setGame} />
+          setGame={setGame}
+          game={game}
+          onSubmit={startGame} />
         }
         {mode === MAP && <Map
           setGameMode={setMode}
