@@ -12,7 +12,9 @@ import TextInput from '../TextInput';
 // Styles
 import './Arena.scss'
 //helpers
-import updateToArenaBeat from "../../helpers/makeNewArenas";
+import updateToArenaCompleted from "../../helpers/makeNewArenas";
+import { countArenasLost, countArenasBeaten } from "../../helpers/countArenasCompleted";
+
 // Hooks
 import useInputMatcher from '../../hooks/useInputMatcher';
 import useChallengerAction from '../../hooks/useChallengerAction';
@@ -86,47 +88,34 @@ function Arena(props) {
   
   */
   
-  // useEffect(() => {
-
-  //   if (health.player === 0) {
-  //     props.setMode("OUTCOME");
-  //     if (/* is boss fight*/) {
-  //       props.setOutcome('LOSEGAMETOBOSS');
-  //     } else {
-  //       if (/* your unbeat arenas are less than your levels left to beat*/) {
-  //         props.setOutcome('LOSEGAMENOTBOSS');
-  //       } else {
-  //         props.setOutcome('LOSEBATTLE');
-  //       }
-  //     }
-  //   } else if (health.challenger === 0) {
-  //     props.setMode("OUTCOME");
-  //     if (/* is boss fight*/) {
-  //       props.setOutcome('WINGAME');
-  //     } else {
-  //       if (/* result of calling helper that counts battles won === 5*/) {
-  //         props.setOutcome('WINALLARENAS');
-  //       } else {
-  //         props.setOutcome('WINBATTLE');
-  //         // Call setBattles() and set the arena to beat
-  //       }
-  //     }
-  //   }
-  // }, [health])
-
-
   useEffect(() => {
+
     if (health.player === 0) {
-      endBattle(false);
-      props.setOutcome('LOSEBATTLE');
       props.setMode("OUTCOME");
-      console.log(`PLAYER DEFEATED`);
+      endBattle(false);
+      if (props.arena.name === "Boss") {
+        props.setOutcome('LOSEGAMETOBOSS');
+      } else {
+        if (countArenasLost(props.arenas) >= 2) {
+          props.setOutcome('LOSEGAMENOTBOSS');
+        } else {
+          props.setOutcome('LOSEBATTLE');
+          props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, false))
+        }
+      }
     } else if (health.challenger === 0) {
       endBattle(true);
-      props.setOutcome('WINBATTLE');
       props.setMode("OUTCOME");
-      console.log(`CHALLENGER DEFEATED`);
-      props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
+      if (props.arena.name === "Boss") {
+        props.setOutcome('WINGAME');
+      } else {
+        if (countArenasBeaten(props.arenas) >= 4 ) {
+          props.setOutcome('WINALLARENAS');
+        } else {
+          props.setOutcome('WINBATTLE');
+          props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, true))
+        }
+      }
     }
   }, [health])
 
