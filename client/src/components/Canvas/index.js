@@ -1,5 +1,7 @@
 // Libraries
 import React, { useEffect, useRef } from "react";
+
+//helpers
 import { countArenasBeaten, countArenasLost } from "../../helpers/countArenasCompleted";
 
 //Hooks
@@ -30,10 +32,10 @@ function Canvas(props) {
   
   //hooks
   const { mode, setMode } = useGameMode("START")
-  const { arenas, setArenas, arena, setArena } = useArena()
+  const { arenas, setArenas, arena, setArena, cleanArenas } = useArena()
   const { outcome, setOutcome } = useOutcome('PENDING');
-  const { battles, setBattles } = useBattles();
-  const { game, setGame, startGame } = useGame();
+  const { battles, setBattles, setCurrentBattle } = useBattles();
+  const { game, setGame, startGame } = useGame(); 
 
 
   // Load background music
@@ -45,6 +47,17 @@ function Canvas(props) {
     soundMedia.current.volume = 0.05; // Make sure you leave the volume setting here - otherwise it's too loud!!
   }, [soundMedia, mode]);
   
+
+  // reset game function
+  const resetGameState = function() {
+    setMode("START");
+    setGame({});
+    setArena([])
+    setArenas(cleanArenas)
+    setOutcome("PENDING")
+    setCurrentBattle([])
+  }
+
   return (
     <>
       <TempNavBar onClick={setMode} />
@@ -80,6 +93,7 @@ function Canvas(props) {
         outcome={outcome}
         soundMedia={soundMedia}
         setMode={setMode}
+        resetGame={resetGameState}
         />}
       </div>
     </>

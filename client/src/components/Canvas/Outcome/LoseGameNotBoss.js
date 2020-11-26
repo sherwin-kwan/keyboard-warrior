@@ -15,8 +15,7 @@ const LoseGameNotBoss = (props) => {
         <h1>DEFEAT</h1>
         <p>Woah, you are terrible at this! You lost so many arenas there's no way you can make it to verse the boss now. You can try again from the beginning though.</p>
         <button className="primary" onClick={() => {
-          props.setMode('START')
-          //clear all relevant state function
+          props.resetGame()
           }
           }>Back to start</button>
       </p>

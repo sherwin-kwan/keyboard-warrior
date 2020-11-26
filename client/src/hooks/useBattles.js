@@ -29,5 +29,5 @@ export default function useBattles() {
       .catch(err => console.log("Error Posting Battle:", err))
   }
 
-  return { startBattle, endBattle };
+  return { startBattle, endBattle, setCurrentBattle };
 }

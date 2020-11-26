@@ -93,7 +93,7 @@ function Arena(props) {
     if (health.player === 0) {
       props.setMode("OUTCOME");
       endBattle(false);
-      if (props.arena.challenger_name === "Boss") {
+      if (props.arena.challenger_name === "Giovanni") {
         props.setOutcome('LOSEGAMETOBOSS');
       } else {
         if (countArenasLost(props.arenas) >= 2) {
@@ -106,7 +106,7 @@ function Arena(props) {
     } else if (health.challenger === 0) {
       endBattle(true);
       props.setMode("OUTCOME");
-      if (props.arena.challenger_name === "Boss") {
+      if (props.arena.challenger_name === "Giovanni") {
         props.setOutcome('WINGAME');
       } else {
         if (countArenasBeaten(props.arenas) >= 4 ) {
