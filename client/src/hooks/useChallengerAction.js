@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function useChallengerAction(initial) {
 
-  const [attackTime, setAttackTime] = useState(initial['attackTime']);
+  const [attackTime, setAttackTime] = useState(initial);
 
   return { attackTime, setAttackTime};
 }
