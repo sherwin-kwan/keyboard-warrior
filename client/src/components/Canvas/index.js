@@ -76,7 +76,7 @@ function Canvas(props) {
           arena={arena}
           arenas={arenas}
           setArena={setArena}
-          arenasBeaten={countArenasBeaten(arenas) || countArenasLost(arenas)} />
+          arenasBeaten={countArenasBeaten(arenas)} />
         }
         {mode === ARENA && <Arena
           setOutcome={setOutcome}
