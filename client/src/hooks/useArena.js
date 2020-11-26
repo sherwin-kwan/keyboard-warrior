@@ -10,7 +10,7 @@ export default function useArena() {
   // Get Arena data from DB
   useEffect(() => {
     axios.defaults.baseURL = 'http://localhost:3001';
-
+    alert('Grabbing more API data!!');
     axios.get('/api/arenas')
       .then((data) => {
         // Remove Boss Arena from response
