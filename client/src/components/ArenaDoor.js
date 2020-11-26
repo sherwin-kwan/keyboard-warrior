@@ -2,7 +2,6 @@
 import React from "react";
 
 function ArenaDoor(props) {
-  console.log('Props.arena is: ', props.arena);
   return (
     <div className="door" id={props.arena.name.toLowerCase().replace(/\s/g, '-')}>
       <img className="door-arrow" src="/images/left-arrow.png"/>
