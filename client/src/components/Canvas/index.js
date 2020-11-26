@@ -34,7 +34,7 @@ function Canvas(props) {
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles } = useBattles();
   const { game, setGame, startGame } = useGame();
-  // Possible results are: "WinGame", "WinBattle", "LoseGame", "Pending"
+
 
   // Load background music
   const soundMedia = useRef(null);
