@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Only a template, it is currently not possible to reach this page since boss hasn't been created yet
 const WinAllArenas = (props) => {

@@ -12,7 +12,9 @@ import TextInput from '../TextInput';
 // Styles
 import './Arena.scss'
 //helpers
-import updateToArenaBeat from "../../helpers/makeNewArenas";
+import { updateToArenaBeat, updateToArenaLost } from "../../helpers/makeNewArenas";
+import { countArenasLost, countArenasBeaten } from "../../helpers/countArenasCompleted";
+
 // Hooks
 import useInputMatcher from '../../hooks/useInputMatcher';
 import useChallengerAction from '../../hooks/useChallengerAction';
@@ -86,33 +88,36 @@ function Arena(props) {
   
   */
   
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   if (health.player === 0) {
-  //     props.setMode("OUTCOME");
-  //     if (/* is boss fight*/) {
-  //       props.setOutcome('LOSEGAMETOBOSS');
-  //     } else {
-  //       if (/* your unbeat arenas are less than your levels left to beat*/) {
-  //         props.setOutcome('LOSEGAMENOTBOSS');
-  //       } else {
-  //         props.setOutcome('LOSEBATTLE');
-  //       }
-  //     }
-  //   } else if (health.challenger === 0) {
-  //     props.setMode("OUTCOME");
-  //     if (/* is boss fight*/) {
-  //       props.setOutcome('WINGAME');
-  //     } else {
-  //       if (/* result of calling helper that counts battles won === 5*/) {
-  //         props.setOutcome('WINALLARENAS');
-  //       } else {
-  //         props.setOutcome('WINBATTLE');
-  //         // Call setBattles() and set the arena to beat
-  //       }
-  //     }
-  //   }
-  // }, [health])
+    if (health.player === 0) {
+      props.setMode("OUTCOME");
+      endBattle(false);
+      if (props.arena.challenger_name === "Boss") {
+        props.setOutcome('LOSEGAMETOBOSS');
+      } else {
+        if (countArenasLost(props.arenas) >= 3) {
+          props.setOutcome('LOSEGAMENOTBOSS');
+        } else {
+          props.setOutcome('LOSEBATTLE');
+          props.setArenas(updateToArenaLost(props.arenas, props.arena.name))
+        }
+      }
+    } else if (health.challenger === 0) {
+      endBattle(true);
+      props.setMode("OUTCOME");
+      if (props.arena.challenger_name === "Boss") {
+        props.setOutcome('WINGAME');
+      } else {
+        if (countArenasBeaten(props.arenas) >= 5 ) {
+          props.setOutcome('WINALLARENAS');
+        } else {
+          props.setOutcome('WINBATTLE');
+          props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
+        }
+      }
+    }
+  }, [health])
 
 
   useEffect(() => {
