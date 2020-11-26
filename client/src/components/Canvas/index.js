@@ -1,6 +1,6 @@
 // Libraries
 import React, { useEffect, useRef } from "react";
-import { countArenasBeaten } from "../../helpers/countArenasCompleted";
+import { countArenasBeaten, countArenasLost } from "../../helpers/countArenasCompleted";
 
 //Hooks
 import useBattles from '../../hooks/useBattles';
@@ -63,7 +63,7 @@ function Canvas(props) {
           arena={arena}
           arenas={arenas}
           setArena={setArena}
-          arenasBeaten={countArenasBeaten(arenas)} />
+          arenasBeaten={countArenasBeaten(arenas) || countArenasLost(arenas)} />
         }
         {mode === ARENA && <Arena
           setOutcome={setOutcome}

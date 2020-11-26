@@ -4,47 +4,39 @@
 //     arena_card: "/images/door.jpg",
 //     background_image: "/images/door.jpg",
 //     background_music: "/sounds/background-music.ogg",
-//     beaten: false,
-//     lost: false
+//     beaten: false
 //   },
 //   {
 //     name: "Indigo Plateau",
 //     arena_card: "/images/door.jpg",
 //     background_image: "/images/door.jpg",
 //     background_music: "/sounds/background-music.ogg",
-//     beaten: true,
-//     lost: true
+//     beaten: true
 //   },
 //   {
 //     name: "Minas Tirith",
 //     arena_card: "/images/door.jpg",
 //     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//     beaten: false,
-//     lost: false
+//     background_music: "/sounds/background-music.ogg"
 //   },
 //   {
 //     name: "Final Destination",
 //     arena_card: "/images/door.jpg",
 //     background_image: "/images/door.jpg",
 //     background_music: "/sounds/background-music.ogg",
-//     beaten: false,
-//     lost: true
 //   },
 //   {
 //     name: "Hotel California",
 //     arena_card: "/images/door.jpg",
 //     background_image: "/images/door.jpg",
 //     background_music: "/sounds/background-music.ogg",
-//     beaten: true,
-//     lost: false
 //   }
 // ]
 
 export function countArenasLost(arenas) {
   let count = 0;
   for (const arena of arenas) {
-    if (arena.lost) {
+    if (arena.beaten === false) {
       count +=1;
     }
   }
@@ -54,11 +46,11 @@ export function countArenasLost(arenas) {
 export function countArenasBeaten(arenas) {
   let count = 0;
   for (const arena of arenas) {
-    if (arena.beaten) {
+    if (arena.beaten === true) {
       count +=1;
     }
   }
   return count;
 };
 
-// console.log(countArenasLost(arenas))
+// console.log(countArenasBeaten(arenas))

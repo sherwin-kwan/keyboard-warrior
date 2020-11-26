@@ -12,7 +12,7 @@ import TextInput from '../TextInput';
 // Styles
 import './Arena.scss'
 //helpers
-import { updateToArenaBeat, updateToArenaLost } from "../../helpers/makeNewArenas";
+import updateToArenaCompleted from "../../helpers/makeNewArenas";
 import { countArenasLost, countArenasBeaten } from "../../helpers/countArenasCompleted";
 
 // Hooks
@@ -100,7 +100,7 @@ function Arena(props) {
           props.setOutcome('LOSEGAMENOTBOSS');
         } else {
           props.setOutcome('LOSEBATTLE');
-          props.setArenas(updateToArenaLost(props.arenas, props.arena.name))
+          props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, false))
         }
       }
     } else if (health.challenger === 0) {
@@ -113,7 +113,7 @@ function Arena(props) {
           props.setOutcome('WINALLARENAS');
         } else {
           props.setOutcome('WINBATTLE');
-          props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
+          props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, true))
         }
       }
     }

@@ -36,18 +36,24 @@
 //   }
 // ]
 
-//takes in an array of arenas and the arena that was won and returns a 
-//new array of arenas where the won arena's beaten value is true
+//takes in an array of arenas and the arena that was completed, plus a boolean of whether arena was won or lost and returns a 
+//new array of arenas where the won arena's beaten value is true or false
 
-export function updateToArenaBeat(arenas, arenaWon) {
+export default function updateToArenaCompleted(arenas, arenaCompleted, winLose) {
   let newArenasObj = []
   for (const arena of arenas) {
-    if (arena.name === arenaWon) {
-      const newArena = {
+    if (arena.name === arenaCompleted && winLose) {
+      const newArenaTrue = {
         ...arena,
         beaten: true
       }
-      newArenasObj.push(newArena)
+      newArenasObj.push(newArenaTrue)
+    } else if (arena.name === arenaCompleted && !winLose) {
+      const newArenaFalse = {
+        ...arena,
+        beaten: false
+      }
+      newArenasObj.push(newArenaFalse)
     } else {
       newArenasObj.push(arena)
     }
@@ -55,19 +61,19 @@ export function updateToArenaBeat(arenas, arenaWon) {
   return newArenasObj;
 }
 
-export function updateToArenaLost(arenas, arenaLost) {
-  let newArenasObj = []
-  for (const arena of arenas) {
-    if (arena.name === arenaLost) {
-      const newArena = {
-        ...arena,
-        lost: true
-      }
-      newArenasObj.push(newArena)
-    } else {
-      newArenasObj.push(arena)
-    }
-  }
-  return newArenasObj;
-}
+// export function updateToArenaLost(arenas, arenaLost) {
+//   let newArenasObj = []
+//   for (const arena of arenas) {
+//     if (arena.name === arenaLost) {
+//       const newArena = {
+//         ...arena,
+//         lost: true
+//       }
+//       newArenasObj.push(newArena)
+//     } else {
+//       newArenasObj.push(arena)
+//     }
+//   }
+//   return newArenasObj;
+// }
 // console.log(updateToArenaLost(arenas, "Hogwarts"))
