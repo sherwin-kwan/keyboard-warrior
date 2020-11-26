@@ -85,8 +85,37 @@ function Arena(props) {
   */
   
   useEffect(() => {
+
     if (health.player === 0) {
-      props.setOutcome('LOSEGAME');
+      props.setMode("OUTCOME");
+      if (/* is boss fight*/) {
+        props.setOutcome('LOSEGAMETOBOSS');
+      } else {
+        if (/* your unbeat arenas are less than your levels left to beat*/) {
+          props.setOutcome('LOSEGAMENOTBOSS');
+        } else {
+          props.setOutcome('LOSEBATTLE');
+        }
+      }
+    } else if (health.challenger === 0) {
+      props.setMode("OUTCOME");
+      if (/* is boss fight*/) {
+        props.setOutcome('WINGAME');
+      } else {
+        if (/* result of calling helper that counts battles won === 5*/) {
+          props.setOutcome('WINALLARENAS');
+        } else {
+          props.setOutcome('WINBATTLE');
+          // Call setBattles() and set the arena to beat
+        }
+      }
+    }
+  }, [health])
+
+
+  useEffect(() => {
+    if (health.player === 0) {
+      props.setOutcome('LOSEBATTLE');
       props.setMode("OUTCOME");
       console.log(`PLAYER DEFEATED`);
     } else if (health.challenger === 0) {
