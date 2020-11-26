@@ -20,7 +20,7 @@ import useBattles from '../../hooks/useBattles';
 
 function Arena(props) {
 
-  console.log(props.arena);
+  // console.log(props.arena);
   // States
   // const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
@@ -70,10 +70,12 @@ function Arena(props) {
 
   useEffect(() => {
     if (health.player === 0) {
+      endBattle(false);
       props.setOutcome('LOSEGAME');
       props.setMode("OUTCOME");
       console.log(`PLAYER DEFEATED`);
     } else if (health.challenger === 0) {
+      endBattle(true);
       props.setOutcome('WINBATTLE');
       props.setMode("OUTCOME");
       console.log(`CHALLENGER DEFEATED`);
