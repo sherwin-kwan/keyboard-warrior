@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 
 const LoseGameToBoss = (props) => {
 
-  useEffect(() => {
-    props.soundMedia.current.src = '/sounds/lose-game.mp3';
-    return (() => {
-      props.soundMedia.current.src = '/sounds/background-music.ogg';
-    });
-  }, [props.soundMedia]);
+  // useEffect(() => {
+  //   props.soundMedia.current.src = '/sounds/lose-game.mp3';
+  //   return (() => {
+  //     props.soundMedia.current.src = '/sounds/background-music.ogg';
+  //   });
+  // }, [props.soundMedia]);
 
   return (
     <main className="outcome lose-game">

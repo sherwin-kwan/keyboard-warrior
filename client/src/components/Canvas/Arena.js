@@ -96,7 +96,7 @@ function Arena(props) {
       if (props.arena.challenger_name === "Boss") {
         props.setOutcome('LOSEGAMETOBOSS');
       } else {
-        if (countArenasLost(props.arenas) >= 3) {
+        if (countArenasLost(props.arenas) >= 2) {
           props.setOutcome('LOSEGAMENOTBOSS');
         } else {
           props.setOutcome('LOSEBATTLE');
@@ -109,7 +109,7 @@ function Arena(props) {
       if (props.arena.challenger_name === "Boss") {
         props.setOutcome('WINGAME');
       } else {
-        if (countArenasBeaten(props.arenas) >= 5 ) {
+        if (countArenasBeaten(props.arenas) >= 4 ) {
           props.setOutcome('WINALLARENAS');
         } else {
           props.setOutcome('WINBATTLE');
@@ -120,20 +120,20 @@ function Arena(props) {
   }, [health])
 
 
-  useEffect(() => {
-    if (health.player === 0) {
-      endBattle(false);
-      props.setOutcome('LOSEBATTLE');
-      props.setMode("OUTCOME");
-      console.log(`PLAYER DEFEATED`);
-    } else if (health.challenger === 0) {
-      endBattle(true);
-      props.setOutcome('WINBATTLE');
-      props.setMode("OUTCOME");
-      console.log(`CHALLENGER DEFEATED`);
-      props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
-    }
-  }, [health])
+  // useEffect(() => {
+  //   if (health.player === 0) {
+  //     endBattle(false);
+  //     props.setOutcome('LOSEBATTLE');
+  //     props.setMode("OUTCOME");
+  //     console.log(`PLAYER DEFEATED`);
+  //   } else if (health.challenger === 0) {
+  //     endBattle(true);
+  //     props.setOutcome('WINBATTLE');
+  //     props.setMode("OUTCOME");
+  //     console.log(`CHALLENGER DEFEATED`);
+  //     props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
+  //   }
+  // }, [health])
 
 
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
