@@ -22,7 +22,7 @@ module.exports = {
           arena_image: "/images/boss.jpg",
           points: 50,
           challenger_name: "Shakespeare",
-          challenger_sprite: "/images/boss-challenger.jpg"
+          challenger_sprite: "/images/boss-challenger.png"
         }
       ], { returning: true });
     
