@@ -67,11 +67,11 @@ function Arena(props) {
 
   useEffect(() => {
     if (health.player === 0) {
-      props.setResult('LOSEGAME');
+      props.setOutcome('LOSEGAME');
       props.setMode("OUTCOME");
       console.log(`PLAYER DEFEATED`);
     } else if (health.challenger === 0) {
-      props.setResult('WINBATTLE');
+      props.setOutcome('WINBATTLE');
       props.setMode("OUTCOME");
       console.log(`CHALLENGER DEFEATED`);
       props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))

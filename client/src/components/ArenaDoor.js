@@ -22,6 +22,10 @@ function ArenaDoor(props) {
           alt={props.arena.name}
         />
         <footer>
+          <div className="points">{props.points}</div>
+          <div className="difficulty">{props.difficulty.name}</div>
+        </footer>
+        /* <footer>
           {!props.beaten &&
           <>
             <div className="difficulty">

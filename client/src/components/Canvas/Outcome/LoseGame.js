@@ -14,7 +14,7 @@ const LoseGame = (props) => {
       <p className="message">
         <h1>DEFEAT</h1>
         <p>There's no sugercoating this - losing sucks. But the great thing is this is a game, so you can try again!</p>
-        <button onClick={() => props.setMode('START')}>Try Again</button>
+        <button className="primary" onClick={() => props.setMode('START')}>Try Again</button>
       </p>
     </main>
   );

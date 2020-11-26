@@ -32,9 +32,9 @@ function StartGame(props) {
         >Start Game
         </button>
         (Following buttons don't do anything yet:)
-        <button>Credits</button>
-        <button>Instructions</button>
-        <button>Settings</button>
+        <button className="primary">Credits</button>
+        <button className="primary">Instructions</button>
+        <button className="primary">Settings</button>
       </div>
     </main>
   );
