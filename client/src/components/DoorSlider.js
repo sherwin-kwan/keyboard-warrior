@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function DoorSlider(props) {
 
   return (
-
-  <a href={"#" + props.name}>
-  <img alt="door" src="/images/grey-dot.png"/>
-  </a>
+    <a href={"#" + props.name}>
+      <img 
+        alt="door" 
+        src={props.img}
+        onClick={() => props.setCurrentDoor(props.name)}
+      />
+    </a>
   )
 }
 

@@ -1,27 +1,34 @@
 // Libraries
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Components
 import ArenaDoor from './ArenaDoor';
 import DoorSlider from "./DoorSlider";
 
+// Hooks
+import useArenaDoor from "../hooks/useArenaDoor";
+
 function ArenaDoorList(props) {
 
+  const { setCurrentDoor, handleCurrentDoor } = useArenaDoor();
+  
   const doors = props.arenas.map((arena) => {
-    return <ArenaDoor 
+    return (<ArenaDoor 
       setGameMode={props.setGameMode}
       arena={arena}
       setArena={props.setArena}
-    />
-  })
-
+    />)
+  });
+  
   const sliderDots = props.arenas.map(arena => {
-    return (
-      <DoorSlider
-        key={arena.name + '-slider'}
-        name={arena.name.toLowerCase().replace(/\s/g, '-')}
-      />
-    );
+    const doorTag = arena.name.toLowerCase().replace(/\s/g, '-');
+    const img = (handleCurrentDoor(doorTag)) ? "/images/yellow-dot.png" : "/images/grey-dot.png";
+    return (<DoorSlider
+      key={arena.name + '-slider'}
+      name={doorTag}
+      img={img}
+      setCurrentDoor={setCurrentDoor}
+    />);
   });
 
   return (
