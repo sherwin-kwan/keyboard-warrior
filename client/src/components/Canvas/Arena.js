@@ -16,6 +16,7 @@ import updateToArenaBeat from "../../helpers/makeNewArenas";
 // Hooks
 import useInputMatcher from '../../hooks/useInputMatcher';
 import useChallengerAction from '../../hooks/useChallengerAction';
+import useBattles from '../../hooks/useBattles';
 
 function Arena(props) {
 
@@ -30,6 +31,7 @@ function Arena(props) {
   const { handleWordMatch } = useInputMatcher();
   // Timings for the challenger's attacks
   const [challengerTimer, setChallengerTimer] = useState(20);
+  const { startBattle, endBattle } = useBattles();
 
   useEffect(() => {
     // console.log('word match?', handleWordMatch(playerInput, playerActions));
@@ -102,8 +104,11 @@ function Arena(props) {
     playerActions[actionIndex].word = playerActions[actionIndex]["words"][wordIndex[actionIndex]];
   }
 
-  // Get word list and action list on load
+  // On first load
   useEffect(async () => {
+    // Start battle timer
+    startBattle(props.game.id, props.arena.id);
+    // Get word list and action list
     try {
       axios.defaults.baseURL = 'http://localhost:3001';
       const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
