@@ -6,7 +6,7 @@ import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
 import useBattles from '../../hooks/useBattles';
 import useGameMode from "../../hooks/useGameMode";
 import useArena from "../../hooks/useArena";
-import useResult from '../../hooks/useResult';
+import useOutcome from '../../hooks/useOutcome';
 import useGame from '../../hooks/useGame';
 
 // Styles
@@ -31,7 +31,7 @@ function Canvas(props) {
   //hooks
   const { mode, setMode } = useGameMode("START")
   const { arenas, setArenas, arena, setArena } = useArena()
-  const { result, setResult } = useResult('PENDING');
+  const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles } = useBattles();
   const { game, setGame, startGame } = useGame();
   // Possible results are: "WinGame", "WinBattle", "LoseGame", "Pending"
@@ -66,7 +66,7 @@ function Canvas(props) {
           arenasBeaten={lookupArenasBeaten(arenas)} />
         }
         {mode === ARENA && <Arena
-          setResult={setResult}
+          setOutcome={setOutcome}
           initialPlayerHealth = {80}
           challengerHealth = {100}
           setMode={setMode}
@@ -76,7 +76,7 @@ function Canvas(props) {
           setBattles={setBattles}
         />}
         {mode === OUTCOME && <Outcome 
-        result={result}
+        outcome={outcome}
         soundMedia={soundMedia}
         setMode={setMode}
         />}
