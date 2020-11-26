@@ -58,8 +58,6 @@ function Canvas(props) {
     setCurrentBattle([])
   }
 
-  // const bossArena = handleBossArena();
-
   return (
     <>
       <TempNavBar onClick={setMode} />
@@ -83,7 +81,7 @@ function Canvas(props) {
         {mode === ARENA && <Arena
           setOutcome={setOutcome}
           initialPlayerHealth = {100}
-          challengerHealth = {5}
+          challengerHealth = {100}
           setMode={setMode}
           arena={arena}
           arenas={arenas}
@@ -94,7 +92,7 @@ function Canvas(props) {
         {mode === BOSS && <Arena
           setOutcome={setOutcome}
           initialPlayerHealth = {100}
-          challengerHealth = {5}
+          challengerHealth = {100}
           setMode={setMode}
           arena={handleBossArena()}
           arenas={arenas}

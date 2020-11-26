@@ -13,15 +13,16 @@ export default function useArena() {
 
     axios.get('/api/arenas')
       .then((data) => {
-        setArenas(data.data);
+        // Remove Boss Arena from response
+        const normalArenas = data.data.filter(arena => arena.name !== 'Boss');
+        setArenas(normalArenas);
         setCleanArenas(data.data);
       })
       .catch(err => console.log("Error getting Arena data: ", err));
   }, []);
 
   function handleBossArena () {
-    const bossArena = arenas.filter(arena => arena.name === 'Boss')[0];
-    console.log('bossArena', bossArena)
+    const bossArena = cleanArenas.find(arena => arena.name === 'Boss');
     return bossArena;
   }
 
