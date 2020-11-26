@@ -1,7 +1,7 @@
 const express = require('express');
 const { sequelize } = require('../models');
 const db = require('../models');
-const { Word, Action, Difficulty, Arena, Game } = db;
+const { Word, Action, Difficulty, Arena, Game, Battle } = db;
 const router = express.Router();
 const shuffle = require('../helpers/shuffle');
 
@@ -87,6 +87,18 @@ module.exports = (fs) => {
     Game.create({
       player_name: name
     }).then( (result) => res.json(result) )
+      .catch(err => res.json(err));
+  });
+
+  router.post('/battles', (req, res) => {
+    const battle = req.body;
+    Battle.create({
+      gameId: battle.game_id,
+      arenaId: battle.arena_id,
+      win: battle.win,
+      start_time: battle.start_time,
+      end_time: battle.end_time
+    }).then(data => res.json(data))
       .catch(err => res.json(err));
   });
 
