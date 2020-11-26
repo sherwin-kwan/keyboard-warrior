@@ -27,8 +27,8 @@ function StartGame(props) {
           <input className="primary" type="submit" value="Start Game"/>
         </form>
         (Following buttons don't do anything yet:)
-        <button className="primary">Credits</button>
-        <button className="primary">Instructions</button>
+        <button className="primary" onClick={() => props.setMode("CREDITS")}>Credits</button>
+        <button className="primary" onClick={() => props.setMode("INSTRUCTIONS")}>Instructions</button>
         <button className="primary">Settings</button>
       </menu>
     </main>
