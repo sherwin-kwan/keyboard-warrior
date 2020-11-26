@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 const WinBattle = (props) => {
   
   useEffect(() => {
-    props.soundMedia.current.src = '/sounds/mario-cut.mp3';
+    props.soundMedia.current.src = '/sounds/win-battle.mp3';
     return (() => {
       props.soundMedia.current.src = '/sounds/background-music.ogg';
     });

@@ -1,1 +1,0 @@
-\i db/schema/01_users.sql

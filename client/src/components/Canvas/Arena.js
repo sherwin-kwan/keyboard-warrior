@@ -67,11 +67,58 @@ function Arena(props) {
       return newHealth;
     });
   };
+  
+  /*
+  1. health.player === 0 && !MORETHAN 3 ARENAS LOST => LOSE THE BATTLE => DEFEAT SCREEN THAT LINKS BACK TO MAP
+  2. health.player === 0 && MORE THAN 3 ARENAS LOST => LOSE THE GAME, BUT NOT TO THE BOSS => DEFEAT SCREEN WITH RIDICULE THAT LINKS BACK TO THE START SCREEN (AND CLEAR THE GAME STATE)
+  3. health.player === 0 && CHALLENGER/ARENA === BOSS => LOST THE GAME, AGAINST THE BOSS => DEFEAT SCREEN WITH CONDOLENCES THAT LINKS BACK TO THE START SCREEN (AND CLEAR ALL STATE)
+  4. health.challenger === 0 && !CHALLENGER/ARENA === BOSS => WIN THE BATTLE, BUT NOT THE FINAL BATTLE => VICTORY SCREEN THAT LINKS BACK TO THE MAP
+  5. health.challenger === 0 && !CHALLENGER/ARENA === BOSS && ARENAS BEATEN === 5 => WIN THE FINAL BATTLE BEFORE THE BOSS => VICTORY SCREEN THAT LINKS BACK TO ARENA WITH BOSS (SET CHALLENGER TO BOSS)
+  6. health.challenger === 0 && CHALLENGER/ARENA === BOSS => WIN THE GAME, INCLUDING BOSS => VICTORY SCREEN WITH YOUR NAME ON THE LEADERBOARD & FIREWORKS, LINKS BACK TO THE START SCREEN (AND CLEAR ALL STATE)
+  
+  SCREENS:
+  1. LoseBattle.js - EXISTS
+  2. LoseGameNotBoss.js - CREATE
+  3. LoseGameToBoss.js - CREATE
+  4. WinBattle.js  - EXISTS
+  5. WinAllArenas.js - CREATE
+  6. WinGame.js  - EXISTS
+  
+  */
+  
+  // useEffect(() => {
+
+  //   if (health.player === 0) {
+  //     props.setMode("OUTCOME");
+  //     if (/* is boss fight*/) {
+  //       props.setOutcome('LOSEGAMETOBOSS');
+  //     } else {
+  //       if (/* your unbeat arenas are less than your levels left to beat*/) {
+  //         props.setOutcome('LOSEGAMENOTBOSS');
+  //       } else {
+  //         props.setOutcome('LOSEBATTLE');
+  //       }
+  //     }
+  //   } else if (health.challenger === 0) {
+  //     props.setMode("OUTCOME");
+  //     if (/* is boss fight*/) {
+  //       props.setOutcome('WINGAME');
+  //     } else {
+  //       if (/* result of calling helper that counts battles won === 5*/) {
+  //         props.setOutcome('WINALLARENAS');
+  //       } else {
+  //         props.setOutcome('WINBATTLE');
+  //         // Call setBattles() and set the arena to beat
+  //       }
+  //     }
+  //   }
+  // }, [health])
+
 
   useEffect(() => {
     if (health.player === 0) {
       endBattle(false);
-      props.setOutcome('LOSEGAME');
+      props.setOutcome('LOSEBATTLE');
       props.setMode("OUTCOME");
       console.log(`PLAYER DEFEATED`);
     } else if (health.challenger === 0) {
