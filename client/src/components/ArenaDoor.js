@@ -39,7 +39,7 @@ function ArenaDoor(props) {
               {props.arena.points + " PTS"}
             </div>
           </>}
-          {(props.arena.beaten === true || props.arena.beaten === false) && <aside>{(props.arena.beaten === true || props.arena.beaten === false) ? "You played this level already" : null}</aside>} 
+          {(props.arena.beaten === true || props.arena.beaten === false) && <aside>You played this level already</aside>} 
         </footer>
       </div>
       <img className="door-arrow" src="/images/right_arrow_circle.png"/>
