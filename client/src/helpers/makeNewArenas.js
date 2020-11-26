@@ -55,10 +55,10 @@ export function updateToArenaBeat(arenas, arenaWon) {
   return newArenasObj;
 }
 
-export function updateToArenaLost(arenas, arenaWon) {
+export function updateToArenaLost(arenas, arenaLost) {
   let newArenasObj = []
   for (const arena of arenas) {
-    if (arena.name === arenaWon) {
+    if (arena.name === arenaLost) {
       const newArena = {
         ...arena,
         lost: true

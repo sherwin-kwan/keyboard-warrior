@@ -120,22 +120,6 @@ function Arena(props) {
   }, [health])
 
 
-  // useEffect(() => {
-  //   if (health.player === 0) {
-  //     endBattle(false);
-  //     props.setOutcome('LOSEBATTLE');
-  //     props.setMode("OUTCOME");
-  //     console.log(`PLAYER DEFEATED`);
-  //   } else if (health.challenger === 0) {
-  //     endBattle(true);
-  //     props.setOutcome('WINBATTLE');
-  //     props.setMode("OUTCOME");
-  //     console.log(`CHALLENGER DEFEATED`);
-  //     props.setArenas(updateToArenaBeat(props.arenas, props.arena.name))
-  //   }
-  // }, [health])
-
-
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
   useEffect(() => {
     const interval = setInterval(() => {
