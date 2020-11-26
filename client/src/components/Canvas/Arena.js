@@ -112,7 +112,7 @@ function Arena(props) {
         if (countArenasBeaten(props.arenas) >= 4 ) {
           console.log('won more than 4 arenas, go to boss!')
           props.setOutcome('WINALLARENAS');
-          props.setMode("BOSS");
+          props.setMode("OUTCOME");
         } else {
           props.setOutcome('WINBATTLE');
           props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, true))
