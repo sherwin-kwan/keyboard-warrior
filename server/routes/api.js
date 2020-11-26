@@ -17,18 +17,15 @@ module.exports = (fs) => {
   Word.belongsTo(Action);
   Arena.hasMany(Word);
   Word.belongsTo(Arena);
+  Game.hasMany(Battle);
+  Battle.belongsTo(Game);
+  Arena.hasMany(Battle);
+  Battle.belongsTo(Arena);
 
   /* Placeholder for a future API GET. */
   router.get('/', function (req, res, next) {
     res.json({
-      "message": "Hello world"
-    });
-  });
-
-  router.get('/words-old', (req, res) => {
-    fs.readFile(`${dataPath}/words.old.json`, 'utf8', (err, data) => {
-      if (err) throw err;
-      res.json(JSON.parse(data));
+      "message": "Nothing to see here, move along"
     });
   });
 
@@ -104,4 +101,4 @@ module.exports = (fs) => {
 
 
   return router;
-}
+};
