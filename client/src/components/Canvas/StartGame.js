@@ -8,7 +8,7 @@ function StartGame(props) {
   return (
     <main className="start-game">
       <h1>A Typing Game</h1>
-      <div className="menu">
+      <menu>
         <form onSubmit={(event) => {
           event.preventDefault()
           props.onSubmit(props.game.player_name)
@@ -24,13 +24,13 @@ function StartGame(props) {
             placeholder="Enter player name" 
             name="name"
             /><br/>
-          <input type="submit" value="Start Game"/>
+          <input className="primary" type="submit" value="Start Game"/>
         </form>
         (Following buttons don't do anything yet:)
         <button className="primary">Credits</button>
         <button className="primary">Instructions</button>
         <button className="primary">Settings</button>
-      </div>
+      </menu>
     </main>
   );
 }
