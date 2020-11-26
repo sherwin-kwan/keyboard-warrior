@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 const LoseGameToBoss = (props) => {
 
   useEffect(() => {
-    props.soundMedia.current.src = '/sounds/zimmer-cut.mp3';
+    props.soundMedia.current.src = '/sounds/lose-game.mp3';
     return (() => {
       props.soundMedia.current.src = '/sounds/background-music.ogg';
     });

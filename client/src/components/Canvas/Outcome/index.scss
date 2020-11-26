@@ -25,6 +25,25 @@ main.win-battle {
   }
 }
 
+main.win-game {
+  background: url('../../../images/win-game.png');
+  background-size: cover;
+
+  p {
+    background-color: #dd6;
+  }
+}
+
+main.lose-battle {
+  background: url('../../../images/lose-battle-image.png');
+  background-size: cover;
+
+  p {
+    background-color: #555;
+    color: white;
+  }
+}
+
 main.lose-game {
   background: url('../../../images/defeat.png');
   background-size: cover;
