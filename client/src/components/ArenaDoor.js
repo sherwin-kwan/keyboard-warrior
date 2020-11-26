@@ -2,7 +2,7 @@
 import React from "react";
 
 function ArenaDoor(props) {
-  // console.log('Props.arena is: ', props.arena);
+  console.log('Props.arena is: ', props.arena);
   const pointsIcon = '/images/green-diamond.png';
 
   return (
@@ -22,10 +22,6 @@ function ArenaDoor(props) {
           alt={props.arena.name}
         />
         <footer>
-          <div className="points">{props.points}</div>
-          <div className="difficulty">{props.difficulty.name}</div>
-        </footer>
-        /* <footer>
           {!props.beaten &&
           <>
             <div className="difficulty">

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function useOutcome(initial) {
   
-  const [outcome, setOutcome] = useState(initial);
+  const [result, setResult] = useState(initial);
 
-  return { outcome, setOutcome }
+  return { result, setResult }
 }

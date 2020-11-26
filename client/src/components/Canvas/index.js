@@ -1,6 +1,5 @@
 // Libraries
 import React, { useEffect, useRef } from "react";
-import TempNavBar from '../TempNavBar';
 import lookupArenasBeaten from "../../helpers/lookupArenasBeaten";
 
 //Hooks
@@ -65,7 +64,7 @@ function Canvas(props) {
           arenasBeaten={lookupArenasBeaten(arenas)} />
         }
         {mode === ARENA && <Arena
-          setOutcome={setOutcome}
+          setResult={setResult}
           initialPlayerHealth = {80}
           challengerHealth = {100}
           setMode={setMode}
@@ -75,7 +74,7 @@ function Canvas(props) {
           setBattles={setBattles}
         />}
         {mode === OUTCOME && <Outcome 
-        outcome={outcome}
+        result={result}
         soundMedia={soundMedia}
         setMode={setMode}
         />}
