@@ -1,8 +1,9 @@
 const express = require('express');
 const { sequelize } = require('../models');
 const db = require('../models');
-const { Word, Action, Difficulty, Arena } = db;
+const { Word, Action, Difficulty, Arena, Game } = db;
 const router = express.Router();
+const shuffle = require('../helpers/shuffle');
 
 module.exports = (fs) => {
   const dataPath = `${__dirname}/../data`
@@ -45,11 +46,25 @@ module.exports = (fs) => {
     res.json(data);
   });
 
-  router.get('/playerActions', (req, res) => {
-    fs.readFile(`${dataPath}/playerActions.json`, 'utf8', (err, data) => {
-      if (err) throw err;
-      res.json(JSON.parse(data));
+  // Returns the action names and icons, and the words associated with them - so everything needed to render the words part of the arena
+  // The id in params is the arena ID
+  router.get('/action-words/:id', async (req, res) => {
+    const rawData = await Action.findAll({
+      include: Word,
+      attributes: ['name', 'icon', 'sound'],
+      where: {
+        '$words.arena_id$': req.params.id
+      }
     });
+    const data = rawData.map(action => {
+      return {
+        name: action.name,
+        icon: action.icon,
+        sound: action.sound,
+        words: shuffle(action.Words.map(w => w.word))
+      };
+    });
+    res.json(data);
   });
 
   router.get('/arenas', async (req, res) => {
@@ -58,6 +73,21 @@ module.exports = (fs) => {
       attributes: ['id', 'name', ['arena_image', 'arena_card'], 'challenger_name', 'challenger_sprite', 'points']
     });
     res.json(data);
+  });
+
+  router.get('/games', function (req, res, next) {
+    res.json({
+      "message": "Hello, this is the games API endpoint"
+    });
+  });
+
+
+  router.post('/games', (req, res) => {
+    const name = req.body.player_name;
+    Game.create({
+      player_name: name
+    }).then( (result) => res.json(result) )
+      .catch(err => res.json(err));
   });
 
 
