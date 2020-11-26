@@ -4,16 +4,22 @@ import React from "react";
 function ArenaDoor(props) {
   // console.log('Props.arena is: ', props.arena);
   const pointsIcon = '/images/green-diamond.png';
+  const disabled = (typeof props.arena.beaten === 'boolean'); // Either "true" or "false" showing that the player has already either won or lost
+  // in this arena, will cause the arena door to be disabled so player cannot enter it again
+  console.log(`disabled for ${props.arena.name} is: `, disabled);
+  const doorClassName = disabled ? "card card-disabled" : "card";
 
   return (
     <div className="door" id={props.arena.name.toLowerCase().replace(/\s/g, '-')}>
       <img className="door-arrow" src="/images/left_arrow_circle.png"/>
       <div 
-        className="card"
-        disabled={props.beaten} // refactor with battles data from server
+        className={doorClassName}
+        title={disabled ? `No rematches! Please choose another arena` : `Enter arena`}
         onClick={() => {
-          props.setGameMode("ARENA");
-          props.setArena(props.arena);
+          if (!disabled) {
+            props.setGameMode("ARENA");
+            props.setArena(props.arena);
+          }
         }}>
         <h3>{props.arena.name}</h3>
         <img 
