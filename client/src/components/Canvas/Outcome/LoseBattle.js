@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-const LoseGame = (props) => {
+const LoseBattle = (props) => {
 
   useEffect(() => {
     props.soundMedia.current.src = '/sounds/zimmer-cut.mp3';
@@ -19,4 +19,4 @@ const LoseGame = (props) => {
     </main>
   );
 };
-export default LoseGame;
+export default LoseBattle;
