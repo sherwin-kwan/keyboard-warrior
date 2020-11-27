@@ -15,7 +15,11 @@ function StartGame(props) {
           props.setMode("MAP")
           }
           }>
+<<<<<<< HEAD
           <label htmlFor="name">Player Name:</label><br/>
+=======
+          <label for="name">Player Name:</label>
+>>>>>>> 9989b6cff45a5640ce06150c97b6d466e5843e6c
           <input 
             onChange={(event) => props.setGame({player_name: event.target.value})}
             value={props.game.player_name || ''}
@@ -23,7 +27,7 @@ function StartGame(props) {
             id="name" 
             placeholder="Enter player name" 
             name="name"
-            /><br/>
+            />
           <input className="primary" type="submit" value="Start Game"/>
         </form>
         (Following buttons don't do anything yet:)
