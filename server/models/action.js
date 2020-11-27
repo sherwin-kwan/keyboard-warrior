@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      // Associations between models are not to be confused with references between db tables in the migrations folder. The migrations  
+      // handle how the database does things like cascading on delete, but these few lines of code make it possible for Sequelize to combine
+      // tables. Just like how even if you've set up a database schema, when you do queries you still have to write JOIN on 
+
       this.hasMany(models.Word);
     }
   };

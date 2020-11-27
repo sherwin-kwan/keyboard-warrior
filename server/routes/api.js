@@ -12,11 +12,6 @@ from battles join arenas on arenas.id = battles.arena_id group by game_id order 
 module.exports = (fs) => {
   const dataPath = `${__dirname}/../data`
 
-  // Associations between models (Note: Not to be confused with references between db tables in the migrations folder. The migrations  
-  // handle how the database does things like cascading on delete, but these few lines of code make it possible for Sequelize to combine
-  // tables. Just like how even if you've set up a database schema, when you do queries you still have to write JOIN on 
-
-
 
   /* Placeholder for a future API GET. */
   router.get('/', function (req, res, next) {
@@ -102,8 +97,8 @@ module.exports = (fs) => {
       win: battle.win,
       start_time: battle.start_time,
       end_time: battle.end_time
-    }).then(data => res.json(data))
-      .catch(err => res.json(err));
+    }).then(data => console.log('Saved data: ', data))
+      .catch(err => console.log('Error message: ', err));
   });
 
 

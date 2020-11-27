@@ -48,20 +48,29 @@ module.exports = (sequelize, DataTypes) => {
         throw Error('Cannot set a virtual property');
       }
     },
+    // score: DataTypes.INTEGER,
     base_score: {
       type: DataTypes.VIRTUAL,
       get() {
-        return this.getGame();
+        this.getGame()
+          .then(res => console.log('Result is: ', res));
       },
       set(value) {
         throw Error('Cannot set a virtual property');
       }
     }
 
-  }, {
-    sequelize,
-    modelName: 'Battle',
-    underscored: true
-  });
+  },
+    {
+      sequelize,
+      hooks: {
+        beforeSave: function(battle) {
+          console.log('Saving a new battle', battle);
+        }
+      }
+      ,
+      modelName: 'Battle',
+      underscored: true
+    });
   return Battle;
 };
