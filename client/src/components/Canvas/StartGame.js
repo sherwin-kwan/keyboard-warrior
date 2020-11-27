@@ -15,10 +15,10 @@ function StartGame(props) {
           props.setMode("MAP")
           }
           }>
-          <label for="name">Player Name:</label><br/>
+          <label htmlFor="name">Player Name:</label><br/>
           <input 
             onChange={(event) => props.setGame({player_name: event.target.value})}
-            value={props.game.player_name}
+            value={props.game.player_name || ''}
             type="text" 
             id="name" 
             placeholder="Enter player name" 

@@ -5,7 +5,6 @@ import axios from "axios";
 
 export default function useBattles() {
 
-  const [battles, setBattles] = useState([]);
   const [currentBattle, setCurrentBattle] = useState({});
 
   function startBattle(game_id, arena_id) {

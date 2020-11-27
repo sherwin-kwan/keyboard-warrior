@@ -6,14 +6,12 @@ function DoorSlider(props) {
   const className = (props.selected) ? "selected" : "";
 
   return (
-    <a href={"#" + props.name}>
-      <img
-        className={className}
-        alt="door" 
-        src={img}
-        onClick={() => props.setCurrentDoor(props.name)}
-      />
-    </a>
+    <img
+      className={className}
+      alt="door"
+      src={img}
+      onClick={() => props.setCurrentDoor(props.index)}
+    />
   )
 }
 

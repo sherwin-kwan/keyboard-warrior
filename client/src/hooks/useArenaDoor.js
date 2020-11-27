@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function useArenaDoor() {
 
-  const [currentDoor, setCurrentDoor] = useState('indigo-plateau');
+  const [currentDoor, setCurrentDoor] = useState(0);
   
   // Returns true if door is selected
   function handleCurrentDoor(door) {
@@ -10,5 +10,5 @@ export default function useArenaDoor() {
     return false;
   }
 
-  return { setCurrentDoor, handleCurrentDoor }
+  return { currentDoor, setCurrentDoor, handleCurrentDoor }
 }

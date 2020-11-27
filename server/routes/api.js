@@ -83,7 +83,7 @@ module.exports = (fs) => {
     const name = req.body.player_name;
     Game.create({
       player_name: name
-    }).then( (result) => res.json(result) )
+    }).then( (result) => res.json(result.id) )
       .catch(err => res.json(err));
   });
 

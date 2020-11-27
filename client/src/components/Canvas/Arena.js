@@ -29,7 +29,7 @@ function Arena(props) {
   const [wordIndex, setWordIndex] = useState([0, 0]); // [Current attack word index, Current heal word index]
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
-  const { attackTime, setAttackTime } = useChallengerAction({ attackTime: props.arena.Difficulty.attack_time_ms });
+  const { attackTime, setAttackTime } = useChallengerAction(props.arena.Difficulty.attack_time_ms);
   const { handleWordMatch } = useInputMatcher();
   // Timings for the challenger's attacks
   const [challengerTimer, setChallengerTimer] = useState(20);
