@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Game.init({
-    player_name: DataTypes.STRING
+    player_name: DataTypes.STRING,
+    win: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Game',

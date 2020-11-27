@@ -1,4 +1,5 @@
 const express = require('express');
+const { QueryTypes } = require('sequelize');
 const { sequelize } = require('../models');
 const db = require('../models');
 const { Word, Action, Difficulty, Arena, Game, Battle } = db;
@@ -59,7 +60,7 @@ module.exports = (fs) => {
     }
   });
 
-  router.get('/game/:id', async (req, res) => {
+  router.get('/game/:id/details', async (req, res) => {
     try {
       const battles = await Battle.findAll({
         attributes: ['id', 'start_time', 'end_time', 'time_seconds', 'score'],
@@ -73,10 +74,36 @@ module.exports = (fs) => {
     }
   })
 
-  router.get('/games', function (req, res, next) {
-    res.json({
-      "message": "Hello, this is the games API endpoint"
-    });
+  router.get('/game/:id', async (req, res) => {
+    // Get a player's current score for the instance of the game they're playing
+    // select sum(score) from battles where game_id = X;
+    try {
+      const data = await Battle.findAll({
+        attributes: [[sequelize.fn('SUM', sequelize.col('score')), 'score']],
+        where: {
+          game_id: req.params.id
+        }
+      });
+      res.json(data);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
+  })
+
+  router.get('/games', async function (req, res) {
+    // Gets the data for the leaderboard
+    try {
+      const data = await sequelize.query(`SELECT player_name, SUM(score) AS score
+      FROM battles JOIN games ON battles.game_id = games.id
+      WHERE score IS NOT NULL
+      AND games.win = true
+      GROUP BY game_id, games.player_name
+      ORDER BY score DESC;
+      `, { type: QueryTypes.SELECT });
+      res.json(data);
+    } catch (err) {
+      res.status(500).send(err.message);
+    }
   });
 
   router.post('/games', (req, res) => {
@@ -104,6 +131,13 @@ module.exports = (fs) => {
       myBattle.score = Math.round(multiplier * arenaStats.points);
       console.log(`Received score ${myBattle.score} for finishing arena with ${par_time} second par in ${myBattle.time_seconds} seconds.
       Base score was ${arenaStats.points}`);
+      if (arenaStats.name === 'Boss') {
+        // Beating the boss means you win the game
+        const row = await Game.findByPk(req.body.game_id);
+        row.win = true;
+        await row.save();
+        console.log('Saved row ', req.body.game_id, 'with a win');
+      }
     } else {
       myBattle.score = 0;
     }
