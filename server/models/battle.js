@@ -41,7 +41,6 @@ module.exports = (sequelize, DataTypes) => {
     time_seconds: {
       type: DataTypes.VIRTUAL,
       get() {
-        console.log('GETTING ', this);
         return (this.end_time - this.start_time) / 1000;
       },
       set(value) {

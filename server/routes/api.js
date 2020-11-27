@@ -59,22 +59,10 @@ module.exports = (fs) => {
     }
   });
 
-  // Returns the battles and scores for a game
-  router.get('/game/:id', (req, res) => {
-  })
-
-  router.get('/games', function (req, res, next) {
-    res.json({
-      "message": "Hello, this is the games API endpoint"
-    });
-  });
-
   router.get('/game/:id', async (req, res) => {
     try {
-      // const test = await Game.findByPk(41);
-      // res.json(test);
       const battles = await Battle.findAll({
-        attributes: ['id', 'start_time', 'end_time', 'time_seconds', 'base_score'],
+        attributes: ['id', 'start_time', 'end_time', 'time_seconds', 'score'],
         where: {
           game_id: req.params.id
         }
@@ -84,6 +72,12 @@ module.exports = (fs) => {
       res.send(err.message);
     }
   })
+
+  router.get('/games', function (req, res, next) {
+    res.json({
+      "message": "Hello, this is the games API endpoint"
+    });
+  });
 
   router.post('/games', (req, res) => {
     const name = req.body.player_name;
