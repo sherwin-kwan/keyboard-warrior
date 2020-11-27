@@ -1,6 +1,5 @@
 @import '../../styles/variables.scss';
 
-/* Note that this stylesheet is loaded on all screens. Put all style rules into main.map to prevent it from affecting, say, the arena screen */
 // Styling for everything on Arena screen
 
 main.arena {
@@ -25,9 +24,6 @@ main.arena {
 
   .avatar {
     text-align: center;
-    // position: relative;
-    // contain: paint;
-    // transform: scale(1.5, 0.5s);
 
     h2 {
       font-size: 1rem;
@@ -37,6 +33,7 @@ main.arena {
       height: 25vh;
     }
 
+    // Hide and position attack images
     img.attack {
       height: 100px;
       position: absolute;
@@ -47,6 +44,7 @@ main.arena {
       }
     }
 
+    // Attack animations
     @keyframes blink {
       0% {
         opacity: 1;
