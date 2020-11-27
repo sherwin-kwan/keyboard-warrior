@@ -22,6 +22,7 @@ import Arena from './Arena';
 import Outcome from './Outcome'
 import Credits from './Credits';
 import Instructions from './Instructions';
+import MuteButton from './MuteButton';
 
 function Canvas(props) {
 
@@ -69,7 +70,7 @@ function Canvas(props) {
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
-      <img className="mute-button" src="/images/unmute-music.png" alt="mute music" style={{justifyContent: 'right'}}/>
+        <MuteButton />
         {mode === START && <StartGame
           setMode={setMode}
           setGame={setGame}
