@@ -10,15 +10,15 @@
   justify-content: center;
   align-items: center;
   // Set window background image
-  background-image: url('../../images/office-background-pixel.png');
-  background-size: auto 100%;
+  background-image: url('../../images/cyberpunk-1.jpg');
+  background-size: cover;
 
   // Style for Game Border
   main {
     width: 75%;
     height: 80%;
     background-color: #FFF;
-    border: 20px solid #474e5d;
+    border: 20px solid #444;
     border-radius: 25px;
     position: absolute;
   }
@@ -36,7 +36,7 @@
     width: 6px;
     height: 6px;
     border-radius: 6px;
-    background: #a5adbd;
+    background: #d3d3d3;
   }
 
   main:after {
