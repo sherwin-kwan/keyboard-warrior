@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
         throw Error('Cannot set a virtual property');
       }
     },
-    // score: DataTypes.INTEGER,
+    score: DataTypes.INTEGER,
     base_score: {
       type: DataTypes.VIRTUAL,
       get() {
