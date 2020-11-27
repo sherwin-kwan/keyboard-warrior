@@ -107,6 +107,8 @@ function Canvas(props) {
           soundMedia={soundMedia}
           setMode={setMode}
           resetGame={resetGameState}
+          arena={arena.name}
+          challenger={arena.challenger_name}
         />}
         {mode === CREDITS && <Credits
           setMode={setMode}

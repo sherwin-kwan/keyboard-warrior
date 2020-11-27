@@ -25,7 +25,7 @@ function Outcome(props) {
     <>
       {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} soundMedia={props.soundMedia} />}
       {outcome === LOSEBATTLE && <LoseBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
-      {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
+      {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} challenger={props.challenger}/>}
       {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} resetGame={props.resetGame}/>}
       {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} resetGame={props.resetGame}/>}
       {outcome === WINALLARENAS && <WinAllArenas setMode={props.setMode} soundMedia={props.soundMedia} />}
