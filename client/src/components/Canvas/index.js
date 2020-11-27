@@ -49,7 +49,7 @@ function Canvas(props) {
   useEffect(() => {
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
-    soundMedia.current.volume = 0.0; // Make sure you leave the volume setting here - otherwise it's too loud!!
+    soundMedia.current.volume = 0.3; // Make sure you leave the volume setting here - otherwise it's too loud!!
   }, [soundMedia, mode]);
 
   // reset game function
@@ -69,6 +69,7 @@ function Canvas(props) {
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
+      <img className="mute-button" src="/images/unmute-music.png" alt="mute music" style={{justifyContent: 'right'}}/>
         {mode === START && <StartGame
           setMode={setMode}
           setGame={setGame}
