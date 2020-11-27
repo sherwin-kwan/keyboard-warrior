@@ -1,0 +1,71 @@
+main.credits {
+  background-image: url('../../images/windows-xp-wallpaper-pixel-art.jpg');
+  background-size: cover;
+  
+  div.credits {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    margin: 1rem 0 0.5rem 0;
+  }
+  h2 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    width: 70%;
+  }
+
+  .credits-container {
+    justify-content: center;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .credit {
+    width: 25rem;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      "name portrait"
+      "logos portrait";
+    border: 5px #C2C3C7 outset;
+    border-radius: 2rem;
+    margin: 0.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    
+    .portrait {
+      grid-area: portrait;
+      height: 8rem;
+      border-radius: 0 1.5rem 1.5rem 0;
+    }
+  }
+
+  h4 {
+    grid-area: name;
+    margin: 2rem 0 0 0;
+  }
+  
+  .logos {
+    grid-area: logos;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      height: 2.5rem;
+      margin: 0 0.5rem 0.5rem 0.5rem;
+    }
+  }
+}

@@ -72,12 +72,15 @@ module.exports = (fs) => {
     res.json(data);
   });
 
+  // Returns the battles and scores for a game
+  router.get('/game/:id', (req, res) => {
+  })
+
   router.get('/games', function (req, res, next) {
     res.json({
       "message": "Hello, this is the games API endpoint"
     });
   });
-
 
   router.post('/games', (req, res) => {
     const name = req.body.player_name;

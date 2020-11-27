@@ -20,6 +20,8 @@ import StartGame from './StartGame';
 import Map from './Map';
 import Arena from './Arena';
 import Outcome from './Outcome'
+import Credits from './Credits';
+import Instructions from './Instructions';
 
 function Canvas(props) {
 
@@ -29,6 +31,8 @@ function Canvas(props) {
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
   const BOSS = "BOSS";
+  const CREDITS = "CREDITS";
+  const INSTRUCTIONS = "INSTRUCTIONS";
 
   
   //hooks
@@ -45,7 +49,7 @@ function Canvas(props) {
   useEffect(() => {
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
-    soundMedia.current.volume = 0.05; // Make sure you leave the volume setting here - otherwise it's too loud!!
+    soundMedia.current.volume = 0.0; // Make sure you leave the volume setting here - otherwise it's too loud!!
   }, [soundMedia, mode]);
 
   // reset game function
@@ -99,10 +103,16 @@ function Canvas(props) {
           game={game}
         />}
         {mode === OUTCOME && <Outcome 
-        outcome={outcome}
-        soundMedia={soundMedia}
-        setMode={setMode}
-        resetGame={resetGameState}
+          outcome={outcome}
+          soundMedia={soundMedia}
+          setMode={setMode}
+          resetGame={resetGameState}
+        />}
+        {mode === CREDITS && <Credits
+          setMode={setMode}
+        />}
+        {mode === INSTRUCTIONS && <Instructions
+          setMode={setMode}
         />}
       </div>
     </>
