@@ -10,6 +10,7 @@ import useGameMode from "../../hooks/useGameMode";
 import useArena from "../../hooks/useArena";
 import useOutcome from '../../hooks/useOutcome';
 import useGame from '../../hooks/useGame';
+import useMusic from '../../hooks/useMusic';
 
 // Styles
 import './index.scss';
@@ -42,15 +43,18 @@ function Canvas(props) {
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles, setCurrentBattle } = useBattles();
   const { game, setGame, startGame } = useGame(); 
+  const { music, setMusic } = useMusic(); 
 
 
   // Load background music
   const soundMedia = useRef(null);
 
   useEffect(() => {
+    if (music != "OFF") {
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
     soundMedia.current.volume = 0.3; // Make sure you leave the volume setting here - otherwise it's too loud!!
+    }
   }, [soundMedia, mode]);
 
   // reset game function
@@ -70,7 +74,10 @@ function Canvas(props) {
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
-        <MuteButton />
+        <MuteButton 
+        music={music}
+        setMusic={setMusic}
+        />
         {mode === START && <StartGame
           setMode={setMode}
           setGame={setGame}
