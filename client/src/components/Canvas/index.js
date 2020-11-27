@@ -103,6 +103,7 @@ function Canvas(props) {
         soundMedia={soundMedia}
         setMode={setMode}
         resetGame={resetGameState}
+        challenger={arena.challenger_name}
         />}
       </div>
     </>
