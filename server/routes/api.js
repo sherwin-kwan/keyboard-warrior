@@ -110,8 +110,9 @@ module.exports = (fs) => {
     try {
       const data = await myBattle.save();
       console.log('Saved data: ', data);
+      res.status(201).json(myBattle);
     } catch (err) {
-      console.log('Error message: ', err)
+      res.status(500).json({error: err.message});
     }
   });
 
