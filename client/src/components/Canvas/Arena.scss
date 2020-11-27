@@ -25,6 +25,9 @@ main.arena {
 
   .avatar {
     text-align: center;
+    // position: relative;
+    // contain: paint;
+    // transform: scale(1.5, 0.5s);
 
     h2 {
       font-size: 1rem;
@@ -38,18 +41,12 @@ main.arena {
       height: 100px;
       position: absolute;
       visibility: hidden;
-      // animation-name: blink;
-      // animation-duration: 1s;
-      // animation-timing-function: linear;
-      // animation-iteration-count: 1;
-      // animation: blink 1s linear 0s infinite;
+
+      &.challenger {
+        right: 23vw;
+      }
     }
-    img.attack:hover {
-      // animation-name: blink;
-      // animation-duration: 1s;
-      // animation-timing-function: linear;
-      // animation-iteration-count: 1;
-    }
+
     @keyframes blink {
       0% {
         opacity: 1;
