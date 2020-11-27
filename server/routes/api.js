@@ -93,16 +93,32 @@ module.exports = (fs) => {
       .catch(err => res.json(err));
   });
 
-  router.post('/battles', (req, res) => {
-    const battle = req.body;
-    Battle.create({
-      gameId: battle.game_id,
-      arenaId: battle.arena_id,
-      win: battle.win,
-      start_time: battle.start_time,
-      end_time: battle.end_time
-    }).then(data => console.log('Saved data: ', data))
-      .catch(err => console.log('Error message: ', err));
+  router.post('/battles', async (req, res) => {
+    const myBattle = await Battle.build({
+      gameId: req.body.game_id,
+      arenaId: req.body.arena_id,
+      win: req.body.win,
+      start_time: req.body.start_time,
+      end_time: req.body.end_time
+    });
+    if (req.body.win) {
+      const arenaStats = await Arena.findByPk(req.body.arena_id, {
+        include: Difficulty
+      });
+      const { par_time } = arenaStats.Difficulty
+      const multiplier = (myBattle.time_seconds < par_time) ? (par_time / myBattle.time_seconds) : 1;
+      myBattle.score = Math.round(multiplier * arenaStats.points);
+      console.log(`Received score ${myBattle.score} for finishing arena with ${par_time} second par in ${myBattle.time_seconds} seconds.
+      Base score was ${arenaStats.points}`);
+    } else {
+      myBattle.score = 0;
+    }
+    try {
+      const data = await myBattle.save();
+      console.log('Saved data: ', data);
+    } catch (err) {
+      console.log('Error message: ', err)
+    }
   });
 
 
