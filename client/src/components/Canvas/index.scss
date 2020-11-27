@@ -10,15 +10,15 @@
   justify-content: center;
   align-items: center;
   // Set window background image
-  background-image: url('../../images/office-background-pixel.png');
-  background-size: auto 100%;
+  background-image: url('../../images/cyberpunk-1.jpg');
+  background-size: cover;
 
   // Style for Game Border
   main {
     width: 75%;
     height: 80%;
     background-color: #FFF;
-    border: 20px solid #474e5d;
+    border: 20px solid #444;
     border-radius: 25px;
     position: absolute;
   }
@@ -36,7 +36,7 @@
     width: 6px;
     height: 6px;
     border-radius: 6px;
-    background: #a5adbd;
+    background: #d3d3d3;
   }
 
   main:after {
@@ -50,7 +50,7 @@
 
   // Primary button style
   .primary {
-    width: 12rem;
+    width: 15rem;
     margin: 0.5rem;
     padding: 0.5rem;
     border: 1px outset #999;
@@ -70,6 +70,20 @@
   .primary:active {
     box-shadow: 0 2px #666;
     transform: translateY(3px);
+  }
+
+  // Custom scrollbar
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(192, 192, 192, 0.5);
+    border-radius: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(169, 169, 169);
+    border-radius: 12px;
+    border: 3px outset rgba(169, 169, 169, 0.5);
   }
 }
 
