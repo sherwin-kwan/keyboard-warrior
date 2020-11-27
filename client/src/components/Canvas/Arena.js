@@ -178,15 +178,17 @@ function Arena(props) {
       </div>
       <div className="avatar player">
         <Avatar
-          name={props.game.player_name}
+          name={props.game.player_name || 'Player'}
           filename='/images/boss-spirit-fighter.png'
         />
+        <img class="attack player" src="/images/player-attack.png" alt="Player attack animation" />
       </div>
       <div className="avatar challenger">
         <Avatar
           name={props.arena.challenger_name}
           filename={props.arena.challenger_sprite}
         />
+        <img class="attack challenger" src="/images/challenger-attack.png" alt="Challenger attack animation" />
       </div>
       <div className="player-actions">
         <PlayerActionList
