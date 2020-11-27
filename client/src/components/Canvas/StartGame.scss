@@ -6,13 +6,16 @@ main.start-game {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-image: url('../../images/windows-xp-wallpaper-pixel-art-blur-dark.jpg');
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+    url('../../images/windows-xp-wallpaper-pixel-art-blur.jpg');
   background-size: cover;
 
   menu {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0;
   }
 
   input {
