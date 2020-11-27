@@ -44,11 +44,13 @@ function Arena(props) {
     // When finished typing a word, action will equal the name of the action it executes
     if (action) {
       // Show attack animation
-      playerAttackImage.current.style.visibility = 'visible';
-      playerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
-      setTimeout(() => {
-        playerAttackImage.current.style.visibility = 'hidden';
-      }, 1000);
+      if (action.name === 'attack') {
+        playerAttackImage.current.style.visibility = 'visible';
+        playerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
+        setTimeout(() => {
+          playerAttackImage.current.style.visibility = 'hidden';
+        }, 1000);
+      }
       // Grab a new word
       // console.log('ACTION IS: ', action);
       getNextWord(action);
