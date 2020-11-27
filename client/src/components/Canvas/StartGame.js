@@ -23,7 +23,7 @@ function StartGame(props) {
             id="name" 
             placeholder="Enter player name" 
             name="name"
-            />
+            /><br />
           <input className="primary" type="submit" value="Start Game"/>
         </form>
         (Following buttons don't do anything yet:)
