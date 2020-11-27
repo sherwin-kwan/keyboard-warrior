@@ -5,6 +5,10 @@ import React from "react";
 import './StartGame.scss';
 
 function StartGame(props) {
+
+  // Disables Start Game button if empty player name
+  const isDisabled = () => Object.keys(props.game).length === 0 || props.game.player_name.length === 0;
+
   return (
     <main className="start-game">
       <h1>A Typing Game</h1>
@@ -16,15 +20,21 @@ function StartGame(props) {
           }
           }>
           <label htmlFor="name">Player Name:</label>
-          <input 
+          <input
             onChange={(event) => props.setGame({player_name: event.target.value})}
             value={props.game.player_name || ''}
             type="text" 
             id="name" 
             placeholder="Enter player name" 
             name="name"
-            /><br />
-          <input className="primary" type="submit" value="Start Game"/>
+            required
+          /><br />
+          <input
+            className="primary"
+            type="submit"
+            value="Start Game"
+            disabled={isDisabled()}
+          />
         </form>
         <button className="primary" onClick={() => props.setMode("CREDITS")}>Credits</button>
         <button className="primary" onClick={() => props.setMode("INSTRUCTIONS")}>Instructions</button>

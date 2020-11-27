@@ -178,7 +178,7 @@ function Arena(props) {
       </div>
       <div className="avatar player">
         <Avatar
-          name='You'
+          name={props.game.player_name}
           filename='/images/boss-spirit-fighter.png'
         />
       </div>
