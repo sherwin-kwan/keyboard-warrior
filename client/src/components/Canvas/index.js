@@ -50,12 +50,15 @@ function Canvas(props) {
   const soundMedia = useRef(null);
 
   useEffect(() => {
-    if (music != "OFF") {
+    if (music === "ON") {
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
-    soundMedia.current.volume = 0.3; // Make sure you leave the volume setting here - otherwise it's too loud!!
+    soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
+    } else {
+      // soundMedia.current.stop();
+      soundMedia.current.volume = 0.0;
     }
-  }, [soundMedia, mode]);
+  }, [mode, music]);
 
   // reset game function
   const resetGameState = function() {
@@ -70,7 +73,7 @@ function Canvas(props) {
   return (
     <>
       <TempNavBar onClick={setMode} />
-      <audio autoPlay ref={soundMedia} src='/sounds/background-music.ogg' >
+      <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.ogg' >
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
