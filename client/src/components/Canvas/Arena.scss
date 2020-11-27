@@ -33,6 +33,37 @@ main.arena {
     img {
       height: 25vh;
     }
+
+    img.attack {
+      height: 100px;
+      position: absolute;
+      visibility: hidden;
+      // animation-name: blink;
+      // animation-duration: 1s;
+      // animation-timing-function: linear;
+      // animation-iteration-count: 1;
+      // animation: blink 1s linear 0s infinite;
+    }
+    img.attack:hover {
+      // animation-name: blink;
+      // animation-duration: 1s;
+      // animation-timing-function: linear;
+      // animation-iteration-count: 1;
+    }
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      60% {
+        opacity: 0;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
   }
 
   .player-actions {

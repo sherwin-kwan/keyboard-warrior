@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 
 // Components
@@ -35,6 +35,7 @@ function Arena(props) {
   const [challengerTimer, setChallengerTimer] = useState(20);
   const { startBattle, endBattle } = useBattles();
 
+  // Handles player attack
   useEffect(() => {
     // console.log('word match?', handleWordMatch(playerInput, playerActions));
 
@@ -42,6 +43,12 @@ function Arena(props) {
     // console.log('Action is: ', action);
     // When finished typing a word, action will equal the name of the action it executes
     if (action) {
+      // Show attack animation
+      playerAttackImage.current.style.visibility = 'visible';
+      playerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
+      setTimeout(() => {
+        playerAttackImage.current.style.visibility = 'hidden';
+      }, 1000);
       // Grab a new word
       // console.log('ACTION IS: ', action);
       getNextWord(action);
@@ -162,6 +169,8 @@ function Arena(props) {
     }
   }, []);
 
+  const playerAttackImage = useRef(null);
+
   return (
     <main className="arena" >
       <div className="health">
@@ -181,14 +190,23 @@ function Arena(props) {
           name={props.game.player_name || 'Player'}
           filename='/images/boss-spirit-fighter.png'
         />
-        <img class="attack player" src="/images/player-attack.png" alt="Player attack animation" />
+        <img 
+          class="attack player" 
+          src="/images/player-attack.png" 
+          alt="Player attack animation"
+          ref={playerAttackImage}
+        />
       </div>
       <div className="avatar challenger">
         <Avatar
           name={props.arena.challenger_name}
           filename={props.arena.challenger_sprite}
         />
-        <img class="attack challenger" src="/images/challenger-attack.png" alt="Challenger attack animation" />
+        {/* <img 
+          class="attack challenger" 
+          src="/images/challenger-attack.png" 
+          alt="Challenger attack animation" 
+        /> */}
       </div>
       <div className="player-actions">
         <PlayerActionList
