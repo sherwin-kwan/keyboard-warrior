@@ -23,7 +23,7 @@ function Outcome(props) {
 
   return (
     <>
-      {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame}/>}
+      {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} soundMedia={props.soundMedia} />}
       {outcome === LOSEBATTLE && <LoseBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
       {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} />}
       {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} resetGame={props.resetGame}/>}

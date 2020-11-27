@@ -86,7 +86,6 @@ function Canvas(props) {
           arena={arena}
           arenas={arenas}
           setArenas={setArenas}
-          setBattles={setBattles}
           game={game}
         />}
         {mode === BOSS && <Arena
@@ -97,7 +96,6 @@ function Canvas(props) {
           arena={handleBossArena()}
           arenas={arenas}
           setArenas={setArenas}
-          setBattles={setBattles}
           game={game}
         />}
         {mode === OUTCOME && <Outcome 

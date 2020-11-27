@@ -14,7 +14,8 @@ export default function useGame() {
 
     axios.post('/api/games', newGame)
       .then(data => {
-        const newGameId = data.data.id
+        // The API will send back the ID returned from the database. This can be stored in state
+        const newGameId = data.data
         setGame((prev) => {
           return {
             ...prev,
@@ -22,7 +23,7 @@ export default function useGame() {
           }
         })
       })
-      .catch(err => console.log("Error putsing Game data: ", err));
+      .catch(err => console.log("Error posting Game data: ", err));
   }
 
   return { game, setGame, startGame };
