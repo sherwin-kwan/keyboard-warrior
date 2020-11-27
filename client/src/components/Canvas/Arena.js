@@ -130,11 +130,17 @@ function Arena(props) {
     }
   }, [health])
 
-
+  // Handles Challenger Attack
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
   useEffect(() => {
     const interval = setInterval(() => {
       if (challengerTimer == 0) {
+        // Show attack animation
+        challengerAttackImage.current.style.visibility = 'visible';
+        challengerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
+        setTimeout(() => {
+          challengerAttackImage.current.style.visibility = 'hidden';
+        }, 1000);
         setChallengerTimer(19);
         // console.log('CHALLENGER LAUNCHED AN ATTACK');
         changeHealth('player', -props.arena.Difficulty.damage_per_hit);
@@ -172,6 +178,7 @@ function Arena(props) {
   }, []);
 
   const playerAttackImage = useRef(null);
+  const challengerAttackImage = useRef(null);
 
   return (
     <main className="arena" >
@@ -195,7 +202,7 @@ function Arena(props) {
         <img 
           class="attack player" 
           src="/images/player-attack.png" 
-          alt="Player attack animation"
+          alt="Player attack"
           ref={playerAttackImage}
         />
       </div>
@@ -204,11 +211,12 @@ function Arena(props) {
           name={props.arena.challenger_name}
           filename={props.arena.challenger_sprite}
         />
-        {/* <img 
+        <img 
           class="attack challenger" 
           src="/images/challenger-attack.png" 
-          alt="Challenger attack animation" 
-        /> */}
+          alt="Challenger attack" 
+          ref={challengerAttackImage}
+        />
       </div>
       <div className="player-actions">
         <PlayerActionList
