@@ -8,6 +8,13 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+// Load .env data into process.env
+const ENV = process.env.NODE_ENV || "development";
+const PATH = path.resolve(__dirname, "./.env." + ENV);
+console.log('Path is: ', PATH);
+require("dotenv").config({ path: PATH });
+
+
 // Database
 const { sequelize } = require('./models');
 
@@ -23,13 +30,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 
-// Load .env data into process.env
-const ENV = process.env.NODE_ENV || "development";
-const PATH = path.resolve(__dirname, "./.env." + ENV);
-require("dotenv").config({ path: PATH });
 
 // Constants
 const PORT = process.env.PORT || 3001;
+
+console.log('ENV is: ', process.env.DATABASE_URL);
 
 const testSequelize = async() => {
   try {
