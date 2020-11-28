@@ -33,7 +33,7 @@ function Arena(props) {
   const { handleWordMatch } = useInputMatcher();
   // Timings for the challenger's attacks
   const [challengerTimer, setChallengerTimer] = useState(20);
-  const { startBattle, endBattle } = useBattles();
+  const { startBattle, endBattle, style, handleAttackAnimation } = useBattles();
 
   // Handles player attack
   useEffect(() => {
@@ -45,11 +45,12 @@ function Arena(props) {
     if (action) {
       // Show attack animation
       if (action.name === 'attack') {
-        playerAttackImage.current.style.visibility = 'visible';
-        playerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
-        setTimeout(() => {
-          playerAttackImage.current.style.visibility = 'hidden';
-        }, 1000);
+        handleAttackAnimation('player');
+        // playerAttackImage.current.style.visibility = 'visible';
+        // playerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
+        // setTimeout(() => {
+        //   playerAttackImage.current.style.visibility = 'hidden';
+        // }, 1000);
       }
       // Grab a new word
       // console.log('ACTION IS: ', action);
@@ -136,11 +137,12 @@ function Arena(props) {
     const interval = setInterval(() => {
       if (challengerTimer == 0) {
         // Show attack animation
-        challengerAttackImage.current.style.visibility = 'visible';
-        challengerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
-        setTimeout(() => {
-          challengerAttackImage.current.style.visibility = 'hidden';
-        }, 1000);
+        handleAttackAnimation('challenger');
+        // challengerAttackImage.current.style.visibility = 'visible';
+        // challengerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
+        // setTimeout(() => {
+        //   challengerAttackImage.current.style.visibility = 'hidden';
+        // }, 1000);
         setChallengerTimer(19);
         // console.log('CHALLENGER LAUNCHED AN ATTACK');
         changeHealth('player', -props.arena.Difficulty.damage_per_hit);
@@ -177,8 +179,9 @@ function Arena(props) {
     }
   }, []);
 
-  const playerAttackImage = useRef(null);
-  const challengerAttackImage = useRef(null);
+  // const playerAttackImage = useRef(null);
+  // const challengerAttackImage = useRef(null);
+  console.log('style', style);
 
   return (
     <main className="arena" >
@@ -203,7 +206,8 @@ function Arena(props) {
           class="attack player" 
           src="/images/player-attack.png" 
           alt="Player attack"
-          ref={playerAttackImage}
+          style={style.player}
+          // ref={playerAttackImage}
         />
       </div>
       <div className="avatar challenger">
@@ -215,7 +219,8 @@ function Arena(props) {
           class="attack challenger" 
           src="/images/challenger-attack.png" 
           alt="Challenger attack" 
-          ref={challengerAttackImage}
+          style={style.challenger}
+          // ref={challengerAttackImage}
         />
       </div>
       <div className="player-actions">

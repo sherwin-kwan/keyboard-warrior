@@ -6,6 +6,7 @@ import axios from "axios";
 export default function useBattles() {
 
   const [currentBattle, setCurrentBattle] = useState({});
+  const [style, setStyle] = useState({ player: {}, challenger: {} });
 
   function startBattle(game_id, arena_id) {
     const battle = {
@@ -28,5 +29,33 @@ export default function useBattles() {
       .catch(err => console.log("Error Posting Battle:", err))
   }
 
-  return { startBattle, endBattle, setCurrentBattle };
+  function handleAttackAnimation(attacker) {
+    const animation = {
+      visibility: 'visible',
+      animation: 'blink 1s steps(4, end) 0s infinite'
+    };
+    const hide = { visibility: 'hidden '};
+
+    if (attacker === 'player') {
+      setStyle(prev => {
+        return { ...prev, player: animation }
+      });
+      setTimeout(() => {
+        setStyle(prev => {
+          return { ...prev, player: hide }
+        });
+      }, 1000);
+    } else if (attacker === 'challenger') {
+      setStyle(prev => {
+        return { ...prev, challenger: animation }
+      });
+      setTimeout(() => {
+        setStyle(prev => {
+          return { ...prev, challenger: hide }
+        });
+      }, 1000);
+    }
+  }
+
+  return { startBattle, endBattle, setCurrentBattle, style, handleAttackAnimation };
 }

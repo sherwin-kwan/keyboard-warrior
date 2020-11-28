@@ -38,9 +38,11 @@ main.arena {
       height: 100px;
       position: absolute;
       visibility: hidden;
+      z-index: 2;
 
       &.challenger {
         right: 23vw;
+        z-index: 1;
       }
     }
 
