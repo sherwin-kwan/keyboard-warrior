@@ -157,7 +157,6 @@ function Arena(props) {
     startBattle(props.game.id, props.arena.id);
     // Get word list and action list
     try {
-      axios.defaults.baseURL = 'http://localhost:3001';
       const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
       const initialWordsState = rawWords.data.map((action, ind) => {
         console.log('Attempting to retrieve words for', ind, playerActions);
