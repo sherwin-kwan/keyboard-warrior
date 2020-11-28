@@ -103,7 +103,7 @@ module.exports = (fs) => {
       OFFSET :offset;
       `, {
         type: QueryTypes.SELECT,
-        replacements: { offset: req.body.page * 10 || 0 }
+        replacements: { offset: req.query.page * 10 || 0 }
       });
       res.json(data);
     } catch (err) {

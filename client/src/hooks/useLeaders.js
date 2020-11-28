@@ -10,7 +10,7 @@ export default function useLeaders(page) {
   }]);
 
   async function getLeaders(page) {
-    const appendString = page  ? `&page=${page}`: '';
+    const appendString = page  ? `?page=${page}`: '';
     axios.defaults.baseURL = 'http://localhost:3001';
     const leaders = await axios.get(`/api/leaders${appendString}`);
     setLeaders(leaders.data);
