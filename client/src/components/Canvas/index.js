@@ -57,6 +57,12 @@ function Canvas(props) {
 
   useEffect(() => {
     if (music === "ON") {
+      if (mode === "OUTCOME") {
+        soundMedia.current.loop = false;
+        console.log('PLAYING MUSIC!!');
+        soundMedia.current.play();
+        soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
+      }
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
     soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
