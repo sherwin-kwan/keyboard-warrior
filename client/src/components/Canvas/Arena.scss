@@ -1,6 +1,5 @@
 @import '../../styles/variables.scss';
 
-/* Note that this stylesheet is loaded on all screens. Put all style rules into main.map to prevent it from affecting, say, the arena screen */
 // Styling for everything on Arena screen
 
 main.arena {
@@ -32,6 +31,35 @@ main.arena {
 
     img {
       height: 25vh;
+    }
+
+    // Hide and position attack images
+    img.action {
+      height: 100px;
+      position: absolute;
+      visibility: hidden;
+      z-index: 2;
+
+      &.challenger {
+        right: 23vw;
+        z-index: 1;
+      }
+    }
+
+    // Attack animations
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      60% {
+        opacity: 0;
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
     }
   }
 
