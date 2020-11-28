@@ -49,7 +49,7 @@ function Canvas(props) {
   useEffect(() => {
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
-    soundMedia.current.volume = 0; // Make sure you leave the volume setting here - otherwise it's too loud!!
+    soundMedia.current.volume = 0.02; // Make sure you leave the volume setting here - otherwise it's too loud!!
   }, [soundMedia, mode]);
 
   // reset game function
@@ -107,6 +107,8 @@ function Canvas(props) {
           soundMedia={soundMedia}
           setMode={setMode}
           resetGame={resetGameState}
+          arena={arena.name}
+          challenger={arena.challenger_name}
         />}
         {mode === CREDITS && <Credits
           setMode={setMode}

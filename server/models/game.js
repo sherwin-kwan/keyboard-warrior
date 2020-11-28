@@ -10,10 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Battle);
     }
   };
   Game.init({
-    player_name: DataTypes.STRING
+    player_name: DataTypes.STRING,
+    win: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Game',

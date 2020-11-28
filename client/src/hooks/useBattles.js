@@ -14,18 +14,23 @@ export default function useBattles() {
       start_time: new Date()
     };
     console.log('battle', battle)
-    setCurrentBattle(battle);  
+    setCurrentBattle(battle);
   }
 
-  function endBattle(win) {
+  async function endBattle(win) {
     const battle = {
       ...currentBattle,
       win,
       end_time: new Date()
     };
-    axios.post('/api/battles', battle)
-      .then(() => setCurrentBattle(battle))
-      .catch(err => console.log("Error Posting Battle:", err))
+    try {
+      const res = await axios.post('/api/battles', battle);
+      setCurrentBattle(battle);
+      console.log('SCORE IS: ', res.data.score);
+      return res.data.score;
+    } catch (err) {
+      console.log("Error Posting Battle:", err)
+    }
   }
 
   return { startBattle, endBattle, setCurrentBattle };
