@@ -121,6 +121,8 @@ function Canvas(props) {
           setArenas={setArenas}
           game={game}
         />}
+        {mode === WIN_TRANSITION && <WinTransition />}
+        {mode === LOSE_TRANSITION && <LoseTransition />}
         {mode === OUTCOME && <Outcome 
           outcome={outcome}
           soundMedia={soundMedia}

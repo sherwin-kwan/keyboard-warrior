@@ -92,10 +92,9 @@ function Arena(props) {
   
   */
 
-
   async function handleBattleOver() {
     if (health.player === 0) {
-      props.setMode("OUTCOME");
+      props.setMode("LOSE_TRANSITION");
       console.log('The battle is over, loss');
       if (props.arena.name === "Boss") {
         props.setOutcome('LOSEGAMETOBOSS');
@@ -109,8 +108,9 @@ function Arena(props) {
       }
       const returnedScore = await endBattle(false);
       props.setScore(prev => prev + returnedScore);
+      props.setMode("OUTCOME")
     } else if (health.challenger === 0) {
-      props.setMode("OUTCOME");
+      props.setMode("WIN_TRANSITION");
       console.log('The battle is over, win');
       if (props.arena.name === "Boss") {
         props.setOutcome('WINGAME');
@@ -126,6 +126,7 @@ function Arena(props) {
       }
       const returnedScore = await endBattle(true);
       props.setScore(prev => prev + returnedScore);
+      props.setMode("OUTCOME");
     }
   };
 

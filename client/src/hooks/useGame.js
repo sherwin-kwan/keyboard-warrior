@@ -31,7 +31,7 @@ export default function useGame() {
   async function updateScore() {
     try {
       const res = await axios.get(`/api/game/${game.id}`);
-      setScore(res.data[0].score);
+      setScore(Number(res.data[0].score));
     } catch (err) {
       console.log(err.message);
       setScore(NaN); // Signifies that score could not be found
