@@ -42,10 +42,10 @@ function Arena(props) {
     const action = handleWordMatch(playerInput, playerActions);
     // console.log('Action is: ', action);
     // When finished typing a word, action will equal the name of the action it executes
+    let animationTimer;
     if (action) {
       // Show action animation
-      handleAttackAnimation('player', action.name);
-
+      animationTimer = handleAttackAnimation('player', action.name);
       // Grab a new word
       // console.log('ACTION IS: ', action);
       getNextWord(action);
@@ -59,7 +59,8 @@ function Arena(props) {
       };
       // Clear the text box
       setPlayerInput('');
-    };
+    }
+    return () => clearTimeout(animationTimer);
   }, [playerInput]);
 
   // Helper functions
