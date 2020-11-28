@@ -10,6 +10,7 @@ import useGameMode from "../../hooks/useGameMode";
 import useArena from "../../hooks/useArena";
 import useOutcome from '../../hooks/useOutcome';
 import useGame from '../../hooks/useGame';
+import useMusic from '../../hooks/useMusic';
 
 // Styles
 import './index.scss';
@@ -22,6 +23,7 @@ import Arena from './Arena';
 import Outcome from './Outcome'
 import Credits from './Credits';
 import Instructions from './Instructions';
+import MuteButton from './MuteButton';
 
 function Canvas(props) {
 
@@ -41,16 +43,22 @@ function Canvas(props) {
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles, setCurrentBattle } = useBattles();
   const { game, setGame, startGame } = useGame(); 
+  const { music, setMusic } = useMusic(); 
 
 
   // Load background music
   const soundMedia = useRef(null);
 
   useEffect(() => {
+    if (music === "ON") {
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
-    soundMedia.current.volume = 0.02; // Make sure you leave the volume setting here - otherwise it's too loud!!
-  }, [soundMedia, mode]);
+    soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
+    } else {
+      // soundMedia.current.stop();
+      soundMedia.current.volume = 0.0;
+    }
+  }, [mode, music]);
 
   // reset game function
   const resetGameState = function() {
@@ -65,10 +73,14 @@ function Canvas(props) {
   return (
     <>
       <TempNavBar onClick={setMode} />
-      <audio autoPlay ref={soundMedia} src='/sounds/background-music.ogg' >
+      <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.ogg' >
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
+        <MuteButton 
+        music={music}
+        setMusic={setMusic}
+        />
         {mode === START && <StartGame
           setMode={setMode}
           setGame={setGame}
