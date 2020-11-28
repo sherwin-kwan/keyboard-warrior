@@ -107,7 +107,7 @@ function Arena(props) {
         }
       }
       const returnedScore = await endBattle(false);
-      props.setScore(prev => prev + returnedScore);
+      props.setLastResult(returnedScore);
       props.setMode("OUTCOME")
     } else if (health.challenger === 0) {
       props.setMode("WIN_TRANSITION");
@@ -125,7 +125,7 @@ function Arena(props) {
         }
       }
       const returnedScore = await endBattle(true);
-      props.setScore(prev => prev + returnedScore);
+      props.setLastResult(returnedScore);
       props.setMode("OUTCOME");
     }
   };

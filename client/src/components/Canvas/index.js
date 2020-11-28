@@ -24,6 +24,8 @@ import Outcome from './Outcome'
 import Credits from './Credits';
 import Instructions from './Instructions';
 import MuteButton from './MuteButton';
+import WinTransition from './WinTransition';
+import LoseTransition from './LoseTransition';
 
 // Contexts
 // import GameContext from '../../helpers/gameContext';
@@ -38,6 +40,8 @@ function Canvas(props) {
   const BOSS = "BOSS";
   const CREDITS = "CREDITS";
   const INSTRUCTIONS = "INSTRUCTIONS";
+  const WIN_TRANSITION = "WIN_TRANSITION";
+  const LOSE_TRANSITION = "LOSE_TRANSITION";
 
   
   //hooks
@@ -45,7 +49,7 @@ function Canvas(props) {
   const { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles, setCurrentBattle } = useBattles();
-  const { game, setGame, startGame, score, setScore, updateScore } = useGame(); 
+  const { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult } = useGame(); 
   const { music, setMusic } = useMusic(); 
 
   // Load background music
@@ -100,6 +104,7 @@ function Canvas(props) {
           arenasBeaten={countArenasBeaten(arenas)} />
         }
         {mode === ARENA && <Arena
+          setLastResult={setLastResult}
           setOutcome={setOutcome}
           setScore={setScore}
           initialPlayerHealth = {100}
@@ -125,6 +130,7 @@ function Canvas(props) {
         {mode === LOSE_TRANSITION && <LoseTransition />}
         {mode === OUTCOME && <Outcome 
           outcome={outcome}
+          lastResult={lastResult}
           soundMedia={soundMedia}
           setMode={setMode}
           score={score}

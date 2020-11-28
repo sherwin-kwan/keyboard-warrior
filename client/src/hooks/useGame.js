@@ -5,6 +5,7 @@ export default function useGame() {
 
   const [game, setGame] = useState({});
   const [score, setScore] = useState(0);
+  const [lastResult, setLastResult] = useState(0);
 
   function startGame(name) {
     console.log("NAME WHEN IN HOOK IS A: ", typeof name, "NAME: ", name)
@@ -38,5 +39,5 @@ export default function useGame() {
     }
   }
 
-  return { game, setGame, startGame, score, setScore, updateScore };
+  return { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult };
 }

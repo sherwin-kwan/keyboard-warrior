@@ -16,6 +16,7 @@ const WinGame = (props) => {
     <main className="outcome win-game">
       <p className="message">
         <h1>YOU WON!</h1>
+        <p>With your victory, you earned {props.lastResult} points.</p>
         <p>You beat the boss and won the game with {props.score} points.</p>
         <Leaderboard leaders={props.leaders} />
         <button className="primary" onClick={() => {

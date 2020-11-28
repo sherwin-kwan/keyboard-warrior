@@ -30,18 +30,18 @@ function Outcome(props) {
 
   // Fetch leaders and total score from database on component mount
   useEffect(() => {
-    // props.updateScore();
+    props.updateScore();
     getLeaders();
   }, []);
 
   return (
     <>
-      {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} leaders={leaders} score={props.score} soundMedia={props.soundMedia} />}
-      {outcome === LOSEBATTLE && <LoseBattle setMode={props.setMode} soundMedia={props.soundMedia} score={props.score} />}
-      {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} challenger={props.challenger} score={props.score}/>}
-      {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} score={props.score} resetGame={props.resetGame}/>}
-      {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} score={props.score} resetGame={props.resetGame}/>}
-      {outcome === WINALLARENAS && <WinAllArenas setMode={props.setMode} score={props.score} soundMedia={props.soundMedia} />}
+      {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} leaders={leaders} score={props.score} lastResult={props.lastResult} soundMedia={props.soundMedia} />}
+      {outcome === LOSEBATTLE && <LoseBattle setMode={props.setMode} soundMedia={props.soundMedia} lastResult={props.lastResult} score={props.score} />}
+      {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} challenger={props.challenger} lastResult={props.lastResult} score={props.score}/>}
+      {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.lastResult} score={props.score} resetGame={props.resetGame}/>}
+      {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.lastResult} score={props.score} resetGame={props.resetGame}/>}
+      {outcome === WINALLARENAS && <WinAllArenas setMode={props.setMode} score={props.score} soundMedia={props.soundMedia} lastResult={props.lastResult} />}
       {outcome === PENDING && <main>Oops, looks like an error occurred. The result state shouldn't be pending!</main>}
     </>
   );
