@@ -13,6 +13,10 @@
   background-image: url('../../images/cyberpunk-1.jpg');
   background-size: cover;
 
+  .mute-music {
+    align-self: flex-start;
+  }
+
   // Style for Game Border
   main {
     width: 75%;
