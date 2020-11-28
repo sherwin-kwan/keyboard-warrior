@@ -1,5 +1,5 @@
 // Libraries
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 // Components
@@ -43,15 +43,9 @@ function Arena(props) {
     // console.log('Action is: ', action);
     // When finished typing a word, action will equal the name of the action it executes
     if (action) {
-      // Show attack animation
-      if (action.name === 'attack') {
-        handleAttackAnimation('player');
-        // playerAttackImage.current.style.visibility = 'visible';
-        // playerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
-        // setTimeout(() => {
-        //   playerAttackImage.current.style.visibility = 'hidden';
-        // }, 1000);
-      }
+      // Show action animation
+      handleAttackAnimation('player', action.name);
+
       // Grab a new word
       // console.log('ACTION IS: ', action);
       getNextWord(action);
@@ -138,11 +132,6 @@ function Arena(props) {
       if (challengerTimer == 0) {
         // Show attack animation
         handleAttackAnimation('challenger');
-        // challengerAttackImage.current.style.visibility = 'visible';
-        // challengerAttackImage.current.style.animation = 'blink 1s steps(4, end) 0s infinite'
-        // setTimeout(() => {
-        //   challengerAttackImage.current.style.visibility = 'hidden';
-        // }, 1000);
         setChallengerTimer(19);
         // console.log('CHALLENGER LAUNCHED AN ATTACK');
         changeHealth('player', -props.arena.Difficulty.damage_per_hit);
@@ -179,10 +168,6 @@ function Arena(props) {
     }
   }, []);
 
-  // const playerAttackImage = useRef(null);
-  // const challengerAttackImage = useRef(null);
-  console.log('style', style);
-
   return (
     <main className="arena" >
       <div className="health">
@@ -203,11 +188,16 @@ function Arena(props) {
           filename='/images/boss-spirit-fighter.png'
         />
         <img 
-          class="attack player" 
+          class="action player" 
           src="/images/player-attack.png" 
-          alt="Player attack"
-          style={style.player}
-          // ref={playerAttackImage}
+          alt="Player attacks"
+          style={style.player.attack}
+        />
+        <img 
+          class="action player"
+          src="/images/player-heal.png"
+          alt="Player heals"
+          style={style.player.heal}
         />
       </div>
       <div className="avatar challenger">
@@ -216,11 +206,10 @@ function Arena(props) {
           filename={props.arena.challenger_sprite}
         />
         <img 
-          class="attack challenger" 
+          class="action challenger" 
           src="/images/challenger-attack.png" 
-          alt="Challenger attack" 
+          alt="Challenger attacks" 
           style={style.challenger}
-          // ref={challengerAttackImage}
         />
       </div>
       <div className="player-actions">
