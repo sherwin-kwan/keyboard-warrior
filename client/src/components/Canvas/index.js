@@ -53,12 +53,17 @@ function Canvas(props) {
     if (music === "ON") {
     console.log('PLAYING MUSIC!!');
     soundMedia.current.play();
+<<<<<<< HEAD
     soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
     } else {
       // soundMedia.current.stop();
       soundMedia.current.volume = 0.0;
     }
   }, [mode, music]);
+=======
+    soundMedia.current.volume = 0.02; // Make sure you leave the volume setting here - otherwise it's too loud!!
+  }, [soundMedia, mode]);
+>>>>>>> a02fde896e05da552670a4757a1a90cb6a74a768
 
   // reset game function
   const resetGameState = function() {
@@ -119,6 +124,10 @@ function Canvas(props) {
           soundMedia={soundMedia}
           setMode={setMode}
           resetGame={resetGameState}
+<<<<<<< HEAD
+=======
+          arena={arena.name}
+>>>>>>> a02fde896e05da552670a4757a1a90cb6a74a768
           challenger={arena.challenger_name}
         />}
         {mode === CREDITS && <Credits

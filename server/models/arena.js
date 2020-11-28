@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.belongsTo(models.Difficulty);
+      this.hasMany(models.Word);
+      this.hasMany(models.Battle);
     }
   };
   Arena.init({
@@ -28,11 +31,11 @@ module.exports = (sequelize, DataTypes) => {
       field: 'arena_image',
     },
     points: DataTypes.INTEGER,
-    challenger_name: { 
-      type: DataTypes.STRING, 
+    challenger_name: {
+      type: DataTypes.STRING,
       allowNull: false,
       field: 'challenger_name'
-     },
+    },
     challenger_sprite: {
       type: DataTypes.STRING,
       field: 'challenger_sprite'

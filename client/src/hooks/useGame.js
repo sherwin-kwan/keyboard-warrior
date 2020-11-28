@@ -26,5 +26,15 @@ export default function useGame() {
       .catch(err => console.log("Error posting Game data: ", err));
   }
 
+  async function getScore(id) {
+    try {
+      const res = await axios.get(`/api/games/${id}`);
+      return res.data.score
+    } catch (err) {
+      console.log(err.message);
+      return -1; // Signifies that score could not be found
+    }
+  }
+
   return { game, setGame, startGame };
 }

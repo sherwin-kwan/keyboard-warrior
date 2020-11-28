@@ -92,7 +92,7 @@ function Arena(props) {
 
     if (health.player === 0) {
       props.setMode("OUTCOME");
-      endBattle({win: false});
+      endBattle(false);
       if (props.arena.name === "Boss") {
         props.setOutcome('LOSEGAMETOBOSS');
       } else {
@@ -104,7 +104,7 @@ function Arena(props) {
         }
       }
     } else if (health.challenger === 0) {
-      endBattle({win: true});
+      endBattle(true);
       props.setMode("OUTCOME");
       if (props.arena.name === "Boss") {
         props.setOutcome('WINGAME');
@@ -178,7 +178,7 @@ function Arena(props) {
       </div>
       <div className="avatar player">
         <Avatar
-          name='You'
+          name={props.game.player_name}
           filename='/images/boss-spirit-fighter.png'
         />
       </div>
