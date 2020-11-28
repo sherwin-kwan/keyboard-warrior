@@ -79,7 +79,7 @@ module.exports = (fs) => {
     // select sum(score) from battles where game_id = X;
     try {
       const data = await Battle.findAll({
-        attributes: [[sequelize.fn('SUM', sequelize.col('score')), 'score']],
+        attributes: [[sequelize.fn('COALESCE', sequelize.fn('SUM', sequelize.col('score')), 0), 'score']],
         where: {
           game_id: req.params.id
         }
