@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Leaderboard from '../../Leaderboard';
 
 // Only a template, it is currently not possible to reach this page since boss hasn't been created yet
 const WinGame = (props) => {
@@ -15,36 +16,7 @@ const WinGame = (props) => {
       <p className="message">
         <h1>YOU WON!</h1>
         <p>You beat the boss and won the game! You now have a position on the game leaderboard.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Player</th>
-              <th>Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Sherwin</td>
-              <td>4000</td>
-            </tr>
-            <tr>
-              <td>Jillian</td>
-              <td>3999</td>
-            </tr>
-            <tr>
-              <td>Helen</td>
-              <td>3998</td>
-            </tr>
-            <tr>
-              <td>Rick Astley</td>
-              <td>30</td>
-            </tr>
-            <tr>
-              <td>You!!</td>
-              <td>20</td>
-            </tr>
-          </tbody>
-        </table>
+        <Leaderboard />
         <button className="primary" onClick={() => {
           props.resetGame()
           }}>Back to Start</button>

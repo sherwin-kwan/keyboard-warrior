@@ -90,16 +90,21 @@ module.exports = (fs) => {
     }
   })
 
-  router.get('/games', async function (req, res) {
-    // Gets the data for the leaderboard
+  router.get('/leaders', async function (req, res) {
+    // Gets the data for the leaderboard. Later on, can support multiple pages
     try {
       const data = await sequelize.query(`SELECT player_name, SUM(score) AS score
       FROM battles JOIN games ON battles.game_id = games.id
       WHERE score IS NOT NULL
       AND games.win = true
       GROUP BY game_id, games.player_name
-      ORDER BY score DESC;
-      `, { type: QueryTypes.SELECT });
+      ORDER BY score DESC
+      LIMIT 10
+      OFFSET :offset;
+      `, {
+        type: QueryTypes.SELECT,
+        replacements: { offset: req.body.page * 10 || 0 }
+      });
       res.json(data);
     } catch (err) {
       res.status(500).send(err.message);
@@ -146,7 +151,7 @@ module.exports = (fs) => {
       console.log('Saved data: ', data);
       res.status(201).json(myBattle);
     } catch (err) {
-      res.status(500).json({error: err.message});
+      res.status(500).json({ error: err.message });
     }
   });
 
