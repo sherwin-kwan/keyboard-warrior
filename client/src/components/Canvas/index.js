@@ -112,6 +112,7 @@ function Canvas(props) {
         />}
         {mode === BOSS && <Arena
           setOutcome={setOutcome}
+          setScore={setScore}
           initialPlayerHealth = {100}
           challengerHealth = {100}
           setMode={setMode}

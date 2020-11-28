@@ -14,7 +14,7 @@ const WinBattle = (props) => {
       <p className="message">
         <h1>VICTORY</h1>
         <p>Congrats, you have triumphed over {props.challenger}!</p>
-        <p>You currently have {props.score} points.</p>
+        <p>With your victory, you earned {props.score} points.</p>
         <button className="primary" onClick={() => props.setMode('MAP')}>Choose Next Battle</button>
       </p>
     </main>
