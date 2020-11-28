@@ -27,7 +27,6 @@ export default function useBattles() {
     try {
       const res = await axios.post('/api/battles', battle);
       setCurrentBattle(battle);
-      console.log('SCORE IS: ', res.data.score);
       return res.data.score;
     } catch (err) {
       console.log("Error Posting Battle:", err)

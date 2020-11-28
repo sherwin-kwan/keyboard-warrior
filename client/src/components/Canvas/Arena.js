@@ -108,7 +108,7 @@ function Arena(props) {
         }
       }
       const returnedScore = await endBattle(false);
-      props.setScore(returnedScore);
+      props.setScore(prev => prev + returnedScore);
     } else if (health.challenger === 0) {
       props.setMode("OUTCOME");
       console.log('The battle is over, win');
@@ -125,7 +125,7 @@ function Arena(props) {
         }
       }
       const returnedScore = await endBattle(true);
-      props.setScore(returnedScore);
+      props.setScore(prev => prev + returnedScore);
     }
   };
 
