@@ -73,7 +73,7 @@ function Arena(props) {
       return newHealth;
     });
   };
-  
+
   /*
   1. health.player === 0 && !MORETHAN 3 ARENAS LOST => LOSE THE BATTLE => DEFEAT SCREEN THAT LINKS BACK TO MAP
   2. health.player === 0 && MORE THAN 3 ARENAS LOST => LOSE THE GAME, BUT NOT TO THE BOSS => DEFEAT SCREEN WITH RIDICULE THAT LINKS BACK TO THE START SCREEN (AND CLEAR THE GAME STATE)
@@ -91,41 +91,43 @@ function Arena(props) {
   6. WinGame.js  - EXISTS
   
   */
-  
 
- async function handleBattleOver() {
-  if (health.player === 0) {
-    const returnedScore = await endBattle(false);
-    props.setScore(returnedScore);
-    props.setMode("OUTCOME");
-    if (props.arena.name === "Boss") {
-      props.setOutcome('LOSEGAMETOBOSS');
-    } else {
-      if (countArenasLost(props.arenas) >= 2) {
-        props.setOutcome('LOSEGAMENOTBOSS');
+
+  async function handleBattleOver() {
+    if (health.player === 0) {
+      console.log('The battle is over, loss');
+      const returnedScore = await endBattle(false);
+      props.setScore(returnedScore);
+      props.setMode("OUTCOME");
+      if (props.arena.name === "Boss") {
+        props.setOutcome('LOSEGAMETOBOSS');
       } else {
-        props.setOutcome('LOSEBATTLE');
-        props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, false))
+        if (countArenasLost(props.arenas) >= 2) {
+          props.setOutcome('LOSEGAMENOTBOSS');
+        } else {
+          props.setOutcome('LOSEBATTLE');
+          props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, false))
+        }
+      }
+    } else if (health.challenger === 0) {
+      console.log('The battle is over, win');
+      const returnedScore = await endBattle(true);
+      props.setScore(returnedScore);
+      props.setMode("OUTCOME");
+      if (props.arena.name === "Boss") {
+        props.setOutcome('WINGAME');
+      } else {
+        if (countArenasBeaten(props.arenas) >= 4) {
+          console.log('won more than 4 arenas, go to boss!')
+          props.setOutcome('WINALLARENAS');
+          props.setMode("OUTCOME");
+        } else {
+          props.setOutcome('WINBATTLE');
+          props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, true))
+        }
       }
     }
-  } else if (health.challenger === 0) {
-    const returnedScore = await endBattle(true);
-    props.setScore(returnedScore);
-    props.setMode("OUTCOME");
-    if (props.arena.name === "Boss") {
-      props.setOutcome('WINGAME');
-    } else {
-      if (countArenasBeaten(props.arenas) >= 4 ) {
-        console.log('won more than 4 arenas, go to boss!')
-        props.setOutcome('WINALLARENAS');
-        props.setMode("OUTCOME");
-      } else {
-        props.setOutcome('WINBATTLE');
-        props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, true))
-      }
-    }
-  }
-};
+  };
 
   useEffect(() => {
     handleBattleOver();
@@ -167,7 +169,7 @@ function Arena(props) {
       const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
       const initialWordsState = rawWords.data.map((action, ind) => {
         console.log('Attempting to retrieve words for', ind, playerActions);
-        return {...action, word: action.words[0]};
+        return { ...action, word: action.words[0] };
       });
       setPlayerActions(initialWordsState);
     } catch (err) {
@@ -194,13 +196,13 @@ function Arena(props) {
           name={props.game.player_name || 'Player'}
           filename='/images/boss-spirit-fighter.png'
         />
-        <img 
-          class="action player" 
-          src="/images/player-attack.png" 
+        <img
+          class="action player"
+          src="/images/player-attack.png"
           alt="Player attacks"
           style={style.player.attack}
         />
-        <img 
+        <img
           class="action player"
           src="/images/player-heal.png"
           alt="Player heals"
@@ -212,10 +214,10 @@ function Arena(props) {
           name={props.arena.challenger_name}
           filename={props.arena.challenger_sprite}
         />
-        <img 
-          class="action challenger" 
-          src="/images/challenger-attack.png" 
-          alt="Challenger attacks" 
+        <img
+          class="action challenger"
+          src="/images/challenger-attack.png"
+          alt="Challenger attacks"
           style={style.challenger}
         />
       </div>
