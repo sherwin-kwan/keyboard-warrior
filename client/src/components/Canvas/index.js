@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 
 //helpers
 import { countArenasBeaten, countArenasLost } from "../../helpers/countArenasCompleted";
@@ -25,6 +25,9 @@ import Credits from './Credits';
 import Instructions from './Instructions';
 import MuteButton from './MuteButton';
 
+// Contexts
+// import GameContext from '../../helpers/gameContext';
+
 function Canvas(props) {
 
   // Modes
@@ -44,7 +47,6 @@ function Canvas(props) {
   const { battles, setBattles, setCurrentBattle } = useBattles();
   const { game, setGame, startGame, score, updateScore } = useGame(); 
   const { music, setMusic } = useMusic(); 
-
 
   // Load background music
   const soundMedia = useRef(null);
@@ -121,6 +123,8 @@ function Canvas(props) {
           outcome={outcome}
           soundMedia={soundMedia}
           setMode={setMode}
+          score={score}
+          updateScore={updateScore}
           resetGame={resetGameState}
           arena={arena.name}
           challenger={arena.challenger_name}

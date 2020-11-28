@@ -14,11 +14,9 @@ import './Map.scss';
 
 function Map(props) {
 
-  console.log('Rendering map');
-
   useEffect(() => {
     props.updateScore();
-  }, []);
+  }, [props.game]);
 
   return (
     <main className="map">
