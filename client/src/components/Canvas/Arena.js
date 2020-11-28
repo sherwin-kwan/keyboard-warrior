@@ -51,7 +51,7 @@ function Arena(props) {
           changeHealth('challenger', -10);
           break;
         case 'heal':
-          changeHealth('player', 10);
+          changeHealth('player', 20);
       };
       // Clear the text box
       setPlayerInput('');
