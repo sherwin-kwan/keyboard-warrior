@@ -33,8 +33,9 @@ function Arena(props) {
   const { handleWordMatch } = useInputMatcher();
   // Timings for the challenger's attacks
   const [challengerTimer, setChallengerTimer] = useState(20);
-  const { startBattle, endBattle } = useBattles();
+  const { startBattle, endBattle, style, handleAttackAnimation } = useBattles();
 
+  // Handles player attack
   useEffect(() => {
     // console.log('word match?', handleWordMatch(playerInput, playerActions));
 
@@ -42,6 +43,9 @@ function Arena(props) {
     // console.log('Action is: ', action);
     // When finished typing a word, action will equal the name of the action it executes
     if (action) {
+      // Show action animation
+      handleAttackAnimation('player', action.name);
+
       // Grab a new word
       // console.log('ACTION IS: ', action);
       getNextWord(action);
@@ -121,11 +125,13 @@ function Arena(props) {
     }
   }, [health])
 
-
+  // Handles Challenger Attack
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
   useEffect(() => {
     const interval = setInterval(() => {
       if (challengerTimer == 0) {
+        // Show attack animation
+        handleAttackAnimation('challenger');
         setChallengerTimer(19);
         // console.log('CHALLENGER LAUNCHED AN ATTACK');
         changeHealth('player', -props.arena.Difficulty.damage_per_hit);
@@ -178,14 +184,32 @@ function Arena(props) {
       </div>
       <div className="avatar player">
         <Avatar
-          name={props.game.player_name}
+          name={props.game.player_name || 'Player'}
           filename='/images/boss-spirit-fighter.png'
+        />
+        <img 
+          class="action player" 
+          src="/images/player-attack.png" 
+          alt="Player attacks"
+          style={style.player.attack}
+        />
+        <img 
+          class="action player"
+          src="/images/player-heal.png"
+          alt="Player heals"
+          style={style.player.heal}
         />
       </div>
       <div className="avatar challenger">
         <Avatar
           name={props.arena.challenger_name}
           filename={props.arena.challenger_sprite}
+        />
+        <img 
+          class="action challenger" 
+          src="/images/challenger-attack.png" 
+          alt="Challenger attacks" 
+          style={style.challenger}
         />
       </div>
       <div className="player-actions">
