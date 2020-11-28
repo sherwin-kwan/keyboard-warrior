@@ -140,8 +140,9 @@ function Arena(props) {
   // Gets the next word from the randomized list of words
   const getNextWord = (action) => {
     const actionIndex = playerActions.indexOf(action);
+    console.log('action', action);
     // Get next word or restart from beginning of word list
-    (wordIndex[actionIndex] === action.words.length - 2) ? wordIndex[actionIndex] = 0 : wordIndex[actionIndex]++;
+    (wordIndex[actionIndex] === action.words.length - 1) ? wordIndex[actionIndex] = 0 : wordIndex[actionIndex]++;
     playerActions[actionIndex].word = playerActions[actionIndex]["words"][wordIndex[actionIndex]];
   }
 
