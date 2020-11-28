@@ -25,8 +25,7 @@ import Outcome from './Outcome'
 import Credits from './Credits';
 import Instructions from './Instructions';
 import MuteButton from './MuteButton';
-import WinTransition from './WinTransition';
-import LoseTransition from './LoseTransition';
+import Transition from './Transition';
 
 // Contexts
 // import GameContext from '../../helpers/gameContext';
@@ -44,14 +43,14 @@ function Canvas(props) {
   const WIN_TRANSITION = "WIN_TRANSITION";
   const LOSE_TRANSITION = "LOSE_TRANSITION";
 
-  
+
   //hooks
   const { mode, setMode } = useGameMode("START")
   const { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles, setCurrentBattle } = useBattles();
-  const { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult } = useGame(); 
-  const { music, setMusic } = useMusic(); 
+  const { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult } = useGame();
+  const { music, setMusic } = useMusic();
   const { leaders, getLeaders } = useLeaders();
 
   // Load background music
@@ -65,9 +64,9 @@ function Canvas(props) {
         soundMedia.current.play();
         soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
       }
-    console.log('PLAYING MUSIC!!');
-    soundMedia.current.play();
-    soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
+      console.log('PLAYING MUSIC!!');
+      soundMedia.current.play();
+      soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
     } else {
       // soundMedia.current.stop();
       soundMedia.current.volume = 0.0;
@@ -75,7 +74,7 @@ function Canvas(props) {
   }, [mode, music]);
 
   // reset game function
-  const resetGameState = function() {
+  const resetGameState = function () {
     setMode("START");
     setGame({});
     setArena([])
@@ -91,9 +90,9 @@ function Canvas(props) {
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
-        <MuteButton 
-        music={music}
-        setMusic={setMusic}
+        <MuteButton
+          music={music}
+          setMusic={setMusic}
         />
         {mode === START && <StartGame
           setMode={setMode}
@@ -115,8 +114,8 @@ function Canvas(props) {
           setLastResult={setLastResult}
           setOutcome={setOutcome}
           setScore={setScore}
-          initialPlayerHealth = {100}
-          challengerHealth = {100}
+          initialPlayerHealth={100}
+          challengerHealth={100}
           setMode={setMode}
           arena={arena}
           arenas={arenas}
@@ -127,19 +126,18 @@ function Canvas(props) {
           setLastResult={setLastResult}
           setOutcome={setOutcome}
           setScore={setScore}
-          initialPlayerHealth = {100}
-          challengerHealth = {100}
+          initialPlayerHealth={100}
+          challengerHealth={100}
           setMode={setMode}
           arena={handleBossArena()}
           arenas={arenas}
           setArenas={setArenas}
           game={game}
         />}
-        {mode === WIN_TRANSITION && <WinTransition 
+        {mode === TRANSITION && <Transition
+          outcome={outcome}
         />}
-        {mode === LOSE_TRANSITION && <LoseTransition 
-        />}
-        {mode === OUTCOME && <Outcome 
+        {mode === OUTCOME && <Outcome
           outcome={outcome}
           lastResult={lastResult}
           soundMedia={soundMedia}
