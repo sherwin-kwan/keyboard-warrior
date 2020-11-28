@@ -11,6 +11,7 @@ import useArena from "../../hooks/useArena";
 import useOutcome from '../../hooks/useOutcome';
 import useGame from '../../hooks/useGame';
 import useMusic from '../../hooks/useMusic';
+import useLeaders from '../../hooks/useLeaders';
 
 // Styles
 import './index.scss';
@@ -51,6 +52,7 @@ function Canvas(props) {
   const { battles, setBattles, setCurrentBattle } = useBattles();
   const { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult } = useGame(); 
   const { music, setMusic } = useMusic(); 
+  const { leaders, getLeaders } = useLeaders();
 
   // Load background music
   const soundMedia = useRef(null);
@@ -122,6 +124,7 @@ function Canvas(props) {
           game={game}
         />}
         {mode === BOSS && <Arena
+          setLastResult={setLastResult}
           setOutcome={setOutcome}
           setScore={setScore}
           initialPlayerHealth = {100}
@@ -132,8 +135,10 @@ function Canvas(props) {
           setArenas={setArenas}
           game={game}
         />}
-        {mode === WIN_TRANSITION && <WinTransition />}
-        {mode === LOSE_TRANSITION && <LoseTransition />}
+        {mode === WIN_TRANSITION && <WinTransition 
+        />}
+        {mode === LOSE_TRANSITION && <LoseTransition 
+        />}
         {mode === OUTCOME && <Outcome 
           outcome={outcome}
           lastResult={lastResult}

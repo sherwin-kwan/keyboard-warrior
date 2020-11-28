@@ -28,7 +28,6 @@ function Outcome(props) {
   // State Hooks
   const { leaders, getLeaders } = useLeaders();
 
-  // Fetch leaders and total score from database on component mount
   useEffect(() => {
     props.updateScore();
     getLeaders();
