@@ -27,15 +27,15 @@ export default function useGame() {
       .catch(err => console.log("Error posting Game data: ", err));
   }
 
-  async function getScore() {
+  async function updateScore() {
     try {
-      const res = await axios.get(`/api/games/${game.id}`);
+      const res = await axios.get(`/api/game/${game.id}`);
       setScore(res.data[0].score);
     } catch (err) {
       console.log(err.message);
-      setScore(-1); // Signifies that score could not be found
+      setScore(NaN); // Signifies that score could not be found
     }
   }
 
-  return { game, setGame, startGame, score, getScore };
+  return { game, setGame, startGame, score, updateScore };
 }
