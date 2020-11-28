@@ -19,11 +19,7 @@ function StartGame(props) {
           props.setMode("MAP")
           }
           }>
-<<<<<<< HEAD
           <label htmlFor="name">Player Name:</label><br/>
-=======
-          <label htmlFor="name">Player Name:</label>
->>>>>>> a02fde896e05da552670a4757a1a90cb6a74a768
           <input 
             onChange={(event) => props.setGame({player_name: event.target.value})}
             value={props.game.player_name || ''}
