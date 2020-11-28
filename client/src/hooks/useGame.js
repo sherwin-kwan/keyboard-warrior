@@ -3,7 +3,8 @@ import axios from 'axios';
 
 export default function useGame() {
 
-  const [game, setGame] = useState({})
+  const [game, setGame] = useState({});
+  const [score, setScore] = useState(0);
 
   function startGame(name) {
     console.log("NAME WHEN IN HOOK IS A: ", typeof name, "NAME: ", name)
@@ -26,15 +27,15 @@ export default function useGame() {
       .catch(err => console.log("Error posting Game data: ", err));
   }
 
-  async function getScore(id) {
+  async function getScore() {
     try {
-      const res = await axios.get(`/api/games/${id}`);
-      return res.data.score
+      const res = await axios.get(`/api/games/${game.id}`);
+      setScore(res.data[0].score);
     } catch (err) {
       console.log(err.message);
-      return -1; // Signifies that score could not be found
+      setScore(-1); // Signifies that score could not be found
     }
   }
 
-  return { game, setGame, startGame };
+  return { game, setGame, startGame, score, getScore };
 }

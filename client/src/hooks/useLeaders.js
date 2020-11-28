@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-export default function useLeaders() {
+export default function useLeaders(page) {
 
   // Initialize state as empty array. Leaders will hold an array of up to 10 people's names and their scores.
   const [leaders, setLeaders] = useState([{
@@ -10,7 +10,8 @@ export default function useLeaders() {
   }]);
 
   async function getLeaders(page) {
-    const appendString = page  && `&page=${page}`;
+    const appendString = page  ? `&page=${page}`: '';
+    axios.defaults.baseURL = 'http://localhost:3001';
     const leaders = await axios.get(`/api/leaders${appendString}`);
     setLeaders(leaders.data);
   };

@@ -1,10 +1,18 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
+import useLeaders from '../hooks/useLeaders';
 
 const Leaderboard = (props) => {
 
-  const leaderStats = await getLeaders();
-  console.log('Stats are: ', leaderStats);
+  console.log('Rendering leaderboard');
+
+  const leaderStats = props.leaders.map(leader => {
+    return (
+      <tr>
+        <td>{leader.player_name}</td>
+        <td>{leader.score}</td>
+      </tr>
+    )
+  });
 
   return (<table>
     <thead>
@@ -14,26 +22,7 @@ const Leaderboard = (props) => {
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Sherwin</td>
-        <td>4000</td>
-      </tr>
-      <tr>
-        <td>Jillian</td>
-        <td>3999</td>
-      </tr>
-      <tr>
-        <td>Helen</td>
-        <td>3998</td>
-      </tr>
-      <tr>
-        <td>Rick Astley</td>
-        <td>30</td>
-      </tr>
-      <tr>
-        <td>You!!</td>
-        <td>20</td>
-      </tr>
+      {leaderStats}
     </tbody>
   </table>);
 };
