@@ -15,7 +15,9 @@
     "j-seed": "npx sequelize-cli db:seed --seed 20201124224403-jillian-words.js",
     "j-undo": "npx sequelize-cli db:seed:undo --seed 20201124224403-jillian-words.js",
     "s-seed": "npx sequelize-cli db:seed --seed 20201124224325-sherwin-words.js",
-    "s-undo": "npx sequelize-cli db:seed:undo --seed 20201124224325-sherwin-words.js"
+    "s-undo": "npx sequelize-cli db:seed:undo --seed 20201124224325-sherwin-words.js",
+    "b-seed": "npx sequelize-cli db:seed --seed 20201126185910-boss-challenger.js",
+    "b-undo": "npx sequelize-cli db:seed:undo 20201126185910-boss-challenger.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

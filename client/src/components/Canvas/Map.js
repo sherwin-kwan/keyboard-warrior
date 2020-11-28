@@ -14,9 +14,10 @@ import './Map.scss';
 
 function Map(props) {
 
-  const { score, updateScore } = useGame();
+  console.log('Rendering map');
+
   useEffect(() => {
-    updateScore();
+    props.updateScore();
   }, []);
 
   return (
@@ -30,7 +31,7 @@ function Map(props) {
         arena={props.arena}
         setArena={props.setArena}
       />
-      <p>You currently have {score} points. Keep it up!</p>
+      <p>You currently have {props.score} points. Keep it up!</p>
     </main>
   );
 }

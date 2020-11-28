@@ -17,7 +17,7 @@ export default function useGame() {
       .then(data => {
         // The API will send back the ID returned from the database. This can be stored in state
         const newGameId = data.data
-        console.log('NEw id is: ', newGameId);
+        console.log('New id is: ', newGameId);
         setGame((prev) => {
           return {
             ...prev,

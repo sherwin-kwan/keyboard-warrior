@@ -42,7 +42,7 @@ function Canvas(props) {
   const { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles, setCurrentBattle } = useBattles();
-  const { game, setGame, startGame } = useGame(); 
+  const { game, setGame, startGame, score, updateScore } = useGame(); 
   const { music, setMusic } = useMusic(); 
 
 
@@ -89,6 +89,9 @@ function Canvas(props) {
         }
         {mode === MAP && <Map
           setGameMode={setMode}
+          score={score}
+          game={game}
+          updateScore={updateScore}
           arena={arena}
           arenas={arenas}
           setArena={setArena}
