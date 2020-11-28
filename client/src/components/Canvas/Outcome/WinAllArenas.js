@@ -15,6 +15,7 @@ const WinAllArenas = (props) => {
       <p className="message">
         <h1>YOU WON!</h1>
         <p>You beat 5 levels! That means you now enter the arena with the boss. Win this fight and you win the game. Good luck!</p>
+        <p>Heading into the final fight, you currently have {props.score} points.</p>
         <button className="primary" onClick={() => {
           props.setMode('BOSS')
           //Set the challenger to the boss

@@ -92,37 +92,43 @@ function Arena(props) {
   
   */
   
-  useEffect(() => {
 
-    if (health.player === 0) {
-      props.setMode("OUTCOME");
-      endBattle(false);
-      if (props.arena.name === "Boss") {
-        props.setOutcome('LOSEGAMETOBOSS');
+ async function handleBattleOver() {
+  if (health.player === 0) {
+    const returnedScore = await endBattle(false);
+    props.setScore(returnedScore);
+    props.setMode("OUTCOME");
+    if (props.arena.name === "Boss") {
+      props.setOutcome('LOSEGAMETOBOSS');
+    } else {
+      if (countArenasLost(props.arenas) >= 2) {
+        props.setOutcome('LOSEGAMENOTBOSS');
       } else {
-        if (countArenasLost(props.arenas) >= 2) {
-          props.setOutcome('LOSEGAMENOTBOSS');
-        } else {
-          props.setOutcome('LOSEBATTLE');
-          props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, false))
-        }
-      }
-    } else if (health.challenger === 0) {
-      endBattle(true);
-      props.setMode("OUTCOME");
-      if (props.arena.name === "Boss") {
-        props.setOutcome('WINGAME');
-      } else {
-        if (countArenasBeaten(props.arenas) >= 4 ) {
-          console.log('won more than 4 arenas, go to boss!')
-          props.setOutcome('WINALLARENAS');
-          props.setMode("OUTCOME");
-        } else {
-          props.setOutcome('WINBATTLE');
-          props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, true))
-        }
+        props.setOutcome('LOSEBATTLE');
+        props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, false))
       }
     }
+  } else if (health.challenger === 0) {
+    const returnedScore = await endBattle(true);
+    props.setScore(returnedScore);
+    props.setMode("OUTCOME");
+    if (props.arena.name === "Boss") {
+      props.setOutcome('WINGAME');
+    } else {
+      if (countArenasBeaten(props.arenas) >= 4 ) {
+        console.log('won more than 4 arenas, go to boss!')
+        props.setOutcome('WINALLARENAS');
+        props.setMode("OUTCOME");
+      } else {
+        props.setOutcome('WINBATTLE');
+        props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, true))
+      }
+    }
+  }
+};
+
+  useEffect(() => {
+    handleBattleOver();
   }, [health])
 
   // Handles Challenger Attack

@@ -45,7 +45,7 @@ function Canvas(props) {
   const { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { battles, setBattles, setCurrentBattle } = useBattles();
-  const { game, setGame, startGame, score, updateScore } = useGame(); 
+  const { game, setGame, startGame, score, setScore, updateScore } = useGame(); 
   const { music, setMusic } = useMusic(); 
 
   // Load background music
@@ -101,6 +101,7 @@ function Canvas(props) {
         }
         {mode === ARENA && <Arena
           setOutcome={setOutcome}
+          setScore={setScore}
           initialPlayerHealth = {100}
           challengerHealth = {100}
           setMode={setMode}

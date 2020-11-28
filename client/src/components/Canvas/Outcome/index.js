@@ -30,7 +30,7 @@ function Outcome(props) {
 
   // Fetch leaders and total score from database on component mount
   useEffect(() => {
-    props.updateScore();
+    // props.updateScore();
     getLeaders();
   }, []);
 

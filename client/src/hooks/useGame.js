@@ -38,5 +38,5 @@ export default function useGame() {
     }
   }
 
-  return { game, setGame, startGame, score, updateScore };
+  return { game, setGame, startGame, score, setScore, updateScore };
 }
