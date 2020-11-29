@@ -2,6 +2,5 @@
 
 base = "client"
 publish = "public"
-NODE_VERSION = "14.x"
-NODE_ENV = "production"
+environment = { NODE_ENV = "production", NODE_VERSION = "14.x" }
 command = "CI=false npm run build"
