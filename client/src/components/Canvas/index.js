@@ -40,8 +40,7 @@ function Canvas(props) {
   const BOSS = "BOSS";
   const CREDITS = "CREDITS";
   const INSTRUCTIONS = "INSTRUCTIONS";
-  const WIN_TRANSITION = "WIN_TRANSITION";
-  const LOSE_TRANSITION = "LOSE_TRANSITION";
+  const TRANSITION = "TRANSITION";
 
 
   //hooks
