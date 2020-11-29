@@ -140,4 +140,14 @@ main.map {
       }
     }
   }
+
+  p.score {
+    background-color: yellow;
+    padding: 0.5rem;
+
+    strong {
+      font-size: 2em;
+      color: blue;
+    }
+  }
 }

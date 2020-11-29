@@ -73,7 +73,7 @@ function Arena(props) {
       return newHealth;
     });
   };
-  
+
   /*
   1. health.player === 0 && !MORETHAN 3 ARENAS LOST => LOSE THE BATTLE => DEFEAT SCREEN THAT LINKS BACK TO MAP
   2. health.player === 0 && MORE THAN 3 ARENAS LOST => LOSE THE GAME, BUT NOT TO THE BOSS => DEFEAT SCREEN WITH RIDICULE THAT LINKS BACK TO THE START SCREEN (AND CLEAR THE GAME STATE)
@@ -91,12 +91,9 @@ function Arena(props) {
   6. WinGame.js  - EXISTS
   
   */
-  
-  useEffect(() => {
 
+  async function handleBattleOver() {
     if (health.player === 0) {
-      props.setMode("OUTCOME");
-      endBattle(false);
       if (props.arena.name === "Boss") {
         props.setOutcome('LOSEGAMETOBOSS');
       } else {
@@ -107,13 +104,15 @@ function Arena(props) {
           props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, false))
         }
       }
+      props.setMode("TRANSITION");
+      const returnedScore = await endBattle(false);
+      props.setLastResult(returnedScore);
+      props.setMode("OUTCOME")
     } else if (health.challenger === 0) {
-      endBattle(true);
-      props.setMode("OUTCOME");
       if (props.arena.name === "Boss") {
         props.setOutcome('WINGAME');
       } else {
-        if (countArenasBeaten(props.arenas) >= 4 ) {
+        if (countArenasBeaten(props.arenas) >= 4) {
           console.log('won more than 4 arenas, go to boss!')
           props.setOutcome('WINALLARENAS');
           props.setMode("OUTCOME");
@@ -122,7 +121,15 @@ function Arena(props) {
           props.setArenas(updateToArenaCompleted(props.arenas, props.arena.name, true))
         }
       }
+      props.setMode("TRANSITION");
+      const returnedScore = await endBattle(true);
+      props.setLastResult(returnedScore);
+      props.setMode("OUTCOME");
     }
+  };
+
+  useEffect(() => {
+    handleBattleOver();
   }, [health])
 
   // Handles Challenger Attack
@@ -161,7 +168,7 @@ function Arena(props) {
       const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
       const initialWordsState = rawWords.data.map((action, ind) => {
         console.log('Attempting to retrieve words for', ind, playerActions);
-        return {...action, word: action.words[0]};
+        return { ...action, word: action.words[0] };
       });
       setPlayerActions(initialWordsState);
     } catch (err) {
@@ -188,13 +195,13 @@ function Arena(props) {
           name={props.game.player_name || 'Player'}
           filename='/images/boss-spirit-fighter.png'
         />
-        <img 
-          class="action player" 
-          src="/images/player-attack.png" 
+        <img
+          class="action player"
+          src="/images/player-attack.png"
           alt="Player attacks"
           style={style.player.attack}
         />
-        <img 
+        <img
           class="action player"
           src="/images/player-heal.png"
           alt="Player heals"
@@ -206,10 +213,10 @@ function Arena(props) {
           name={props.arena.challenger_name}
           filename={props.arena.challenger_sprite}
         />
-        <img 
-          class="action challenger" 
-          src="/images/challenger-attack.png" 
-          alt="Challenger attacks" 
+        <img
+          class="action challenger"
+          src="/images/challenger-attack.png"
+          alt="Challenger attacks"
           style={style.challenger}
         />
       </div>

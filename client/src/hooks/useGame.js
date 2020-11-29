@@ -3,7 +3,9 @@ import axios from 'axios';
 
 export default function useGame() {
 
-  const [game, setGame] = useState({})
+  const [game, setGame] = useState({});
+  const [score, setScore] = useState(0);
+  const [lastResult, setLastResult] = useState(0);
 
   function startGame(name) {
     console.log("NAME WHEN IN HOOK IS A: ", typeof name, "NAME: ", name)
@@ -16,6 +18,7 @@ export default function useGame() {
       .then(data => {
         // The API will send back the ID returned from the database. This can be stored in state
         const newGameId = data.data
+        console.log('New id is: ', newGameId);
         setGame((prev) => {
           return {
             ...prev,
@@ -26,15 +29,15 @@ export default function useGame() {
       .catch(err => console.log("Error posting Game data: ", err));
   }
 
-  async function getScore(id) {
+  async function updateScore() {
     try {
-      const res = await axios.get(`/api/games/${id}`);
-      return res.data.score
+      const res = await axios.get(`/api/game/${game.id}`);
+      setScore(Number(res.data[0].score));
     } catch (err) {
       console.log(err.message);
-      return -1; // Signifies that score could not be found
+      setScore(NaN); // Signifies that score could not be found
     }
   }
 
-  return { game, setGame, startGame };
+  return { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult };
 }

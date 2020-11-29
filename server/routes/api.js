@@ -79,7 +79,7 @@ module.exports = (fs) => {
     // select sum(score) from battles where game_id = X;
     try {
       const data = await Battle.findAll({
-        attributes: [[sequelize.fn('SUM', sequelize.col('score')), 'score']],
+        attributes: [[sequelize.fn('COALESCE', sequelize.fn('SUM', sequelize.col('score')), 0), 'score']],
         where: {
           game_id: req.params.id
         }
@@ -90,16 +90,21 @@ module.exports = (fs) => {
     }
   })
 
-  router.get('/games', async function (req, res) {
-    // Gets the data for the leaderboard
+  router.get('/leaders', async function (req, res) {
+    // Gets the data for the leaderboard. Later on, can support multiple pages
     try {
       const data = await sequelize.query(`SELECT player_name, SUM(score) AS score
       FROM battles JOIN games ON battles.game_id = games.id
       WHERE score IS NOT NULL
       AND games.win = true
       GROUP BY game_id, games.player_name
-      ORDER BY score DESC;
-      `, { type: QueryTypes.SELECT });
+      ORDER BY score DESC
+      LIMIT 10
+      OFFSET :offset;
+      `, {
+        type: QueryTypes.SELECT,
+        replacements: { offset: req.query.page * 10 || 0 }
+      });
       res.json(data);
     } catch (err) {
       res.status(500).send(err.message);
@@ -146,7 +151,7 @@ module.exports = (fs) => {
       console.log('Saved data: ', data);
       res.status(201).json(myBattle);
     } catch (err) {
-      res.status(500).json({error: err.message});
+      res.status(500).json({ error: err.message });
     }
   });
 
