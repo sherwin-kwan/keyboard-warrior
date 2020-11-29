@@ -2,4 +2,4 @@
 
 base = "client"
 publish = "public"
-command = "npm run build"
+command = "CI=false NODE_VERSION=14.x npm run build"
