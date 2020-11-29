@@ -51,7 +51,7 @@ module.exports = {
         { arena_id: arenas[0].id, action_id: ATTACK, word: "meriadoc" },
         { arena_id: arenas[0].id, action_id: ATTACK, word: "pippin" },
         { arena_id: arenas[0].id, action_id: ATTACK, word: "samwise" },
-        { arena_id: arenas[0].id, action_id: ATTACK, word: "treebeard" },
+        { arena_id: arenas[0].id, action_id: ATTACK, word: "saruman" },
         { arena_id: arenas[0].id, action_id: ATTACK, word: "elrond" },
         { arena_id: arenas[0].id, action_id: ATTACK, word: "arwen" },
         { arena_id: arenas[0].id, action_id: ATTACK, word: "eowyn" },
