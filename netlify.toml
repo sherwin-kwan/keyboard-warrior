@@ -1,6 +1,6 @@
 [build]
 
-base = "client"
-publish = "public"
+base = "client/build"
+publish = ""
 environment = { NODE_ENV = "production", NODE_VERSION = "14.10.1" }
-command = "CI=false npm run build"
+command = ""
