@@ -77,6 +77,7 @@ function Canvas(props) {
     setMode("START");
     setGame({});
     setArena([])
+    setScore(0)
     setArenas(cleanArenas)
     setOutcome("PENDING")
     setCurrentBattle([])
