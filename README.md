@@ -1,5 +1,13 @@
-# word-game
+# keyboard-warrior
 Type your way past many enemies to win the game!
+
+# stack
+
+* Front end: [React](https://github.com/facebook/react) (created with [create-react-app](https://github.com/facebook/create-react-app))
+* API: [Node.js](https://github.com/nodejs/node) + [Express](https://github.com/expressjs/express) (boilerplate code is taken from [express-generator](https://github.com/expressjs/generator))
+* Database: [PostgreSQL](https://github.com/postgres/postgres) connected with [Sequelize](https://github.com/sequelize/sequelize)
+* Other dependencies:
+  * 
 
 # setup
 
