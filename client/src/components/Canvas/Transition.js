@@ -1,4 +1,5 @@
 import React from 'react';
+import "./Transition.scss";
 
 function Transition(props) {
 
@@ -6,7 +7,7 @@ function Transition(props) {
 
   return (
     <main className="transition">
-      <h1>{winningArray.includes(props.outcome) ? 'YOU WON' : 'YOU LOST'}</h1>
+      <img src="/images/status.png" alt="Loading" />
     </main>
   );
 }

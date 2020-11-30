@@ -56,6 +56,7 @@ function Arena(props) {
           break;
         case 'heal':
           changeHealth('player', 20);
+          break;
         default:
       };
       // Clear the text box
@@ -161,97 +162,98 @@ function Arena(props) {
   }
 
   // On first load
-  useEffect(
-    async function getWords () {
-    // Start battle timer
-    startBattle(props.game.id, props.arena.id);
-    // Get word list and action list
-    try {
-      const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
-      const initialWordsState = rawWords.data.map((action, ind) => {
-        console.log('Attempting to retrieve words for', ind, playerActions);
-        return { ...action, word: action.words[0] };
-      });
-      setPlayerActions(initialWordsState);
-    } catch (err) {
-      console.log("Error getting data: ", err);
-    };
+  useEffect(() => {
+    async function getWords() {
+      // Start battle timer
+      startBattle(props.game.id, props.arena.id);
+      // Get word list and action list
+      try {
+        const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
+        const initialWordsState = rawWords.data.map((action, ind) => {
+          console.log('Attempting to retrieve words for', ind, playerActions);
+          return { ...action, word: action.words[0] };
+        });
+        setPlayerActions(initialWordsState);
+      } catch (err) {
+        console.log("Error getting data: ", err);
+      };
+    }
     getWords();
   }, [props.arena.id]);
 
-  return (
-    <main className="arena" >
-      <div className="health">
-        <HealthBar
-          health={health.player}
-          onClick={() => { changeHealth('player', -10) }}
-        />
+return (
+  <main className="arena" >
+    <div className="health">
+      <HealthBar
+        health={health.player}
+        onClick={() => { changeHealth('player', -10) }}
+      />
+    </div>
+    <div className="health">
+      <HealthBar
+        health={health.challenger}
+        onClick={() => { changeHealth('challenger', -10) }}
+      />
+    </div>
+    <div className="avatar player">
+      <Avatar
+        name={props.game.player_name || 'Player'}
+        filename='/images/boss-spirit-fighter.png'
+      />
+      <img
+        className="action player"
+        src="/images/player-attack.png"
+        alt="Player attacks"
+        style={style.player.attack}
+      />
+      <img
+        className="action player"
+        src="/images/player-heal.png"
+        alt="Player heals"
+        style={style.player.heal}
+      />
+    </div>
+    <div className="avatar challenger">
+      <Avatar
+        name={props.arena.challenger_name}
+        filename={props.arena.challenger_sprite}
+      />
+      <img
+        className="action challenger"
+        src="/images/challenger-attack.png"
+        alt="Challenger attacks"
+        style={style.challenger}
+      />
+    </div>
+    <div className="player-actions">
+      <PlayerActionList
+        playerActions={playerActions}
+        playerInput={playerInput}
+      />
+    </div>
+    <div className="challenger-actions">
+      <div className="buttons">
+        <button onClick={() => setAttackTime(1000000000)}>Pause</button>
+        <button onClick={() => setAttackTime(20000)}>Slow</button>
+        <button onClick={() => setAttackTime(2000)}>Normal</button>
       </div>
-      <div className="health">
-        <HealthBar
-          health={health.challenger}
-          onClick={() => { changeHealth('challenger', -10) }}
-        />
-      </div>
-      <div className="avatar player">
-        <Avatar
-          name={props.game.player_name || 'Player'}
-          filename='/images/boss-spirit-fighter.png'
-        />
-        <img
-          className="action player"
-          src="/images/player-attack.png"
-          alt="Player attacks"
-          style={style.player.attack}
-        />
-        <img
-          className="action player"
-          src="/images/player-heal.png"
-          alt="Player heals"
-          style={style.player.heal}
-        />
-      </div>
-      <div className="avatar challenger">
-        <Avatar
-          name={props.arena.challenger_name}
-          filename={props.arena.challenger_sprite}
-        />
-        <img
-          className="action challenger"
-          src="/images/challenger-attack.png"
-          alt="Challenger attacks"
-          style={style.challenger}
-        />
-      </div>
-      <div className="player-actions">
-        <PlayerActionList
-          playerActions={playerActions}
-          playerInput={playerInput}
-        />
-      </div>
-      <div className="challenger-actions">
-        <div className="buttons">
-          <button onClick={() => setAttackTime(1000000000)}>Pause</button>
-          <button onClick={() => setAttackTime(20000)}>Slow</button>
-          <button onClick={() => setAttackTime(2000)}>Normal</button>
-        </div>
-        <ChallengerActionList
-          // actions={{
-          //   timeToAttack: 5
-          // }}
-          attack='/images/sword.png'
-          duration={attackTime / 20}
-          percentage={challengerTimer / 20 * 100}
-        />
-      </div>
-      <div className="typing">
-        <TextInput
-          value={playerInput}
-          onChange={setPlayerInput}
-        />
-      </div>
-    </main >
-  );
+      <ChallengerActionList
+        // actions={{
+        //   timeToAttack: 5
+        // }}
+        attack='/images/sword.png'
+        duration={attackTime / 20}
+        percentage={challengerTimer / 20 * 100}
+      />
+    </div>
+    <div className="typing">
+      <TextInput
+        value={playerInput}
+        onChange={setPlayerInput}
+      />
+    </div>
+  </main >
+);
 }
 
 export default Arena;

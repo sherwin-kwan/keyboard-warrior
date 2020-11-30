@@ -1,5 +1,5 @@
 // Libraries
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 // Components
 import PlayerAction from './PlayerAction';

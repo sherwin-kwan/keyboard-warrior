@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Leaderboard from '../../Leaderboard';
 
 // Only a template, it is currently not possible to reach this page since boss hasn't been created yet

@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 // import ProgressBar from '../ProgressBar';
 import ArenaDoorList from '../ArenaDoorList';
 import { StepProgressBar } from "../MapProgressBar";
-import useGame from '../../hooks/useGame';
 
 // Styles
 import './Map.scss';

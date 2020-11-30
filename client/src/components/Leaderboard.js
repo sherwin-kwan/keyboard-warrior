@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import useLeaders from '../hooks/useLeaders';
+import React from 'react';
 
 const Leaderboard = (props) => {
 
