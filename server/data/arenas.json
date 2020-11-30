@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Hogwarts",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "EASY",
+    "difficulty_icon": "/images/green-diamond.png",
+    "points": 2,
+    "points_icon": "/images/coin-one.png"
+  },
+  {
+    "name": "Indigo Plateau",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "EASY",
+    "difficulty_icon": "/images/green-diamond.png",
+    "points": 2,
+    "points_icon": "/images/coin-one.png"
+  },
+  {
+    "name": "Minas Tirith",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "EASY",
+    "difficulty_icon": "/images/green-diamond.png",
+    "points": 2,
+    "points_icon": "/images/coin-one.png"
+  },
+  {
+    "name": "Final Destination",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "MEDIUM",
+    "difficulty_icon": "/images/yellow-diamond.png",
+    "points": 5,
+    "points_icon": "/images/coin-two.png"
+  },
+  {
+    "name": "Hotel California",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/boss-spirit-fighter.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "MEDIUM",
+    "difficulty_icon": "/images/yellow-diamond.png",
+    "points": 5,
+    "points_icon": "/images/coin-two.png"
+  },
+  {
+    "name": "80s Disco",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "MEDIUM",
+    "difficulty_icon": "/images/yellow-diamond.png",
+    "points": 5,
+    "points_icon": "/images/coin-one.png"
+  },
+  {
+    "name": "Nintendo",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "MEDIUM",
+    "difficulty_icon": "/images/yellow-diamond.png",
+    "points": 5,
+    "points_icon": "/images/coin-two.png"
+  },
+  {
+    "name": "NFL",
+    "arena_card": "/images/nfl.jpeg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "HARD",
+    "difficulty_icon": "/images/red-diamond.png",
+    "points": 10,
+    "points_icon": "/images/coin-many.png"
+  },
+  {
+    "name": "Pokemon",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "HARD",
+    "difficulty_icon": "/images/red-diamond.png",
+    "points": 10,
+    "points_icon": "/images/coin-many.png"
+  },
+  {
+    "name": "Puppies",
+    "arena_card": "/images/door.jpg",
+    "background_image": "/images/door.jpg",
+    "background_music": "/sounds/background-music.ogg",
+    "beaten": false,
+    "difficulty": "HARD",
+    "difficulty_icon": "/images/red-diamond.png",
+    "points": 10,
+    "points_icon": "/images/coin-many.png"
+  }
+]
