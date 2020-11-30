@@ -56,6 +56,7 @@ function Arena(props) {
           break;
         case 'heal':
           changeHealth('player', 20);
+        default:
       };
       // Clear the text box
       setPlayerInput('');
@@ -137,7 +138,7 @@ function Arena(props) {
   // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
   useEffect(() => {
     const interval = setInterval(() => {
-      if (challengerTimer == 0) {
+      if (challengerTimer === 0) {
         // Show attack animation
         handleAttackAnimation('challenger');
         setChallengerTimer(19);
@@ -160,7 +161,8 @@ function Arena(props) {
   }
 
   // On first load
-  useEffect(async () => {
+  useEffect(
+    async function getWords () {
     // Start battle timer
     startBattle(props.game.id, props.arena.id);
     // Get word list and action list
@@ -173,8 +175,9 @@ function Arena(props) {
       setPlayerActions(initialWordsState);
     } catch (err) {
       console.log("Error getting data: ", err);
-    }
-  }, []);
+    };
+    getWords();
+  }, [props.arena.id]);
 
   return (
     <main className="arena" >

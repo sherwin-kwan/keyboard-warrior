@@ -40,7 +40,6 @@ function StartGame(props) {
         <button className="primary" onClick={() => props.setMode("INSTRUCTIONS")}>Instructions</button>
         (Buttons below don't do anything yet:)
         <button className="primary">Leaderboards</button>
-        <button className="primary">Settings? Mute?</button>
       </menu>
     </main>
   );

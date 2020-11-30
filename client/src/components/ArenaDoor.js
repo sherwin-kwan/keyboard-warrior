@@ -23,7 +23,7 @@ function ArenaDoor(props) {
 
   return (
     <div className="door">
-      <img className="door-arrow" src="/images/left_arrow_circle.png" onClick={setPreviousDoor} />
+      <img className="door-arrow" alt="Go left" src="/images/left_arrow_circle.png" onClick={setPreviousDoor} />
       <div
         className={doorClassName}
         title={disabled ? `No rematches! Please choose another arena` : `Enter arena`}
@@ -36,8 +36,8 @@ function ArenaDoor(props) {
         <h3>{arena.name}</h3>
         <img
           className="door-image"
+          alt={"Enter " + arena.name}
           src={arena.arena_card}
-          alt={arena.name}
         />
         <footer>
           {!props.beaten &&
@@ -61,7 +61,7 @@ function ArenaDoor(props) {
           {(arena.beaten === false) && <aside>You were defeated!</aside>}
         </footer>
       </div>
-      <img className="door-arrow" src="/images/right_arrow_circle.png" onClick={setNextDoor} />
+      <img className="door-arrow" alt="Go right" src="/images/right_arrow_circle.png" onClick={setNextDoor} />
     </div>
   );
 }
