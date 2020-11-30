@@ -14,14 +14,12 @@ import './styles/index.scss';
 // axios.defaults.baseURL = 'https://keyboard-warrior-api.herokuapp.com/';
 axios.defaults.baseURL = 'http://localhost:3001';
 axios.interceptors.request.use(req => {
-  // console.log('Request:', req);
   return req;
 }, err => {
   console.log('Request Error:', err);
   return Promise.reject(err);
 });
 axios.interceptors.response.use(res => {
-  // console.log('Response:', res);
   return res;
 }, err => {
   console.log('Response Error:', err);

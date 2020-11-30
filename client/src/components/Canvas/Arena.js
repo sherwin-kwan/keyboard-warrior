@@ -109,7 +109,6 @@ function Arena(props) {
         props.setOutcome('WINGAME');
       } else {
         if (countArenasBeaten(props.arenas) >= 4) {
-          console.log('won more than 4 arenas, go to boss!')
           props.setOutcome('WINALLARENAS');
           props.setMode("OUTCOME");
         } else {

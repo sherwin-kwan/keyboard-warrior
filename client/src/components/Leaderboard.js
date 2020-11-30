@@ -2,7 +2,6 @@ import React from 'react';
 
 const Leaderboard = (props) => {
 
-  console.log('Rendering leaderboard');
 
   const leaderStats = props.leaders.map(leader => {
     return (
