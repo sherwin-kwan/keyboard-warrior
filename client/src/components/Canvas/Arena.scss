@@ -57,7 +57,7 @@ main.arena {
     background-color: rgba(255, 255, 255, 0.85);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr 2fr 1fr;
+    grid-template-rows: 1fr 3fr auto 1fr;
     justify-items: center;
     align-items: center;
     border-radius: 0 0 0.5rem 0.5rem;
@@ -71,6 +71,7 @@ main.arena {
     justify-self: center;
     display: flex;
     justify-content: center;
+    margin: 1.5rem 0;
     
     img {
       height: 1.5rem;
@@ -121,44 +122,50 @@ main.arena {
     }
   }
 
+  // Player action list
+
   .player-actions {
     width: 100%;
-    padding-left: 4rem;
+    padding-left: 5vw;
+
     ul {
       padding: 0;
+      margin: 0;
       list-style-type: none;
+
       li {
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         margin: 0.25rem 0;
+
         img {
           height: 2rem;
           width: 2rem;
           padding: 0.1rem;
-          border: 2px outset #999;
-          border-radius: 0.3rem;
-          background: #fff;
+          border: 1px outset grey;
+          border-radius: 0.5rem;
+          background: white;
+          margin-right: 0.5rem;
         }
-        .action-word {
-          line-height: 2rem;
-          margin-left: 0.5rem;
-          text-transform: uppercase;
-          color: #666;
-          text-shadow: 1px 3px 1px #fff;
 
-          div {
-            display: flex;
-            flex-direction: row;
-            pre {
-              display: block;
-              font: inherit;
-              margin: 0px;
-              &.match {
-                color: #f00;
-                text-shadow: 1px 2px 1px #fff;
-                transform: translateY(1px);
-              }
+        .action-word {
+          font-size: 1.4rem;
+          line-height: 2rem;
+          text-transform: uppercase;
+          color: grey;
+          text-shadow: 1px 3px 1px white;
+          
+          pre {
+            display: inline;
+            font: inherit;
+            margin: 0;
+            white-space: pre-wrap;
+  
+            &.match {
+              color: #f00;
+              text-shadow: 1px 2px 1px #fff;
+              transform: translateY(1px);
             }
           }
         }
@@ -166,20 +173,21 @@ main.arena {
     }
   }
 
+  // Player typing box
 
   .typing {
     grid-column: span 2;
 
     input {
       font-family: $primary-font;
-      font-size: 0.8rem;
+      font-size: 1rem;
       text-transform: uppercase;
-      height: 2rem;
-      width: 25vw;
-      background: rgba(255,255,255,0.8);
+      height: 3rem;
+      width: 30vw;
+      background: white;
       outline: none;
       border: 3px outset #999;
-      border-radius: 0.4rem;
+      border-radius: 0.5rem;
       padding: 0.2rem 1rem;
       -webkit-transition: 0.5s;
       transition: width 0.5s ease-in-out;
@@ -187,7 +195,7 @@ main.arena {
 
     input:focus,
     input:hover {
-      width: 40vw;
+      width: 50vw;
     }
     
     input:focus {
@@ -199,14 +207,15 @@ main.arena {
     }
   }
 
+  // Challenger Actions
+
+  // Temporary buttons for development
   div.buttons {
     display: flex;
     align-items: center;
     justify-content: space-around;
   }
-
-  /* Challenger actions */
-
+  
   .challenger-actions {
     margin: 1rem;
 
@@ -223,7 +232,5 @@ main.arena {
   
       /* Note: The timer bar is styled inline using React states. Do not put that here! */
     }
-
   }
-
 }
