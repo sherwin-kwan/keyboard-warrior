@@ -1,10 +1,10 @@
 {
-  "name": "word-game-server",
-  "version": "0.0.0",
+  "name": "keyboard-warrior-server",
+  "version": "0.1",
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "start dev": "nodemon app.js -L",
+    "dev-start": "nodemon app.js -L",
     "test-start": "NODE_ENV=test nodemon app.js -L",
     "db:create-model": "npx sequelize-cli model:generate",
     "db:migrate": "npx sequelize-cli db:migrate",
@@ -27,7 +27,6 @@
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
-    "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",

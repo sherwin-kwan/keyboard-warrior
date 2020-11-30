@@ -11,8 +11,6 @@ export default function useGame() {
     console.log("NAME WHEN IN HOOK IS A: ", typeof name, "NAME: ", name)
 
     const newGame = {player_name: name}
-    
-    axios.defaults.baseURL = 'http://localhost:3001';
 
     axios.post('/api/games', newGame)
       .then(data => {
