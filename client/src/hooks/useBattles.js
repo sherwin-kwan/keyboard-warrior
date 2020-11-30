@@ -44,7 +44,7 @@ export default function useBattles() {
       setStyle(prev => {
         return { ...prev, [attacker]: { [action]: animation } };
       });
-      return setTimeout(() => {
+      setTimeout(() => {
         setStyle(prev => {
           return { ...prev, [attacker]: { [action]: hide } };
         });
@@ -53,7 +53,7 @@ export default function useBattles() {
       setStyle(prev => {
         return { ...prev, [attacker]: animation };
       });
-      return setTimeout(() => {
+      setTimeout(() => {
         setStyle(prev => {
           return { ...prev, [attacker]: hide };
         });
