@@ -186,13 +186,13 @@ function Arena(props) {
           <span class="window-title">{props.arena.name}</span>
         </div>
         <div className="window-content">
-          <div className="health">
+          <div className="health-bar">
             <HealthBar
               health={health.player}
               onClick={() => { changeHealth('player', -10) }}
             />
           </div>
-          <div className="health">
+          <div className="health-bar">
             <HealthBar
               health={health.challenger}
               onClick={() => { changeHealth('challenger', -10) }}

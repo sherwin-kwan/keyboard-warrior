@@ -66,14 +66,15 @@ main.arena {
     box-shadow: 0px 0px 0.5rem grey;
   }
 
-  .health {
-    width: 90%;
+  .health-bar {
+    width: 100%;
     justify-self: center;
-    padding: 0.2rem;
-    background-color: #FFF;
-    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    
     img {
-      height: 2rem;
+      height: 1.5rem;
+      margin-right: 0.5rem;
     }
   }
 
