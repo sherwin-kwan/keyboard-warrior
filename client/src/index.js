@@ -8,7 +8,9 @@ import axios from 'axios';
 // Styles
 import './styles/index.scss';
 
-// Axios configuration
+// Axios configuration.
+// Enter the URL of your API (i.e. the files in the /server folder) here. This can be a local server (which runs on port 3001 by default)
+// Or a server where you have deployed the API.
 axios.defaults.baseURL = 'https://keyboard-warrior-api.herokuapp.com/';
 // axios.defaults.baseURL = 'http://localhost:3001';
 axios.interceptors.request.use(req => {
