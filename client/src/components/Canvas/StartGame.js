@@ -26,6 +26,7 @@ function StartGame(props) {
             id="name" 
             placeholder="Enter player name" 
             name="name"
+            data-cy="enter-name"
             required
           /><br />
           <input
