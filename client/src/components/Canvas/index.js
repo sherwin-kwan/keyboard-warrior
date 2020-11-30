@@ -77,15 +77,14 @@ function Canvas(props) {
     setMode("START");
     setGame({});
     setArena([])
-    setScore(0)
-    setArenas(cleanArenas)
-    setOutcome("PENDING")
-    setCurrentBattle([])
+    setScore(0);
+    setArenas(cleanArenas);
+    setOutcome("PENDING");
+    setCurrentBattle([]);
   }
 
   return (
     <>
-      <TempNavBar onClick={setMode} />
       <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.ogg' >
         Your browser does not support HTML audio.
       </audio>
