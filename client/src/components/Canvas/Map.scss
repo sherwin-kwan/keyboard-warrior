@@ -142,12 +142,14 @@ main.map {
   }
 
   p.score {
-    background-color: yellow;
-    padding: 0.5rem;
+    padding: 0.7rem;
+    border: 3px outset white;
+    // border-radius: 18px;
+    background-color: black;
+    color: white;
 
     strong {
-      font-size: 2em;
-      color: blue;
+      font-size: 1em;
     }
   }
 }

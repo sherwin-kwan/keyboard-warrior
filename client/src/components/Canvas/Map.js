@@ -28,7 +28,7 @@ function Map(props) {
         arena={props.arena}
         setArena={props.setArena}
       />
-      <p className="score">You currently have <strong>{props.score}</strong> points. Keep it up!</p>
+      <p className="score">POINTS: <strong>{props.score}</strong></p>
     </main>
   );
 }

@@ -11,14 +11,14 @@ function StartGame(props) {
 
   return (
     <main className="start-game">
-      <h1>A Typing Game</h1>
+      <h1>Keyboard Warrior</h1>
       <menu>
         <form onSubmit={(event) => {
           event.preventDefault();
           props.onSubmit(props.game.player_name, props.setMode);
           }
           }>
-          <label htmlFor="name">Player Name:</label><br/>
+          <label htmlFor="name">Player Name<span>*</span></label><br/>
           <input 
             onChange={(event) => props.setGame({player_name: event.target.value})}
             value={props.game.player_name || ''}
