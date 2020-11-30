@@ -3,13 +3,68 @@
 // Styling for everything on Arena screen
 
 main.arena {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 3fr 2fr 1fr;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: $arena-background-colour;
-  padding: 1rem;
+  background-image: url('../../images/windows-xp-wallpaper-pixel-art.jpg');
+  background-size: cover;
+  
+  .window {
+    height: 90%;
+    width: 95%;
+  }
+  
+  .window-bar {
+    height: 2rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    background: lightgrey;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid grey;
+    box-shadow: 0px 0px 0.5rem grey;
+    
+    span.dot {
+      display: inline-block;
+      height: 1rem;
+      width: 1rem;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+
+      &.close {
+        background-color: red;
+        border: 1px outset red;
+      }
+
+      &.minimize {
+        background-color: yellow;
+        border: 1px outset yellow;
+      }
+
+      &.maximize {
+        background-color: green;
+        border: 1px outset green;
+      }
+    }
+
+    .window-title {
+      margin: 0 auto;
+    }
+  }
+  
+  .window-content {
+    background-color: rgba(255, 255, 255, 0.85);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 3fr 2fr 1fr;
+    justify-items: center;
+    align-items: center;
+    border-radius: 0 0 0.5rem 0.5rem;
+    border: 1px solid grey;
+    border-top: 0px;
+    box-shadow: 0px 0px 0.5rem grey;
+  }
 
   .health {
     width: 90%;
