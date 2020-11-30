@@ -25,7 +25,8 @@ main.map {
   .door-slider-dots {
     display: flex;
     justify-content: space-evenly;
-    width: 15rem;
+    width: 18rem;
+    cursor: pointer;
 
     img {
       height: 1.5rem;
@@ -47,19 +48,6 @@ main.map {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     overflow: hidden;
-    // scroll-behaviour: smooth;
-    // -webkit-overflow-scrolling: touch;
-
-    // Style slider for doors (not working)
-    // .door-container::-webkit-scrollbar {
-    //   width: 10px;
-    //   height: 10px;
-    // }
-
-    // .door-container::-webkit-scrollbar-thumb {
-    //   background: black;
-    //   border-radius: 10px;
-    // }
 
     .door {
       display: flex;
@@ -72,7 +60,46 @@ main.map {
       .door-arrow {
         align-self: center;
         justify-self: center;
-        height: 100px;
+        height: 80px;
+        cursor: pointer;
+  
+        &.right:hover {
+          animation: bounce-right 1s linear infinite;
+        }
+
+        &.left:hover {
+          animation: bounce-left 1s linear infinite;
+        }
+      }
+
+      @keyframes bounce-right {
+        20% {
+          -webkit-transform: translateX(8px);
+          transform: translateX(8px);
+        }
+        50% {
+          -webkit-transform: translateX(4px);
+          transform: translateX(4px);
+        }
+        100% {
+          -webkit-transform: translateX(0);
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes bounce-left {
+        20% {
+          -webkit-transform: translateX(-8px);
+          transform: translateX(-8px);
+        }
+        50% {
+          -webkit-transform: translateX(-4px);
+          transform: translateX(-4px);
+        }
+        100% {
+          -webkit-transform: translateX(0);
+          transform: translateX(0);
+        }
       }
       
       .card {
