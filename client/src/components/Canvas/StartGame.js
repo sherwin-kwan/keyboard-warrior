@@ -11,7 +11,7 @@ function StartGame(props) {
 
   return (
     <main className="start-game">
-      <h1>A Typing Game</h1>
+      <h1>Keyboard Warrior</h1>
       <menu>
         <form onSubmit={(event) => {
           event.preventDefault()
