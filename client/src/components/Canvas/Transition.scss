@@ -1,0 +1,22 @@
+main.transition {
+  background-image:
+    linear-gradient(rgba(000, 000, 000, 0.3), rgba(000, 000, 000, 0.3)),
+    url('../../images/windows-xp-wallpaper-pixel-art-blur.jpg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  img {
+    height: 150px;
+    animation: rotate 1s linear infinite;
+  }
+
+  // Animation for loading circle
+  @keyframes rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+}
