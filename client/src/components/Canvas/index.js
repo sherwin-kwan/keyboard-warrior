@@ -54,8 +54,8 @@ function Canvas(props) {
 
   useEffect(() => {
     // Set initial music source
-    if (!soundMedia.current.src) {
-      soundMedia.current.src = '/sounds/background-music.ogg';
+    soundMedia.current.src = '/sounds/background-music.ogg';
+    if (soundMedia.current.paused) {
       soundMedia.current.play();
     }
   }, []);
