@@ -36,11 +36,9 @@ function PlayerActionList(props) {
   });
 
   return (
-    <>
-      <ul>
-        {actions}
-      </ul>
-    </>
+    <ul>
+      {actions}
+    </ul>
   )
 }
 
