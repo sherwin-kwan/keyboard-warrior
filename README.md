@@ -1,6 +1,9 @@
 # keyboard-warrior
 Type your way past many enemies to win the game!
 
+![Map screenshot](./client/screenshots/map.png?raw=true "Select arena screen")
+![Arena screenshot](./client/screenshots/arena.png?raw=true "Battle Arena")
+
 # stack
 
 * Front end: [React](https://github.com/facebook/react) (created with [create-react-app](https://github.com/facebook/create-react-app)) with [Sass](https://github.com/sass/sass) for styling
@@ -35,10 +38,7 @@ Notes:
 
 * Music may fail to play properly in some browsers.
 * Leaderboards may not update properly.
-
-## feature, not a bug??
-
-* To make testing easier during development, several "cheats" have been included that allow players to bypass levels of the game. These will eventually be removed.
+* To make testing easier during development, several "cheats" have been included that allow players to bypass levels of the game. Using cheats may cause errors and/or break the game. These will eventually be removed.
 
 # version history
 
