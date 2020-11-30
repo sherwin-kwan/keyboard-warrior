@@ -16,6 +16,10 @@ main.start-game {
     flex-direction: column;
     align-items: center;
     padding: 0;
+    
+    span {
+      color: red;
+    }
   }
 
   input {
@@ -30,6 +34,8 @@ main.start-game {
     border-radius: 18px;
     font-family: $primary-font;
     font-size: small;
+
+    
 
   }
 }
