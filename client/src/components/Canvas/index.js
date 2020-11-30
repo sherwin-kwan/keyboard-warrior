@@ -53,12 +53,24 @@ function Canvas(props) {
   const soundMedia = useRef(null);
 
   useEffect(() => {
-    // Set initial music source
-    soundMedia.current.src = '/sounds/background-music.ogg';
-    if (soundMedia.current.paused) {
-      soundMedia.current.play();
-    }
-  }, []);
+
+    async function playMusic() {
+      
+      // Set initial music source
+      soundMedia.current.src = '/sounds/background-music.ogg';
+
+      // Some browsers do not allow auto-play, if promise rejects send a console log
+      try {
+        await soundMedia.current.play();
+      } catch (err) {
+        console.log('Music could not be played');
+      }
+
+    };
+
+    // Start music if curretly not playing
+    if (soundMedia.current.paused) playMusic();
+  }, [mode]);
 
   useEffect(() => {
     soundMedia.current.volume = music ? 0.1 : 0.0;

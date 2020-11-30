@@ -110,8 +110,8 @@ describe("Navigating the happy path", () => {
 
         // Map No. 4: As a player, I want to know how many battles I need to win and 
         // how many I’ve already won so I know how close I’m getting to the boss fight
-        cy.get('.RSPBstep').eq(0).find('img').should('have.css', 'filter', 'grayscale(0%)');
-        cy.get('.RSPBstep').eq(2).find('img').should('not.have.css', 'filter', 'grayscale(0%)');
+        cy.get('.RSPBstep').eq(0).find('img').should('have.css', 'filter', 'grayscale(0)');
+        cy.get('.RSPBstep').eq(2).find('img').should('not.have.css', 'filter', 'grayscale(0)');
       });
   });
 
