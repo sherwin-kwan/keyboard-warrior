@@ -43,7 +43,7 @@ function ArenaDoor(props) {
           alt={arena.name}
         />
         <footer>
-          {!props.beaten &&
+          {arena.beaten === undefined &&
             <>
               <div className="difficulty">
                 <img
