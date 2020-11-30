@@ -13,7 +13,6 @@ function ArenaDoor(props) {
   const doorClassName = disabled ? "card card-disabled" : "card";
 
   const setPreviousDoor = () => {
-    console.log('Changing to previous door');
     setCurrentDoor(prev => (prev !== 0) ? prev - 1 : prev);
   };
 

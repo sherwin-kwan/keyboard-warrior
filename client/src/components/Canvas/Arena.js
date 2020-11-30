@@ -22,9 +22,7 @@ import useBattles from '../../hooks/useBattles';
 
 function Arena(props) {
 
-  // console.log(props.arena);
   // States
-  // const [words, setWords] = useState([]);
   const [playerActions, setPlayerActions] = useState([]);
   const [wordIndex, setWordIndex] = useState([0, 0]); // [Current attack word index, Current heal word index]
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
@@ -37,17 +35,14 @@ function Arena(props) {
 
   // Handles player attack
   useEffect(() => {
-    // console.log('word match?', handleWordMatch(playerInput, playerActions));
 
     const action = handleWordMatch(playerInput, playerActions);
-    // console.log('Action is: ', action);
     // When finished typing a word, action will equal the name of the action it executes
     let animationTimer;
     if (action) {
       // Show action animation
       animationTimer = handleAttackAnimation('player', action.name);
       // Grab a new word
-      // console.log('ACTION IS: ', action);
       getNextWord(action);
       // Deal damage
       switch (action.name) {
@@ -68,10 +63,8 @@ function Arena(props) {
   // Helper functions
 
   const changeHealth = (fighter, hp) => {
-    // console.log(`${fighter} DAMAGED! for ${hp} hp`);
     setHealth(prev => {
       const newHealth = { ...prev };
-      // Health cannot be deducted past zero or increased past 100
       newHealth[fighter] = Math.min(Math.max(newHealth[fighter] + hp, 0), 100);
       return newHealth;
     });
@@ -143,7 +136,6 @@ function Arena(props) {
         // Show attack animation
         handleAttackAnimation('challenger');
         setChallengerTimer(19);
-        // console.log('CHALLENGER LAUNCHED AN ATTACK');
         changeHealth('player', -props.arena.Difficulty.damage_per_hit);
         // We would eventually put a function for the challenger to attack here
       } else {
@@ -170,7 +162,6 @@ function Arena(props) {
       try {
         const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
         const initialWordsState = rawWords.data.map((action, ind) => {
-          console.log('Attempting to retrieve words for', ind, playerActions);
           return { ...action, word: action.words[0] };
         });
         setPlayerActions(initialWordsState);

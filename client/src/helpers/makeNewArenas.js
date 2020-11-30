@@ -60,20 +60,3 @@ export default function updateToArenaCompleted(arenas, arenaCompleted, winLose) 
   }
   return newArenasObj;
 }
-
-// export function updateToArenaLost(arenas, arenaLost) {
-//   let newArenasObj = []
-//   for (const arena of arenas) {
-//     if (arena.name === arenaLost) {
-//       const newArena = {
-//         ...arena,
-//         lost: true
-//       }
-//       newArenasObj.push(newArena)
-//     } else {
-//       newArenasObj.push(arena)
-//     }
-//   }
-//   return newArenasObj;
-// }
-// console.log(updateToArenaLost(arenas, "Hogwarts"))
