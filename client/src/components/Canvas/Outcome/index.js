@@ -34,7 +34,7 @@ function Outcome(props) {
   useEffect(() => {
     updateScore();
     getLeaders();
-  }, [getLeaders, updateScore]);
+  }, []);
 
   // Set music for win and lose conditions
   useEffect(() => {
