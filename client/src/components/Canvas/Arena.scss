@@ -83,10 +83,12 @@ main.arena {
 
     h2 {
       font-size: 1rem;
+      margin-top: 0;
     }
 
     img {
       height: 25vh;
+      max-width: 100%;
     }
 
     // Hide and position attack images
