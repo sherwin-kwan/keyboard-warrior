@@ -10,7 +10,7 @@ export class StepProgressBar extends React.Component {
     const regularNotch3 = "/images/three.png"
     const regularNotch4 = "/images/four.png"
     const regularNotch5 = "/images/five.png"
-    const playerNotch = "/images/you-are-here.png"
+    const playerNotch = "/images/player-notch.gif"
     const bossNotch = "/images/hard.png"
     const playerLevel = parseInt(this.props.arenasBeaten)
     const numLevelsInclStart = 6
