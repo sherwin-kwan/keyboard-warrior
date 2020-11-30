@@ -14,9 +14,8 @@ function StartGame(props) {
       <h1>A Typing Game</h1>
       <menu>
         <form onSubmit={(event) => {
-          event.preventDefault()
-          props.onSubmit(props.game.player_name)
-          props.setMode("MAP")
+          event.preventDefault();
+          props.onSubmit(props.game.player_name, props.setMode);
           }
           }>
           <label htmlFor="name">Player Name:</label><br/>
