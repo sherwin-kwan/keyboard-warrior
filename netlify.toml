@@ -1,0 +1,6 @@
+[build]
+
+base = "client/build"
+publish = ""
+environment = { NODE_ENV = "production", NODE_VERSION = "14.10.1" }
+command = ""
