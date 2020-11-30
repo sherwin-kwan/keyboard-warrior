@@ -3,12 +3,9 @@ import React from "react";
 
 function ArenaDoor(props) {
 
-  const { arenas, doorTagArray, currentDoor, setCurrentDoor } = props;
+  const { arenas, currentDoor, setCurrentDoor } = props;
 
-  console.log('Arenas is: ', arenas);
   const arena = arenas[currentDoor];
-  console.log('Arena is: ', arena);
-  console.log('Current index is: ', currentDoor);
 
   const pointsIcon = '/images/green-diamond.png';
   const disabled = (typeof arena.beaten === 'boolean'); // Either "true" or "false" showing that the player has already either won or lost

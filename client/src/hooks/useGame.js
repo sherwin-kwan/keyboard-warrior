@@ -8,14 +8,15 @@ export default function useGame() {
   const [lastResult, setLastResult] = useState(0);
 
   function startGame(name) {
-    console.log("NAME WHEN IN HOOK IS A: ", typeof name, "NAME: ", name)
 
     const newGame = {player_name: name}
 
+    console.log('Starting game');
     axios.post('/api/games', newGame)
       .then(data => {
         // The API will send back the ID returned from the database. This can be stored in state
-        const newGameId = data.data
+        const newGameId = data.data;
+        console.log('Game posted');
         console.log('New id is: ', newGameId);
         setGame((prev) => {
           return {
@@ -25,6 +26,7 @@ export default function useGame() {
         })
       })
       .catch(err => console.log("Error posting Game data: ", err));
+    
   }
 
   async function updateScore() {

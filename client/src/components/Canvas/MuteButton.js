@@ -2,10 +2,14 @@ import React from 'react';
 
 const MuteButton = (props) => {
 
+  const { music, setMusic } = props;
+
   return (
     <aside className="mute-music" >
-      {props.music === "OFF" && <img src="/images/mute-music.png" onClick={() => {props.setMusic("ON")}} alt="unmute music"/>}
-      {props.music === "ON" && <img src="/images/unmute-music.png" onClick={() => {props.setMusic("OFF")}} alt="mute music"/>}
+      <img src={music ? "/images/unmute-music.png" : "/images/mute-music.png"}
+        onClick={() => setMusic(prev => !prev)}
+        alt={music ? "mute music" : "unmute music"}
+      />
     </aside>
   )
 };

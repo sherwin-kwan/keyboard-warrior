@@ -196,13 +196,13 @@ function Arena(props) {
           filename='/images/boss-spirit-fighter.png'
         />
         <img
-          class="action player"
+          className="action player"
           src="/images/player-attack.png"
           alt="Player attacks"
           style={style.player.attack}
         />
         <img
-          class="action player"
+          className="action player"
           src="/images/player-heal.png"
           alt="Player heals"
           style={style.player.heal}
@@ -214,7 +214,7 @@ function Arena(props) {
           filename={props.arena.challenger_sprite}
         />
         <img
-          class="action challenger"
+          className="action challenger"
           src="/images/challenger-attack.png"
           alt="Challenger attacks"
           style={style.challenger}

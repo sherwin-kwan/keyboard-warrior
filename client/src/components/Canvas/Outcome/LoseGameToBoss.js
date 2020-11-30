@@ -3,13 +3,6 @@ import Leaderboard from '../../Leaderboard';
 
 const LoseGameToBoss = (props) => {
 
-  useEffect(() => {
-    props.soundMedia.current.src = '/sounds/lose-game.mp3';
-    return (() => {
-      props.soundMedia.current.src = '/sounds/background-music.ogg';
-    });
-  }, [props.soundMedia]);
-
   return (
     <main className="outcome lose-game">
       <p className="message">
