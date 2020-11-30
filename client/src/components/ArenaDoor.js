@@ -25,6 +25,7 @@ function ArenaDoor(props) {
       <img className="door-arrow left" alt="Go left" src="/images/left_arrow_circle.png" onClick={setPreviousDoor} />
       <div
         className={doorClassName}
+        data-cy="enter-arena"
         title={disabled ? `No rematches! Please choose another arena` : `Enter arena`}
         onClick={() => {
           if (!disabled) {

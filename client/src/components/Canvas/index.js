@@ -54,10 +54,15 @@ function Canvas(props) {
 
   useEffect(() => {
     // Set initial music source
-    if (!soundMedia.current.src) soundMedia.current.src = '/sounds/background-music.ogg';
+    if (!soundMedia.current.src) {
+      soundMedia.current.src = '/sounds/background-music.ogg';
+      soundMedia.current.play();
+    }
+  }, []);
+
+  useEffect(() => {
     soundMedia.current.volume = music ? 0.1 : 0.0;
-    soundMedia.current.play();
-  }, [mode, music]);
+  }, [music]);
 
   // reset game function
   const resetGameState = function () {

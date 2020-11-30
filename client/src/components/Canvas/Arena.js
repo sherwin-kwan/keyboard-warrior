@@ -223,7 +223,7 @@ function Arena(props) {
               style={style.challenger}
             />
           </div>
-          <div className="player-actions">
+          <div className="player-actions" data-cy="player-actions">
             <PlayerActionList
               playerActions={playerActions}
               playerInput={playerInput}
