@@ -32,27 +32,6 @@ main.win-game {
   div {
     background-color: #dd6;
   }
-
-  table {
-    border: 8px outset #999;
-    border-radius: 18px;
-    background-color: black;
-    padding: 1px 1em;
-    color: white;
-    font-size: 10px;
-    text-align: left;
-    thead {
-      
-      padding: 1px 1em;
-      font-size: 15px;
-      
-      // tbody, tfoot, tr, td, th {
-      //   font-size: 10px;
-      // }
-      
-    }
-}
-
 }
 
 main.lose-battle {

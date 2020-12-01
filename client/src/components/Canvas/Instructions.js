@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+
+// Styles
 import './Instructions.scss'
+
+// Hooks
+import useLeaders from '../../hooks/useLeaders';
+
+// Components
+import Leaderboard from '../Leaderboard';
 
 function Instructions(props) {
 
-  const inArena = Object.keys(props.arena).length > 0;
+  const { leaders, getLeaders } = useLeaders();
+
+  useEffect(() => {
+    getLeaders();
+  }, []);
 
   return (
     <main className="instructions">
@@ -20,7 +32,8 @@ function Instructions(props) {
         <img src="/images/difficulty-and-points.png" alt="Difficulty and points" />
         <p>"30 PTS" is the base score you get for winning the battle.</p>
         <p>If you beat the game faster, you'll get a bonus multiplier and top the leaderboards!</p>
-        <img src="/images/leaderboards.png" alt="Leaderboards" />
+        <p>CURRENT LEADERS</p>
+        <Leaderboard leaders={leaders} />
         <button
           className="primary"
           onClick={() => props.setMode("START")}
