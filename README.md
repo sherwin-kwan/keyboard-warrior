@@ -1,8 +1,8 @@
 # keyboard-warrior
 Type your way past many enemies to win the game!
 
-![Map screenshot](./client/screenshots/map.png?raw=true "Select arena screen")
-![Arena screenshot](./client/screenshots/arena.png?raw=true "Battle Arena")
+![Map screenshot](./client/docs/start-screen-map.gif?raw=true "Select arena screen")
+![Arena screenshot](./client/docs/arena-battle.gif?raw=true "Battle Arena")
 
 # stack
 
