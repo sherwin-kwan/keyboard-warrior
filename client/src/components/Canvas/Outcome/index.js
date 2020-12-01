@@ -22,6 +22,7 @@ function Outcome(props) {
   const LOSEGAMENOTBOSS = "LOSEGAMENOTBOSS" // Player lost the game because they lost too many arenas before they reached a boss
   const LOSEGAMETOBOSS = "LOSEGAMETOBOSS" // Player reached the boss but lost against the boss, thus losing the game
   const WINALLARENAS = "WINALLARENAS" // Player has won 5 arenas and is about to face the boss
+
   const PENDING = 'PENDING'; // Player has not finished an arena yet
   const outcome = props.outcome;
 
@@ -38,31 +39,13 @@ function Outcome(props) {
 
   // Set music for win and lose conditions
   useEffect(() => {
-    switch (outcome) {
-      case WINGAME:
-        soundMedia.current.src = '/sounds/win-game.mp3';
-        break;
-      case WINBATTLE:
-      case WINALLARENAS:
-        soundMedia.current.src = '/sounds/win-battle.mp3';
-        break;
-      case LOSEBATTLE:
-        soundMedia.current.src = '/sounds/lose-battle.mp3';
-        break;
-      case LOSEGAMENOTBOSS:
-      case LOSEGAMETOBOSS:
-        soundMedia.current.src = '/sounds/lose-game.mp3';
-        break;
-      default:
-        soundMedia.current.src = '/sounds/background-music.ogg';
-    };
-    soundMedia.current.loop = false;
+    
     // Cleanup function: return to normally scheduled programming after leaving the outcome screen
     return (() => {
       soundMedia.current.src = '/sounds/background-music.ogg';
       soundMedia.current.loop = true;
     });
-  }, [soundMedia, outcome]);
+  }, []);
 
   return (
     <>
