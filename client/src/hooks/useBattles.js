@@ -14,7 +14,6 @@ export default function useBattles() {
       arena_id,
       start_time: new Date()
     };
-    console.log('battle', battle)
     setCurrentBattle(battle);
   }
 

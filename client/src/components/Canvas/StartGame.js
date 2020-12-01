@@ -14,9 +14,8 @@ function StartGame(props) {
       <h1>Keyboard Warrior</h1>
       <menu>
         <form onSubmit={(event) => {
-          event.preventDefault()
-          props.onSubmit(props.game.player_name)
-          props.setMode("MAP")
+          event.preventDefault();
+          props.onSubmit(props.game.player_name, props.setMode);
           }
           }>
           <label htmlFor="name">Player Name<span>*</span></label><br/>
@@ -27,6 +26,7 @@ function StartGame(props) {
             id="name" 
             placeholder="Enter player name" 
             name="name"
+            data-cy="enter-name"
             required
           /><br />
           <input
@@ -40,7 +40,6 @@ function StartGame(props) {
         <button className="primary" onClick={() => props.setMode("INSTRUCTIONS")}>Instructions</button>
         (Buttons below don't do anything yet:)
         <button className="primary">Leaderboards</button>
-        <button className="primary">Settings? Mute?</button>
       </menu>
     </main>
   );

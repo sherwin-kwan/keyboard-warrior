@@ -5,7 +5,6 @@ import React, { useEffect } from "react";
 // import ProgressBar from '../ProgressBar';
 import ArenaDoorList from '../ArenaDoorList';
 import { StepProgressBar } from "../MapProgressBar";
-import useGame from '../../hooks/useGame';
 
 // Styles
 import './Map.scss';
@@ -29,7 +28,7 @@ function Map(props) {
         arena={props.arena}
         setArena={props.setArena}
       />
-      <p class="score">POINTS: <strong>{props.score}</strong></p>
+      <p className="score">POINTS: <strong>{props.score}</strong></p>
     </main>
   );
 }

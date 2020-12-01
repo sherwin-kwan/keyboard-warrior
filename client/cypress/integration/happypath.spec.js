@@ -13,26 +13,30 @@ describe("Navigating the happy path", () => {
     cy.visit('/');
   });
 
+  it("should fail if you try to begin game without a name", () => {
+    cy.get('div.canvas').find(`:disabled`).contains('Start');
+  })
 
   it("should navigate the happy path properly", () => {
     // Look for start button
     // Game, No. 2: As a game, I show the player a start screen with a start button (or press enter to start)
-    cy.get('div.canvas').find('button').contains("Start").click();
+    cy.get(`[data-cy=enter-name]`).type('Cypress');
+    cy.get('div.canvas').contains('Start').click();
 
     // Map, No. 1: As a player, I should have at least 5 options for battle arenas to fight in order to win the game
-    const doors = cy.get('.door');
+    const doors = cy.get('.door-slider');
     doors.should('have.length.of.at.least', 5);
 
     // Map No. 2: As a player, I can choose which battle arena I want to enter by clicking on it
-    cy.get('.door:first').contains("Hogwarts");
-    cy.get('.door:first').find('.door-title').click();
+    cy.get('.door:first').contains("Middle");
+    cy.get('.door:first').find('img').click();
 
     // Battle No. 1: As a player, I can see health bars above my sprite and the enemy’s sprite, so I know how close I am to winning/losing
     cy.get('main').children('div').eq(0).should('have.class', 'health');
     cy.get('main').children('div').eq(1).should('have.class', 'health');
 
-    // Battle No. 2: As a player, I have the following options for moves: attack (deals damage), defend (blocks the next attack), or heal (restore health)
-    cy.get('.player-actions').find('li').should('have.length.of.at.least', 3);
+    // Battle No. 2: As a player, I have the following options for moves: attack (deals damage) or heal (restore health)
+    cy.get('.player-actions').find('li').should('have.length.of.at.least', 2);
 
     // Battle No. 3: As a player, the game will generate a series of words that I can type to execute a move
     // This example will type a word to execute an attack
@@ -113,8 +117,8 @@ describe("Navigating the happy path", () => {
   });
 
   it('should end in defeat if player sits idle for too long', () => {
-    cy.get('div.canvas').find('button').contains("Start").click();
-    cy.get('.door:first').contains("Hogwarts");
+    cy.get('div.canvas').contains("Start").click();
+    cy.get('.door:first').contains("Middle");
     cy.get('.door:first').find('.door-title').click();
     cy.wait(25000);
     // That should be enough time to lose

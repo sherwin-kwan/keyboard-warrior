@@ -1,13 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const LoseBattle = (props) => {
 
-  useEffect(() => {
-    props.soundMedia.current.src = '/sounds/lose-battle.mp3';
-    return (() => {
-      props.soundMedia.current.src = '/sounds/background-music.ogg';
-    });
-  }, [props.soundMedia]);
 
   return (
     <main className="outcome lose-battle">

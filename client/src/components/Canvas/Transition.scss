@@ -4,12 +4,17 @@ main.transition {
     url('../../images/windows-xp-wallpaper-pixel-art-blur.jpg');
   background-size: cover;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   
   img {
     height: 150px;
     animation: rotate 1s linear infinite;
+  }
+
+  p {
+    color: white;
   }
 
   // Animation for loading circle

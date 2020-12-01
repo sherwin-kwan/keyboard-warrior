@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import useLeaders from '../hooks/useLeaders';
+import React from 'react';
 
 const Leaderboard = (props) => {
 
-  console.log('Rendering leaderboard');
 
   const leaderStats = props.leaders.map(leader => {
     return (

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 function DoorSlider(props) {
 
@@ -7,7 +7,7 @@ function DoorSlider(props) {
 
   return (
     <img
-      className={className}
+      className={'door-slider ' + className}
       alt="door"
       src={img}
       onClick={() => props.setCurrentDoor(props.index)}
