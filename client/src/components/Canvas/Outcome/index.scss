@@ -19,6 +19,7 @@ main.outcome {
 main.win-battle {
   background: url('../../../images/medal-sunset-pixel.jpg');
   background-size: cover;
+  background-position: center;
 
   p {
     background-color: #dd6;
@@ -28,6 +29,7 @@ main.win-battle {
 main.win-game {
   background: url('../../../images/cyberpunk-2.jpg');
   background-size: cover;
+  background-position: center;
 
   div {
     background-color: #dd6;
@@ -36,6 +38,8 @@ main.win-game {
 
 main.lose-battle {
   background: url('../../../images/lose-battle-image.png');
+  background-size: cover;
+  background-position: center;
 
   div, p {
     background-color: #555;
@@ -46,6 +50,7 @@ main.lose-battle {
 main.lose-game {
   background: url('../../../images/defeat.png');
   background-size: cover;
+  background-position: center;
 
   div {
     background-color: #555;
