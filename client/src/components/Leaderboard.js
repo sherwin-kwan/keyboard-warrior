@@ -12,17 +12,19 @@ const Leaderboard = (props) => {
     )
   });
 
-  return (<table>
-    <thead>
-      <tr>
-        <th>Player</th>
-        <th>Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      {leaderStats}
-    </tbody>
-  </table>);
+  return (
+    <table className="leaderboard">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {leaderStats}
+      </tbody>
+    </table>
+  );
 };
 
 export default Leaderboard;

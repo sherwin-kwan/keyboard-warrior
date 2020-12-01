@@ -103,3 +103,34 @@
     border: 3px outset rgba(169, 169, 169, 0.5);
   }
 }
+
+table.leaderboard {
+  background-color: black;
+  color: white;
+  border: 8px outset #999;
+  border-radius: 18px;
+  padding: 1em;
+  font-size: 0.8rem;
+  text-align: left;
+
+  thead tr {
+    padding: 1px 1em;
+    background-color: #808;
+    
+    // tbody, tfoot, tr, td, th {
+    //   font-size: 10px;
+    // }
+    
+  }
+
+  td, th {
+    padding: 0.5rem;
+  };
+
+  tbody tr:nth-child(odd) {
+    background-color: #080;
+  };
+  tbody tr:nth-child(even) {
+    background-color: #040;
+  }
+}

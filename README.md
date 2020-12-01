@@ -27,7 +27,7 @@ Notes:
 ## setup instructions
 
 1) Clone repo to your machine
-2) You should now see two directories called 'client' and 'server'
+2) You should now see two directories called 'client' and 'server'. 'Client' is a React app, 'server' is a Node app, and together they make up Keyboard Warrior!
 3) `cd client` and run `npm install` to install client-side dependencies
 4) then do `cd ../server` and run `npm install` to install server-side dependencies
 5) Create a file called *.env.development* (following the example in *.env.example*) within the server folder. Add your database credentials (DATABASE_URL, DB_HOST, DB_NAME, DB_PASS, and DB_USER here)

@@ -105,6 +105,11 @@ function Canvas(props) {
   }, [mode]);
 
   useEffect(() => {
+    const aaa = arena ? true : false;
+    console.log('Props.arena is ', arena, 'and this is true? ', aaa);
+  }, [mode]);
+
+  useEffect(() => {
     soundMedia.current.volume = music ? 0.1 : 0.0;
   }, [music]);
 
@@ -188,6 +193,7 @@ function Canvas(props) {
         />}
         {mode === INSTRUCTIONS && <Instructions
           setMode={setMode}
+          arena={arena}
         />}
       </div>
     </>

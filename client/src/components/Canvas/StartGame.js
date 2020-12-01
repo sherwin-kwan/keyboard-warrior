@@ -1,13 +1,31 @@
 // Libraries
 import React from "react";
 
+// Components
+import Leaderboard from '../Leaderboard';
+
 // Styles
 import './StartGame.scss';
+
+// Hooks
+import useLeaders from '../../hooks/useLeaders';
 
 function StartGame(props) {
 
   // Disables Start Game button if empty player name
   const isDisabled = () => Object.keys(props.game).length === 0 || props.game.player_name.length === 0;
+
+  // Destructure helpers
+  const { leaders, getLeaders, leadersShow, setLeadersShow } = useLeaders();
+
+  const toggleLeaderBoard = async () => {
+    if (leadersShow) {
+      setLeadersShow(false);
+    } else {
+      await getLeaders();
+      setLeadersShow(true);
+    }
+  };
 
   return (
     <main className="start-game">
@@ -38,7 +56,8 @@ function StartGame(props) {
         </form>
         <button className="primary" onClick={() => props.setMode("CREDITS")}>Credits</button>
         <button className="primary" onClick={() => props.setMode("INSTRUCTIONS")}>Instructions</button>
-        <button className="primary">Leaderboards</button>
+        <button className="primary" onClick={toggleLeaderBoard}>{leadersShow ? 'Hide Leaderboard' : 'Show Leaderboard'}</button>
+        {leadersShow && <Leaderboard leaders={leaders} />}
       </menu>
     </main>
   );
