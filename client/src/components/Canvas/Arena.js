@@ -244,7 +244,7 @@ function Arena(props) {
               percentage={challengerTimer / 20 * 100}
             />
           </div>
-          <div className="typing">
+          <div className="typing" data-cy="type-here">
             <TextInput
               value={playerInput}
               onChange={setPlayerInput}

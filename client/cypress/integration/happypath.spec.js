@@ -37,9 +37,11 @@ describe("Navigating the happy path", () => {
     // Battle No. 2: As a player, I have the following options for moves: attack (deals damage) or heal (restore health)
     cy.get('[data-cy=player-actions]').find('li').should('have.length.of.at.least', 2);
 
+    // cy.get('[data-cy=type-here]').find('input').type(cy.get('[data-cy=attack-word]').invoke('text'));
+
     // Battle No. 3: As a player, the game will generate a series of words that I can type to execute a move
     // This example will type a word to execute an attack
-    cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text')
+    cy.get('[data-cy=attack-word]').invoke('text')
       .then((text) => {
         cy.get('input').type(text.slice(0, 1));
         // Game No. 1: As a player, I can see what letter in the word I’m typing change colour 
@@ -51,48 +53,48 @@ describe("Navigating the happy path", () => {
         cy.get('main').find('[data-cy=health-bar]').eq(1).should('contain', '90');
         // Battle No. 4: As a player, once I finish typing a word, the action is executed (i.e. don’t have to press enter) and 
         // I’m given a new action and word to replace the one I just executed
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         expect(nextText).to.not.equal(text);
         return nextText;
       })
       .then((text) => {
         cy.get('input').type(text);
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         return nextText;
       })
       .then((text) => {
         cy.get('input').type(text);
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         return nextText;
       })
       .then((text) => {
         cy.get('input').type(text);
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         return nextText;
       })
       .then((text) => {
         cy.get('input').type(text);
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         return nextText;
       })
       .then((text) => {
         cy.get('input').type(text);
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         return nextText;
       })
       .then((text) => {
         cy.get('input').type(text);
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         return nextText;
       })
       .then((text) => {
         cy.get('input').type(text);
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         return nextText;
       })
       .then((text) => {
         cy.get('input').type(text);
-        const nextText = cy.get('.player-actions').find('li').eq(0).find('.action-word').find('div').invoke('text');
+        const nextText = cy.get('[data-cy=attack-word]').invoke('text');
         return nextText;
       })
       .then((text) => {
@@ -125,6 +127,6 @@ describe("Navigating the happy path", () => {
     // Game No. 3: As a game, when the player dies, I show them a you died screen and an option to restart
     cy.get('div.canvas').should('contain', 'DEFEAT');
     cy.get('div.canvas').find('button').click();
-    cy.get('div.canvas').find('button').contains("Start");
+    // This test doesn't actually go through to the defeat screen, since that takes 3 battle losses now
   })
 });
