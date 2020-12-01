@@ -1,6 +1,6 @@
 main.outcome {
 
-  p {
+  p, div {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -29,7 +29,7 @@ main.win-game {
   background: url('../../../images/cyberpunk-2.jpg');
   background-size: cover;
 
-  p {
+  div {
     background-color: #dd6;
   }
 
@@ -59,7 +59,7 @@ main.lose-battle {
   background: url('../../../images/lose-battle-image.png');
   background-size: cover;
 
-  p {
+  div {
     background-color: #555;
     color: white;
   }
@@ -69,7 +69,7 @@ main.lose-game {
   background: url('../../../images/defeat.png');
   background-size: cover;
 
-  p {
+  div {
     background-color: #555;
     color: white;
   }

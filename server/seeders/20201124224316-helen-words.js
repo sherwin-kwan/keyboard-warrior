@@ -132,12 +132,10 @@ module.exports = {
      */
 
     const deletedRows = await Arena.destroy({
-      // DELETE * FROM arenas WHERE name="Diagon Alley" OR name="Indigo Plateau"
       where: {
         [Op.or]: [{ name: "Middle Earth" }, { name: "Billboard Hot 100" }]
       }
     });
     console.log(`Deleted from arenas: ${deletedRows} rows.`);
-    // await queryInterface.bulkDelete('Arenas', { name: "Middle Earth", name: "Billboard Hot 100"}, {});
   }
 }

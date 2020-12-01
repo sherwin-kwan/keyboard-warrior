@@ -3,12 +3,9 @@ import React from "react";
 
 function ArenaDoor(props) {
 
-  const { arenas, doorTagArray, currentDoor, setCurrentDoor } = props;
+  const { arenas, currentDoor, setCurrentDoor } = props;
 
-  console.log('Arenas is: ', arenas);
   const arena = arenas[currentDoor];
-  console.log('Arena is: ', arena);
-  console.log('Current index is: ', currentDoor);
 
   const pointsIcon = '/images/green-diamond.png';
   const disabled = (typeof arena.beaten === 'boolean'); // Either "true" or "false" showing that the player has already either won or lost
@@ -16,7 +13,6 @@ function ArenaDoor(props) {
   const doorClassName = disabled ? "card card-disabled" : "card";
 
   const setPreviousDoor = () => {
-    console.log('Changing to previous door');
     setCurrentDoor(prev => (prev !== 0) ? prev - 1 : prev);
   };
 
@@ -26,7 +22,7 @@ function ArenaDoor(props) {
 
   return (
     <div className="door">
-      <img className="door-arrow left" src="/images/left_arrow_circle.png" onClick={setPreviousDoor} />
+      <img className="door-arrow left" alt="Go left" src="/images/left_arrow_circle.png" onClick={setPreviousDoor} />
       <div
         className={doorClassName}
         title={disabled ? `No rematches! Please choose another arena` : `Enter arena`}
@@ -39,8 +35,8 @@ function ArenaDoor(props) {
         <h3>{arena.name}</h3>
         <img
           className="door-image"
+          alt={"Enter " + arena.name}
           src={arena.arena_card}
-          alt={arena.name}
         />
         <footer>
           {arena.beaten === undefined &&
@@ -64,7 +60,7 @@ function ArenaDoor(props) {
           {(arena.beaten === false) && <aside>You were defeated!</aside>}
         </footer>
       </div>
-      <img className="door-arrow right" src="/images/right_arrow_circle.png" onClick={setNextDoor} />
+      <img className="door-arrow right"  alt="Go right" src="/images/right_arrow_circle.png" onClick={setNextDoor} />
     </div>
   );
 }

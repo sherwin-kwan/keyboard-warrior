@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from 'axios';
 
 export default function useGame() {
@@ -7,24 +7,25 @@ export default function useGame() {
   const [score, setScore] = useState(0);
   const [lastResult, setLastResult] = useState(0);
 
-  function startGame(name) {
-    console.log("NAME WHEN IN HOOK IS A: ", typeof name, "NAME: ", name)
+  function startGame(name, setMode) {
 
-    const newGame = {player_name: name}
+    const newGame = { player_name: name }
 
+    setMode("TRANSITION");
     axios.post('/api/games', newGame)
       .then(data => {
         // The API will send back the ID returned from the database. This can be stored in state
-        const newGameId = data.data
-        console.log('New id is: ', newGameId);
+        const newGameId = data.data;
         setGame((prev) => {
           return {
             ...prev,
             id: newGameId
           }
-        })
+        });
+        setMode("MAP");
       })
       .catch(err => console.log("Error posting Game data: ", err));
+
   }
 
   async function updateScore() {

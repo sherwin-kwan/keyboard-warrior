@@ -52,5 +52,3 @@ export function countArenasBeaten(arenas) {
   }
   return count;
 };
-
-// console.log(countArenasBeaten(arenas))

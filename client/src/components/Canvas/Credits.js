@@ -13,11 +13,11 @@ function Credits(props) {
           <div className="credit">
             <h4>Helen Ouyang</h4>
             <div className="logos">
-              <a href="https://github.com/helenohyeah" target="_blank">
-                <img className="logo" src="/images/github-logo.png" />
+              <a href="https://github.com/helenohyeah" rel="noopener noreferrer" target="_blank">
+                <img className="logo" alt="Github" title="Github" src="/images/github-logo.png" />
               </a>
-              <a href="https://www.linkedin.com/in/helenouyang/" target="_blank">
-                <img className="logo" src="/images/linkedin-logo.png" />
+              <a href="https://www.linkedin.com/in/helenouyang/" rel="noopener noreferrer" target="_blank">
+                <img className="logo" alt="LinkedIn" title="LinkedIn" src="/images/linkedin-logo.png" />
               </a>
             </div>
             <img className="portrait" src="/images/helen.png" alt="Helen" />
@@ -26,28 +26,28 @@ function Credits(props) {
             <img className="portrait" src="/images/jillian.png" alt="Jillian" />
             <h4>Jillian Martin</h4>
             <div className="logos">
-              <a href="https://github.com/jilliankmartin" target="_blank">
-                <img className="logo" src="/images/github-logo.png" />
+              <a href="https://github.com/jilliankmartin" rel="noopener noreferrer" target="_blank">
+                <img className="logo" alt="Github" title="Github" src="/images/github-logo.png" />
               </a>
-              <a href="https://www.linkedin.com/in/jilliankmartin/" target="_blank">
-                <img className="logo" src="/images/linkedin-logo.png" />
+              <a href="https://www.linkedin.com/in/jilliankmartin/" rel="noopener noreferrer" target="_blank">
+                <img className="logo" alt="Linkedin" title="LinkedIn" src="/images/linkedin-logo.png" />
               </a>
             </div>
           </div>
           <div className="credit">
             <h4>Sherwin Kwan</h4>
             <div className="logos">
-              <a href="https://github.com/sherwin-kwan" target="_blank">
-                <img className="logo" src="/images/github-logo.png" />
+              <a href="https://github.com/sherwin-kwan" rel="noopener noreferrer" target="_blank">
+                <img className="logo" alt="Github" title="Github" src="/images/github-logo.png" />
               </a>
-              <a href="https://www.linkedin.com/in/sherwinkwan/" target="_blank">
-                <img className="logo" src="/images/linkedin-logo.png" />
+              <a href="https://www.linkedin.com/in/sherwinkwan/" rel="noopener noreferrer" target="_blank">
+                <img className="logo" alt="Linkedin" title="LinkedIn" src="/images/linkedin-logo.png" />
               </a>
             </div>
             <img className="portrait" src="/images/sherwin.png" alt="Sherwin" />
           </div>
         </div>
-        <h4>Additional Attribution for sound and assets??</h4>
+        <p>Special thanks to Travis Borsa, Andy Lindsay, Brian Chang, James Cash, Dmitry Besson, John Lee, Rob Schwitzer, Afshan Khatoon, and our friends and family for putting up with us being AWOL while we built this game.</p>
         <button
           className="primary"
           onClick={() => props.setMode("START")}

@@ -1,8 +1,8 @@
 // Libraries
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 //helpers
-import { countArenasBeaten, countArenasLost } from "../../helpers/countArenasCompleted";
+import { countArenasBeaten } from "../../helpers/countArenasCompleted";
 
 //Hooks
 import useBattles from '../../hooks/useBattles';
@@ -11,13 +11,11 @@ import useArena from "../../hooks/useArena";
 import useOutcome from '../../hooks/useOutcome';
 import useGame from '../../hooks/useGame';
 import useMusic from '../../hooks/useMusic';
-import useLeaders from '../../hooks/useLeaders';
 
 // Styles
 import './index.scss';
 
 // Components
-import TempNavBar from '../TempNavBar';
 import StartGame from './StartGame';
 import Map from './Map';
 import Arena from './Arena';
@@ -47,29 +45,18 @@ function Canvas(props) {
   const { mode, setMode } = useGameMode("START")
   const { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
-  const { battles, setBattles, setCurrentBattle } = useBattles();
+  const { setCurrentBattle } = useBattles();
   const { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult } = useGame();
   const { music, setMusic } = useMusic();
-  const { leaders, getLeaders } = useLeaders();
 
   // Load background music
   const soundMedia = useRef(null);
 
   useEffect(() => {
-    if (music === "ON") {
-      if (mode === "OUTCOME") {
-        soundMedia.current.loop = false;
-        console.log('PLAYING MUSIC!!');
-        soundMedia.current.play();
-        soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
-      }
-      console.log('PLAYING MUSIC!!');
-      soundMedia.current.play();
-      soundMedia.current.volume = 0.1; // Make sure you leave the volume setting here - otherwise it's too loud!!
-    } else {
-      // soundMedia.current.stop();
-      soundMedia.current.volume = 0.0;
-    }
+    // Set initial music source
+    if (!soundMedia.current.src) soundMedia.current.src = '/sounds/background-music.ogg';
+    soundMedia.current.volume = music ? 0.1 : 0.0;
+    soundMedia.current.play();
   }, [mode, music]);
 
   // reset game function
@@ -77,15 +64,14 @@ function Canvas(props) {
     setMode("START");
     setGame({});
     setArena([])
-    setScore(0)
-    setArenas(cleanArenas)
-    setOutcome("PENDING")
-    setCurrentBattle([])
+    setScore(0);
+    setArenas(cleanArenas);
+    setOutcome("PENDING");
+    setCurrentBattle([]);
   }
 
   return (
     <>
-      <TempNavBar onClick={setMode} />
       <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.ogg' >
         Your browser does not support HTML audio.
       </audio>

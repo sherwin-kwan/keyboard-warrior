@@ -10,7 +10,6 @@ const cors = require('cors');
 // Load .env data into process.env
 const ENV = process.env.NODE_ENV || "development";
 const PATH = path.resolve(__dirname, "./.env." + ENV);
-console.log('Path is: ', PATH);
 require("dotenv").config({ path: PATH });
 
 
@@ -30,8 +29,6 @@ app.use(cors());
 
 // Constants
 const PORT = process.env.PORT || 3001;
-
-console.log('ENV is: ', process.env.DATABASE_URL);
 
 // Test code to print if Sequelize connects successfully
 const testSequelize = async() => {
