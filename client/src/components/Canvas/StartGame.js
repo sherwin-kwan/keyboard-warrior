@@ -38,7 +38,6 @@ function StartGame(props) {
         </form>
         <button className="primary" onClick={() => props.setMode("CREDITS")}>Credits</button>
         <button className="primary" onClick={() => props.setMode("INSTRUCTIONS")}>Instructions</button>
-        (Buttons below don't do anything yet:)
         <button className="primary">Leaderboards</button>
       </menu>
     </main>

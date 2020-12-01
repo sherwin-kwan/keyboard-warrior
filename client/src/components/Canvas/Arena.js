@@ -230,11 +230,11 @@ function Arena(props) {
             />
           </div>
           <div className="challenger-actions">
-            <div className="buttons">
+            {/* <div className="buttons">
               <button onClick={() => setAttackTime(1000000000)}>Pause</button>
               <button onClick={() => setAttackTime(20000)}>Slow</button>
               <button onClick={() => setAttackTime(2000)}>Normal</button>
-            </div>
+            </div> */}
             <ChallengerActionList
               // actions={{
               //   timeToAttack: 5
