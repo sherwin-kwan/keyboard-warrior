@@ -53,11 +53,28 @@ function Canvas(props) {
   const soundMedia = useRef(null);
 
   useEffect(() => {
-    // Set initial music source
-    if (!soundMedia.current.src) soundMedia.current.src = '/sounds/background-music.ogg';
+
+    async function playMusic() {
+      
+      // Set initial music source
+      soundMedia.current.src = '/sounds/background-music.ogg';
+
+      // Some browsers do not allow auto-play, if promise rejects send a console log
+      try {
+        await soundMedia.current.play();
+      } catch (err) {
+        console.log('Music could not be played');
+      }
+
+    };
+
+    // Start music if curretly not playing
+    if (soundMedia.current.paused) playMusic();
+  }, [mode]);
+
+  useEffect(() => {
     soundMedia.current.volume = music ? 0.1 : 0.0;
-    soundMedia.current.play();
-  }, [mode, music]);
+  }, [music]);
 
   // reset game function
   const resetGameState = function () {

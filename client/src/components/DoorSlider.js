@@ -8,6 +8,7 @@ function DoorSlider(props) {
   return (
     <img
       className={'door-slider ' + className}
+      data-cy="door-slider"
       alt="door"
       src={img}
       onClick={() => props.setCurrentDoor(props.index)}
