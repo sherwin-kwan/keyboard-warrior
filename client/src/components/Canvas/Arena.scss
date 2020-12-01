@@ -77,6 +77,15 @@ main.arena {
       height: 1.5rem;
       margin-right: 0.5rem;
     }
+
+    & > div {
+      width: 70%;
+      height: 100%;
+    }
+
+    .skillbar {
+      margin-bottom: 0px;
+    }
   }
 
   .avatar {
