@@ -87,7 +87,7 @@ function Canvas(props) {
         }
         soundMedia.current.loop = false;
       } else {
-        soundMedia.current.src = '/sounds/background-music.ogg';
+        soundMedia.current.src = '/sounds/background-music.mp3';
         soundMedia.current.loop = true;
       }
 
@@ -121,7 +121,7 @@ function Canvas(props) {
 
   return (
     <>
-      <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.ogg' >
+      <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.mp3' >
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">

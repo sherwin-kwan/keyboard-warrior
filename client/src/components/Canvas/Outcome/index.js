@@ -37,16 +37,6 @@ function Outcome(props) {
     getLeaders();
   }, []);
 
-  // Set music for win and lose conditions
-  useEffect(() => {
-    
-    // Cleanup function: return to normally scheduled programming after leaving the outcome screen
-    return (() => {
-      soundMedia.current.src = '/sounds/background-music.ogg';
-      soundMedia.current.loop = true;
-    });
-  }, []);
-
   return (
     <>
       {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} leaders={leaders} score={props.score} lastResult={props.lastResult} soundMedia={props.soundMedia} />}

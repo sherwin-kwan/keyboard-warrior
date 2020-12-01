@@ -1,40 +1,4 @@
-// const arenas = [
-//   {
-//     name: "Hogwarts",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//     beaten: false
-//   },
-//   {
-//     name: "Indigo Plateau",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//     beaten: true
-//   },
-//   {
-//     name: "Minas Tirith",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//     beaten: false
-//   },
-//   {
-//     name: "Final Destination",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//     beaten: false
-//   },
-//   {
-//     name: "Hotel California",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//     beaten: true
-//   }
-// ]
+
 
 //takes in an array of arenas and the arena that was completed, plus a boolean of whether arena was won or lost and returns a 
 //new array of arenas where the won arena's beaten value is true or false
