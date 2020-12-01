@@ -47,7 +47,7 @@ function Credits(props) {
             <img className="portrait" src="/images/sherwin.png" alt="Sherwin" />
           </div>
         </div>
-        <h4>Additional Attribution for sound and assets??</h4>
+        <p>Special thanks to Travis Borsa, Andy Lindsay, Brian Chang, James Cash, Dmitry Besson, John Lee, Rob Schwitzer, Afshan Khatoon, and our friends and family for putting up with us being AWOL while we built this game.</p>
         <button
           className="primary"
           onClick={() => props.setMode("START")}
