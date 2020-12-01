@@ -175,10 +175,10 @@ function Arena(props) {
     <main className="arena" >
       <div className="window">
         <div className="window-bar">
-          <span class="dot close"></span>
-          <span class="dot minimize"></span>
-          <span class="dot maximize"></span>
-          <span class="window-title">{props.arena.name}</span>
+          <span className="dot close"></span>
+          <span className="dot minimize"></span>
+          <span className="dot maximize"></span>
+          <span className="window-title">{props.arena.name}</span>
         </div>
         <div className="window-content">
           <div className="health-bar">
@@ -223,18 +223,18 @@ function Arena(props) {
               style={style.challenger}
             />
           </div>
-          <div className="player-actions">
+          <div className="player-actions" data-cy="player-actions">
             <PlayerActionList
               playerActions={playerActions}
               playerInput={playerInput}
             />
           </div>
           <div className="challenger-actions">
-            <div className="buttons">
+            {/* <div className="buttons">
               <button onClick={() => setAttackTime(1000000000)}>Pause</button>
               <button onClick={() => setAttackTime(20000)}>Slow</button>
               <button onClick={() => setAttackTime(2000)}>Normal</button>
-            </div>
+            </div> */}
             <ChallengerActionList
               // actions={{
               //   timeToAttack: 5
@@ -244,7 +244,7 @@ function Arena(props) {
               percentage={challengerTimer / 20 * 100}
             />
           </div>
-          <div className="typing">
+          <div className="typing" data-cy="type-here">
             <TextInput
               value={playerInput}
               onChange={setPlayerInput}

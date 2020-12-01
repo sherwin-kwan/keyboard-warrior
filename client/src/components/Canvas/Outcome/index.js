@@ -22,6 +22,7 @@ function Outcome(props) {
   const LOSEGAMENOTBOSS = "LOSEGAMENOTBOSS" // Player lost the game because they lost too many arenas before they reached a boss
   const LOSEGAMETOBOSS = "LOSEGAMETOBOSS" // Player reached the boss but lost against the boss, thus losing the game
   const WINALLARENAS = "WINALLARENAS" // Player has won 5 arenas and is about to face the boss
+
   const PENDING = 'PENDING'; // Player has not finished an arena yet
   const outcome = props.outcome;
 

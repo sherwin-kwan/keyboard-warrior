@@ -1,37 +1,4 @@
-// const arenas = [
-//   {
-//     name: "Hogwarts",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//     beaten: false
-//   },
-//   {
-//     name: "Indigo Plateau",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//     beaten: true
-//   },
-//   {
-//     name: "Minas Tirith",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg"
-//   },
-//   {
-//     name: "Final Destination",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//   },
-//   {
-//     name: "Hotel California",
-//     arena_card: "/images/door.jpg",
-//     background_image: "/images/door.jpg",
-//     background_music: "/sounds/background-music.ogg",
-//   }
-// ]
+
 
 export function countArenasLost(arenas) {
   let count = 0;

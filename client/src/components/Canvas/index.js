@@ -52,12 +52,69 @@ function Canvas(props) {
   // Load background music
   const soundMedia = useRef(null);
 
+  // Sub-modes of the outcome mode
+  const WINGAME = 'WINGAME'; // Player won the whole game
+  const LOSEBATTLE = 'LOSEBATTLE'; // Player lost an arena
+  const WINBATTLE = 'WINBATTLE'; // Player won the arena
+  const LOSEGAMENOTBOSS = "LOSEGAMENOTBOSS" // Player lost the game because they lost too many arenas before they reached a boss
+  const LOSEGAMETOBOSS = "LOSEGAMETOBOSS" // Player reached the boss but lost against the boss, thus losing the game
+  const WINALLARENAS = "WINALLARENAS" // Player has won 5 arenas and is about to face the boss
+
   useEffect(() => {
+<<<<<<< HEAD
     // Set initial music source
     if (!soundMedia.current.src) soundMedia.current.src = '/sounds/background-music.ogg';
     soundMedia.current.volume = music ? 0.1 : 0.0;
     soundMedia.current.play();
   }, [mode, music]);
+=======
+
+    async function playMusic() {
+
+      // Set initial music source
+
+      if (mode === OUTCOME) {
+        switch (outcome) {
+          case WINGAME:
+            soundMedia.current.src = '/sounds/win-game.mp3';
+            break;
+          case WINBATTLE:
+          case WINALLARENAS:
+            soundMedia.current.src = '/sounds/win-battle.mp3';
+            break;
+          case LOSEBATTLE:
+            soundMedia.current.src = '/sounds/lose-battle.mp3';
+            break;
+          case LOSEGAMENOTBOSS:
+          case LOSEGAMETOBOSS:
+            soundMedia.current.src = '/sounds/lose-game.mp3';
+            break;
+          default:
+            break;
+        }
+        soundMedia.current.loop = false;
+      } else {
+        soundMedia.current.src = '/sounds/background-music.mp3';
+        soundMedia.current.loop = true;
+      }
+
+      // Some browsers do not allow auto-play, if promise rejects send a console log
+      try {
+        if (soundMedia.current.paused) await soundMedia.current.play();
+      } catch (err) {
+        console.log('Music could not be played');
+      }
+
+    };
+
+    // Start music if curretly not playing
+    playMusic();
+  }, [mode]);
+
+  useEffect(() => {
+    soundMedia.current.volume = music ? 0.1 : 0.0;
+  }, [music]);
+>>>>>>> 4e6eb5229fdb81c534313e96af7ce2c06fa90846
 
   // reset game function
   const resetGameState = function () {
@@ -72,7 +129,11 @@ function Canvas(props) {
 
   return (
     <>
+<<<<<<< HEAD
       <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.ogg' >
+=======
+      <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.mp3' >
+>>>>>>> 4e6eb5229fdb81c534313e96af7ce2c06fa90846
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
