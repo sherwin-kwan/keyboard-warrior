@@ -11,7 +11,7 @@ export class StepProgressBar extends React.Component {
     const regularNotch4 = "/images/four.png"
     const regularNotch5 = "/images/five.png"
     const playerNotch = "/images/player-notch.gif"
-    const bossNotch = "/images/hard.png"
+    const bossNotch = "/images/boss_icon.png"
     const playerLevel = parseInt(this.props.arenasBeaten)
     const numLevelsInclStart = 6
     return (
@@ -84,7 +84,6 @@ export class StepProgressBar extends React.Component {
         <Step transition="scale">
           {({ accomplished }) => (
             <img
-              style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
               width="40"
               src={playerLevel === 6 ? playerNotch : bossNotch}
               alt="Level 6"
