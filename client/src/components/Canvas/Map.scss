@@ -8,13 +8,17 @@ main.map {
   background-image: url('../../images/windows-xp-wallpaper-pixel-art.jpg');
   background-size: cover;
   
-  div.RSPBprogressBar {
-    width: 80%;
-    height: 1rem;
-    margin: 1em;
-    background-color: #474e5d;
-    align-self: center;
+  span {
+    width: 100%;
+
+    div.RSPBprogressBar {
+      width: 80%;
+      height: 1rem;
+      margin: 1em auto;
+      background-color: #474e5d;
+    }
   }
+ 
 
   h2 {
     font-size: 1.5rem;

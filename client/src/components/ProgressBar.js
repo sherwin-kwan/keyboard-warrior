@@ -12,6 +12,7 @@ function ProgressBar(props) {
         height='50px'
         filename={props.playerImg} />
         <SkillBar 
+          title={'SAMPLE'}
           animationDelay={0} 
           animationDuration={100} 
           skills={[{

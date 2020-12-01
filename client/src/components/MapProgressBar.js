@@ -15,6 +15,9 @@ export class StepProgressBar extends React.Component {
     const playerLevel = parseInt(this.props.arenasBeaten)
     const numLevelsInclStart = 6
     return (
+      
+      <span title={`You have won ${this.props.arenasBeaten} ${this.props.arenasBeaten === 1 ? 'battle' : 'battles'}. 
+      Win ${5 - this.props.arenasBeaten} more and beat the final boss to win the game!`}>
       <ProgressBar
         percent={parseInt(this.props.arenasBeaten) * (100 / numLevelsInclStart)}
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
@@ -91,6 +94,7 @@ export class StepProgressBar extends React.Component {
           )}
         </Step>
       </ProgressBar>
+      </span>
     );
   }
 }
