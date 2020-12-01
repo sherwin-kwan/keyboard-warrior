@@ -52,16 +52,48 @@ function Canvas(props) {
   // Load background music
   const soundMedia = useRef(null);
 
+  // Sub-modes of the outcome mode
+  const WINGAME = 'WINGAME'; // Player won the whole game
+  const LOSEBATTLE = 'LOSEBATTLE'; // Player lost an arena
+  const WINBATTLE = 'WINBATTLE'; // Player won the arena
+  const LOSEGAMENOTBOSS = "LOSEGAMENOTBOSS" // Player lost the game because they lost too many arenas before they reached a boss
+  const LOSEGAMETOBOSS = "LOSEGAMETOBOSS" // Player reached the boss but lost against the boss, thus losing the game
+  const WINALLARENAS = "WINALLARENAS" // Player has won 5 arenas and is about to face the boss
+
   useEffect(() => {
 
     async function playMusic() {
-      
+
       // Set initial music source
-      soundMedia.current.src = '/sounds/background-music.ogg';
+
+      if (mode === OUTCOME) {
+        switch (outcome) {
+          case WINGAME:
+            soundMedia.current.src = '/sounds/win-game.mp3';
+            break;
+          case WINBATTLE:
+          case WINALLARENAS:
+            soundMedia.current.src = '/sounds/win-battle.mp3';
+            break;
+          case LOSEBATTLE:
+            soundMedia.current.src = '/sounds/lose-battle.mp3';
+            break;
+          case LOSEGAMENOTBOSS:
+          case LOSEGAMETOBOSS:
+            soundMedia.current.src = '/sounds/lose-game.mp3';
+            break;
+          default:
+            break;
+        }
+        soundMedia.current.loop = false;
+      } else {
+        soundMedia.current.src = '/sounds/background-music.mp3';
+        soundMedia.current.loop = true;
+      }
 
       // Some browsers do not allow auto-play, if promise rejects send a console log
       try {
-        await soundMedia.current.play();
+        if (soundMedia.current.paused) await soundMedia.current.play();
       } catch (err) {
         console.log('Music could not be played');
       }
@@ -69,7 +101,7 @@ function Canvas(props) {
     };
 
     // Start music if curretly not playing
-    if (soundMedia.current.paused) playMusic();
+    playMusic();
   }, [mode]);
 
   useEffect(() => {
@@ -89,7 +121,7 @@ function Canvas(props) {
 
   return (
     <>
-      <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.ogg' >
+      <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.mp3' >
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
