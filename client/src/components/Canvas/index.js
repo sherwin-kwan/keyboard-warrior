@@ -61,13 +61,6 @@ function Canvas(props) {
   const WINALLARENAS = "WINALLARENAS" // Player has won 5 arenas and is about to face the boss
 
   useEffect(() => {
-<<<<<<< HEAD
-    // Set initial music source
-    if (!soundMedia.current.src) soundMedia.current.src = '/sounds/background-music.ogg';
-    soundMedia.current.volume = music ? 0.1 : 0.0;
-    soundMedia.current.play();
-  }, [mode, music]);
-=======
 
     async function playMusic() {
 
@@ -114,7 +107,6 @@ function Canvas(props) {
   useEffect(() => {
     soundMedia.current.volume = music ? 0.1 : 0.0;
   }, [music]);
->>>>>>> 4e6eb5229fdb81c534313e96af7ce2c06fa90846
 
   // reset game function
   const resetGameState = function () {
@@ -129,11 +121,7 @@ function Canvas(props) {
 
   return (
     <>
-<<<<<<< HEAD
-      <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.ogg' >
-=======
       <audio autoPlay loop ref={soundMedia} src='/sounds/background-music.mp3' >
->>>>>>> 4e6eb5229fdb81c534313e96af7ce2c06fa90846
         Your browser does not support HTML audio.
       </audio>
       <div className="canvas">
