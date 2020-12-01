@@ -43,3 +43,23 @@ code {
     monospace;
 }
 
+// Small laptops and large tablets
+@media screen and (max-width: 992px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+// Tablets and large phones
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+// Small phones
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 8px;
+  }
+}
