@@ -181,13 +181,13 @@ function Arena(props) {
           <span className="window-title">{props.arena.name}</span>
         </div>
         <div className="window-content">
-          <div className="health-bar">
+          <div className="health-bar" data-cy="health-bar">
             <HealthBar
               health={health.player}
               onClick={() => { changeHealth('player', -10) }}
             />
           </div>
-          <div className="health-bar">
+          <div className="health-bar" data-cy="health-bar">
             <HealthBar
               health={health.challenger}
               onClick={() => { changeHealth('challenger', -10) }}
@@ -230,11 +230,11 @@ function Arena(props) {
             />
           </div>
           <div className="challenger-actions">
-            <div className="buttons">
+            {/* <div className="buttons">
               <button onClick={() => setAttackTime(1000000000)}>Pause</button>
               <button onClick={() => setAttackTime(20000)}>Slow</button>
               <button onClick={() => setAttackTime(2000)}>Normal</button>
-            </div>
+            </div> */}
             <ChallengerActionList
               // actions={{
               //   timeToAttack: 5

@@ -12,18 +12,21 @@
   // Set window background image
   background-image: url('../../images/cyberpunk-1.jpg');
   background-size: cover;
+  background-position: center;
 
   .mute-music {
-    align-self: flex-start;
     cursor: pointer;
+    position: absolute;
+    left: 55px;
+    top: 55px;
   }
 
   // Style for Game Border
   main {
     width: 75%;
-    height: 80%;
-    background-color: #FFF;
-    border: 20px solid #444;
+    height: 90%;
+    background-color: $white;
+    border: 20px outset $dark-grey;
     border-radius: 25px;
     position: absolute;
   }
@@ -59,30 +62,31 @@
     width: 15rem;
     margin: 0.5rem;
     padding: 0.5rem;
-    border: 1px outset #999;
+    border: 1px outset $light-grey;
     font-family: $primary-font;
-    background-color: Transparent;
+    // background-color: Transparent;
     outline: none;
-    background-color: #fff;
+    background-color: $white;
     border-radius: 15px;
-    box-shadow: 0 4px #999;
+    box-shadow: 0 4px $grey;
+    cursor: pointer;
   }
 
   button.primary:hover,
   input.primary:hover {
-    background: #51c971;
+    background: $lighter-grey;
     border-radius: 15px;
   }
   
   button.primary:active,
   input.primary:active {
-    box-shadow: 0 2px #666;
+    box-shadow: 0 2px $dark-grey;
     transform: translateY(3px);
   }
 
   button.primary:disabled,
   input.primary:disabled {
-    background: #fff;
+    background: $white;
   }
 
   // Custom scrollbar

@@ -37,6 +37,34 @@ function Outcome(props) {
     getLeaders();
   }, []);
 
+  // Set music for win and lose conditions
+  useEffect(() => {
+    switch (outcome) {
+      case WINGAME:
+        soundMedia.current.src = '/sounds/win-game.mp3';
+        break;
+      case WINBATTLE:
+      case WINALLARENAS:
+        soundMedia.current.src = '/sounds/win-battle.mp3';
+        break;
+      case LOSEBATTLE:
+        soundMedia.current.src = '/sounds/lose-battle.mp3';
+        break;
+      case LOSEGAMENOTBOSS:
+      case LOSEGAMETOBOSS:
+        soundMedia.current.src = '/sounds/lose-game.mp3';
+        break;
+      default:
+        soundMedia.current.src = '/sounds/background-music.ogg';
+    };
+    soundMedia.current.loop = false;
+    // Cleanup function: return to normally scheduled programming after leaving the outcome screen
+    return (() => {
+      soundMedia.current.src = '/sounds/background-music.ogg';
+      soundMedia.current.loop = true;
+    });
+  }, [soundMedia, outcome]);
+
   return (
     <>
       {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} leaders={leaders} score={props.score} lastResult={props.lastResult} soundMedia={props.soundMedia} />}

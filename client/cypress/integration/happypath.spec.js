@@ -24,12 +24,21 @@ describe("Navigating the happy path", () => {
     cy.get('div.canvas').contains('Start').click();
 
     // Map, No. 1: As a player, I should have at least 5 options for battle arenas to fight in order to win the game
+<<<<<<< HEAD
+    const doors = cy.get('.door-slider');
+=======
     const doors = cy.get('[data-cy=door-slider]');
+>>>>>>> 4e6eb5229fdb81c534313e96af7ce2c06fa90846
     doors.should('have.length.of.at.least', 5);
     doors.eq(0).click();
 
     // Map No. 2: As a player, I can choose which battle arena I want to enter by clicking on it
+<<<<<<< HEAD
+    cy.get('.door:first').contains("Middle");
+    cy.get('.door:first').find('img').click();
+=======
     cy.get('[data-cy=enter-arena]').contains("Middle").click();
+>>>>>>> 4e6eb5229fdb81c534313e96af7ce2c06fa90846
 
     // Battle No. 1: As a player, I can see health bars above my sprite and the enemy’s sprite, so I know how close I am to winning/losing
     cy.get('main').find('[data-cy=health-bar]').should('have.length', 2);
@@ -37,7 +46,12 @@ describe("Navigating the happy path", () => {
     // Battle No. 2: As a player, I have the following options for moves: attack (deals damage) or heal (restore health)
     cy.get('[data-cy=player-actions]').find('li').should('have.length.of.at.least', 2);
 
+<<<<<<< HEAD
+    // Battle No. 2: As a player, I have the following options for moves: attack (deals damage) or heal (restore health)
+    cy.get('.player-actions').find('li').should('have.length.of.at.least', 2);
+=======
     // cy.get('[data-cy=type-here]').find('input').type(cy.get('[data-cy=attack-word]').invoke('text'));
+>>>>>>> 4e6eb5229fdb81c534313e96af7ce2c06fa90846
 
     // Battle No. 3: As a player, the game will generate a series of words that I can type to execute a move
     // This example will type a word to execute an attack
@@ -118,11 +132,18 @@ describe("Navigating the happy path", () => {
   });
 
   it('should end in defeat if player sits idle for too long', () => {
+<<<<<<< HEAD
+    cy.get('div.canvas').contains("Start").click();
+    cy.get('.door:first').contains("Middle");
+    cy.get('.door:first').find('.door-title').click();
+    cy.wait(25000);
+=======
     cy.get(`[data-cy=enter-name]`).type('Cypress');
     cy.get('div.canvas').contains('Start').click();
     cy.get('.door:first').contains("Middle");
     cy.get('[data-cy=enter-arena]').click();
     cy.wait(45000);
+>>>>>>> 4e6eb5229fdb81c534313e96af7ce2c06fa90846
     // That should be enough time to lose
     // Game No. 3: As a game, when the player dies, I show them a you died screen and an option to restart
     cy.get('div.canvas').should('contain', 'DEFEAT');
