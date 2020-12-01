@@ -186,7 +186,7 @@ main.arena {
 
   // Player typing box
 
-  .typing {
+  div.typing {
     grid-column: span 2;
     margin: 1rem;
 
@@ -195,7 +195,7 @@ main.arena {
       font-size: 1rem;
       text-transform: uppercase;
       height: 2.5rem;
-      width: 30vw;
+      width: 40vw;
       background: white;
       outline: none;
       border: 3px outset #999;
@@ -245,4 +245,5 @@ main.arena {
       /* Note: The timer bar is styled inline using React states. Do not put that here! */
     }
   }
+
 }

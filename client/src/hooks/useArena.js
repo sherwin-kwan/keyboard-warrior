@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function useArena() {
   
   const [ arenas, setArenas ] = useState([]);
-  const [ arena, setArena ] = useState([]); // controls which arena battle the player in
+  const [ arena, setArena ] = useState({}); // controls which arena battle the player in
   const [ cleanArenas, setCleanArenas ] = useState([]); //the Arenas as they are in the DB - without the key beaten. This is the state that should be used at the beginning of a game
   
   // Get Arena data from DB

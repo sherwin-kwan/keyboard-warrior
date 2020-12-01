@@ -9,11 +9,14 @@ export default function useLeaders(page) {
     score: 'N/A'
   }]);
 
+  // For showing/hiding the leaderboard on start page
+  const [ leadersShow, setLeadersShow ] = useState(false);
+
   async function getLeaders(page) {
     const appendString = page  ? `?page=${page}`: '';
     const leaders = await axios.get(`/api/leaders${appendString}`);
     setLeaders(leaders.data);
   };
 
-  return { leaders, getLeaders };
+  return { leaders, getLeaders, leadersShow, setLeadersShow };
 };

@@ -9,7 +9,7 @@ function TextInput(props) {
         autoFocus
         type="text"
         name="input"
-        placeholder="Start typing!"
+        placeholder="Type words above to attack or heal!"
         value={props.value} 
         onChange={e => props.onChange(e.target.value)}
       />

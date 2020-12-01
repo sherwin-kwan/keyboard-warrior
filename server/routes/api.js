@@ -99,11 +99,13 @@ module.exports = (fs) => {
       AND games.win = true
       GROUP BY game_id, games.player_name
       ORDER BY score DESC
-      LIMIT 10
+      LIMIT :limit;
       OFFSET :offset;
       `, {
         type: QueryTypes.SELECT,
-        replacements: { offset: req.query.page * 10 || 0 }
+        replacements: { 
+          limit: 10,
+          offset: req.query.page * limit || 0 }
       });
       res.json(data);
     } catch (err) {
