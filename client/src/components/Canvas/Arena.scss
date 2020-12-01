@@ -33,18 +33,18 @@ main.arena {
       margin-right: 0.5rem;
 
       &.close {
-        background-color: red;
-        border: 1px outset red;
+        background-color: $red;
+        border: 1px outset $red;
       }
 
       &.minimize {
-        background-color: yellow;
-        border: 1px outset yellow;
+        background-color: $yellow;
+        border: 1px outset $yellow;
       }
 
       &.maximize {
-        background-color: green;
-        border: 1px outset green;
+        background-color: $green;
+        border: 1px outset $green;
       }
     }
 
@@ -57,7 +57,7 @@ main.arena {
     background-color: rgba(255, 255, 255, 0.85);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr auto 1fr;
+    grid-template-rows: auto 2fr 1fr 1fr;
     justify-items: center;
     align-items: center;
     border-radius: 0 0 0.5rem 0.5rem;
@@ -150,11 +150,11 @@ main.arena {
         }
 
         .action-word {
-          font-size: 1.4rem;
-          line-height: 2rem;
+          font-size: 1.5rem;
+          // line-height: 2rem;
           text-transform: uppercase;
-          color: grey;
-          text-shadow: 1px 3px 1px white;
+          color: $grey;
+          text-shadow: 1px 1px 0 $white;
           
           pre {
             display: inline;
@@ -163,9 +163,11 @@ main.arena {
             white-space: pre-wrap;
   
             &.match {
-              color: #f00;
-              text-shadow: 1px 2px 1px #fff;
-              transform: translateY(1px);
+              color: $red;
+              text-shadow: 
+                1px 1px 0 $white,
+                2px 2px 0 $dark-grey;
+              transform: scale(1.2);
             }
           }
         }
@@ -177,12 +179,13 @@ main.arena {
 
   .typing {
     grid-column: span 2;
+    margin: 1rem;
 
     input {
       font-family: $primary-font;
       font-size: 1rem;
       text-transform: uppercase;
-      height: 3rem;
+      height: 2.5rem;
       width: 30vw;
       background: white;
       outline: none;
@@ -217,10 +220,10 @@ main.arena {
   }
   
   .challenger-actions {
-    margin: 1rem;
 
     p {
       text-align: center;
+      margin: 0.5rem;
     }
 
     div.bar-container {
