@@ -81,7 +81,7 @@ function Outcome(props) {
       {outcome === WINBATTLE && <WinBattle allArenas={false} setMode={props.setMode} soundMedia={props.soundMedia} arena={props.arena} resultProps={resultProps} score={props.score} />}
       {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.currentBattle.score} score={props.score} resetGame={props.resetGame} />}
       {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.currentBattle.score} score={props.score} resetGame={props.resetGame} />}
-      {outcome === WINALLARENAS && <WinBattle allArenas={true} setMode={props.setMode} soundMedia={props.soundMedia} setArena={props.setArena} arena={props.arena} resultProps={resultProps} score={props.score}  />}
+      {outcome === WINALLARENAS && <WinBattle allArenas={true} setMode={props.setMode} cleanArenas={props.cleanArenas} soundMedia={props.soundMedia} setArena={props.setArena} arena={props.arena} resultProps={resultProps} score={props.score}  />}
       {outcome === PENDING && <main>Oops, looks like an error occurred. The result state shouldn't be pending!</main>}
     </>
   );

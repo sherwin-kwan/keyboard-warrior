@@ -170,6 +170,7 @@ function Canvas(props) {
           outcome={outcome}
         />}
         {mode === OUTCOME && <Outcome
+          cleanArenas={cleanArenas}
           outcome={outcome}
           lastResult={lastResult}
           soundMedia={soundMedia}
