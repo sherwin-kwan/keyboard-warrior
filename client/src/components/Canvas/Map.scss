@@ -54,8 +54,8 @@ main.map {
 
   .doors-container {
     display: flex;
-    height: 40vh;
-    width: 60vw;
+    height: 25rem;
+    width: 65rem;
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -115,7 +115,7 @@ main.map {
       }
       
       .card {
-        width: 40vw;
+        width: 45rem;
         display: flex;
         flex-direction: column;
         background-color: grey;

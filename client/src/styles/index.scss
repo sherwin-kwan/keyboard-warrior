@@ -9,7 +9,18 @@
  */
  html {
   box-sizing: border-box;
+  font-size: min(1vw, 1.9vh); // Set the REM unit to something that fits the viewport.
+
+  main { // Sets size of the canvas screen
+    width: 80rem;
+    height: 50rem;
+    margin: auto;
+  }
+
+  // ALL HEIGHTS AND WIDTHS IN THE WHOLE PROJECT SHOULD BE IN REM SO THE APP IS RESPONSIVE!!
+  
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -42,14 +53,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-html {
-  font-size: min(1vw, 1.9vh);
-}
-
-main {
-  width: 80rem;
-  height: 50rem;
-  margin: auto;
 }
