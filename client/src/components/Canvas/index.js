@@ -35,7 +35,6 @@ function Canvas(props) {
   const MAP = "MAP";
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
-  const BOSS = "BOSS";
   const CREDITS = "CREDITS";
   const INSTRUCTIONS = "INSTRUCTIONS";
   const TRANSITION = "TRANSITION";
@@ -43,7 +42,7 @@ function Canvas(props) {
 
   //hooks
   const { mode, setMode } = useGameMode("START")
-  const { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena } = useArena();
+  const { arenas, setArenas, arena, setArena, cleanArenas } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
   const { startBattle, endBattle, style, handleAttackAnimation, currentBattle, setCurrentBattle } = useBattles();
   const { game, setGame, startGame, score, setScore, updateScore, lastResult } = useGame();
@@ -161,23 +160,6 @@ function Canvas(props) {
           endBattle={endBattle}
           style={style}
           handleAttackAnimation={handleAttackAnimation}
-          setMode={setMode}
-          arena={arena}
-          arenas={arenas}
-          setArenas={setArenas}
-          game={game}
-        />}
-        {mode === BOSS && <Arena
-          setOutcome={setOutcome}
-          setScore={setScore}
-          initialPlayerHealth={100}
-          challengerHealth={100}
-          currentBattle={currentBattle}
-          setCurrentBattle={setCurrentBattle}
-          startBattle={startBattle}
-          endBattle={endBattle}
-          style={style}
-          arena={handleBossArena()}
           setMode={setMode}
           arena={arena}
           arenas={arenas}

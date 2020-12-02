@@ -3,6 +3,11 @@ import ScoreTable from '../../ScoreTable';
 
 const WinBattle = (props) => {
   
+  // Ensuring that user goes to boss arena after they have won 5 battles
+  if (props.allArenas) {
+    console.log('All arenas beaten!');
+    props.setArena(props.cleanArenas.find(arena => arena.name === 'Boss'));
+  }
 
   return (
     <main className="outcome win-battle">

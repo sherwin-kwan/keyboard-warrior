@@ -6,7 +6,6 @@ import WinBattle from './WinBattle';
 import LoseBattle from './LoseBattle';
 import LoseGameNotBoss from './LoseGameNotBoss';
 import LoseGameToBoss from './LoseGameToBoss';
-import WinAllArenas from './WinAllArenas';
 
 // Hooks
 import useLeaders from '../../../hooks/useLeaders';
@@ -75,12 +74,6 @@ function Outcome(props) {
     lastResult: props.currentBattle.score
   }
 
-  // Ensuring that user goes to boss arena after they have won 5 battles
-  if (outcome === WINALLARENAS) {
-    console.log('All arenas beaten!');
-    props.setArena(props.cleanArenas.find(arena => arena.name === 'Boss'));
-  }
-
   return (
     <>
       {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} leaders={leaders} score={props.score} lastResult={props.currentBattle.score} soundMedia={props.soundMedia} />}
@@ -88,7 +81,7 @@ function Outcome(props) {
       {outcome === WINBATTLE && <WinBattle allArenas={false} setMode={props.setMode} soundMedia={props.soundMedia} arena={props.arena} resultProps={resultProps} score={props.score} />}
       {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.currentBattle.score} score={props.score} resetGame={props.resetGame} />}
       {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.currentBattle.score} score={props.score} resetGame={props.resetGame} />}
-      {outcome === WINALLARENAS && <WinBattle allArenas={true} setMode={props.setMode} soundMedia={props.soundMedia} arena={props.arena} resultProps={resultProps} score={props.score}  />}
+      {outcome === WINALLARENAS && <WinBattle allArenas={true} setMode={props.setMode} soundMedia={props.soundMedia} setArena={props.setArena} arena={props.arena} resultProps={resultProps} score={props.score}  />}
       {outcome === PENDING && <main>Oops, looks like an error occurred. The result state shouldn't be pending!</main>}
     </>
   );
