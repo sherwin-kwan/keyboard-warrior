@@ -16,6 +16,14 @@ main.map {
       height: 1rem;
       margin: 1em auto;
       background-color: #474e5d;
+
+      img {
+        max-width: 5rem;
+      }
+
+      img:last-of-type {
+        width: 7rem;
+      }
     }
   }
  
@@ -64,7 +72,7 @@ main.map {
       .door-arrow {
         align-self: center;
         justify-self: center;
-        height: 80px;
+        height: 5rem;
         cursor: pointer;
   
         &.right:hover {
