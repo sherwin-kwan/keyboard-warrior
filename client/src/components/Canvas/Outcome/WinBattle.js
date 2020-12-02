@@ -4,10 +4,10 @@ import ScoreTable from '../../ScoreTable';
 const WinBattle = (props) => {
   
   // Ensuring that user goes to boss arena after they have won 5 battles
-  if (props.allArenas) {
-    console.log('All arenas beaten!');
+  const goToBossArena = () => {
     props.setArena(props.cleanArenas.find(arena => arena.name === 'Boss'));
-  }
+    props.setMode('ARENA');
+  };
 
   return (
     <main className="outcome win-battle">
@@ -18,7 +18,7 @@ const WinBattle = (props) => {
         <ScoreTable result={props.resultProps} />
         <p>{props.allArenas ? 'Heading into the final fight, you have' : 'You now have'} a total of {props.score} points.</p>
         {/* Note: Since arena has been set to boss arena already in the Outcome/index.js page, this will send player to boss arena or to map */}
-        <button className="primary" onClick={() => props.allArenas ? props.setMode('ARENA') : props.setMode('MAP')}>
+        <button className="primary" onClick={props.allArenas ? goToBossArena : () => props.setMode('MAP')}>
           {props.allArenas ? 'Continue To Boss!' : 'Choose Next Battle!'}
         </button>
       </div>
