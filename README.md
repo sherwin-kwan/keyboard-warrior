@@ -42,8 +42,9 @@ Notes:
 2) You should now see two directories called 'client' and 'server'. 'client' is the React app, 'server' is the Node server, and together they make up Keyboard Warrior!
 3) `cd client` and run `npm install` to install client-side dependencies
 4) `cd ../server` and run `npm install` to install server-side dependencies
-5) Create a file called *.env.development* (following the example in *.env.example*) within the server directory. Add your database credentials (DATABASE_URL, DB_HOST, DB_NAME, DB_PASS, and DB_USER here)
-6) Open 2 terminals, one in the client directory and one in the server directory. Run `npm start` in both terminals
+5) Create a file called *.env.development* (following the example in *.env.example*) within the server directory. Add your database credentials (DATABASE_URL, DB_HOST, DB_NAME, DB_PASS, and DB_USER here). To test that you have done this correctly, with the terminal still open in the /server directory, run ```npm start```. You should see a message saying that you successfully connected to the database.
+6) With the terminal still in the /server directory, run ```npm run db:migrate``` and then ```npm run db:seed```. This will seed the database with seven different levels plus a boss level.
+6) With 2 terminals open, one in the /server and one in the /client directory, run ```npm start``` in both of them.
 7) Your browser should automatically open a page to localhost:3000 for you to view the app
 
 # Known Issues
