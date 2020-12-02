@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/static/css/main.a19d369d.chunk.css",
+    "main.css": "/static/css/main.d780b5f1.chunk.css",
     "main.js": "/static/js/main.5d1b9a53.chunk.js",
     "main.js.map": "/static/js/main.5d1b9a53.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.97954d0e.js",
@@ -12,7 +12,7 @@
     "static/js/3.f3afc590.chunk.js.map": "/static/js/3.f3afc590.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.7691baea.chunk.css.map": "/static/css/2.7691baea.chunk.css.map",
-    "static/css/main.a19d369d.chunk.css.map": "/static/css/main.a19d369d.chunk.css.map",
+    "static/css/main.d780b5f1.chunk.css.map": "/static/css/main.d780b5f1.chunk.css.map",
     "static/js/2.a1371adc.chunk.js.LICENSE.txt": "/static/js/2.a1371adc.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/static/media/medal-sunset-pixel.3956a063.jpg",
     "static/media/Transition.scss": "/static/media/windows-xp-wallpaper-pixel-art-blur.42d1f83e.jpg",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.97954d0e.js",
     "static/css/2.7691baea.chunk.css",
     "static/js/2.a1371adc.chunk.js",
-    "static/css/main.a19d369d.chunk.css",
+    "static/css/main.d780b5f1.chunk.css",
     "static/js/main.5d1b9a53.chunk.js"
   ]
 }
