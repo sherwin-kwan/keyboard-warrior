@@ -6,7 +6,6 @@ import WinBattle from './WinBattle';
 import LoseBattle from './LoseBattle';
 import LoseGameNotBoss from './LoseGameNotBoss';
 import LoseGameToBoss from './LoseGameToBoss';
-import WinAllArenas from './WinAllArenas';
 
 // Hooks
 import useLeaders from '../../../hooks/useLeaders';
@@ -65,14 +64,24 @@ function Outcome(props) {
     });
   }, [soundMedia, outcome]);
 
+
+  // For calculation purposes
+  const resultProps = {
+    par_time: props.arena.Difficulty.par_time,
+    player_time: props.currentBattle.time_seconds,
+    speedBonus: Math.round(Math.max(1, props.arena.Difficulty.par_time / props.currentBattle.time_seconds) * 100) / 100,
+    baseScore: props.arena.points,
+    lastResult: props.currentBattle.score
+  }
+
   return (
     <>
-      {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} leaders={leaders} score={props.score} lastResult={props.lastResult} soundMedia={props.soundMedia} />}
-      {outcome === LOSEBATTLE && <LoseBattle setMode={props.setMode} soundMedia={props.soundMedia} lastResult={props.lastResult} score={props.score} />}
-      {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} challenger={props.challenger} lastResult={props.lastResult} score={props.score} />}
-      {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.lastResult} score={props.score} resetGame={props.resetGame} />}
-      {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.lastResult} score={props.score} resetGame={props.resetGame} />}
-      {outcome === WINALLARENAS && <WinAllArenas setMode={props.setMode} score={props.score} soundMedia={props.soundMedia} lastResult={props.lastResult} />}
+      {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} leaders={leaders} score={props.score} lastResult={props.currentBattle.score} soundMedia={props.soundMedia} />}
+      {outcome === LOSEBATTLE && <LoseBattle setMode={props.setMode} soundMedia={props.soundMedia} lastResult={props.currentBattle.score} score={props.score} />}
+      {outcome === WINBATTLE && <WinBattle allArenas={false} setMode={props.setMode} soundMedia={props.soundMedia} arena={props.arena} resultProps={resultProps} score={props.score} />}
+      {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.currentBattle.score} score={props.score} resetGame={props.resetGame} />}
+      {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.currentBattle.score} score={props.score} resetGame={props.resetGame} />}
+      {outcome === WINALLARENAS && <WinBattle allArenas={true} setMode={props.setMode} soundMedia={props.soundMedia} setArena={props.setArena} arena={props.arena} resultProps={resultProps} score={props.score}  />}
       {outcome === PENDING && <main>Oops, looks like an error occurred. The result state shouldn't be pending!</main>}
     </>
   );

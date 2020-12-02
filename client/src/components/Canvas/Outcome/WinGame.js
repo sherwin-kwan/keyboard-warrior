@@ -7,9 +7,9 @@ const WinGame = (props) => {
   return (
     <main className="outcome win-game">
       <div className="message">
-        <h1>YOU WON!</h1>
-        <p>With your victory, you earned {props.lastResult} points.</p>
-        <p>You beat the boss and won the game with {props.score} points.</p>
+        <h1>YOU WON! CONGRATS!</h1>
+        <p>With your victory over the boss, you earned {props.lastResult} points.</p>
+        <p>Your final score is {props.score} points. If it's high enough, you'll see it in the leaderboard below!</p>
         <button className="primary" onClick={() => {
           props.resetGame()
         }}>Back to Start</button>

@@ -35,7 +35,6 @@ function Canvas(props) {
   const MAP = "MAP";
   const ARENA = "ARENA";
   const OUTCOME = "OUTCOME";
-  const BOSS = "BOSS";
   const CREDITS = "CREDITS";
   const INSTRUCTIONS = "INSTRUCTIONS";
   const TRANSITION = "TRANSITION";
@@ -43,10 +42,10 @@ function Canvas(props) {
 
   //hooks
   const { mode, setMode } = useGameMode("START")
-  const { arenas, setArenas, arena, setArena, cleanArenas, handleBossArena } = useArena();
+  const { arenas, setArenas, arena, setArena, cleanArenas } = useArena();
   const { outcome, setOutcome } = useOutcome('PENDING');
-  const { setCurrentBattle } = useBattles();
-  const { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult } = useGame();
+  const { startBattle, endBattle, style, handleAttackAnimation, currentBattle, setCurrentBattle } = useBattles();
+  const { game, setGame, startGame, score, setScore, updateScore, lastResult } = useGame();
   const { music, setMusic } = useMusic();
 
   // Load background music
@@ -122,7 +121,7 @@ function Canvas(props) {
     setArenas(cleanArenas);
     setOutcome("PENDING");
     setCurrentBattle([]);
-  }
+  };
 
   return (
     <>
@@ -151,25 +150,18 @@ function Canvas(props) {
           arenasBeaten={countArenasBeaten(arenas)} />
         }
         {mode === ARENA && <Arena
-          setLastResult={setLastResult}
           setOutcome={setOutcome}
           setScore={setScore}
           initialPlayerHealth={100}
           challengerHealth={100}
+          currentBattle={currentBattle}
+          setCurrentBattle={setCurrentBattle}
+          startBattle={startBattle}
+          endBattle={endBattle}
+          style={style}
+          handleAttackAnimation={handleAttackAnimation}
           setMode={setMode}
           arena={arena}
-          arenas={arenas}
-          setArenas={setArenas}
-          game={game}
-        />}
-        {mode === BOSS && <Arena
-          setLastResult={setLastResult}
-          setOutcome={setOutcome}
-          setScore={setScore}
-          initialPlayerHealth={100}
-          challengerHealth={100}
-          setMode={setMode}
-          arena={handleBossArena()}
           arenas={arenas}
           setArenas={setArenas}
           game={game}
@@ -185,8 +177,10 @@ function Canvas(props) {
           score={score}
           updateScore={updateScore}
           resetGame={resetGameState}
-          arena={arena.name}
-          challenger={arena.challenger_name}
+          currentBattle={currentBattle}
+          arena={arena}
+          setArena={setArena}
+          cleanArenas={cleanArenas}
         />}
         {mode === CREDITS && <Credits
           setMode={setMode}
