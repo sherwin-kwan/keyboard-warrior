@@ -12,7 +12,8 @@ const WinBattle = (props) => {
         {props.allArenas && <p>You beat 5 levels! That means you now enter the arena with the boss. Win this fight and you win the game. Good luck!</p>}
         <ScoreTable result={props.resultProps} />
         <p>{props.allArenas ? 'Heading into the final fight, you have' : 'You now have'} a total of {props.score} points.</p>
-        <button className="primary" onClick={() => props.allArenas ? props.setMode('BOSS') : props.setMode('MAP')}>
+        {/* Note: Since arena has been set to boss arena already in the Outcome/index.js page, this will send player to boss arena or to map */}
+        <button className="primary" onClick={() => props.allArenas ? props.setMode('ARENA') : props.setMode('MAP')}>
           {props.allArenas ? 'Continue To Boss!' : 'Choose Next Battle!'}
         </button>
       </div>

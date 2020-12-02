@@ -197,6 +197,8 @@ function Canvas(props) {
           resetGame={resetGameState}
           currentBattle={currentBattle}
           arena={arena}
+          setArena={setArena}
+          cleanArenas={cleanArenas}
         />}
         {mode === CREDITS && <Credits
           setMode={setMode}
