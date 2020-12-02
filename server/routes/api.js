@@ -93,18 +93,19 @@ module.exports = (fs) => {
   router.get('/leaders', async function (req, res) {
     // Gets the data for the leaderboard. Later on, can support multiple pages
     try {
+      const limit = 10;
       const data = await sequelize.query(`SELECT player_name, SUM(score) AS score
       FROM battles JOIN games ON battles.game_id = games.id
       WHERE score IS NOT NULL
       AND games.win = true
       GROUP BY game_id, games.player_name
       ORDER BY score DESC
-      LIMIT :limit;
+      LIMIT :limit
       OFFSET :offset;
       `, {
         type: QueryTypes.SELECT,
         replacements: { 
-          limit: 10,
+          limit,
           offset: req.query.page * limit || 0 }
       });
       res.json(data);
