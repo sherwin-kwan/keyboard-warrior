@@ -5,7 +5,6 @@ export default function useGame() {
 
   const [game, setGame] = useState({});
   const [score, setScore] = useState(0);
-  const [lastResult, setLastResult] = useState(0);
 
   function startGame(name, setMode) {
 
@@ -38,5 +37,5 @@ export default function useGame() {
     }
   }
 
-  return { game, setGame, startGame, score, setScore, updateScore, lastResult, setLastResult };
+  return { game, setGame, startGame, score, setScore, updateScore };
 }

@@ -14,19 +14,25 @@ export default function useBattles() {
       arena_id,
       start_time: new Date()
     };
-    setCurrentBattle(battle);
+    return battle;
   }
 
-  async function endBattle(win) {
+  async function endBattle(win, inputBattle) {
+    console.log('input battle is: ', inputBattle);
     const battle = {
-      ...currentBattle,
+      ...inputBattle,
       win,
       end_time: new Date()
     };
     try {
+      console.log(`Battle is: ${battle}`);
       const res = await axios.post('/api/battles', battle);
-      setCurrentBattle(battle);
-      return res.data.score;
+      const outputBattle = {
+        ...battle,
+        score: res.data.score,
+        time_seconds: res.data.time_seconds
+      };
+      return outputBattle;
     } catch (err) {
       console.log("Error Posting Battle:", err)
     }
@@ -60,5 +66,5 @@ export default function useBattles() {
     }
   }
 
-  return { startBattle, endBattle, setCurrentBattle, style, handleAttackAnimation };
+  return { startBattle, endBattle, currentBattle, setCurrentBattle, style, handleAttackAnimation };
 }

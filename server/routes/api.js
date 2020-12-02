@@ -130,6 +130,7 @@ module.exports = (fs) => {
       start_time: req.body.start_time,
       end_time: req.body.end_time
     });
+    console.log('battle is: ', myBattle);
     if (req.body.win) {
       const arenaStats = await Arena.findByPk(req.body.arena_id, {
         include: Difficulty

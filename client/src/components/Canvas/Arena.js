@@ -18,7 +18,6 @@ import { countArenasLost, countArenasBeaten } from "../../helpers/countArenasCom
 // Hooks
 import useInputMatcher from '../../hooks/useInputMatcher';
 import useChallengerAction from '../../hooks/useChallengerAction';
-import useBattles from '../../hooks/useBattles';
 
 function Arena(props) {
 
@@ -27,11 +26,33 @@ function Arena(props) {
   const [wordIndex, setWordIndex] = useState([0, 0]); // [Current attack word index, Current heal word index]
   const [health, setHealth] = useState({ player: props.initialPlayerHealth, challenger: props.challengerHealth })
   const [playerInput, setPlayerInput] = useState('');
-  const { attackTime, setAttackTime } = useChallengerAction(props.arena.Difficulty.attack_time_ms);
+  const { attackTime } = useChallengerAction(props.arena.Difficulty.attack_time_ms);
   const { handleWordMatch } = useInputMatcher();
   // Timings for the challenger's attacks
   const [challengerTimer, setChallengerTimer] = useState(20);
-  const { startBattle, endBattle, style, handleAttackAnimation } = useBattles();
+  const { startBattle, endBattle, style, handleAttackAnimation, currentBattle, setCurrentBattle } = props;
+
+
+  // On first load
+  useEffect(() => {
+    async function getWords() {
+      // Start battle timer
+      setCurrentBattle(startBattle(props.game.id, props.arena.id));
+      // Get word list and action list
+      try {
+        const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
+        console.log('Current battle is: ', currentBattle);
+        const initialWordsState = rawWords.data.map((action, ind) => {
+          return { ...action, word: action.words[0] };
+        });
+        setPlayerActions(initialWordsState);
+      } catch (err) {
+        console.log("Error getting data: ", err);
+      };
+    }
+    getWords();
+  }, [props.arena.id]);
+
 
   // Handles player attack
   useEffect(() => {
@@ -60,7 +81,33 @@ function Arena(props) {
     return () => clearTimeout(animationTimer);
   }, [playerInput]);
 
-  // Helper functions
+
+  // Handles Challenger Attack
+  // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (challengerTimer === 0) {
+        // Show attack animation
+        handleAttackAnimation('challenger');
+        setChallengerTimer(19);
+        changeHealth('player', -props.arena.Difficulty.damage_per_hit);
+        // We would eventually put a function for the challenger to attack here
+      } else {
+        setChallengerTimer(prev => prev - 1);
+      }
+    }, attackTime / 20);
+    return () => clearInterval(interval);
+  }, [challengerTimer, attackTime]);
+
+  // Gets the next word from the randomized list of words
+  const getNextWord = (action) => {
+    const actionIndex = playerActions.indexOf(action);
+    // Get next word or restart from beginning of word list
+    (wordIndex[actionIndex] === action.words.length - 1) ? wordIndex[actionIndex] = 0 : wordIndex[actionIndex]++;
+    playerActions[actionIndex].word = playerActions[actionIndex]["words"][wordIndex[actionIndex]];
+  }
+
+  // Change health after an attack
 
   const changeHealth = (fighter, hp) => {
     setHealth(prev => {
@@ -88,6 +135,8 @@ function Arena(props) {
   
   */
 
+  // End of battle
+
   async function handleBattleOver() {
     if (health.player === 0) {
       if (props.arena.name === "Boss") {
@@ -101,9 +150,10 @@ function Arena(props) {
         }
       }
       props.setMode("TRANSITION");
-      const returnedScore = await endBattle(false);
-      props.setLastResult(returnedScore);
-      props.setMode("OUTCOME")
+      console.log('current battle is: ', currentBattle);
+      const returnedBattle = await endBattle(false, currentBattle);
+      setCurrentBattle(returnedBattle);
+      props.setMode("OUTCOME");
     } else if (health.challenger === 0) {
       if (props.arena.name === "Boss") {
         props.setOutcome('WINGAME');
@@ -117,8 +167,9 @@ function Arena(props) {
         }
       }
       props.setMode("TRANSITION");
-      const returnedScore = await endBattle(true);
-      props.setLastResult(returnedScore);
+      console.log('current battle is: ', currentBattle);
+      const returnedBattle = await endBattle(true, currentBattle);
+      setCurrentBattle(returnedBattle);
       props.setMode("OUTCOME");
     }
   };
@@ -127,49 +178,6 @@ function Arena(props) {
     handleBattleOver();
   }, [health])
 
-  // Handles Challenger Attack
-  // Use a useEffect to prevent looping (otherwise, every time interval is set, the re-render causes a second timer to be started, etc.)
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (challengerTimer === 0) {
-        // Show attack animation
-        handleAttackAnimation('challenger');
-        setChallengerTimer(19);
-        changeHealth('player', -props.arena.Difficulty.damage_per_hit);
-        // We would eventually put a function for the challenger to attack here
-      } else {
-        setChallengerTimer(prev => prev - 1);
-      }
-    }, attackTime / 20);
-    return () => clearInterval(interval);
-  }, [challengerTimer, attackTime]);
-
-  // Gets the next word from the randomized list of words
-  const getNextWord = (action) => {
-    const actionIndex = playerActions.indexOf(action);
-    // Get next word or restart from beginning of word list
-    (wordIndex[actionIndex] === action.words.length - 1) ? wordIndex[actionIndex] = 0 : wordIndex[actionIndex]++;
-    playerActions[actionIndex].word = playerActions[actionIndex]["words"][wordIndex[actionIndex]];
-  }
-
-  // On first load
-  useEffect(() => {
-    async function getWords() {
-      // Start battle timer
-      startBattle(props.game.id, props.arena.id);
-      // Get word list and action list
-      try {
-        const rawWords = await axios.get(`/api/action-words/${props.arena.id}`);
-        const initialWordsState = rawWords.data.map((action, ind) => {
-          return { ...action, word: action.words[0] };
-        });
-        setPlayerActions(initialWordsState);
-      } catch (err) {
-        console.log("Error getting data: ", err);
-      };
-    }
-    getWords();
-  }, [props.arena.id]);
 
   return (
     <main className="arena" >

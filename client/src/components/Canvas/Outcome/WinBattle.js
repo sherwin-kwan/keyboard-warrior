@@ -1,18 +1,23 @@
 import React from 'react';
+import ScoreTable from '../../ScoreTable';
 
 const WinBattle = (props) => {
   
+  const par_time = props.arena.Difficulty.par_time;
+  const player_time = props.currentBattle.time_seconds;
+
   return (
     <main className="outcome win-battle">
-      <p className="message">
+      <div className="message">
         <h1>VICTORY</h1>
-        <p>Congrats, you have triumphed over {props.challenger}!</p>
-        <p>With your victory, you earned {props.lastResult} points. (If this looks higher than you expected, it's because you beat the arena
-        so quickly you got bonus points!</p>
+        <p>Congrats, you have triumphed over {props.arena.challenger_name} in {props.arena.name}!</p>
+        <ScoreTable lastResult={props.lastResult} baseScore={props.arena.points} speedBonus={0} />
         <p>You now have a total of {props.score} points.</p>
         <button className="primary" onClick={() => props.setMode('MAP')}>Choose Next Battle</button>
-      </p>
+      </div>
     </main>
   );
 };
 export default WinBattle;
+
+// props.arena.Difficulty.par_time / props.currentBattle.time_seconds

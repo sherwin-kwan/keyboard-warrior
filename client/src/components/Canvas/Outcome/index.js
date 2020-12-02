@@ -65,11 +65,21 @@ function Outcome(props) {
     });
   }, [soundMedia, outcome]);
 
+
+  // For calculation purposes
+  const resultProps = {
+    par_time: props.arena.Difficulty.par_time,
+    player_time: props.currentBattle.time_seconds,
+    speedBonus: Math.max(1, par_time / player_time),
+    baseScore: props.arena.points,
+    lastResult: props.currentBattle.score
+  }
+
   return (
     <>
       {outcome === WINGAME && <WinGame setMode={props.setMode} resetGame={props.resetGame} leaders={leaders} score={props.score} lastResult={props.lastResult} soundMedia={props.soundMedia} />}
       {outcome === LOSEBATTLE && <LoseBattle setMode={props.setMode} soundMedia={props.soundMedia} lastResult={props.lastResult} score={props.score} />}
-      {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} challenger={props.challenger} lastResult={props.lastResult} score={props.score} />}
+      {outcome === WINBATTLE && <WinBattle setMode={props.setMode} soundMedia={props.soundMedia} currentBatttle={props.currentBattle} arena={props.arena} lastResult={props.lastResult} score={props.score} />}
       {outcome === LOSEGAMENOTBOSS && <LoseGameNotBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.lastResult} score={props.score} resetGame={props.resetGame} />}
       {outcome === LOSEGAMETOBOSS && <LoseGameToBoss setMode={props.setMode} soundMedia={props.soundMedia} leaders={leaders} lastResult={props.lastResult} score={props.score} resetGame={props.resetGame} />}
       {outcome === WINALLARENAS && <WinAllArenas setMode={props.setMode} score={props.score} soundMedia={props.soundMedia} lastResult={props.lastResult} />}
