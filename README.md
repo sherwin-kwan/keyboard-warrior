@@ -34,7 +34,7 @@ Contributors: [Sherwin Kwan](https://github.com/sherwin-kwan/), [Jillian Martin]
 Notes: 
 * These commands are intended to be run in a Bash shell. 
 * Make sure you have ports 3000 and 3001 available. 3000 is used for the React client and 3001 for the Express API server. If you wish to use different ports, see [here](https://tech.amikelive.com/node-830/reactjs-changing-default-port-3000-in-create-react-app/comment-page-1/) for instructions on how to change the React port. The Express port may be changed by editing the constant `PORT` in `server/app.js`
-* You will need access to a Postgres database to run this app.
+* You will need access to a Postgres database to run this app locally.
 
 ## Setup Instructions
 
@@ -55,4 +55,4 @@ Notes:
 Version | Date | Notes
 ---|---|---
 0.1.0 | 2020-11-29 | Original deploy
-0.1.1 | 2020-12-01 | 
+0.1.1 | 2020-12-01 | Styling changes, more detailed leaderboards and result pages
