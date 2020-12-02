@@ -22,7 +22,7 @@ main.start-game {
     }
   }
 
-  input {
+  input[type=text] {
     width: 15rem;
     border: 2px solid black;
     margin: 8px 0;
@@ -33,9 +33,7 @@ main.start-game {
     transition: .3s;
     border-radius: 18px;
     font-family: $primary-font;
-    font-size: small;
-
-    
-
+    font-size: 0.7rem;
   }
+
 }

@@ -15,6 +15,9 @@ export class StepProgressBar extends React.Component {
     const playerLevel = parseInt(this.props.arenasBeaten)
     const numLevelsInclStart = 6
     return (
+      
+      <span title={`You have won ${this.props.arenasBeaten} ${this.props.arenasBeaten === 1 ? 'battle' : 'battles'}. 
+      Win ${5 - this.props.arenasBeaten} more and beat the final boss to win the game!`}>
       <ProgressBar
         percent={parseInt(this.props.arenasBeaten) * (100 / numLevelsInclStart)}
         filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
@@ -23,7 +26,6 @@ export class StepProgressBar extends React.Component {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="40"
               src={playerLevel === 0 ? playerNotch : regularNotch0}
               alt="Start"
             />
@@ -33,7 +35,6 @@ export class StepProgressBar extends React.Component {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="40"
               src={playerLevel === 1 ? playerNotch : regularNotch1}
               alt="Level 1"
             />
@@ -43,7 +44,6 @@ export class StepProgressBar extends React.Component {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="40"
               src={playerLevel === 2 ? playerNotch : regularNotch2}
               alt="Level 2"
             />
@@ -53,7 +53,6 @@ export class StepProgressBar extends React.Component {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="40"
               src={playerLevel === 3 ? playerNotch : regularNotch3}
               alt="Level 3"
             />
@@ -63,7 +62,6 @@ export class StepProgressBar extends React.Component {
           {({ accomplished }) => (
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="40"
               src={playerLevel === 4 ? playerNotch : regularNotch4}
               alt="Level 4"
             />
@@ -74,7 +72,6 @@ export class StepProgressBar extends React.Component {
             <>
             <img
               style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-              width="40"
               src={playerLevel === 5 ? playerNotch : regularNotch5}
               alt="Level 5"
             />
@@ -84,13 +81,13 @@ export class StepProgressBar extends React.Component {
         <Step transition="scale">
           {({ accomplished }) => (
             <img
-              width="40"
               src={playerLevel === 6 ? playerNotch : bossNotch}
               alt="Level 6"
             />
           )}
         </Step>
       </ProgressBar>
+      </span>
     );
   }
 }

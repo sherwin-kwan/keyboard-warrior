@@ -25,7 +25,7 @@ function Instructions(props) {
         <p>Win 5 battles to get to the final boss. Then beat the boss to win the game!</p>
         <img src="/images/progress-bar.png" alt="Progress bar" />
         <h2>Battling:</h2>
-        <p>Type the words that show up to attack for 10 damage or heal 10 health.</p>
+        <p>Type the words that show up to attack for 10 damage or heal 20 health.</p>
         <img src="/images/words-to-type.png" alt="Battle arena" />
         <h2>Scoring:</h2>
         <p>Earn more points by choosing more difficult arenas.</p>

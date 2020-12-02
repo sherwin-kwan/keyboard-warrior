@@ -97,19 +97,19 @@ main.arena {
     }
 
     img {
-      height: 25vh;
+      height: 13rem;
       max-width: 100%;
     }
 
     // Hide and position attack images
     img.action {
-      height: 100px;
+      height: 6.5rem;
       position: absolute;
       visibility: hidden;
       z-index: 2;
 
       &.challenger {
-        right: 23vw;
+        right: 23rem;
         z-index: 1;
       }
     }
@@ -135,7 +135,7 @@ main.arena {
 
   .player-actions {
     width: 100%;
-    padding-left: 5vw;
+    padding-left: 5rem;
 
     ul {
       padding: 0;
@@ -195,7 +195,7 @@ main.arena {
       font-size: 1rem;
       text-transform: uppercase;
       height: 2.5rem;
-      width: 40vw;
+      width: 40rem;
       background: white;
       outline: none;
       border: 3px outset #999;
@@ -207,7 +207,7 @@ main.arena {
 
     input:focus,
     input:hover {
-      width: 50vw;
+      width: 50rem;
     }
     
     input:focus {
@@ -239,7 +239,7 @@ main.arena {
       position: relative;
       width: 80%;
       margin: auto;
-      height: 35px;
+      height: 2rem;
       background-color: $bar-background-colour;
   
       /* Note: The timer bar is styled inline using React states. Do not put that here! */
