@@ -52,6 +52,7 @@ Notes:
 
 # Version History
 
-Version | Date
----|---
-0.1 | 2020-11-29
+Version | Date | Notes
+---|---|---
+0.1.0 | 2020-11-29 | Original deploy
+0.1.1 | 2020-12-01 | 

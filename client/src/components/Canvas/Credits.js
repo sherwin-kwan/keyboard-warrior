@@ -54,6 +54,12 @@ function Credits(props) {
         >
           Back to Start
         </button>
+        
+        <p className="footnotes">(C) 2020 Helen Ouyang, Jillian Martin, and Sherwin Kwan. <br />
+        Keyboard Warrior is free and open-source software. <a href="">See source repo</a>. <br />
+        We welcome collaboration! If you spot a bug, feel free to report it <a href="https://github.com/sherwin-kwan/word-game/issues">here! </a><br />
+        (Or if you're feeling really hard core, fix the code and send us a pull request!)</p>
+        
       </div>
     </main>
   );
