@@ -116,9 +116,9 @@ function Canvas(props) {
   const resetGameState = function () {
     setMode("START");
     setGame({});
-    setArena([])
+    setArena([]);
     setScore(0);
-    setArenas(cleanArenas);
+    setArenas(cleanArenas.filter(arena => arena.name !== 'Boss'));
     setOutcome("PENDING");
     setCurrentBattle([]);
   };
