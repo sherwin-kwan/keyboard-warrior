@@ -70,6 +70,7 @@
     outline: none;
     background-color: $white;
     border-radius: 15px;
+    font-size: 1rem;
     box-shadow: 0 4px $grey;
     cursor: pointer;
   }
@@ -112,16 +113,12 @@ table.leaderboard {
   border: 8px outset #999;
   border-radius: 18px;
   padding: 1em;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-align: left;
 
   thead tr {
     padding: 1px 1em;
-    background-color: #808;
-    
-    // tbody, tfoot, tr, td, th {
-    //   font-size: 10px;
-    // }
+    background-color: #808; 
     
   }
 
