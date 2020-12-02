@@ -3,17 +3,18 @@ import ScoreTable from '../../ScoreTable';
 
 const WinBattle = (props) => {
   
-  const par_time = props.arena.Difficulty.par_time;
-  const player_time = props.currentBattle.time_seconds;
 
   return (
     <main className="outcome win-battle">
       <div className="message">
         <h1>VICTORY</h1>
         <p>Congrats, you have triumphed over {props.arena.challenger_name} in {props.arena.name}!</p>
-        <ScoreTable lastResult={props.lastResult} baseScore={props.arena.points} speedBonus={0} />
-        <p>You now have a total of {props.score} points.</p>
-        <button className="primary" onClick={() => props.setMode('MAP')}>Choose Next Battle</button>
+        {props.allArenas && <p>You beat 5 levels! That means you now enter the arena with the boss. Win this fight and you win the game. Good luck!</p>}
+        <ScoreTable result={props.resultProps} />
+        <p>{props.allArenas ? 'Heading into the final fight, you have' : 'You now have'} a total of {props.score} points.</p>
+        <button className="primary" onClick={() => props.allArenas ? props.setMode('BOSS') : props.setMode('MAP')}>
+          {props.allArenas ? 'Continue To Boss!' : 'Choose Next Battle!'}
+        </button>
       </div>
     </main>
   );

@@ -6,7 +6,7 @@ const WinAllArenas = (props) => {
   return (
     <main className="outcome win-battle">
       <p className="message">
-        <h1>YOU WON!</h1>
+        <h1>VICTORY</h1>
         <p>You beat 5 levels! That means you now enter the arena with the boss. Win this fight and you win the game. Good luck!</p>
         <p>With your victory, you earned {props.lastResult} points. (If this looks higher than you expected, it's because you beat the arena
         so quickly you got bonus points!</p>

@@ -7,15 +7,15 @@ const ScoreTable = (props) => {
       <tbody>
         <tr>
           <td>Base Score: </td>
-          <td>{props.baseScore}</td>
+          <td>{props.result.baseScore}</td>
         </tr>
-        <tr>
+        <tr title={`You took ${props.result.player_time} seconds to complete a level where the benchmark time was ${props.result.par_time} s`}>
           <td>Speed Bonus: </td>
-          <td title={`You took ${props.player_time} to complete a level where the benchmark time was ${props.par_time}`}>{props.speedBonus}x</td>
+          <td>{props.result.speedBonus}x</td>
         </tr>
         <tr>
           <td>This round you earned:</td>
-          <td>{props.lastResult} points!</td>
+          <td>{props.result.lastResult} points!</td>
         </tr>
       </tbody>
     </table>);
